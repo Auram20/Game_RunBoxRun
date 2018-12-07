@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 
-
 # give a name to the project
 project(BoxRun)
 
@@ -31,27 +30,25 @@ message("CMAKE_HOME_DIRECTORY   : " ${CMAKE_HOME_DIRECTORY})
 message("PROJECT_BINARY_DIR     : " ${PROJECT_BINARY_DIR})
 message("PROJECT_SOURCE_DIR     : " ${PROJECT_SOURCE_DIR})
 
+# prevent bad move
+if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
+    message( FATAL_ERROR "It must be in the build folder of your source folder !" )
+endif()
 
 # add a "output" directory in the project binary directory
-file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+# file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR})
 
 # put the binary files in this directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 # package
 find_package(SDL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
-# Pour gérer un bug a la fac, a supprimer sur machine perso:
-#set(OPENGL_LIBRARIES /usr/lib/x86_64-linux-gnu/libGL.so.1)
-
 include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} lib/include game/include)
 
 set(ALL_LIBRARIES ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
-
-add_subdirectory(game)
-add_subdirectory(lib)
 
 
 # If we have compiler requirements for this library, list them here
@@ -61,7 +58,7 @@ add_subdirectory(lib)
 
 
 # compile
-add_executable(boxRun lib/src/main.cpp)
+add_executable(runBoxRun ${CMAKE_SOURCE_DIR}/main.cpp)
 
 # specify the library lib path
 #target_link_libraries(stabilisation ${OpenCV_LIBS})
