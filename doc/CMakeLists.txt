@@ -1,4 +1,5 @@
 find_package (Doxygen)
+cmake_minimum_required(VERSION 3.7)
 
 message("vectorD_SOURCE_DIR     " ${c3ga_SOURCE_DIR})
 message("vectorD_BINARY_DIR     " ${c3ga_BINARY_DIR})
