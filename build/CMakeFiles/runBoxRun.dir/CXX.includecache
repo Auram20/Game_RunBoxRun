@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../game/include/glm.hpp
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+glm/gtc/type_ptr.hpp
+-
+glm/gtc/constants.hpp
+-
+glm/gtx/io.hpp
+-
+glm/gtc/random.hpp
+-
+
+/home/6im2/manik/Game_RunBoxRun/game/include/Player.hpp
+glm.hpp
+-
+
+/home/6im2/manik/Game_RunBoxRun/game/src/Player.cpp
+../include/Player.hpp
+/home/6im2/manik/Game_RunBoxRun/game/include/Player.hpp
+iostream
+-
+
+/home/6im2/manik/Game_RunBoxRun/main.cpp
+iostream
+-
+cstdio
+-
+SDL/SDL.h
+-
+GL/glew.h
+-
+game/src/Player.cpp
+/home/6im2/manik/Game_RunBoxRun/game/src/Player.cpp
+

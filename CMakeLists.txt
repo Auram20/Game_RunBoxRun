@@ -64,4 +64,11 @@ add_executable(runBoxRun ${CMAKE_SOURCE_DIR}/main.cpp)
 #target_link_libraries(stabilisation ${OpenCV_LIBS})
 
 
+# call the CMakeLists.txt to make the documentation (Doxygen)
+# > 'make html' to generate the documentation
+# > the documentation is located in : [CMAKE ROOT]/build/doc/doc-doxygen/html
+add_subdirectory(doc)
+
+
+
 

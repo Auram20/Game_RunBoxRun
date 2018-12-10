@@ -1,0 +1,6 @@
+/home/6im2/manik/Game_RunBoxRun/build/CMakeFiles/rebuild_cache.dir
+/home/6im2/manik/Game_RunBoxRun/build/CMakeFiles/edit_cache.dir
+/home/6im2/manik/Game_RunBoxRun/build/CMakeFiles/runBoxRun.dir
+/home/6im2/manik/Game_RunBoxRun/build/doc/CMakeFiles/rebuild_cache.dir
+/home/6im2/manik/Game_RunBoxRun/build/doc/CMakeFiles/edit_cache.dir
+/home/6im2/manik/Game_RunBoxRun/build/doc/CMakeFiles/html.dir
