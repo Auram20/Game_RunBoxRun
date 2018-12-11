@@ -10,14 +10,20 @@
 // Includes 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm.hpp>
+#include "Object.hpp"
 
-
-
-
-/// \class Player
-/// \brief class defining a new player.
-class Player
+namespace RUNBOXRUN
 {
+<<<<<<< HEAD
+	/// \class Player
+	/// \brief class defining a new player.
+	class Player : public Object
+	{
+			
+		public:
+		Player();
+		~Player(); 
+=======
 		
 	public:
 	/// \brief constructor default
@@ -25,13 +31,19 @@ class Player
 	/// \brief destructor
 	//~Player(); 
 
+>>>>>>> 5b890efd46a76dcf4278e34f632b2eebde2a0e02
 
 
-	private:
-	unsigned int _health; /*!< health points of the player */
-	unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
-	glm::vec3 _position ;  /*!< player's position */
 
+<<<<<<< HEAD
+		private:
+		unsigned int _health; /*!< health points of the player */
+		unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
+
+	};
+}
+=======
 };
+>>>>>>> 5b890efd46a76dcf4278e34f632b2eebde2a0e02
 
 #endif
