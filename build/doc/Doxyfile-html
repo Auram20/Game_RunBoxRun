@@ -92,7 +92,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = /home/nicolas/Documents/IMAC/POO/Projet/Game_RunBoxRun/game/src
+INPUT                  = /home/6im2/manik/Bureau/Game_RunBoxRun/game/src
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \

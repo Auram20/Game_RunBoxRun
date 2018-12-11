@@ -14,7 +14,7 @@ namespace RUNBOXRUN
 {
 	/// \class Ui
 	/// \brief class defining a new ui.
-	class Ui:
+	class Ui
 	{
 			
 		public:

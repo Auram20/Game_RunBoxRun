@@ -19,7 +19,7 @@ namespace RUNBOXRUN
 			
 		public:
 		Object();
-		~Object(); 
+		//~Object(); 
 
 		private:
 		double _speed; /*!< object's speed */

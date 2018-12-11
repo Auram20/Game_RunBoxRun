@@ -21,7 +21,7 @@ namespace RUNBOXRUN
 			
 		public:
 		Player();
-		~Player(); 
+		//~Player(); 
 
 		private:
 		unsigned int _health; /*!< health points of the player */

@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include "game/include/Player.hpp"
 
+using namespace RUNBOXRUN;
 
 int main(void) 
 {

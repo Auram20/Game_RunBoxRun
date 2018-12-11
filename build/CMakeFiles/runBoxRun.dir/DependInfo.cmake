@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nicolas/Documents/IMAC/POO/Projet/Game_RunBoxRun/main.cpp" "/home/nicolas/Documents/IMAC/POO/Projet/Game_RunBoxRun/build/CMakeFiles/runBoxRun.dir/main.cpp.o"
+  "/home/6im2/manik/Bureau/Game_RunBoxRun/main.cpp" "/home/6im2/manik/Bureau/Game_RunBoxRun/build/CMakeFiles/runBoxRun.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/nicolas/Documents/IMAC/POO/Projet/Game_RunBoxRun/build/game/CMakeFiles/game.dir/DependInfo.cmake"
+  "/home/6im2/manik/Bureau/Game_RunBoxRun/build/game/CMakeFiles/game.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

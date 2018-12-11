@@ -8,5 +8,7 @@
 #include "../include/Player.hpp"
 #include <iostream>
 
+using namespace RUNBOXRUN;
+
 Player::Player()
 {}

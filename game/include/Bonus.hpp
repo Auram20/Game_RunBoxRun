@@ -20,7 +20,7 @@ namespace RUNBOXRUN
 			
 		public:
 		Bonus();
-		~Bonus()); 
+		~Bonus(); 
 
 		private:
 	};

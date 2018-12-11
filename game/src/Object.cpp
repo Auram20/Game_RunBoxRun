@@ -8,4 +8,7 @@
 #include "../include/Object.hpp"
 #include <iostream>
 
+using namespace RUNBOXRUN;
 
+Object::Object()
+{}
