@@ -1,11 +1,11 @@
 // ================================
 // OPENGL / C++ - IMAC 2
 // _________ RUNBOXRUN ___________ 
-// _________ PLAYER.CPP ___________ 
+// _________ UI.CPP ___________ 
 //================================
 
 
-#include "../include/Player.hpp"
+#include "../include/Ui.hpp"
 #include <iostream>
 
 

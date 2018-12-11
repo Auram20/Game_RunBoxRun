@@ -9,27 +9,26 @@
 
 // Includes 
 #include <glm.hpp>
+#include "Object.hpp"
 
-
-
-
-/// \class Player
-/// \brief class defining a new player.
-class Player
+namespace RUNBOXRUN
 {
-		
-	public:
-	Player();
-	~Player(); 
+	/// \class Player
+	/// \brief class defining a new player.
+	class Player : public Object
+	{
+			
+		public:
+		Player();
+		~Player(); 
 
 
 
-	private:
-	unsigned int _health; /*!< health points of the player */
-	unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
-	glm::vec3 _position ;  /*!< player's position */
+		private:
+		unsigned int _health; /*!< health points of the player */
+		unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
 
-
-};
+	};
+}
 
 #endif
