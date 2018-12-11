@@ -10,5 +10,7 @@ int main(void)
 
     std::cout << "Les IMAC sont des betes de code un truc du genre" << std::endl; //flush
 
+    Player p;
+
     return 0;
 }

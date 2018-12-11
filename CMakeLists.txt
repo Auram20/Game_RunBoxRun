@@ -46,9 +46,9 @@ find_package(SDL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
-include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} lib game/include game/src)
+include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} lib/include game/include)
 
-set(ALL_LIBRARIES ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+set(ALL_LIBRARIES game ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 
@@ -57,11 +57,16 @@ set(ALL_LIBRARIES ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 #    PUBLIC cxx_auto_type
 #    PRIVATE cxx_variadic_templates)
 
+#add_subdirectory(lib)
+add_subdirectory(game)
+
 
 # compiler
+file(GLOB HEADER_FILES *.hpp)
+file(GLOB SRC_FILES *.cpp)
 
-#set(src_files game/src/Player.cpp)
-add_executable(runBoxRun ${CMAKE_SOURCE_DIR}/main.cpp ${src_files} )
+add_executable(runBoxRun ${CMAKE_SOURCE_DIR}/main.cpp)
+target_link_libraries(runBoxRun ${ALL_LIBRARIES})
 
 # specify the library lib path
 #target_link_libraries(stabilisation ${OpenCV_LIBS})

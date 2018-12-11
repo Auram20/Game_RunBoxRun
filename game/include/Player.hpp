@@ -8,6 +8,7 @@
 #define __PLAYER__HPP
 
 // Includes 
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm.hpp>
 
 
