@@ -6,5 +6,5 @@ CXX_FLAGS = -Wall -O2   -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/SDL -I/home/6im2/manik/Game_RunBoxRun/lib/include -I/home/6im2/manik/Game_RunBoxRun/game/include 
+CXX_INCLUDES = -I/usr/include/SDL -I/home/6im2/manik/Game_RunBoxRun/lib -I/home/6im2/manik/Game_RunBoxRun/game/include -I/home/6im2/manik/Game_RunBoxRun/game/src 
 

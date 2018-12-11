@@ -3,6 +3,5 @@
 
 CMakeFiles/runBoxRun.dir/main.cpp.o: ../game/include/glm.hpp
 CMakeFiles/runBoxRun.dir/main.cpp.o: ../game/include/Player.hpp
-CMakeFiles/runBoxRun.dir/main.cpp.o: ../game/src/Player.cpp
 CMakeFiles/runBoxRun.dir/main.cpp.o: ../main.cpp
 

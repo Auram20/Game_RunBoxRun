@@ -13,6 +13,7 @@
 
 namespace RUNBOXRUN
 {
+<<<<<<< HEAD
 	/// \class Player
 	/// \brief class defining a new player.
 	class Player : public Object
@@ -21,14 +22,27 @@ namespace RUNBOXRUN
 		public:
 		Player();
 		~Player(); 
+=======
+		
+	public:
+	/// \brief constructor default
+	Player();
+	/// \brief destructor
+	//~Player(); 
+
+>>>>>>> 5b890efd46a76dcf4278e34f632b2eebde2a0e02
 
 
 
+<<<<<<< HEAD
 		private:
 		unsigned int _health; /*!< health points of the player */
 		unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
 
 	};
 }
+=======
+};
+>>>>>>> 5b890efd46a76dcf4278e34f632b2eebde2a0e02
 
 #endif
