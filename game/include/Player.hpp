@@ -19,8 +19,10 @@ class Player
 {
 		
 	public:
+	/// \brief constructor default
 	Player();
-	~Player(); 
+	/// \brief destructor
+	//~Player(); 
 
 
 
@@ -28,7 +30,6 @@ class Player
 	unsigned int _health; /*!< health points of the player */
 	unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
 	glm::vec3 _position ;  /*!< player's position */
-
 
 };
 
