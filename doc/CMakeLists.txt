@@ -1,7 +1,7 @@
 find_package (Doxygen)
 
-message("vectorD_SOURCE_DIR     " ${CMAKE_SOURCE_DIR})
-message("vectorD_BINARY_DIR     " ${CMAKE_BINARY_DIR})
+message("RunBoxRun_SOURCE_DIR     " ${CMAKE_SOURCE_DIR})
+message("RunBoxRun_BINARY_DIR     " ${CMAKE_BINARY_DIR})
 message("DOXYGEN_EXECUTABLE  " ${DOXYGEN_EXECUTABLE})
 
 if(DOXYGEN_FOUND)
