@@ -1,1 +1,0 @@
-/usr/bin/c++   -Wall -O2   CMakeFiles/runBoxRun.dir/main.cpp.o  -o ../runBoxRun -rdynamic game/libgame.a -Wl,-Bstatic -lSDLmain -Wl,-Bdynamic -lSDL -lpthread -lGLU -lGL -lGLEW 
