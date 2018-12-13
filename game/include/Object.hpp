@@ -8,6 +8,7 @@
 #define __OBJECT__HPP
 
 // Includes 
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm.hpp>
 
 namespace RUNBOXRUN
@@ -18,10 +19,25 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Object();
+
+		Object(); 
+		
+		Object( const double &speed, const glm::vec3 &position);/*!< object's constructor with arguments*/
+
 		//~Object(); 
 
-		private:
+		/*!< getter object's position */
+		inline glm::vec3 getPos(){
+			return _position;
+		}
+
+		/*!< setter object's position */
+		inline void setPos(glm::vec3 &newPos){
+			 _position = newPos;
+		}
+
+
+		protected:
 		double _speed; /*!< object's speed */
 		glm::vec3 _position ;  /*!< object's position */
 

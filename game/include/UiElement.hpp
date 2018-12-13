@@ -8,7 +8,6 @@
 #define __UIELEMENT__HPP
 
 // Includes 
-#include <glm.hpp>
 #include <Ui.hpp>
 
 namespace RUNBOXRUN
@@ -19,8 +18,8 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		UiElement();
-		~UiElement(); 
+		UiElement(); /*!< default constructor */
+		~UiElement(); /*!< default destructor*/
 
 		private:
 	};

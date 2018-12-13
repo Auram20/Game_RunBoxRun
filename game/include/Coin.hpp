@@ -19,10 +19,14 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Coin();
-		~Coin(); 
+		Coin(); /*!< default constructor */
+		Coin(const unsigned int value);  /*!<constructor with arguments */
+		Coin(const Coin &coin); /*!< coin's constructor by copy */
+		~Coin(); /*!< default destructor */
 
+		void const displayInfos() const ;
 		private:
+		unsigned int _value; /*!< coin's value */
     };
 }
 

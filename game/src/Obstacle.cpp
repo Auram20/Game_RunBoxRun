@@ -8,4 +8,4 @@
 #include "../include/Obstacle.hpp"
 #include <iostream>
 
-
+using namespace RUNBOXRUN;

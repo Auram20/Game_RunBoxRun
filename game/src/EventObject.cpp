@@ -8,4 +8,11 @@
 #include "../include/EventObject.hpp"
 #include <iostream>
 
+using namespace RUNBOXRUN;
+
+EventObject::EventObject()
+{}
+
+EventObject::~EventObject()
+{}
 

@@ -12,3 +12,7 @@ using namespace RUNBOXRUN;
 
 Object::Object()
 {}
+
+Object::Object(const double &speed, const glm::vec3 &position)
+: _speed(speed), _position(position)
+{}

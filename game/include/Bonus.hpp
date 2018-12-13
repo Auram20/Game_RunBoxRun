@@ -8,7 +8,6 @@
 #define __BONUS__HPP
 
 // Includes 
-#include <glm.hpp>
 #include "EventObject.hpp"
 
 namespace RUNBOXRUN
@@ -19,10 +18,21 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Bonus();
-		~Bonus(); 
+		Bonus(); /*!< default constructor */
+		Bonus(const unsigned int &value); /*!< bonus's constructor with parameters*/
+		Bonus(const Bonus &bonus); /*!< bonus's constructor by copy*/
+		~Bonus(); /*!< default destructor*/
+
+		//Getter
+		inline const unsigned int getValue() const
+		{
+			return _value;
+		}
+
+		void displayInfos(); /*!< display of bonus's informations */
 
 		private:
+		unsigned int _value; /*!< bonus's value */
 	};
 }
 

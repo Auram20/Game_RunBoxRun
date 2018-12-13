@@ -8,7 +8,6 @@
 #define __EVENTOBJECT__HPP
 
 // Includes 
-#include <glm.hpp>
 #include "Object.hpp"
 
 namespace RUNBOXRUN
@@ -19,8 +18,8 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		EventObject();
-		~EventObject(); 
+		EventObject(); /*!< default constructor */
+		~EventObject(); /*!< default destructor*/
 
 		private:
     };

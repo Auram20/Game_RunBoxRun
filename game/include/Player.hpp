@@ -8,8 +8,6 @@
 #define __PLAYER__HPP
 
 // Includes 
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm.hpp>
 #include "Object.hpp"
 
 namespace RUNBOXRUN
@@ -20,12 +18,29 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Player();
-		//~Player(); 
+		Player();/*!< default constructor */
+		Player(const unsigned int &health, const unsigned int &jumpState); /*!< player's constructor with parameters*/
+		Player(const Player &player); /*!< player's constructor by copy*/
+		~Player();/*!< default destructor*/
 
+		//Setters
+		inline void setHealth(unsigned int &health)
+		{
+			_health = health;
+		}
+
+		inline void setJumpState(unsigned int &jumpState)
+		{
+			_jumpState = jumpState;
+		}
+
+		void displayInfos(); /*!< display of player's informations */
+		void moveLeft(const double &t); /*!< horizontal movement of the player */
+		void const jump();/*!< vertical movement of the player */
+		
 		private:
 		unsigned int _health; /*!< health points of the player */
-		unsigned int _jumpState;  /*!< check if player is jumping/crouching/standing */	
+		unsigned int _jumpState;  /*!< check if player is jumping = 2 /crouching = 1/standing = 0 */	
 
 	};
 }

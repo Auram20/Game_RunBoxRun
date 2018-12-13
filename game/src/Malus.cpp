@@ -8,4 +8,4 @@
 #include "../include/Malus.hpp"
 #include <iostream>
 
-
+using namespace RUNBOXRUN;

@@ -18,8 +18,8 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Ui();
-		~Ui(); 
+		Ui(); /*!< default constructor */
+		~Ui(); /*!< default destructor*/
 
 		private:
 	};

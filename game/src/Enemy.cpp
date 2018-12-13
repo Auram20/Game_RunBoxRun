@@ -8,4 +8,5 @@
 #include "../include/Enemy.hpp"
 #include <iostream>
 
+using namespace RUNBOXRUN;
 
