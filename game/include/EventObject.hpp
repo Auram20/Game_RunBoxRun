@@ -18,11 +18,24 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+
+		// CONSTRUCTORS & DESTRUCTOR
 		EventObject(); /*!< default constructor */
-		EventObject(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);
-		EventObject(const EventObject &eventObject);
-		//void const displayInfos() const;
+		EventObject(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);/*!< event object's constructor with arguments*/
+		EventObject(const EventObject &eventObject); /*!< constructor with arguments*/
 		~EventObject(); /*!< default destructor*/
+
+
+
+
+		// EVENT OBJECT FUNCTIONS 
+		virtual void displayInfos() ; /*!< display event object's info*/
+
+
+
+
+
+
 
 		private:
     };

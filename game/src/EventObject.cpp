@@ -10,6 +10,12 @@
 
 using namespace RUNBOXRUN;
 
+
+
+
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 EventObject::EventObject()
 : Object()
 {}
@@ -22,12 +28,16 @@ EventObject::EventObject(const EventObject &eventObject)
 : Object(eventObject._speed, eventObject._position, eventObject._size, eventObject._color)
 {}
 
-/*void const displayInfos() const
+EventObject::~EventObject()
+{}
+
+
+
+
+// --------------- EVENT OBJECT'S FUNCTIONS --------------
+
+void EventObject::displayInfos()
 {
 	Object::displayInfos();
 }
-*/
-
-EventObject::~EventObject()
-{}
 

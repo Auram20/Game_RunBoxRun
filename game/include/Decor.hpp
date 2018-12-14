@@ -25,10 +25,10 @@ namespace RUNBOXRUN
 		~Decor(); /*!< default destructor*/
 
 		// Setters
-		inline void setColor( const unsigned int r, const unsigned int v , const unsigned int b ) {_color.x = r; _color.y = v; _color.z = b; }
+		inline void setColor( const unsigned int r, const unsigned int v , const unsigned int b ) {_color.x = r; _color.y = v; _color.z = b; }/*!< set decor's object's color */
 
 		// Decor's Functions
-		virtual void displayInfos(); /*!< display of player's informations */
+		virtual void displayInfos(); /*!< display of decor's informations */
 	
 
 		private:
