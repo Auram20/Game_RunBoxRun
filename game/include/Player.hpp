@@ -18,17 +18,26 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		// Constructors && Destructor
+			
+		// CONSTRUCTORS & DESTRUCTOR
 		Player();/*!< default constructor */
 		Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState); /*!< player's constructor with parameters*/
 		Player(const Player &player); /*!< player's constructor by copy*/
 		~Player();/*!< default destructor*/
 
-		// Setters
-		inline void setHealth(unsigned int &health){_health = health;} /*!< set player's health points */
-		inline void setJumpState(unsigned int &jumpState){_jumpState = jumpState;}/*!< display player's state : jumping, crouching or running*/
+		// SETTERS
+		inline void setHealth(unsigned int &health)
+		{
+		_health = health;
+		} /*!< set player's health points */
 
-		//  Player Functions
+		inline void setJumpState(unsigned int &jumpState)
+		{
+		_jumpState = jumpState;
+		}/*!< display player's state : jumping, crouching or running*/
+
+
+		//  PLAYER FUNCTIONS
 		virtual void displayInfos(); /*!< display of player's informations */
 		void moveLeft(const double &t); /*!< horizontal movement of the player */
 		void const jump();/*!< vertical movement of the player */

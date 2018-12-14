@@ -18,12 +18,20 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+
+		// CONSTRUCTORS & DESTRUCTOR
 		Coin(); /*!< default constructor */
 		Coin(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int value);  /*!<constructor with arguments */
 		Coin(const Coin &coin); /*!< coin's constructor by copy */
 		~Coin(); /*!< default destructor */
 
-		//void const displayInfos() const ; /*!< display of coin's informations */
+
+		// COIN FUNCTIONS
+		virtual void displayInfos() ; /*!< display of coin's informations */
+
+
+
+
 
 		private:
 		unsigned int _value; /*!< coin's value */

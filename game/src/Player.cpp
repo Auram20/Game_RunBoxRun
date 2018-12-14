@@ -38,7 +38,7 @@ Player::~Player()
 
 void  Player::displayInfos() 
 {
-	std::cout << "------------ PLAYER INFORMATIONS ------------" << std::endl;
+	std::cout << "\n------------ PLAYER INFORMATIONS ------------" << std::endl;
 	Object::displayInfos();
 	std::cout << "health : " << _health << std::endl;
 	std::cout << "jumpState : " << _jumpState << std::endl;

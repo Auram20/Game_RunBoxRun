@@ -19,6 +19,7 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+			
 		// CONSTRUCTORS & DESTRUCTOR
 		Object(); /*!< default constructor */
 		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);/*!< object's constructor with arguments*/

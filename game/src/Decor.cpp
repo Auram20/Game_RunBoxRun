@@ -34,7 +34,7 @@ Decor::~Decor()
 
 void  Decor::displayInfos() 
 {
-	std::cout << "------------ DECOR'S INFORMATIONS ------------" << std::endl;
+	std::cout << "\n------------ DECOR'S INFORMATIONS ------------" << std::endl;
 	Object::displayInfos();
 
 }

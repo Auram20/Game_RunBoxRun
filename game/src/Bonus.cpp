@@ -10,6 +10,9 @@
 
 using namespace RUNBOXRUN;
 
+
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
 Bonus::Bonus()
 : EventObject()
 {}
@@ -22,13 +25,20 @@ Bonus::Bonus(const Bonus &bonus)
 : EventObject(bonus._speed, bonus._position, bonus._size, bonus._color) , _value(bonus._value)
 {}
 
-/*
-void const Bonus::displayInfos() const 
+
+
+
+
+// --------------- BONUS'S FUNCTIONS --------------
+
+void  Bonus::displayInfos()  
 {
+
+	std::cout << "\n------------ BONUS INFORMATIONS ------------" << std::endl;
 	Object::displayInfos();
 	std::cout << "value : " << _value << std::endl;
 }
-*/
+
 
 Bonus::~Bonus()
 {}

@@ -41,6 +41,11 @@ int main(void)
 
     p.displayInfos();
     decor.displayInfos();
+    bo.displayInfos();
+    co.displayInfos();
+    en.displayInfos();
+    mal.displayInfos();
+    obs.displayInfos();
 
     return 0;
 }

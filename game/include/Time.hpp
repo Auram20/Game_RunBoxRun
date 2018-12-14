@@ -19,6 +19,8 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+
+		// CONSTRUCTORS & DESTRUCTOR
 		Time();
 		~Time(); 
 

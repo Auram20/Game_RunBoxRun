@@ -26,8 +26,6 @@ namespace RUNBOXRUN
 		~EventObject(); /*!< default destructor*/
 
 
-
-
 		// EVENT OBJECT FUNCTIONS 
 		virtual void displayInfos() ; /*!< display event object's info*/
 

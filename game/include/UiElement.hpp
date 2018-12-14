@@ -18,6 +18,8 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+
+		// CONSTRUCTORS & DESTRUCTOR
 		UiElement(); /*!< default constructor */
 		~UiElement(); /*!< default destructor*/
 

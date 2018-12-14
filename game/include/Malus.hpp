@@ -19,12 +19,24 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+
+		// CONSTRUCTORS & DESTRUCTOR
 		Malus(); /*!< default constructor */
 		Malus(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type); /*!< malus's constructor with arguments*/
 		Malus(const Malus &malus); /*!< constructor by copy */
 		~Malus(); /*!< default destructor */
 
-		//void const displayInfos() const; /*!< display infos */
+		
+		// MALUS FUNCTIONS
+		virtual void displayInfos(); /*!< display infos */
+
+
+
+
+
+
+
+			
 		
 		private:
 		std::string _type; /*!< type of malus */

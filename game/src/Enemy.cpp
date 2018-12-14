@@ -10,6 +10,8 @@
 
 using namespace RUNBOXRUN;
 
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
 Enemy::Enemy()
 : EventObject()
 {}
@@ -24,4 +26,14 @@ Enemy::Enemy(const Enemy &enemy)
 
 Enemy::~Enemy()
 {}
+
+
+// --------------- ENNEMY'S FUNCTIONS --------------
+
+void Enemy::displayInfos() 
+{
+	std::cout << "\n------------ ENNEMY INFORMATIONS ------------" << std::endl;
+	Object::displayInfos();
+}
+
 

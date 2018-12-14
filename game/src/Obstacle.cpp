@@ -10,6 +10,9 @@
 
 using namespace RUNBOXRUN;
 
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 Obstacle::Obstacle()
 : EventObject()
 {}
@@ -23,13 +26,15 @@ Obstacle::Obstacle(const Obstacle &obstacle)
 : EventObject(obstacle._speed, obstacle._position, obstacle._size, obstacle._color), _type(obstacle._type)
 {}
 
-/*
-void const Obstacle::displayInfos() const
+Obstacle::~Obstacle()
+{}
+
+
+// --------------- OBSTACLE'S FUNCTIONS --------------
+
+void Obstacle::displayInfos()
 {
+	std::cout << "\n------------ OBSTACLE INFORMATIONS ------------" << std::endl;
 	Object::displayInfos();
 	std::cout << "type : " << _type << std::endl;
 }
-*/
-
-Obstacle::~Obstacle()
-{}

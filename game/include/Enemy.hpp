@@ -18,12 +18,15 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+
+		// CONSTRUCTORS & DESTRUCTOR
 		Enemy();/*!<default constructor*/
 		Enemy(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color); /*!< constructor width parameters */
 		Enemy(const Enemy &enemy); /*!< constructor by copy */
 		~Enemy();/*!< default destructor*/
 
-		//void displayInfos(); /*!< display of enemy's informations */
+		// ENEMY FUNCTIONS
+		virtual void displayInfos(); /*!< display of enemy's informations */
 
 		private:
 

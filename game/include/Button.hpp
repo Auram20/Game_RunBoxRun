@@ -19,13 +19,14 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+        // CONSTRUCTORS & DESTRUCTOR
 		Button(); /*!< default constructor */
 		Button(const unsigned int &width, const unsigned int &height, const std::string &description); /*!< button constructor width description */
 		Button(const unsigned int &widthh, const unsigned int &height, const glm::vec3 &backgroundColor, const glm::vec3 &frontColor, const std::string &description);  /*!< button's constructor with arguments */
 		Button(const Button &button); /*!< button's constructor by copy*/
 		~Button(); /*!< default destructor*/
 
-		//setter
+		// SETTERS
 		inline void setFrontColor(const unsigned int r, const unsigned int v , const unsigned int b )
 		{
 			_frontColor.x = r;
@@ -34,6 +35,7 @@ namespace RUNBOXRUN
 		}
 		
 
+		// BUTTON FUNCTIONS
 		//void displayInfos(); /*!< display of button's informations */
 
 		private:
