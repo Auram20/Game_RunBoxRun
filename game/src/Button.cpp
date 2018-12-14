@@ -10,6 +10,7 @@
 
 using namespace RUNBOXRUN;
 
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
 Button::Button()
 : _width(0), _height(0), _backgroundColor(glm::vec3(255)) , _frontColor(glm::vec3(0)), _description(" ")
 {}
@@ -26,6 +27,11 @@ Button::Button(const Button &button)
 : _width(button._width), _height(button._height), _backgroundColor(button._backgroundColor), _frontColor(button._frontColor), _description(button._description)
 {}
 
+Button::~Button()
+{}
+
+
+// --------------- BUTTON'S FUNCTIONS --------------
 /*
 void Button::displayInfos()
 {
@@ -36,6 +42,3 @@ void Button::displayInfos()
 	<< " description : " <<  _description << std::endl;
 }
 */
-
-Button::~Button()
-{}
