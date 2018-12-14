@@ -8,7 +8,6 @@
 #define __ENEMY__HPP
 
 // Includes 
-#include <glm.hpp>
 #include "EventObject.hpp"
 
 namespace RUNBOXRUN
@@ -19,11 +18,16 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Enemy();
-		~Enemy(); 
+		Enemy();/*!<default constructor*/
+		Enemy(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color); /*!< constructor width parameters */
+		Enemy(const Enemy &enemy); /*!< constructor by copy */
+		~Enemy();/*!< default destructor*/
+
+		//void displayInfos(); /*!< display of enemy's informations */
 
 		private:
-		};
+
+	};
 }
 
 #endif

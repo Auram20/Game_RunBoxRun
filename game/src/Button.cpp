@@ -26,7 +26,7 @@ Button::Button(const Button &button)
 : _width(button._width), _height(button._height), _backgroundColor(button._backgroundColor), _frontColor(button._frontColor), _description(button._description)
 {}
 
-
+/*
 void Button::displayInfos()
 {
 	std::cout << "width : " << _width << std::endl
@@ -35,7 +35,7 @@ void Button::displayInfos()
 	<< " color of background : " << _backgroundColor << std::endl
 	<< " description : " <<  _description << std::endl;
 }
-
+*/
 
 Button::~Button()
 {}

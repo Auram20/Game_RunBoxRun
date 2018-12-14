@@ -21,18 +21,11 @@ namespace RUNBOXRUN
 		public:
 		Button(); /*!< default constructor */
 		Button(const unsigned int &width, const unsigned int &height, const std::string &description); /*!< button constructor width description */
-		Button(const unsigned int &width, const unsigned int &height, const glm::vec3 &backgroundColor, const glm::vec3 &frontColor, const std::string &description);  /*!< button's constructor with arguments */
+		Button(const unsigned int &widthh, const unsigned int &height, const glm::vec3 &backgroundColor, const glm::vec3 &frontColor, const std::string &description);  /*!< button's constructor with arguments */
 		Button(const Button &button); /*!< button's constructor by copy*/
 		~Button(); /*!< default destructor*/
 
-		//setters 
-		inline void setBackgroundColor( const unsigned int r, const unsigned int v , const unsigned int b )
-		{
-			_backgroundColor.x = r;
-			_backgroundColor.y = v;
-			_backgroundColor.z = b;
-		}
-
+		//setter
 		inline void setFrontColor(const unsigned int r, const unsigned int v , const unsigned int b )
 		{
 			_frontColor.x = r;
@@ -41,12 +34,12 @@ namespace RUNBOXRUN
 		}
 		
 
-		void displayInfos(); /*!< display of button's informations */
+		//void displayInfos(); /*!< display of button's informations */
 
 		private:
-		unsigned int _width; /*!< button's width */
-		unsigned int _height; /*!< button's height */
-		glm::vec3 _backgroundColor; /*!< button's background color */
+		unsigned int _width;
+		unsigned int _height;
+		glm::vec3 _backgroundColor;
 		glm::vec3 _frontColor;  /*!< button's front color */
 		std::string _description; /*!< button's description */
 

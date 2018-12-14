@@ -9,3 +9,9 @@
 #include <iostream>
 
 using namespace RUNBOXRUN;
+
+Time::Time()
+{}
+
+Time::~Time()
+{}

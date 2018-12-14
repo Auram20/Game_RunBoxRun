@@ -20,11 +20,12 @@ namespace RUNBOXRUN
 			
 		public:
 
-		Object(); 
-		
-		Object( const double &speed, const glm::vec3 &position);/*!< object's constructor with arguments*/
+		Object(); /*!< default constructor */
+		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);/*!< object's constructor with arguments*/
+		Object(const Object &object);/*!< constructor with arguments*/
+		~Object(); /*!< default destructor */
 
-		//~Object(); 
+		//void const displayInfos() const ;
 
 		/*!< getter object's position */
 		inline glm::vec3 getPos(){
@@ -36,10 +37,11 @@ namespace RUNBOXRUN
 			 _position = newPos;
 		}
 
-
 		protected:
 		double _speed; /*!< object's speed */
 		glm::vec3 _position ;  /*!< object's position */
+		glm::vec3 _size; /*!< object's size */
+		glm::vec3 _color; /*!< object's color */
 
 	};
 }

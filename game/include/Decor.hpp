@@ -8,7 +8,6 @@
 #define __DECOR__HPP
 
 // Includes 
-#include <glm.hpp>
 #include "Object.hpp"
 
 namespace RUNBOXRUN
@@ -19,13 +18,20 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-		Decor();
-		~Decor(); 
+		Decor();/*!<default constructor*/
+		Decor(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color); /*!< constructor width parameters */
+		Decor(const Decor &decor); /*!< constructor by copy */
+		~Decor(); /*!< default destructor*/
 
-
+		//setter
+		inline void setColor( const unsigned int r, const unsigned int v , const unsigned int b )
+		{
+			_color.x = r;
+			_color.y = v;
+			_color.z = b;
+		}
 
 		private:
-
 	};
 }
 

@@ -9,3 +9,10 @@
 #include <iostream>
 
 using namespace RUNBOXRUN;
+
+Score::Score()
+{}
+
+Score::~Score()
+{}
+

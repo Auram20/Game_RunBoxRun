@@ -11,30 +11,31 @@
 using namespace RUNBOXRUN;
 
 Player::Player()
+: Object(), _health(1), _jumpState(0)
 {}
 
 
-Player::Player(const unsigned int &health, const unsigned int &jumpState)
-: Object(1, glm::vec3(0)), _health(health), _jumpState(jumpState)
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState)
+: Object(speed, position, size, color),  _health(health), _jumpState(jumpState)
 {}
 
 
 Player::Player(const Player &player)	
-	:Player(player._health, player._jumpState)
+: Object(player._speed, player._position, player._size, player._color), _health(player._health), _jumpState(player._jumpState)
 {}
 
-
-void Player::displayInfos()
+/*
+void const Player::displayInfos() const
 {
+	Object::displayInfos();
 	std::cout << "health :" << _health << std::endl
-	<< "jumpState : " << _jumpState << std::endl
-	<< "speed : " << _speed << std::endl
-	<< "positon : " << _position << std::endl;
+	<< "jumpState : " << _jumpState << std::endl;
 }
+*/
 
 void Player::moveLeft(const double &t)
 {
-	_position += t;
+	_position.y += t;
 }
 
 void const Player::jump()

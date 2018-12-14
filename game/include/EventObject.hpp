@@ -19,6 +19,9 @@ namespace RUNBOXRUN
 			
 		public:
 		EventObject(); /*!< default constructor */
+		EventObject(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);
+		EventObject(const EventObject &eventObject);
+		//void const displayInfos() const;
 		~EventObject(); /*!< default destructor*/
 
 		private:

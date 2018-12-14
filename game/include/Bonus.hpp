@@ -19,7 +19,7 @@ namespace RUNBOXRUN
 			
 		public:
 		Bonus(); /*!< default constructor */
-		Bonus(const unsigned int &value); /*!< bonus's constructor with parameters*/
+		Bonus(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &value); /*!< bonus's constructor with parameters*/
 		Bonus(const Bonus &bonus); /*!< bonus's constructor by copy*/
 		~Bonus(); /*!< default destructor*/
 
@@ -29,7 +29,7 @@ namespace RUNBOXRUN
 			return _value;
 		}
 
-		void displayInfos(); /*!< display of bonus's informations */
+		//void const displayInfos() const ; /*!< display of bonus's informations */
 
 		private:
 		unsigned int _value; /*!< bonus's value */

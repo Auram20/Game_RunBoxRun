@@ -19,7 +19,7 @@ namespace RUNBOXRUN
 			
 		public:
 		Player();/*!< default constructor */
-		Player(const unsigned int &health, const unsigned int &jumpState); /*!< player's constructor with parameters*/
+		Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState); /*!< player's constructor with parameters*/
 		Player(const Player &player); /*!< player's constructor by copy*/
 		~Player();/*!< default destructor*/
 
@@ -34,7 +34,7 @@ namespace RUNBOXRUN
 			_jumpState = jumpState;
 		}
 
-		void displayInfos(); /*!< display of player's informations */
+		//void const displayInfos() const ; /*!< display of player's informations */
 		void moveLeft(const double &t); /*!< horizontal movement of the player */
 		void const jump();/*!< vertical movement of the player */
 		
