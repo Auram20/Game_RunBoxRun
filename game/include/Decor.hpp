@@ -18,18 +18,18 @@ namespace RUNBOXRUN
 	{
 			
 		public:
+		// Constructors && Destructor
 		Decor();/*!<default constructor*/
 		Decor(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color); /*!< constructor width parameters */
 		Decor(const Decor &decor); /*!< constructor by copy */
 		~Decor(); /*!< default destructor*/
 
-		//setter
-		inline void setColor( const unsigned int r, const unsigned int v , const unsigned int b )
-		{
-			_color.x = r;
-			_color.y = v;
-			_color.z = b;
-		}
+		// Setters
+		inline void setColor( const unsigned int r, const unsigned int v , const unsigned int b ) {_color.x = r; _color.y = v; _color.z = b; }
+
+		// Decor's Functions
+		virtual void displayInfos(); /*!< display of player's informations */
+	
 
 		private:
 	};

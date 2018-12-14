@@ -10,6 +10,10 @@
 
 using namespace RUNBOXRUN;
 
+
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 Object::Object()
 : _speed(1), _position(glm::vec3(0)), _size(glm::vec3(10)), _color(glm::vec3(100))
 {}
@@ -22,15 +26,19 @@ Object::Object(const Object &object)
 : _speed(object._speed) , _position(object._position), _size(object._size), _color(object._color)
 {}
 
-/*
-void const displayInfos() const
-{
-	std::cout << "size : " << _size << std::endl
-	<< "position : " << _position << std::endl
-	<< "speed: " << _speed << std::endl
-	<< "color : " << _color << std::endl;
-}
-*/
 
 Object::~Object()
 {}
+
+
+
+// --------------- OBJECT'S FUNCTIONS --------------
+
+
+void  Object::displayInfos() 
+{
+	std::cout << "speed: " << _speed << std::endl
+	<< "position : " << _position << std::endl
+	<< "size : " << _size << std::endl
+	<< "color : " << _color << std::endl;
+}

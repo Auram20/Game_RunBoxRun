@@ -18,9 +18,9 @@ using namespace RUNBOXRUN;
 int main(void) 
 {
 
-    std::cout << "Les IMAC sont des betes de code un truc du genre" << std::endl; //flush
     
-    Player p();
+    // ------------- INSTANTIATION ---------------------------
+    Player p(1,glm::vec3(200),glm::vec3(200),glm::vec3(300),300,200);
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
     Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");
@@ -33,6 +33,14 @@ int main(void)
     Button butt(100,100, "menu");
     Score sc();
     Time ti();
+
+
+
+
+    // ------------- TESTS FONCTIONS ---------------------------
+
+    p.displayInfos();
+    decor.displayInfos();
 
     return 0;
 }

@@ -10,6 +10,9 @@
 
 using namespace RUNBOXRUN;
 
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 Decor::Decor()
 : Object()
 {}
@@ -25,3 +28,13 @@ Decor::Decor(const Decor &decor)
 Decor::~Decor()
 {}
 
+
+// --------------- DECOR'S FUNCTIONS --------------
+
+
+void  Decor::displayInfos() 
+{
+	std::cout << "------------ DECOR'S INFORMATIONS ------------" << std::endl;
+	Object::displayInfos();
+
+}

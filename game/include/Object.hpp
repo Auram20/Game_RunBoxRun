@@ -19,23 +19,28 @@ namespace RUNBOXRUN
 	{
 			
 		public:
-
+		// CONSTRUCTORS & DESTRUCTOR
 		Object(); /*!< default constructor */
 		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);/*!< object's constructor with arguments*/
 		Object(const Object &object);/*!< constructor with arguments*/
 		~Object(); /*!< default destructor */
+		
+		// GETTERS
+		inline glm::vec3 getPos(){return _position;} /*!< getter object's position */ 
+	
+		// SETTERS
+		inline void setPos(glm::vec3 &newPos){ _position = newPos;}	/*!< setter object's position */
 
-		//void const displayInfos() const ;
+		// OBJECT FUNCTIONS 
+		virtual void displayInfos(); /*!< display object informations */
+		
 
-		/*!< getter object's position */
-		inline glm::vec3 getPos(){
-			return _position;
-		}
 
-		/*!< setter object's position */
-		inline void setPos(glm::vec3 &newPos){
-			 _position = newPos;
-		}
+
+
+
+
+
 
 		protected:
 		double _speed; /*!< object's speed */
