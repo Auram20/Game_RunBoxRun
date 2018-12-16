@@ -8,7 +8,6 @@
 #define __OBJECT__HPP
 
 // Includes 
-#define GLM_ENABLE_EXPERIMENTAL
 #include <glm.hpp>
 
 namespace RUNBOXRUN

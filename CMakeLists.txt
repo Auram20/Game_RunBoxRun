@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 
 # give a name to the project
-project(BoxRun)
+project(RunBoxRun)
 
 # use at least c++ 11
 set(CMAKE_CXX_STANDARD 11)
@@ -43,6 +43,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 # package
 find_package(SDL REQUIRED)
+set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
