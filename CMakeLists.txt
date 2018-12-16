@@ -47,9 +47,9 @@ set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
-include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} lib/include game/include)
+include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} glimac/include game/include)
 
-set(ALL_LIBRARIES game ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+set(ALL_LIBRARIES game glimac ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 
@@ -58,7 +58,7 @@ set(ALL_LIBRARIES game ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 #    PUBLIC cxx_auto_type
 #    PRIVATE cxx_variadic_templates)
 
-#add_subdirectory(lib)
+add_subdirectory(glimac)
 add_subdirectory(game)
 
 
