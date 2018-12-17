@@ -12,11 +12,15 @@
 #include "game/include/Malus.hpp"
 #include "game/include/Score.hpp"
 #include "game/include/Time.hpp"
+#include "game/include/Error.hpp"
 #include "glimac/WindowEngine.hpp"
 
 
 using namespace RUNBOXRUN;
 using namespace glimac;
+
+
+
 
 int main(int argc, char** argv) 
 {
@@ -52,6 +56,18 @@ int main(int argc, char** argv)
     wind.initWindow();
     wind.rendWindow();
 
+
+    // ------------- TESTS ERRORS ---------------------------
+
+    try // portion de code à tester (peut potentiellement lever une exception)
+    {
+        testException(79);
+        testException(0);
+    }
+    catch (const std::exception &e) // gestion des erreurs : ici, on affiche simplement l'erreur
+    {
+        std::cerr << e.what() << std::endl;
+    }
 
     return 0;
 }
