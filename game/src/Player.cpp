@@ -12,18 +12,9 @@ using namespace RUNBOXRUN;
 
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
-Player::Player()
-: Object(), _health(1), _jumpState(0)
-{}
-
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState)
 : Object(speed, position, size, color),  _health(health), _jumpState(jumpState)
-{}
-
-
-Player::Player(const Player &player)	
-: Object(player._speed, player._position, player._size, player._color), _health(player._health), _jumpState(player._jumpState)
 {}
 
 
@@ -31,11 +22,7 @@ Player::~Player()
 {}
 
 
-
 // --------------- PLAYER'S FUNCTIONS --------------
-
-
-
 void  Player::displayInfos() 
 {
 	std::cout << "\n------------ PLAYER INFORMATIONS ------------" << std::endl;
@@ -44,15 +31,15 @@ void  Player::displayInfos()
 	std::cout << "jumpState : " << _jumpState << std::endl;
 }
 
+Player* Player::_instance = 0;
 
-void Player::moveLeft(const double &t)
+Player* Player::getInstance()
 {
-	_position.y += t;
+	if(_instance == 0)
+	{
+		_instance = new Player(1,glm::vec3(200),glm::vec3(200),glm::vec3(300),3,2);
+	}
+
+	return _instance;
 }
 
-
-void const Player::jump()
-{
-	_position.y++;
-	_jumpState = 2;
-}

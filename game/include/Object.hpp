@@ -33,14 +33,7 @@ namespace RUNBOXRUN
 
 		// OBJECT FUNCTIONS 
 		virtual void displayInfos(); /*!< display object informations */
-		
-
-
-
-
-
-
-
+		void moveLeft(const double &t); /*!< horizontal movement of the object */
 
 		protected:
 		double _speed; /*!< object's speed */

@@ -42,3 +42,10 @@ void  Object::displayInfos()
 	<< "size : " << _size << std::endl
 	<< "color : " << _color << std::endl;
 }
+
+
+void Object::moveLeft(const double &t)
+{
+	_position.y += t;
+}
+

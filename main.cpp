@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 
     
     // ------------- INSTANTIATION ---------------------------
-    Player p(1,glm::vec3(200),glm::vec3(200),glm::vec3(300),300,200);
+    Player* p = Player::getInstance();
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
     Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 
     // ------------- TESTS FONCTIONS ---------------------------
 
-    p.displayInfos();
+    p->displayInfos();
     decor.displayInfos();
     bo.displayInfos();
     co.displayInfos();
