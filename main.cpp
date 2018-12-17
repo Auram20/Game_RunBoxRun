@@ -13,7 +13,9 @@
 #include "game/include/Score.hpp"
 #include "game/include/Time.hpp"
 #include "game/include/Error.hpp"
-#include "glimac/WindowEngine.hpp"
+#include <glimac/Sphere.hpp>
+#include <glimac/Box.hpp>
+#include <glimac/WindowEngine.hpp>
 
 
 using namespace RUNBOXRUN;
@@ -40,7 +42,8 @@ int main(int argc, char** argv)
     Button butt(100,100, "menu");
     Score sc();
     Time ti();
-
+    Sphere sp(3,1,1);
+    Box box1(1,1,1);
 
     // ------------- TESTS FONCTIONS ---------------------------
 
@@ -52,7 +55,7 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
     
-    WindowEngine wind(800,600, {"BON ANNIVERSAIRE"});
+    WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
     wind.initWindow();
     wind.rendWindow();
 
