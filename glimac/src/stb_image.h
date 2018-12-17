@@ -4570,7 +4570,7 @@ STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int
       1.45 (2014-08-16)
              fix MSVC-ARM internal compiler error by wrapping malloc
       1.44 (2014-08-07)
-		       various warning fixes from Ronny Chevalier
+           various warning fixes from Ronny Chevalier
       1.43 (2014-07-15)
              fix MSVC-only compiler problem in code changed in 1.42
       1.42 (2014-07-09)

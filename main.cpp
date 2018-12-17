@@ -12,10 +12,13 @@
 #include "game/include/Malus.hpp"
 #include "game/include/Score.hpp"
 #include "game/include/Time.hpp"
+#include "glimac/WindowEngine.hpp"
+
 
 using namespace RUNBOXRUN;
+using namespace glimac;
 
-int main(void) 
+int main(int argc, char** argv) 
 {
 
     
@@ -35,8 +38,6 @@ int main(void)
     Time ti();
 
 
-
-
     // ------------- TESTS FONCTIONS ---------------------------
 
     p.displayInfos();
@@ -46,6 +47,11 @@ int main(void)
     en.displayInfos();
     mal.displayInfos();
     obs.displayInfos();
+    
+    WindowEngine wind(800,600, {"BON ANNIVERSAIRE"});
+    wind.initWindow();
+    wind.rendWindow();
+
 
     return 0;
 }
