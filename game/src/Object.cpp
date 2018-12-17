@@ -44,8 +44,10 @@ void  Object::displayInfos()
 }
 
 
-void Object::moveLeft(const double &t)
+void Object::moveHorizontal(const double &t)
 {
 	_position.y += t;
 }
+
+
 

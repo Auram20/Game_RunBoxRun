@@ -43,3 +43,8 @@ Player* Player::getInstance()
 	return _instance;
 }
 
+void const Player::jump(const double indice)
+{
+	_jumpState = 2;
+	_position.y+= indice;
+}

@@ -40,7 +40,7 @@ namespace RUNBOXRUN
 			//  PLAYER FUNCTIONS
 
 			virtual void displayInfos(); /*!< display of player's informations */		
-			void const jump();/*!< vertical movement of the player */			
+			void const jump(const double indice);/*!< vertical movement of the player */			
 			static Player* getInstance();  /* Static access method. */
 
 	};

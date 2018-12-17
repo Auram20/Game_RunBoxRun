@@ -6,10 +6,11 @@
 
 #include "../include/Input.hpp"
 
+
 using namespace RUNBOXRUN;
 	
 	// CONSTRUCTORS & DESTRUCTOR
-	Input::Input(const SDLKey &key, std::function<void()> &action)
+	Input::Input(const SDLKey &key, std::function<void(Player* p)> &action)
 	: _active(false), _key(key), _action(action)
 	{
 

@@ -1,5 +1,6 @@
 #include <glimac/WindowEngine.hpp>
 
+
 using namespace glimac;
 
 WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title)
@@ -23,6 +24,7 @@ int WindowEngine::initWindow()
 void WindowEngine::rendWindow()
 {
 	 // Application loop:
+  
     bool done = false;
     while(!done) {
         // Event loop:

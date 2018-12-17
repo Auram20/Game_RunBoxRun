@@ -9,6 +9,7 @@
 
 #include "Input.hpp"
 #include  <vector>
+#include "../include/Player.hpp"
 
 namespace RUNBOXRUN
 {

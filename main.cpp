@@ -16,7 +16,7 @@
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <glimac/WindowEngine.hpp>
-
+#include "game/include/InputManager.hpp"
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -30,6 +30,9 @@ int main(int argc, char** argv)
     
     // ------------- INSTANTIATION ---------------------------
     Player* p = Player::getInstance();
+    std::cout << " Avant changement " << std::endl;
+    p->displayInfos();
+    InputManager man;
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
     Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");
@@ -37,17 +40,16 @@ int main(int argc, char** argv)
     Bonus bo(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
     Coin co(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
     Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
-    Ui ui();
-    UiElement ue();
+    Ui ui;
+    UiElement ue;
     Button butt(100,100, "menu");
-    Score sc();
-    Time ti();
+    Score sc;
+    Time ti;
     Sphere sp(3,1,1);
     Box box1(1,1,1);
 
     // ------------- TESTS FONCTIONS ---------------------------
 
-    p->displayInfos();
     decor.displayInfos();
     bo.displayInfos();
     co.displayInfos();
@@ -58,7 +60,6 @@ int main(int argc, char** argv)
     WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
     wind.initWindow();
     wind.rendWindow();
-
 
     // ------------- TESTS ERRORS ---------------------------
 

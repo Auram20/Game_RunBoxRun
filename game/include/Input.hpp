@@ -9,6 +9,7 @@
 
 #include <SDL/SDL.h>
 #include <functional>
+#include "../include/Player.hpp"
 
 namespace RUNBOXRUN
 {
@@ -20,18 +21,18 @@ namespace RUNBOXRUN
 		public:
 
 		// CONSTRUCTORS & DESTRUCTOR
-		Input(const SDLKey &key, std::function<void()> &action); /*!< bonus's constructor with parameters*/
+		Input(const SDLKey &key, std::function<void(Player* p)> &action); /*!< bonus's constructor with parameters*/
 		~Input() = default; /*!< default destructor*/
 
 		inline void call() const {
-			_action();
+			//_action();
 		}
 
 
 		private:
 			bool _active;
 			SDLKey _key;
-			std::function<void()> _action;
+			std::function<void(Player* p)> _action;
 
 	};
 }
