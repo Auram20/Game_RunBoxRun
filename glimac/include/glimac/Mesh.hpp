@@ -10,6 +10,7 @@
 #include <vector>
 #include "common.hpp"
 
+
 namespace glimac {
 
     /// \class Mesh
@@ -29,7 +30,7 @@ public:
     
     const ShapeVertex* getDataPointer() const 
     {
-        return &_VertexList[0];
+        return &(_VertexList[0]);
     } /*!< Returns pointor on datas */
     
     GLsizei getVertexCount() const 
@@ -38,12 +39,19 @@ public:
     } /*!< Returns Vertex numbers */
   
     virtual void displayInfos();
+  
+    void initVBO();
+
+    void initVAO();
+
 
 protected:
   
     std::vector<ShapeVertex> _VertexList;
     GLuint _VertexCount;
-
+    
+    GLuint _vao;
+    GLuint _vbo;
 
 
 };
