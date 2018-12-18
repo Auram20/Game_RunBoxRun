@@ -8,8 +8,8 @@
 #define __BOX__HPP
 
 #include <vector>
-#include "Mesh.hpp"
-#include "common.hpp"
+#include <glimac/Mesh.hpp>
+#include <glimac/common.hpp>
 
 namespace glimac {
 
