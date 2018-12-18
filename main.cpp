@@ -11,7 +11,7 @@
 #include <game/Malus.hpp>
 #include <game/Score.hpp>
 #include <game/Time.hpp>
-#include <game/Error.hpp>
+#include <utils/Error.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <app/WindowEngine.hpp>
