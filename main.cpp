@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <SDL/SDL.h>
 #include <GL/glew.h>
-#include <game/Player.hpp>
 #include <game/Bonus.hpp>
 #include <game/Button.hpp>
 #include <game/Coin.hpp>
@@ -15,7 +14,7 @@
 #include <game/Error.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
-#include <glimac/WindowEngine.hpp>
+#include <app/WindowEngine.hpp>
 
 
 using namespace RUNBOXRUN;

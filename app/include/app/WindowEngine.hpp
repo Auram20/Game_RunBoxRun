@@ -9,9 +9,9 @@
 // Includes 
 #include <glimac/glm.hpp>
 #include <glimac/SDLWindowManager.hpp>
-#include <game/InputManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
+#include <app/InputManager.hpp>
 
 namespace glimac
 {

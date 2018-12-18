@@ -31,11 +31,11 @@ void  Player::displayInfos()
 	std::cout << "jumpState : " << _jumpState << std::endl;
 }
 
-Player* Player::_instance = 0;
+Player* Player::_instance = nullptr;
 
 Player* Player::getInstance()
 {
-	if(_instance == 0)
+	if(_instance == nullptr)
 	{
 		_instance = new Player(1,glm::vec3(200),glm::vec3(200),glm::vec3(300),3,2);
 	}

@@ -7,9 +7,8 @@
 #ifndef __INPUTMANAGER__HPP
 #define __INPUTMANAGER__HPP
 
-#include <game/Input.hpp>
-#include  <vector>
-#include <game/Player.hpp>
+#include <app/Input.hpp>
+#include <vector>
 #include <iostream>
 
 namespace RUNBOXRUN
@@ -22,12 +21,15 @@ namespace RUNBOXRUN
 		public:
 
 		// CONSTRUCTORS & DESTRUCTOR
-		InputManager(); /*!< default constructor */
-		~InputManager() = default; /*!< default destructor*/
+		static InputManager *getInstance();
+
 
 
 		private:
+			static InputManager *_instance;
+			InputManager(); /*!< default constructor */
 			std::vector<Input> _inputs;
+			~InputManager(); /*!< default destructor*/
 	};
 }
 
