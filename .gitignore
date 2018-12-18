@@ -1,6 +1,7 @@
 # Source #
 build
 .vscode
+./runBoxRun
 
 # Compiled source #
 ###################
