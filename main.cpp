@@ -3,7 +3,7 @@
 #include <SDL/SDL.h>
 #include <GL/glew.h>
 #include <game/Bonus.hpp>
-#include <game/Button.hpp>
+#include <app/Button.hpp>
 #include <game/Coin.hpp>
 #include <game/Decor.hpp>
 #include <game/Enemy.hpp>
@@ -11,7 +11,7 @@
 #include <game/Malus.hpp>
 #include <game/Score.hpp>
 #include <game/Time.hpp>
-#include <game/Error.hpp>
+#include <app/Error.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <app/WindowEngine.hpp>
