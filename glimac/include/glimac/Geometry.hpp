@@ -3,9 +3,9 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <string>
-#include "Image.hpp"
+#include <glimac/Image.hpp>
 #include "FilePath.hpp"
-#include "BBox.hpp"
+#include <glimac/BBox.hpp>
 
 namespace glimac {
 
