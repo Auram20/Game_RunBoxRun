@@ -4,7 +4,7 @@
 #include <memory>
 #include <unordered_map>
 
-#include "glm.hpp"
+#include <glimac/glm.hpp>
 #include "FilePath.hpp"
 
 namespace glimac {

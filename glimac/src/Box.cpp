@@ -7,8 +7,8 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
-#include "../include/glimac/common.hpp"
-#include "../include/glimac/Box.hpp"
+#include <glimac/common.hpp>
+#include <glimac/Box.hpp>
 
 using namespace glimac; 
 
