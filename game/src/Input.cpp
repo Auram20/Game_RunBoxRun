@@ -4,7 +4,7 @@
 // _________ INPUT.HPP_____ 
 //================================
 
-#include "../include/Input.hpp"
+#include <game/Input.hpp>
 
 
 using namespace RUNBOXRUN;

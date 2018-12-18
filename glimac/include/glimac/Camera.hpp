@@ -10,7 +10,7 @@
 // Includes 
 #include <glimac/glm.hpp>
 
-namespace RUNBOXRUN
+namespace glimac
 {
 	/// \class Camera
 	/// \brief virtual class for camera.

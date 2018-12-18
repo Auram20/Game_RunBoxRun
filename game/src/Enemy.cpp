@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Enemy.hpp"
+#include <game/Enemy.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;

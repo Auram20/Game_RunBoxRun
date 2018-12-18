@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Decor.hpp"
+#include <game/Decor.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;

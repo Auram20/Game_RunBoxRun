@@ -5,14 +5,14 @@
 //================================
 
 
-#include "../include/InputManager.hpp"
-#include <iostream>
+#include <game/InputManager.hpp>
 
 using namespace RUNBOXRUN;
 
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 InputManager::InputManager()
+: _inputs()
 {
 	Player* p = Player::getInstance();
 	std::function<void(Player*)> move = [] (Player* p) {};

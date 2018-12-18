@@ -8,7 +8,7 @@
 #define __OBSTACLE__HPP
 
 // Includes 
-#include "EventObject.hpp"
+#include <game/EventObject.hpp>
 #include  <string>
 
 namespace RUNBOXRUN

@@ -7,9 +7,10 @@
 #ifndef __INPUTMANAGER__HPP
 #define __INPUTMANAGER__HPP
 
-#include "Input.hpp"
+#include <game/Input.hpp>
 #include  <vector>
-#include "../include/Player.hpp"
+#include <game/Player.hpp>
+#include <iostream>
 
 namespace RUNBOXRUN
 {

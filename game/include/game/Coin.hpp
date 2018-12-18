@@ -8,7 +8,7 @@
 #define __COIN__HPP
 
 // Includes 
-#include "EventObject.hpp"
+#include <game/EventObject.hpp>
 
 namespace RUNBOXRUN
 {

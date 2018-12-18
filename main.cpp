@@ -2,21 +2,21 @@
 #include <cstdio>
 #include <SDL/SDL.h>
 #include <GL/glew.h>
-#include "game/include/Player.hpp"
-#include "game/include/Bonus.hpp"
-#include "game/include/Button.hpp"
-#include "game/include/Coin.hpp"
-#include "game/include/Decor.hpp"
-#include "game/include/Enemy.hpp"
-#include "game/include/Obstacle.hpp"
-#include "game/include/Malus.hpp"
-#include "game/include/Score.hpp"
-#include "game/include/Time.hpp"
-#include "game/include/Error.hpp"
+#include <game/Player.hpp>
+#include <game/Bonus.hpp>
+#include <game/Button.hpp>
+#include <game/Coin.hpp>
+#include <game/Decor.hpp>
+#include <game/Enemy.hpp>
+#include <game/Obstacle.hpp>
+#include <game/Malus.hpp>
+#include <game/Score.hpp>
+#include <game/Time.hpp>
+#include <game/Error.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <glimac/WindowEngine.hpp>
-#include "game/include/InputManager.hpp"
+
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     Player* p = Player::getInstance();
     std::cout << " Avant changement " << std::endl;
     p->displayInfos();
-    InputManager man;
+    //InputManager man;
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
     Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");

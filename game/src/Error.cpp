@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Error.hpp"
+#include <game/Error.hpp>
 #include <iostream>
 
 

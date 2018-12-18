@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Player.hpp"
+#include <game/Player.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;

@@ -2,6 +2,7 @@
 
 
 using namespace glimac;
+using namespace RUNBOXRUN;
 
 WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title)
 : _windowManager(width, height, title)
@@ -26,6 +27,7 @@ void WindowEngine::rendWindow()
 	 // Application loop:
   
     bool done = false;
+    InputManager man;
     while(!done) {
         // Event loop:
         SDL_Event e;
