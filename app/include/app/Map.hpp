@@ -34,6 +34,8 @@ namespace RUNBOXRUN
 
 		private:
 		std::vector<int>  _datas; /*!< map's datas */
+		unsigned int	_nbline;
+		unsigned int	_nbcol;
 	};
 }
 
