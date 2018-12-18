@@ -11,11 +11,8 @@
 #include <game/Malus.hpp>
 #include <game/Score.hpp>
 #include <game/Time.hpp>
-<<<<<<< HEAD
 #include <utils/Error.hpp>
-=======
-#include <app/Error.hpp>
->>>>>>> 6d047c49070b798b5867ba3e4f7058cba22bcf90
+#include <app/Map.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <app/WindowEngine.hpp>
@@ -23,8 +20,6 @@
 
 using namespace RUNBOXRUN;
 using namespace glimac;
-
-
 
 
 int main(int argc, char** argv) 
@@ -53,7 +48,7 @@ int main(int argc, char** argv)
     box1.displayInfos();
 
     // ------------- TESTS FONCTIONS ---------------------------
-
+    //readMap("../map/test.txt");
     decor.displayInfos();
     bo.displayInfos();
     co.displayInfos();
@@ -64,18 +59,24 @@ int main(int argc, char** argv)
     WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
     wind.initWindow();
     wind.rendWindow();
-
+    
+    Map map;
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)
     {
-        testException(79);
-        testException(0);
+       map.readMap("../map/test.txt");
+
+       testException(79);
+       testException(0);
     }
     catch (const std::exception &e) // gestion des erreurs : ici, on affiche simplement l'erreur
     {
         std::cerr << e.what() << std::endl;
     }
+
+    std::vector<int> result = map.getDatas();
+   
 
     return 0;
 }
