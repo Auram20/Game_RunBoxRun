@@ -1,4 +1,4 @@
-#include <glimac/WindowEngine.hpp>
+#include <app/WindowEngine.hpp>
 
 
 using namespace glimac;
@@ -26,6 +26,7 @@ void WindowEngine::rendWindow()
 	 // Application loop:
   
     bool done = false;
+    RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     while(!done) {
         // Event loop:
         SDL_Event e;

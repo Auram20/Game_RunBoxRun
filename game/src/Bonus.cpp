@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Bonus.hpp"
+#include <game/Bonus.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;

@@ -8,7 +8,7 @@
 #define __PLAYER__HPP
 
 // Includes 
-#include "Object.hpp"
+#include <game/Object.hpp>
 
 namespace RUNBOXRUN
 {

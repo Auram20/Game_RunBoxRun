@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Coin.hpp"
+#include <game/Coin.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;

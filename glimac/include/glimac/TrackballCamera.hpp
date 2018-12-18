@@ -4,7 +4,7 @@
 #include <glimac/glm.hpp>
 #include <glimac/Camera.hpp>
 
-namespace RUNBOXRUN {
+namespace glimac {
 
 class TrackballCamera : public Camera {
     private:

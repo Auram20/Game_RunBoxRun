@@ -1,6 +1,6 @@
 #include <glimac/TrackballCamera.hpp>
 
-using namespace RUNBOXRUN;
+using namespace glimac;
 
 TrackballCamera::TrackballCamera(float distance, float angleX, float angleY)
 : m_fDistance(distance), m_fAngleX(angleX), m_fAngleY(angleY)

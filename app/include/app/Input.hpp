@@ -9,7 +9,7 @@
 
 #include <SDL/SDL.h>
 #include <functional>
-#include "../include/Player.hpp"
+#include <game/Player.hpp>
 
 namespace RUNBOXRUN
 {

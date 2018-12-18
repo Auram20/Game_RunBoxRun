@@ -15,6 +15,8 @@ set(CMAKE_CXX_FLAGS_DEBUG_INIT "-g")
 
 # set(CMAKE_CACHEFILE_DIR  ${PROJECT_BINARY_DIR}/caches)
 
+set(GLIMAC_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/glimac/include)
+set(GAME_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/game/include)
 
 # specify the system
 # see: https://cmake.org/cmake/help/v3.9/manual/cmake-variables.7.html
@@ -47,9 +49,10 @@ set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
-include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} glimac/include game/include utils/include)
 
-set(ALL_LIBRARIES game glimac utils ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include)
+
+set(ALL_LIBRARIES game glimac app ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 
@@ -58,10 +61,9 @@ set(ALL_LIBRARIES game glimac utils ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LI
 #    PUBLIC cxx_auto_type
 #    PRIVATE cxx_variadic_templates)
 
-add_subdirectory(glimac)
+add_subdirectory(app)
 add_subdirectory(game)
-add_subdirectory(utils)
-
+add_subdirectory(glimac)
 
 # compiler
 file(GLOB HEADER_FILES *.hpp)

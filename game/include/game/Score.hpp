@@ -8,8 +8,8 @@
 #define __SCORE__HPP
 
 // Includes 
-#include <glm.hpp>
-#include "UiElement.hpp"
+#include <game/glm.hpp>
+#include <game/UiElement.hpp>
 
 namespace RUNBOXRUN
 {

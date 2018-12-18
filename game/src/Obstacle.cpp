@@ -5,7 +5,7 @@
 //================================
 
 
-#include "../include/Obstacle.hpp"
+#include <game/Obstacle.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;

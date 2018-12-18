@@ -11,6 +11,7 @@
 #include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
+#include <app/InputManager.hpp>
 
 namespace glimac
 {
