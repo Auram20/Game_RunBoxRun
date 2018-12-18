@@ -46,6 +46,7 @@ int main(int argc, char** argv)
     Time ti;
     Sphere sp(3,1,1);
     Box box1(1,1,1);
+    box1.displayInfos();
 
     // ------------- TESTS FONCTIONS ---------------------------
 
