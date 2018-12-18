@@ -27,7 +27,7 @@ namespace glimac
 		~WindowEngine() = default ; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
-		int initWindow(); /*!< initialize window */
+		int initWindow(char** argv) const; /*!< initialize window */
 		void rendWindow();/*!< render loop */
 
 		private:

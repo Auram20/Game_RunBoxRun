@@ -47,7 +47,7 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong) {
         }
     }
 
-    m_nVertexCount = discLat * discLong * 6;
+    _VertexCount = discLat * discLong * 6;
     
     GLuint idx = 0;
     // Construit les vertex finaux en regroupant les données en triangles:
@@ -57,17 +57,21 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong) {
     for(GLsizei j = 0; j < discLong; ++j) {
         GLsizei offset = j * (discLat + 1);
         for(GLsizei i = 0; i < discLat; ++i) {
-            m_Vertices.push_back(data[offset + i]);
-            m_Vertices.push_back(data[offset + (i + 1)]);
-            m_Vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
-            m_Vertices.push_back(data[offset + i]);
-            m_Vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
-            m_Vertices.push_back(data[offset + i + discLat + 1]);
+            _VertexList.push_back(data[offset + i]);
+            _VertexList.push_back(data[offset + (i + 1)]);
+            _VertexList.push_back(data[offset + discLat + 1 + (i + 1)]);
+            _VertexList.push_back(data[offset + i]);
+            _VertexList.push_back(data[offset + discLat + 1 + (i + 1)]);
+            _VertexList.push_back(data[offset + i + discLat + 1]);
         }
     }
     
     // Attention ! dans cette implantation on duplique beaucoup de sommets. Une meilleur stratégie est de passer
     // par un Index Buffer Object, que nous verrons dans les prochains TDs
+
+
 }
+
+
 
 }

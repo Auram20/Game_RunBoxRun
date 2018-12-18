@@ -104,8 +104,6 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
         _VertexList[i+3].texCoords = glm::vec2(0,0);
     }
 
- 
-
 }
 
 void Box::displayInfos()

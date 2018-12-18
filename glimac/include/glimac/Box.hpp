@@ -25,7 +25,9 @@ public:
     Box(GLfloat width, GLfloat height, GLfloat depth)
     : Mesh(24) 
     {
-        build(width, height, depth); 
+        build(width, height, depth);
+        initVBO();
+        initVAO();
     } /*!< init constructor*/
 
  
