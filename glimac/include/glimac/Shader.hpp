@@ -3,12 +3,13 @@
 #include <GL/glew.h>
 #include <string>
 #include "FilePath.hpp"
+#include <glimac/Asset.hpp>
 
 #define GLIMAC_SHADER_SRC(str) #str
 
 namespace glimac {
 
-class Shader {
+class Shader : public Asset {
 public:
 	Shader(GLenum type): m_nGLId(glCreateShader(type)) {
 	}

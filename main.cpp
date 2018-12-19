@@ -15,6 +15,8 @@
 #include <app/Map.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
+#include <glimac/Asset.hpp>
+#include <glimac/Texture.hpp>
 #include <app/WindowEngine.hpp>
 
 
@@ -43,6 +45,8 @@ int main(int argc, char** argv)
     Button butt(100,100, "menu");
     Score sc;
     Time ti;
+    FilePath applicationPath(argv[0]);
+    Asset asset(applicationPath);
     //Sphere sp(3,1,1);
     //Box box1(1,1,1);
     //box1.displayInfos();
@@ -59,7 +63,7 @@ int main(int argc, char** argv)
     WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
     wind.initWindow(argv[0]);
     wind.rendWindow();
-    
+    Texture Texture("../assets/texture/texture.jpg");
     Map map("../map/test.txt");
     // ------------- TESTS ERRORS ---------------------------
 

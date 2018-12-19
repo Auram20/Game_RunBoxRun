@@ -8,6 +8,10 @@
 
 using namespace RUNBOXRUN;
 
+
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 Map::Map(const std::string &filename)
 : _filename(filename)
 {}

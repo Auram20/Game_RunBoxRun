@@ -14,7 +14,7 @@
 namespace RUNBOXRUN
 {
 	/// \class Bonus
-	/// \brief class defining a new bonus.
+	/// \brief class defining the input manager.
 	class InputManager
 	{
 			

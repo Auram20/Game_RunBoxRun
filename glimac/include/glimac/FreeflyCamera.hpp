@@ -1,3 +1,10 @@
+// ================================
+// OPENGL / C++ - IMAC 2
+// _________ RUNBOXRUN ___________ 
+// _________ FREEFLYCAMERA.HPP ___________ 
+//================================
+
+
 #ifndef FREEFLYCAMERA_H__
 #define FREEFLYCAMERA_H__
 
