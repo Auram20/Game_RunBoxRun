@@ -14,11 +14,12 @@
 #include <vector>
 #include <string>
 #include <utils/Error.hpp>
+#include <app/glm.hpp>
 
 namespace RUNBOXRUN
 {
-	/// \class Bonus
-	/// \brief class defining a new bonus.
+	/// \class Map
+	/// \brief class defining a new map.
 	class Map
 	{
 			
@@ -33,10 +34,15 @@ namespace RUNBOXRUN
 		inline const std::vector<int> getDatas() const { return _datas; }/*!< get map datas*/
 
 		private:
-		std::vector<int>  _datas; /*!< map's datas */
-		unsigned int	_nbline;
-		unsigned int	_nbcol;
+		std::vector<int>  _datas; /*!< map's id */
+		unsigned int	_x; /*!< value x of datas */
+		unsigned int	_z; /*!< value z of datas */
+		unsigned int 	_y; /*!< value y of datas */
+		std::std::vector<glm::vec4> _vecdata; /*!< id, x, y, z of datas */
 	};
 }
 
 #endif
+
+
+  
