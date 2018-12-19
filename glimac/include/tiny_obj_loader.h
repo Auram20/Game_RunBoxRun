@@ -104,4 +104,9 @@ std::string LoadMtl (
   std::istream& inStream);
 }
 
+    // std::vector<ShapeVertex> _VertexList;
+    // GLuint _VertexCount;
+
+
+
 #endif  // _TINY_OBJ_LOADER_H

@@ -3,6 +3,7 @@
 #include <glimac/Box.hpp>
 #include <glimac/FilePath.hpp>
 #include <glimac/Program.hpp>
+#include <glimac/tiny_obj_loader.h>
 
 using namespace glimac;
 
@@ -40,6 +41,7 @@ int WindowEngine::initWindow(char* path)
 
 
     _MVMatrix = glm::translate(glm::mat4(1.f),glm::vec3(0.f, 0.f, -5.f));
+    _MVMatrix = glm::rotate(_MVMatrix, -95.f, glm::vec3(0.f, 1.f, 0.f));
 
     _MVMatrix = glm::rotate(_MVMatrix, 15.f, glm::vec3(0.f, 1.f, 0.f));
 

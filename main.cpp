@@ -60,12 +60,12 @@ int main(int argc, char** argv)
     wind.initWindow(argv[0]);
     wind.rendWindow();
     
-    Map map;
+    Map map("../map/test.txt");
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)
     {
-       map.readMap("../map/test.txt");
+       map.readMap();
 
        testException(79);
        testException(0);

@@ -32,7 +32,7 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
     _VertexList[2].position = glm::vec3(w, h, t);       // Up Right
     _VertexList[3].position = glm::vec3(-w, h, t);      // Up Left
     // Back Face
-    _VertexList[4].position = glm::vec3(-w, -h, t);     // Bottom Left
+    _VertexList[4].position = glm::vec3(-w, -h, -t);     // Bottom Left
     _VertexList[5].position = glm::vec3(w, -h, -t);      // Bottom Right
     _VertexList[6].position = glm::vec3(w, h, -t);       // Up Right
     _VertexList[7].position = glm::vec3(-w, h, -t);      // Up Left
@@ -47,15 +47,15 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
     _VertexList[14].position = glm::vec3(w, -h, -t);       // Up Right
     _VertexList[15].position = glm::vec3(-w, h, -t);      // Up Left
     // Left Face
-    _VertexList[16].position = glm::vec3(-w, -h, t);     // Bottom Left
-    _VertexList[17].position = glm::vec3(-w, -h, -t);      // Bottom Right
-    _VertexList[18].position = glm::vec3(-w, h, -t);       // Up Right
-    _VertexList[19].position = glm::vec3(-w, h, t);      // Up Left
+    _VertexList[16].position = glm::vec3(-w, -h, -t);     // Bottom Left
+    _VertexList[17].position = glm::vec3(-w, -h, t);      // Bottom Right
+    _VertexList[18].position = glm::vec3(-w, h, t);       // Up Right
+    _VertexList[19].position = glm::vec3(-w, h, -t);      // Up Left
     // Right Face
-    _VertexList[20].position = glm::vec3(w, -h, t);     // Bottom Left
-    _VertexList[21].position = glm::vec3(w, -h, -t);      // Bottom Right
-    _VertexList[22].position = glm::vec3(w, h, -t);       // Up Right
-    _VertexList[23].position = glm::vec3(w, h, t);      // Up Left
+    _VertexList[20].position = glm::vec3(w, h, t);     // Bottom Left
+    _VertexList[21].position = glm::vec3(w, -h, t);      // Bottom Right
+    _VertexList[22].position = glm::vec3(w, -h, -t);       // Up Right
+    _VertexList[23].position = glm::vec3(w, h, -t);      // Up Left
 
     // Calculate normals
     // for (unsigned int i = 0; i < getVertexCount(); i++)
@@ -88,7 +88,7 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
     _VertexList[17].normal = glm::vec3(-1, 0, 0);      // Bottom Right
     _VertexList[18].normal = glm::vec3(-1, 0, 0);       // Up Right
     _VertexList[19].normal = glm::vec3(-1, 0, 0);      // Up Left
-        // Bottom Face
+    // Right Face
     _VertexList[20].normal = glm::vec3(1, 0, 0);     // Bottom Left
     _VertexList[21].normal = glm::vec3(1, 0, 0);      // Bottom Right
     _VertexList[22].normal = glm::vec3(1, 0, 0);       // Up Right
@@ -122,8 +122,8 @@ void Box::initIBO(const unsigned int &nTriangles) {
         index.push_back(i * 4);
         index.push_back(i * 4 + 1);
         index.push_back(i * 4 + 2);
-        index.push_back(index[i]);
-        index.push_back(index[i + 2]);
+        index.push_back(index[i * 6]);
+        index.push_back(index[i * 6 + 2]);
         index.push_back(i * 4 + 3);
     }
 
@@ -131,7 +131,7 @@ void Box::initIBO(const unsigned int &nTriangles) {
     //On remplit l'IBO avec les indices
     glBufferData(
         GL_ELEMENT_ARRAY_BUFFER,
-        sizeof(std::vector<uint32_t>),
+        (nTriangles) * 3 * sizeof(std::vector<uint32_t>),
         index.data(),
         GL_STATIC_DRAW
     );

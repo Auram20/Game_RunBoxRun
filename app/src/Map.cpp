@@ -1,40 +1,71 @@
+// ================================
+// OPENGL / C++ - IMAC 2
+// _________ RUNBOXRUN ___________ 
+// _________ MAP.CPP_____ 
+//================================
+
 #include <app/Map.hpp>
 
 using namespace RUNBOXRUN;
 
-int Map::readMap(const std::string &filename)
+Map::Map(const std::string &filename)
+: _filename(filename)
+{}
+
+int Map::readMap()
 {
-		std::ifstream file(filename);
-		unsigned int data;
-		_nbline=0;
-		_nbcol =0;
-		if(! file.is_open())
-		{
-			THROW_EXCEPTION(filename + " is not found");
-		}
+        std::ifstream file(_filename);
 
-		while(file)
-		{
-			file >> data;
-			_datas.push_back(data);
-			if(file.eof())
-				_nbline++; // y or x or z
-		}
-		_nbline--;
+        unsigned int data;
+        unsigned int size = 0;
+        unsigned int i =0; // nb col
+        unsigned int j =0; // nb line
+        unsigned int k = 0; // nb bloc
 
-		file.close();
-		unsigned int size = _datas.size();
-		_nbcol = size / _nbline++; // y or x or z
+        _x = 0;
+        _y = 0;
+        _z = 0;
 
-		//-----TEST-------//
-		/*
-		int size = datas.size();
-		std::cout<< "col : " << _nbcol << "| nbline : " << _nbline << std::endl;
-		for(int i= 0; i< size; i++)
-		{
-		std::cout << "data : " << datas[i] << std::endl;
-		}
-		*/
+        if(! file.is_open())
+            THROW_EXCEPTION(_filename + " is not found");
 
-		return 1;
+        file >> j >> i >> k;
+        int nbByBloc = (j*i)/k;
+
+        while(!file.eof())
+        {
+            file >> data;
+          
+            _datas.push_back(data);
+            size = _datas.size();
+            
+            glm::vec4 dataVec = glm::vec4(data,_x,_y,_z);
+            _vecdata.push_back(dataVec);
+
+            _z++;
+
+            if(size%nbByBloc == 0)
+            {
+                _x=_z=0;
+                _y++;
+            }
+            else if(size%i == 0)
+            {
+                _x++;
+                _z=0;
+            }
+
+        }
+
+        file.close();
+        //-----TEST-------//
+        /*
+        int sizeVec = _vecdata.size();
+        for(int l= 0; l< sizeVec; l++)
+        {
+        std::cout << "dataVec : " << _vecdata[l] << std::endl;
+        }
+        */
+
+        return 1;
 }
