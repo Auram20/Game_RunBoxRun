@@ -15,24 +15,24 @@ using namespace glimac;
 void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) {
 
     float w,h,t;
-    w = width/2;        // 0.5
-    h = height/2;       // 0.5
-    t = depth/2;    // 0.5
+    w = width;        // 0.5
+    h = height;       // 0.5
+    t = depth;    // 0.5
 
     // Build all vertices
     // Front face
 
-    for(unsigned int i = 0; i < 24u; i++) {
+    for(int i = 0; i < getVertexCount(); i++) {
         _VertexList.push_back(ShapeVertex());
     }
     
-
+    // Front Face
     _VertexList[0].position = glm::vec3(-w, -h, t);     // Bottom Left
     _VertexList[1].position = glm::vec3(w, -h, t);      // Bottom Right
     _VertexList[2].position = glm::vec3(w, h, t);       // Up Right
     _VertexList[3].position = glm::vec3(-w, h, t);      // Up Left
     // Back Face
-    _VertexList[4].position = glm::vec3(-w, -h, -t);     // Bottom Left
+    _VertexList[4].position = glm::vec3(-w, -h, t);     // Bottom Left
     _VertexList[5].position = glm::vec3(w, -h, -t);      // Bottom Right
     _VertexList[6].position = glm::vec3(w, h, -t);       // Up Right
     _VertexList[7].position = glm::vec3(-w, h, -t);      // Up Left
@@ -105,6 +105,41 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
     }
 
 }
+
+void Box::initIBO(const unsigned int &nTriangles) {
+    //Création du IBO
+    glGenBuffers(1, &_ibo);
+
+    //Bin sur GL_ELEMENT_ARRAY_BUFFER, cible réservée pour les IBOs
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibo);
+
+    _nTriangles = nTriangles;
+
+    //Tableau d'indices des sommets à dessiner
+    std::vector<uint32_t> index;
+
+    for(unsigned int i = 0; i < (nTriangles * 3) / 6; ++i) {
+        index.push_back(i * 4);
+        index.push_back(i * 4 + 1);
+        index.push_back(i * 4 + 2);
+        index.push_back(index[i]);
+        index.push_back(index[i + 2]);
+        index.push_back(i * 4 + 3);
+    }
+
+
+    //On remplit l'IBO avec les indices
+    glBufferData(
+        GL_ELEMENT_ARRAY_BUFFER,
+        sizeof(std::vector<uint32_t>),
+        index.data(),
+        GL_STATIC_DRAW
+    );
+
+    //Debin de l'IBO
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
 
 void Box::displayInfos()
 {

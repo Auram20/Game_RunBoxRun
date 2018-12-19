@@ -10,7 +10,7 @@ WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const 
 : _windowManager(width, height, title)
 {}
 
-int WindowEngine::initWindow(char** argv) const
+int WindowEngine::initWindow(char** argv)
 {
 	 GLenum glewInitError = glewInit();
     if(GLEW_OK != glewInitError) {
@@ -33,25 +33,19 @@ int WindowEngine::initWindow(char** argv) const
     GLint uNormalMatrix=glGetUniformLocation(program.getGLId(),"uNormalMatrix");
 
 
-     glm::mat4 ProjMatrix;
-    glm::mat4 MVMatrix;
-    glm::mat4 NormalMatrix;
-
-
-
-    ProjMatrix = glm::perspective(glm::radians(70.f),
+    _ProjMatrix = glm::perspective(glm::radians(70.f),
                                  (float)800/600,
                                   0.1f,
                                100.f);
 
-    MVMatrix= glm::translate(MVMatrix,glm::vec3(0.f, 0.f, -10.f));
+    _MVMatrix = glm::translate(glm::mat4(1.f),glm::vec3(0.f, 0.f, -5.f));
 
-    NormalMatrix = glm::transpose(glm::inverse(MVMatrix));
+    _NormalMatrix = glm::transpose(glm::inverse(_MVMatrix));
 
 
-    glUniformMatrix4fv(uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); 
-         glUniformMatrix4fv(uMVMatrix, 1, GL_FALSE, glm::value_ptr(MVMatrix)); 
-         glUniformMatrix4fv(uNormalMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); 
+    glUniformMatrix4fv(uMVPMatrix, 1, GL_FALSE, glm::value_ptr(_ProjMatrix * _MVMatrix)); 
+    glUniformMatrix4fv(uMVMatrix, 1, GL_FALSE, glm::value_ptr(_MVMatrix)); 
+    glUniformMatrix4fv(uNormalMatrix, 1, GL_FALSE, glm::value_ptr(_NormalMatrix)); 
 
     return 0;
 }
@@ -61,8 +55,8 @@ void WindowEngine::rendWindow()
 	 // Application loop:
   
     bool done = false;
-    RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
-    Box test(1.f, 1.f, 1.f);
+    //RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
+    Box test(1, 1, 1);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -79,10 +73,13 @@ void WindowEngine::rendWindow()
          * HERE SHOULD COME THE RENDERING CODE
          *********************************/
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
          test.render();
 
-     }
         // Update the display
         _windowManager.swapBuffers();
+
+     }
 
 }

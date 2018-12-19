@@ -44,6 +44,8 @@ public:
 
     void initVAO();
 
+    virtual void initIBO(const unsigned int &nTriangles) {};
+
     inline void setMVMatrix(glm::mat4 MVMatrix) {
         _MVMatrix = MVMatrix; 
     }
@@ -58,6 +60,8 @@ protected:
     
     GLuint _vao;
     GLuint _vbo;
+    GLuint _ibo;
+    unsigned int _nTriangles;
 
     glm::mat4 _MVMatrix;
 
