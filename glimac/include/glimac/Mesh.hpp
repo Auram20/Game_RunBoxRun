@@ -38,19 +38,19 @@ public:
         return _VertexCount;
     } /*!< Returns Vertex numbers */
   
-    virtual void displayInfos();
+    virtual void displayInfos();/*!< displays info of a mesh - used for testing */
   
-    void initVBO();
+    void initVBO(); /*!< initialize the vbo */
 
-    void initVAO();
+    void initVAO(); /*!< initialize the vao*/
 
-    virtual void initIBO(const unsigned int &nTriangles) {};
+    virtual void initIBO(const unsigned int &nTriangles) {}; /*!< initialise the ibo */
 
     inline void setMVMatrix(glm::mat4 MVMatrix) {
         _MVMatrix = MVMatrix; 
-    }
+    } /*!< Set MVMatrix */
 
-    void render() const;
+    void render() const; /*!< Render a mesh */
 
 
 protected:

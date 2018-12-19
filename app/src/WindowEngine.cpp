@@ -1,3 +1,10 @@
+// ================================
+// OPENGL / C++ - IMAC 2
+// _________ RUNBOXRUN ___________ 
+// _________ WINDOWENGINE.CPP_____ 
+//================================
+
+
 #include <app/WindowEngine.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
@@ -7,9 +14,18 @@
 
 using namespace glimac;
 
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title)
 : _windowManager(width, height, title)
 {}
+
+
+
+
+
+// --------------- WINDOW ENGINE FUNCTIONS --------------
 
 int WindowEngine::initWindow(char** argv)
 {

@@ -1,7 +1,7 @@
 // ================================
 // OPENGL / C++ - IMAC 2
 // _________ RUNBOXRUN ___________ 
-// _________ INPUT.HPP_____ 
+// _________ INPUT.CPP_____ 
 //================================
 
 #include <app/Input.hpp>
@@ -9,7 +9,9 @@
 
 using namespace RUNBOXRUN;
 	
-	// CONSTRUCTORS & DESTRUCTOR
+
+// --------------- CONSTRUCTORS && DESTRUCTORS --------------
+
 	Input::Input(const SDLKey &key, std::function<void(Player* p)> &action)
 	: _active(false), _key(key), _action(action)
 	{

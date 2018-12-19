@@ -1,7 +1,7 @@
 // ================================
 // OPENGL / C++ - IMAC 2
 // _________ RUNBOXRUN ___________ 
-// _________ INITWINDOW.HPP ___________ 
+// _________ WINDOWENGINE.HPP ___________ 
 //================================
 
 #ifndef __WINDOWENGINE__HPP
@@ -17,7 +17,7 @@
 namespace glimac
 {
 	/// \class WindowEngine
-	/// \brief class for camera WindowEngine.
+	/// \brief class for  WindowEngine.
 	class WindowEngine
 	{
 			
