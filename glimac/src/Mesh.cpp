@@ -15,10 +15,15 @@ using namespace glimac;
 Mesh::Mesh()
 {}
 
-Mesh::Mesh(GLuint VertexCount): _VertexCount(VertexCount)
-{}/*!< object's constructor with arguments*/
+Mesh::Mesh(GLuint VertexCount): _VertexList(), _VertexCount(VertexCount), _vao(0), _vbo(0), _ibo(0), _nTriangles(0)
+{
 
+}/*!< object's constructor with arguments*/
 
+Mesh::~Mesh() {
+	 glDeleteBuffers(1,&_vbo);
+    glDeleteVertexArrays(1,&_vao);
+}
 
 void Mesh::displayInfos()
 {
@@ -47,6 +52,10 @@ void Mesh::initVAO()
 	glGenVertexArrays(1, &_vao);
 	glBindVertexArray(_vao);
 
+	if(_ibo != 0) {
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibo);
+	}
+
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
 	glEnableVertexAttribArray(VERTEX_ATTR_TEXCOORDS);
@@ -55,9 +64,9 @@ void Mesh::initVAO()
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 
 	//Specify vertice properties positions
-	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(ShapeVertex), 0);
-	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(ShapeVertex), (const GLvoid *)offsetof(ShapeVertex, normal));
-	glVertexAttribPointer(VERTEX_ATTR_TEXCOORDS, 2, GL_FLOAT, GL_FALSE, sizeof(ShapeVertex), (const GLvoid *)offsetof(ShapeVertex, texCoords));
+	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(ShapeVertex), (const GLvoid *)(offsetof(ShapeVertex, position)));
+	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(ShapeVertex), (const GLvoid *)(offsetof(ShapeVertex, normal)));
+	glVertexAttribPointer(VERTEX_ATTR_TEXCOORDS, 2, GL_FLOAT, GL_FALSE, sizeof(ShapeVertex), (const GLvoid *)(offsetof(ShapeVertex, texCoords)));
 
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -68,24 +77,34 @@ void Mesh::initVAO()
 
 void Mesh::initVBO()
 {
-	//Get Manager for VBO
-	
+
+
 	//Generate & bind VBO
 	glGenBuffers(1, &_vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 
-	
-
-	GLsizeiptr size = _VertexList.size() * sizeof(ShapeVertex);
-
 	//Fill VBO with data
 	glBufferData(
 				 GL_ARRAY_BUFFER,
-				 size,
+				 getVertexCount()*sizeof(ShapeVertex),
 				 _VertexList.data(),
 				 GL_STATIC_DRAW
 				 );
 
 	//Unbind VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+
+
+
+void Mesh::render() const
+{
+	glBindVertexArray(_vao);
+	if(_ibo != 0) {
+		glDrawElements(GL_TRIANGLES, _nTriangles * 3, GL_UNSIGNED_INT, 0);
+	} else {
+		glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
+	}
+	glBindVertexArray(0);
 }

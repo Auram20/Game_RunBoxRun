@@ -27,11 +27,16 @@ namespace glimac
 		~WindowEngine() = default ; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
-		int initWindow(); /*!< initialize window */
+		int initWindow(char** argv); /*!< initialize window */
 		void rendWindow();/*!< render loop */
 
 		private:
 		SDLWindowManager _windowManager; /*!< window */
+
+		public:
+		glm::mat4 _ProjMatrix;
+		glm::mat4 _MVMatrix;
+		glm::mat4 _NormalMatrix;
 
 	};
 }

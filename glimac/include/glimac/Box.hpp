@@ -23,9 +23,12 @@ public:
   
     // CONSTRUCTORS & DESTRUCTOR
     Box(GLfloat width, GLfloat height, GLfloat depth)
-    : Mesh(24) 
+    : Mesh(24)
     {
-        build(width, height, depth); 
+        build(width, height, depth);
+        initVBO();
+        initIBO(12);
+        initVAO();
     } /*!< init constructor*/
 
  
@@ -33,13 +36,9 @@ public:
     // FONCTION pour allouer et renseigner les données dans le cpp.
     void build(GLfloat width, GLfloat height, GLfloat depth);
 
+    void initIBO(const unsigned int &nTriangles) override;
 
-
-     virtual void displayInfos();
-
-
-private:
-  
+    virtual void displayInfos();
   
   };
     

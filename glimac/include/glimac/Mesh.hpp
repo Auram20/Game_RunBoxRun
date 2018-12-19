@@ -24,13 +24,13 @@ public:
     // CONSTRUCTORS & DESTRUCTOR
     Mesh();
     Mesh(GLuint _VertexCount);/*!< object's constructor with arguments*/
-    ~Mesh() = default;
+    ~Mesh();
         
     // GETTERS
     
     const ShapeVertex* getDataPointer() const 
     {
-        return &(_VertexList[0]);
+        return &_VertexList[0];
     } /*!< Returns pointor on datas */
     
     GLsizei getVertexCount() const 
@@ -44,6 +44,14 @@ public:
 
     void initVAO();
 
+    virtual void initIBO(const unsigned int &nTriangles) {};
+
+    inline void setMVMatrix(glm::mat4 MVMatrix) {
+        _MVMatrix = MVMatrix; 
+    }
+
+    void render() const;
+
 
 protected:
   
@@ -52,6 +60,10 @@ protected:
     
     GLuint _vao;
     GLuint _vbo;
+    GLuint _ibo;
+    unsigned int _nTriangles;
+
+    glm::mat4 _MVMatrix;
 
 
 };

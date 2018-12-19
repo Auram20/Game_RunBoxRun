@@ -43,9 +43,9 @@ int main(int argc, char** argv)
     Button butt(100,100, "menu");
     Score sc;
     Time ti;
-    Sphere sp(3,1,1);
-    Box box1(1,1,1);
-    box1.displayInfos();
+    //Sphere sp(3,1,1);
+    //Box box1(1,1,1);
+    //box1.displayInfos();
 
     // ------------- TESTS FONCTIONS ---------------------------
     //readMap("../map/test.txt");
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     obs.displayInfos();
     
     WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
-    wind.initWindow();
+    wind.initWindow(argv);
     wind.rendWindow();
     
     Map map;
