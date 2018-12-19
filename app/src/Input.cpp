@@ -9,8 +9,6 @@
 
 using namespace RUNBOXRUN;
 	
-<<<<<<< HEAD
-
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 

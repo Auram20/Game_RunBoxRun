@@ -15,6 +15,8 @@
 #include <app/Map.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
+#include <glimac/Asset.hpp>
+#include <glimac/Texture.hpp>
 #include <app/WindowEngine.hpp>
 
 
