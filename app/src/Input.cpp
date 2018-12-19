@@ -10,8 +10,8 @@
 using namespace RUNBOXRUN;
 	
 	// CONSTRUCTORS & DESTRUCTOR
-	Input::Input(const SDLKey &key, std::function<void(Player* p)> &action)
-	: _active(false), _key(key), _action(action)
+	Input::Input(std::function<void()> &action)
+	: _active(false), _action(action)
 	{
 
 	}

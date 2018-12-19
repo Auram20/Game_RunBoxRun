@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     obs.displayInfos();
     
     WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
-    wind.initWindow(argv);
+    wind.initWindow(argv[0]);
     wind.rendWindow();
     
     Map map;

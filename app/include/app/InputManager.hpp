@@ -8,7 +8,7 @@
 #define __INPUTMANAGER__HPP
 
 #include <app/Input.hpp>
-#include <vector>
+#include <map>
 #include <iostream>
 
 namespace RUNBOXRUN
@@ -22,13 +22,13 @@ namespace RUNBOXRUN
 
 		// CONSTRUCTORS & DESTRUCTOR
 		static InputManager *getInstance();
-
+		void call(const SDLKey &key);
 
 
 		private:
 			static InputManager *_instance;
 			InputManager(); /*!< default constructor */
-			std::vector<Input> _inputs;
+			std::map<SDLKey, Input> _inputs;
 			~InputManager(); /*!< default destructor*/
 	};
 }

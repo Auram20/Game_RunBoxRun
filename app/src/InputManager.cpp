@@ -14,39 +14,61 @@ namespace RUNBOXRUN {
 	InputManager::InputManager()
 	: _inputs()
 	{
-		Player* p = Player::getInstance();
-		std::function<void(Player*)> move = [] (Player* p) {};
+		std::function<void()> move = [] () {};
 
 
-		_inputs.push_back(Input(SDLK_z, move));
+		_inputs.emplace(SDLK_z, Input(move));
 
-		move = [] (Player* p) {
-			p->jump(1.0); 
-		};
-
-
-		_inputs.push_back(Input(SDLK_q, move));
-
-		move = [] (Player* p) {
-			p->moveHorizontal(-1.0); // left
-		};
-
-
-		_inputs.push_back(Input(SDLK_s, move));
-
-		move = [] (Player* p) {
-			p->jump(-1.0);
-
-		};
-
+		move = [] () {
+			Player* p = Player::getInstance();
+			p->jump(1.0);
 			std::cout << " Apres changement " << std::endl;
 			p->displayInfos();
-			
-		_inputs.push_back(Input(SDLK_d, move));
-
-		move = [] (Player* p) {
-			p->moveHorizontal(1.0); // right
 		};
+
+		_inputs.emplace(SDLK_q, Input(move));
+
+		move = [] () {
+			Player* p = Player::getInstance();
+			p->moveHorizontal(-1.0); // left
+			std::cout << " Apres changement " << std::endl;
+			p->displayInfos();
+		};
+
+		_inputs.emplace(SDLK_s, Input(move));
+
+		move = [] () {
+			Player* p = Player::getInstance();
+			p->jump(-1.0);
+			std::cout << " Apres changement " << std::endl;
+			p->displayInfos();
+		};
+
+
+		_inputs.emplace(SDLK_d, Input(move));
+
+		move = [] () {
+			Player* p = Player::getInstance();
+			p->moveHorizontal(1.0); // right
+			std::cout << " Apres changement " << std::endl;
+			p->displayInfos();
+		};
+
+		_inputs.emplace(SDLK_a, Input(move));
+
+		move = [] () {
+			Player* p = Player::getInstance();
+			p->moveHorizontal(1.0); // right
+			std::cout << " Apres changement " << std::endl;
+			p->displayInfos();
+		};
+
+		_inputs.emplace(SDLK_ESCAPE, Input(move));
+	}
+
+	void InputManager::call(const SDLKey &key) {
+		if(_inputs.find(key) != _inputs.end())
+			_inputs.at(key).call();
 	}
 
 	InputManager::~InputManager() {
