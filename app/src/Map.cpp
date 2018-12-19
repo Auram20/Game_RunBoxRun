@@ -8,9 +8,13 @@
 
 using namespace RUNBOXRUN;
 
-int Map::readMap(const std::string &filename)
+Map::Map(const std::string &filename)
+: _filename(filename)
+{}
+
+int Map::readMap()
 {
-        std::ifstream file(filename);
+        std::ifstream file(_filename);
 
         unsigned int data;
         unsigned int size = 0;
@@ -23,7 +27,7 @@ int Map::readMap(const std::string &filename)
         _z = 0;
 
         if(! file.is_open())
-            THROW_EXCEPTION(filename + " is not found");
+            THROW_EXCEPTION(_filename + " is not found");
 
         file >> j >> i >> k;
         int nbByBloc = (j*i)/k;
