@@ -10,9 +10,9 @@
 #include <glimac/glm.hpp>
 #include <GL/glew.h>
 #include <iostream>
-#include <vector>
+#include <app/Scene.hpp>
 #include <utils/Error.hpp>
-#include <app/glm.hpp>
+#include <app/Map.hpp>
 
 namespace RUNBOXRUN
 {
@@ -25,6 +25,8 @@ namespace RUNBOXRUN
 		// CONSTRUCTORS & DESTRUCTOR
 		SceneFactory(); /*!< default constructor */
 		~SceneFactory() = default; /*!< default destructor*/
+        Scene constructSceneFromMap(const Map &map);
+
 
 		private:
 		
