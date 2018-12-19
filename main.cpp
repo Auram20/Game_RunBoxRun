@@ -18,6 +18,7 @@
 #include <glimac/Asset.hpp>
 #include <glimac/Texture.hpp>
 #include <app/WindowEngine.hpp>
+#include <assimp/Importer.hpp>
 
 
 using namespace RUNBOXRUN;
@@ -47,6 +48,7 @@ int main(int argc, char** argv)
     Time ti;
     FilePath applicationPath(argv[0]);
     Asset asset(applicationPath);
+    Assimp::Importer importer;
     //Sphere sp(3,1,1);
     //Box box1(1,1,1);
     //box1.displayInfos();
