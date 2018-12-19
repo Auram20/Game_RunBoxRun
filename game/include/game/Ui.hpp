@@ -23,6 +23,8 @@ namespace RUNBOXRUN
 		Ui(); /*!< default constructor */
 		~Ui(); /*!< default destructor*/
 
+		void displayText();
+
 		private:
 	};
 }
