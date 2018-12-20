@@ -8,7 +8,7 @@
 #define __OBSTACLE__HPP
 
 // Includes 
-#include <game/EventObject.hpp>
+#include "EventObject.hpp"
 #include  <string>
 
 namespace RUNBOXRUN
@@ -21,15 +21,12 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		Obstacle(); /*!< default constructor */
-		Obstacle(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type, const Model &model); /*!< obstacle's constructor with arguments*/
+		Obstacle(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type); /*!< obstacle's constructor with arguments*/
 		Obstacle(const Obstacle &obstacle); /*!< obstacle's constructor by copy*/
 		~Obstacle(); /*!< default destructor */
 
 		// OBSTACLE FUNCTIONS
 		virtual void displayInfos() ; /*!< display infos */
-		
-		//getter
-		inline Model getModel(){ return _model; }
 
 
 		private:

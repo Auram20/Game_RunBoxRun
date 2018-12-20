@@ -24,7 +24,7 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong) {
     GLfloat rcpLat = 1.f / discLat, rcpLong = 1.f / discLong;
     GLfloat dPhi = 2 * glm::pi<float>() * rcpLat, dTheta = glm::pi<float>() * rcpLong;
     
-    std::vector<ShapeVertex> data;
+    std::vector<Vertex> data;
     
     // Construit l'ensemble des vertex
     for(GLsizei j = 0; j <= discLong; ++j) {
@@ -32,7 +32,7 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong) {
         GLfloat sinTheta = sin(-glm::pi<float>() / 2 + j * dTheta);
         
         for(GLsizei i = 0; i <= discLat; ++i) {
-            ShapeVertex vertex;
+            Vertex vertex;
             
             vertex.texCoords.x = i * rcpLat;
             vertex.texCoords.y = 1.f - j * rcpLong;
@@ -46,8 +46,6 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong) {
             data.push_back(vertex);
         }
     }
-
-    _VertexCount = discLat * discLong * 6;
     
     GLuint idx = 0;
     // Construit les vertex finaux en regroupant les données en triangles:

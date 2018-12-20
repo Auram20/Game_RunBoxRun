@@ -52,7 +52,7 @@ find_package(ASSIMP REQUIRED)
 
 include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include)
 
-set(ALL_LIBRARIES ${ASSIMP_LIBRARIES} app game glimac ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+set(ALL_LIBRARIES app game glimac ${ASSIMP_LIBRARIES} ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 
@@ -61,9 +61,9 @@ set(ALL_LIBRARIES ${ASSIMP_LIBRARIES} app game glimac ${SDL_LIBRARY} ${OPENGL_LI
 #    PUBLIC cxx_auto_type
 #    PRIVATE cxx_variadic_templates)
 
-add_subdirectory(app/)
-add_subdirectory(game/)
-add_subdirectory(glimac/)
+add_subdirectory(app)
+add_subdirectory(game)
+add_subdirectory(glimac)
 #add_subdirectory(assimp-4.0.1/)
 
 # compiler

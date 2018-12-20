@@ -21,7 +21,7 @@
 namespace glimac
 {
 	/// \class Render
-	/// \brief class for  Render.
+	/// \brief class for the rendering.
 	class Render
 	{
 			

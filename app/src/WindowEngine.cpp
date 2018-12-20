@@ -4,7 +4,7 @@
 // _________ WINDOWENGINE.CPP_____ 
 //================================
 
-#include <app/WindowEngine.hpp>
+#include "app/WindowEngine.hpp"
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <glimac/FilePath.hpp>
@@ -12,8 +12,8 @@
 #include <glimac/Model.hpp>
 #include <glimac/Render.hpp>
 #include <glimac/SDLWindowManager.hpp>
-#include <app/Map.hpp>
-#include <app/SceneFactory.hpp>
+#include "app/Map.hpp"
+#include "app/SceneFactory.hpp"
 
 
 using namespace glimac;
@@ -50,12 +50,6 @@ int WindowEngine::initWindow(FilePath app)
    // std::for_each(scene._objects.begin(), scene._object.end(), )
 
     std::vector<Model> models;
-    int size = _scene._objects.size();
-    for(int i=0; i<size; i++)
-    {
-        models.push_back(_objects[i]._model);
-    }
-
 
     Model model("../assets/obj/boule.obj");
 
@@ -78,7 +72,7 @@ int WindowEngine::initWindow(FilePath app)
         render.initRender();
         render.sendDatas();
         //model.draw();
-        std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();})
+        //std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();})
            //test.render();
         /* render of all objects*/
         // vecteur qui va contenir tous les models

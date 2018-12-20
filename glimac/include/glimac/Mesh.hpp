@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <glimac/common.hpp>
+#include <glimac/Texture.hpp>
 
 
 namespace glimac {
@@ -22,20 +23,21 @@ class Mesh
 public:
   
     // CONSTRUCTORS & DESTRUCTOR
-    Mesh();
+    Mesh() = default;
     Mesh(GLuint _VertexCount);/*!< object's constructor with arguments*/
+    Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex); /*!< object's constructor with arguments*/
     ~Mesh();
         
     // GETTERS
     
-    const ShapeVertex* getDataPointer() const 
+    const Vertex* getDataPointer() const 
     {
         return &_VertexList[0];
     } /*!< Returns pointor on datas */
     
     GLsizei getVertexCount() const 
     {
-        return _VertexCount;
+        return _VertexList.size();
     } /*!< Returns Vertex numbers */
   
     virtual void displayInfos();/*!< displays info of a mesh - used for testing */
@@ -44,26 +46,25 @@ public:
 
     void initVAO(); /*!< initialize the vao*/
 
-    virtual void initIBO(const unsigned int &nTriangles) {}; /*!< initialise the ibo */
+    virtual void initEBO(); /*!< initialise the ebo */
 
-    inline void setMVMatrix(glm::mat4 MVMatrix) {
-        _MVMatrix = MVMatrix; 
-    } /*!< Set MVMatrix */
+    void draw() const; /*!< Render a mesh */
 
-    void render() const; /*!< Render a mesh */
-
+    static const GLuint VERTEX_ATTR_POSITION = 0;
+    static const GLuint VERTEX_ATTR_NORMAL = 1;
+    static const GLuint VERTEX_ATTR_TEXCOORDS = 2 ;
+    static const GLuint VERTEX_ATTR_COLOR = 3 ;
 
 protected:
   
-    std::vector<ShapeVertex> _VertexList;
-    GLuint _VertexCount;
+    std::vector<Vertex> _VertexList;
+    std::vector<uint32_t> _index;
+    std::vector<Texture> _textures;
     
     GLuint _vao;
     GLuint _vbo;
-    GLuint _ibo;
-    unsigned int _nTriangles;
-
-    glm::mat4 _MVMatrix;
+    GLuint _ebo;
+    void setupMesh();
 
 
 };

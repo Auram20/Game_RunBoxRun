@@ -5,7 +5,7 @@
 //================================
 
 
-#include <game/Obstacle.hpp>
+#include "game/Obstacle.hpp"
 #include <iostream>
 
 using namespace RUNBOXRUN;
@@ -17,13 +17,13 @@ Obstacle::Obstacle()
 : EventObject()
 {}
 
-Obstacle::Obstacle(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type, const Model &model)
-: EventObject(speed, position, size, color), _type(type), model)
+Obstacle::Obstacle(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type)
+: EventObject(speed, position, size, color), _type(type)
 {}
 
 
 Obstacle::Obstacle(const Obstacle &obstacle)
-: EventObject(obstacle._speed, obstacle._position, obstacle._size, obstacle._color, obstacle._model), _type(obstacle._type)
+: EventObject(obstacle._speed, obstacle._position, obstacle._size, obstacle._color), _type(obstacle._type)
 {}
 
 Obstacle::~Obstacle()

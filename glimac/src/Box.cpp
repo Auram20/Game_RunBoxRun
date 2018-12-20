@@ -15,15 +15,15 @@ using namespace glimac;
 void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) {
 
     float w,h,t;
-    w = width;        // 0.5
-    h = height;       // 0.5
-    t = depth;    // 0.5
+    w = width / 2;        // 0.5
+    h = height / 2;       // 0.5
+    t = depth / 2;    // 0.5
 
     // Build all vertices
     // Front face
 
     for(int i = 0; i < getVertexCount(); i++) {
-        _VertexList.push_back(ShapeVertex());
+        _VertexList.push_back(Vertex());
     }
     
     // Front Face
@@ -45,7 +45,7 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
 
 
     for(unsigned int i = 0; i < getVertexCount(); i++) {
-        _VertexList[i].normal = _VertexList[i].position;
+        _VertexList[i].normal = glm::normalize(_VertexList[i].position);
     }
 
 
@@ -62,49 +62,11 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
 
 }
 
-void Box::initIBO(const unsigned int &nTriangles) {
-    //Création du IBO
-    glGenBuffers(1, &_ibo);
-
-    //Bin sur GL_ELEMENT_ARRAY_BUFFER, cible réservée pour les IBOs
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibo);
-
-    _nTriangles = nTriangles;
-
-    //Tableau d'indices des sommets à dessiner
-    std::vector<uint32_t> index = {
-        0, 4, 3, //Right Face
-        0, 3, 7,
-        0, 1, 2, //Front Face
-        0, 2, 3,
-        1, 5, 6, //Left Face
-        1, 6, 2,
-        4, 5, 6, //Back Face
-        4, 6, 7,
-        2, 6, 7, //Top Face
-        2, 3, 7,
-        0, 1, 3, //Bottom Face
-        0, 5, 4
-    };
-
-    //On remplit l'IBO avec les indices
-    glBufferData(
-        GL_ELEMENT_ARRAY_BUFFER,
-        (nTriangles) * 3 * sizeof(std::vector<uint32_t>),
-        index.data(),
-        GL_STATIC_DRAW
-    );
-
-    //Debin de l'IBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
-
-
 void Box::displayInfos()
 {
 
     std::cout << " -------------------- INFOS BOX -------------------- " << std::endl;
-    for (size_t i=0;i<_VertexCount;i++)
+    for (size_t i = 0; i < getVertexCount(); i++)
     {
         std::cout << _VertexList[i].position << std :: endl;
         std::cout << _VertexList[i].normal << std :: endl;

@@ -2,15 +2,7 @@
 #include <cstdio>
 #include <SDL/SDL.h>
 #include <GL/glew.h>
-#include <game/Bonus.hpp>
 #include <app/Button.hpp>
-#include <game/Coin.hpp>
-#include <game/Decor.hpp>
-#include <game/Enemy.hpp>
-#include <game/Obstacle.hpp>
-#include <game/Malus.hpp>
-#include <game/Score.hpp>
-#include <game/Time.hpp>
 #include <utils/Error.hpp>
 #include <app/Map.hpp>
 #include <glimac/Sphere.hpp>
@@ -20,7 +12,6 @@
 #include <app/WindowEngine.hpp>
 #include <assimp/Importer.hpp>
 #include <glimac/Model.hpp>
-#include <app/SceneFactory.hpp>
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -36,12 +27,12 @@ int main(int argc, char** argv)
     p->displayInfos();
     //InputManager man;
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
-   // Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
+    Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
     Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");
     Object ob(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Bonus bo(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
-   // Coin co(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
-   // Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
+    Coin co(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
+    Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Ui ui;
     UiElement ue;
     Button butt(100,100, "menu");
