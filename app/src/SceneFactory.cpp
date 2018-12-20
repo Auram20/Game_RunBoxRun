@@ -8,11 +8,33 @@
 
 using namespace RUNBOXRUN;
 
-SceneFactory::SceneFactory() {
+SceneFactory::SceneFactory(){} 
 
-}
+void SceneFactory::constructSceneFromMap(const Map &map) {
+	std::vector<glm::vec4> datas = map.getAllInfosDatas();
+	int size = datas.size();
 
-
-Scene SceneFactory::constructSceneFromMap(const Map &map) {
-    
+	for(int i=0 ; i<size ; i++){
+		int indice = datas[i][0];
+		switch(indice){
+			case 0:
+			{
+				Enemy en(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100));
+			}
+			break;
+			case 1: 
+			{
+				Obstacle obs(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), "mur");
+			}
+			break;
+			case 3:
+			{
+				Coin co(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), 10);
+			}
+			break;
+			default: 
+			break;
+		}
+	}
+	
 }

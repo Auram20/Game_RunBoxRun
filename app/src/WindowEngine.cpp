@@ -29,14 +29,12 @@ WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const 
 int WindowEngine::initWindow(FilePath app)
 {
     std::cout << "coucou" << std::endl;
-    //SDLWindowManager _wind(800, 600, "title");
 
     GLenum glewInitError = glewInit();
     if(GLEW_OK != glewInitError) {
         std::cerr << glewGetErrorString(glewInitError) << std::endl;
         return EXIT_FAILURE;
     }
-
 
     std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;

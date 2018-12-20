@@ -20,6 +20,7 @@
 #include <app/WindowEngine.hpp>
 #include <assimp/Importer.hpp>
 #include <glimac/Model.hpp>
+#include <app/SceneFactory.hpp>
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -66,13 +67,15 @@ int main(int argc, char** argv)
 
    // Texture Texture1("../assets/textue/texture.jpg");
 
+    SceneFactory scene;
     Map map("../map/test2.txt");
-
+    map.readMap();
+    scene.constructSceneFromMap(map);
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)
     {
-       map.readMap();
+      
 
        testException(79);
       // testException(0);
