@@ -61,11 +61,11 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
-    
-    WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
-    wind.initWindow(argv[0]);
-    wind.rendWindow();
-   // Texture Texture1("../assets/texture/texture.jpg");
+    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE");
+    wind.initWindow(applicationPath);
+
+   // Texture Texture1("../assets/textue/texture.jpg");
+
     Map map("../map/test2.txt");
 
     // ------------- TESTS ERRORS ---------------------------
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
        map.readMap();
 
        testException(79);
-       testException(0);
+      // testException(0);
     }
     catch (const std::exception &e) // gestion des erreurs : ici, on affiche simplement l'erreur
     {

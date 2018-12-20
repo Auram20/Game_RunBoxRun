@@ -11,10 +11,11 @@ uniform mat4 uMVPMatrix;
 uniform mat4 uMVMatrix;
 uniform mat4 uNormalMatrix;
 
+
 // Sorties du shader
 out vec3 vPosition_vs; // Position du sommet transformé dans l'espace View
 out vec3 vNormal_vs; // Normale du sommet transformé dans l'espace View
-out vec2 vFragTexture;
+out vec2 vTexCoords;
 
 void main() {
     // Passage en coordonnées homogènes
@@ -24,10 +25,11 @@ void main() {
     // Calcul des valeurs de sortie
     vPosition_vs = vec3(uMVMatrix * vertexPosition);
     vNormal_vs = vec3(uNormalMatrix * vertexNormal);
+    
 
     // Calcul de la position projetée
     gl_Position = uMVPMatrix * vertexPosition;
 
     //Tex
-    vFragTexture = aVertexTexCoords;
+    vTexCoords = aVertexTexCoords;
 }
