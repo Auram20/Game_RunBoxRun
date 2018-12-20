@@ -24,7 +24,7 @@ const std::string Shader::getInfoLog() const {
 	return logString;
 }
 
-Shader loadShader(GLenum type, const FilePath& filepath) {
+Shader Shader::load(GLenum type, const FilePath& filepath) {
     std::ifstream input(filepath.c_str());
     if(!input) {
         throw std::runtime_error("Unable to load the file " + filepath.str());
