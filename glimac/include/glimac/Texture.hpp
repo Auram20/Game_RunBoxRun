@@ -10,9 +10,10 @@
 #include <glimac/Image.hpp>
 #include <glimac/FilePath.hpp>
 #include <iostream>
-#include <glimac/common.hpp>
 #include <string>
 #include <glimac/Asset.hpp>
+#include <assimp/material.h>
+
 
 namespace glimac {
 
@@ -23,17 +24,21 @@ namespace glimac {
 
         public:
             // CONSTRUCTORS & DESTRUCTOR
-            Texture(const std::string &path); /*!< Texture's constructor with parameters*/
+            Texture() = default;
+            Texture(const std::string &path, const aiTextureType &type); /*!< Texture's constructor with parameters*/
+            Texture(const Texture &tex);
             ~Texture() = default; /*!< Texture's destructor */
             
             // FONCTIONS
-            void initTexture(); /*!< Generate, Bind texture*/
+            const std::string getTypeName() const;
+            inline const GLuint id() const {
+                return _id;
+            }
 
         private:
-            GLint _uTexture; /*!< uniform texture */
-            FilePath _path; /*!< texture's path */
             GLuint _id; /*!< idTexture */
-            std::unique_ptr<Image> _texture; /*!< loading texture */
+            aiTextureType _type; /*!< texture type */
+            void TextureFromFile(const std::string &path);
     };
     
 }

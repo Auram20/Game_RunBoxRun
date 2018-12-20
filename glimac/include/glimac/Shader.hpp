@@ -9,45 +9,45 @@
 
 namespace glimac {
 
-	class Shader : public Asset {
-		public:
-			Shader(GLenum type): Asset(), m_nGLId(glCreateShader(type)) {
-			}
+class Shader : public Asset {
+public:
+	Shader(GLenum type): m_nGLId(glCreateShader(type)) {
+	}
 
-			~Shader() {
-				glDeleteShader(m_nGLId);
-			}
+	~Shader() {
+		glDeleteShader(m_nGLId);
+	}
 
-			Shader(Shader&& rvalue): m_nGLId(rvalue.m_nGLId) {
-				rvalue.m_nGLId = 0;
-			}
+	Shader(Shader&& rvalue): m_nGLId(rvalue.m_nGLId) {
+		rvalue.m_nGLId = 0;
+	}
 
-			Shader& operator =(Shader&& rvalue) {
-				m_nGLId = rvalue.m_nGLId;
-				rvalue.m_nGLId = 0;
-				return *this;
-			}
+	Shader& operator =(Shader&& rvalue) {
+		m_nGLId = rvalue.m_nGLId;
+		rvalue.m_nGLId = 0;
+		return *this;
+	}
 
-			GLuint getGLId() const {
-				return m_nGLId;
-			}
+	GLuint getGLId() const {
+		return m_nGLId;
+	}
 
-			void setSource(const char* src) {
-				glShaderSource(m_nGLId, 1, &src, 0);
-				_path = FilePath(src);
-			}
+	void setSource(const char* src) {
+		glShaderSource(m_nGLId, 1, &src, 0);
+	}
 
-			bool compile();
+	bool compile();
 
-			const std::string getInfoLog() const;
+	const std::string getInfoLog() const;
 
-			static Shader load(GLenum type, const FilePath& filepath);
+private:
+	Shader(const Shader&);
+	Shader& operator =(const Shader&);
 
-		private:
-			Shader(const Shader&);
-			Shader& operator =(const Shader&);
+	GLuint m_nGLId;
+};
 
-			GLuint m_nGLId;
-	};
+// Load a shader (but does not compile it)
+Shader loadShader(GLenum type, const FilePath& filepath);
 
 }

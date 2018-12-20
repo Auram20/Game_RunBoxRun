@@ -23,12 +23,11 @@ public:
   
     // CONSTRUCTORS & DESTRUCTOR
     Box(GLfloat width, GLfloat height, GLfloat depth)
-    : Mesh(24)
+    : Mesh()
     {
         build(width, height, depth);
-        initVBO();
-        initIBO(12);
-        initVAO();
+        initIndex();
+        setupMesh();
     } /*!< init constructor*/
 
  
@@ -36,7 +35,22 @@ public:
     // FONCTION pour allouer et renseigner les données dans le cpp.
     void build(GLfloat width, GLfloat height, GLfloat depth);
 
-    void initIBO(const unsigned int &nTriangles) override;
+    inline void initIndex() {
+        _index = {
+            0, 4, 3, //Right Face
+            0, 3, 7,
+            0, 1, 2, //Front Face
+            0, 2, 3,
+            1, 5, 6, //Left Face
+            1, 6, 2,
+            4, 5, 6, //Back Face
+            4, 6, 7,
+            2, 6, 7, //Top Face
+            2, 3, 7,
+            0, 1, 3, //Bottom Face
+            0, 5, 4
+        };
+    };
 
     virtual void displayInfos();
   

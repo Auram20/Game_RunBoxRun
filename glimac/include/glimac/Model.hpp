@@ -8,51 +8,46 @@
 #include <random>
 #include <algorithm>
 #include <queue>
+#include <glimac/common.hpp>
+#include <glimac/Mesh.hpp>
+#include <glimac/Texture.hpp>
 
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-struct Vertex {
-    glm::vec3 Position;
-    glm::vec3 Normal;
-    glm::vec2 TexCoords;
-};
 
-struct Texture {
-    unsigned int id;
-    std::string type; 
-    aiString path;
-};
+namespace glimac {
 
-class Meshes {
-    private:
-        unsigned int vao, vbo, ebo;
-        void setupMesh();
-    public:
-        std::vector<Vertex> _vertices;
-        std::vector<unsigned int> _indices;
-        std::vector<Texture> _textures;
+    class Model : public Asset {
+        private:
+            std::vector<Mesh> _meshes;
 
-        Meshes(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex):_vertices(vert),_indices(ind),_textures(tex){
-            setupMesh();
-        };
-        void draw() const;
-};
-class Model{
-    private:
-        std::vector<Meshes> meshes;
-        std::string directory;
+            void loadModel(std::string path);
+            void processNode(aiNode *node, const aiScene *scene);
+            Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+            std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
+        public:
 
-        void loadModel(std::string path);
-        void processNode(aiNode *node, const aiScene *scene);
-        Meshes processMesh(aiMesh *mesh, const aiScene *scene);
-        std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
-    public:
-        Model(std::string path){
-            loadModel(path);
-        }
-        void draw() const;
-};
+            void draw() const;
+
+            Model(std::string path)
+            : Asset(), _meshes()
+            {
+                loadModel(path);
+            }
+            Model(Mesh mesh)
+            : Asset(), _meshes()
+            {
+                _meshes.push_back(mesh);
+            }
+            Model(std::vector<Mesh> meshes)
+            : Asset(), _meshes(meshes)
+            {
+
+            }
+    };
+
+}
 
 #endif

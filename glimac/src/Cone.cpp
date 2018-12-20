@@ -24,12 +24,12 @@ void Cone::build(GLfloat height, GLfloat r, GLsizei discLat, GLsizei discHeight)
     GLfloat rcpLat = 1.f / discLat, rcpH = 1.f / discHeight;
     GLfloat dPhi = 2 * glm::pi<float>() * rcpLat, dH = height * rcpH;
     
-    std::vector<ShapeVertex> data;
+    std::vector<Vertex> data;
     
     // Construit l'ensemble des vertex
     for(GLsizei j = 0; j <= discHeight; ++j) {
         for(GLsizei i = 0; i < discLat; ++i) {
-            ShapeVertex vertex;
+            Vertex vertex;
             
             vertex.texCoords.x = i * rcpLat;
             vertex.texCoords.y = j * rcpH;
@@ -53,8 +53,6 @@ void Cone::build(GLfloat height, GLfloat r, GLsizei discLat, GLsizei discHeight)
             data.push_back(vertex);
         }
     }
-
-    m_nVertexCount = discLat * discHeight * 6;
     
     GLuint idx = 0;
     // Construit les vertex finaux en regroupant les données en triangles:
@@ -64,12 +62,12 @@ void Cone::build(GLfloat height, GLfloat r, GLsizei discLat, GLsizei discHeight)
     for(GLsizei j = 0; j < discHeight; ++j) {
         GLsizei offset = j * discLat;
         for(GLsizei i = 0; i < discLat; ++i) {
-            m_Vertices.push_back(data[offset + i]);
-            m_Vertices.push_back(data[offset + (i + 1) % discLat]);
-            m_Vertices.push_back(data[offset + discLat + (i + 1) % discLat]);
-            m_Vertices.push_back(data[offset + i]);
-            m_Vertices.push_back(data[offset + discLat + (i + 1) % discLat]);
-            m_Vertices.push_back(data[offset + i + discLat]);
+            _VertexList.push_back(data[offset + i]);
+            _VertexList.push_back(data[offset + (i + 1) % discLat]);
+            _VertexList.push_back(data[offset + discLat + (i + 1) % discLat]);
+            _VertexList.push_back(data[offset + i]);
+            _VertexList.push_back(data[offset + discLat + (i + 1) % discLat]);
+            _VertexList.push_back(data[offset + i + discLat]);
         }
     }
     
