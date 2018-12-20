@@ -13,17 +13,14 @@
 #include <app/Scene.hpp>
 #include <utils/Error.hpp>
 #include <app/Map.hpp>
-#include <game/Bonus.hpp>
-#include <game/Coin.hpp>
-#include <game/Decor.hpp>
-#include <game/Enemy.hpp>
-#include <game/Obstacle.hpp>
-#include <game/Malus.hpp>
+#include <game/Game.hpp>
 #include <iostream>
 #include <functional>
 #include <algorithm>
 #include <vector>
-#include <game/glm.hpp>
+#include <glimac/Model.hpp>
+
+using namespace glimac;
 
 namespace RUNBOXRUN
 {
@@ -40,7 +37,7 @@ namespace RUNBOXRUN
 
 
 		private:
-		
+		std::vector<Object> _objects; /*!< al objects generated*/
 	};
 }
 

@@ -16,7 +16,10 @@
 #include <glimac/Image.hpp>
 #include <app/InputManager.hpp>
 #include <glimac/Program.hpp>
+#include <app/Map.hpp>
+#include <app/SceneFactory.hpp>
 
+using namespace RUNBOXRUN;
 namespace glimac
 {
 	/// \class WindowEngine
@@ -27,7 +30,7 @@ namespace glimac
 		public:
         // CONSTRUCTORS & DESTRUCTOR
 		//WindowEngine();	
-		WindowEngine(const uint32_t &width, const uint32_t &height, const char* title); /*!< constructor with parameters */
+		WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &scene); /*!< constructor with parameters */
 		~WindowEngine()=default; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
@@ -35,6 +38,7 @@ namespace glimac
 
 		private:
 		SDLWindowManager _windowManager; /*!< window */
+		SceneFactory _scene;
 		//Program _program;
 
 	};

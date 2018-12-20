@@ -2,15 +2,7 @@
 #include <cstdio>
 #include <SDL/SDL.h>
 #include <GL/glew.h>
-#include <game/Bonus.hpp>
 #include <app/Button.hpp>
-#include <game/Coin.hpp>
-#include <game/Decor.hpp>
-#include <game/Enemy.hpp>
-#include <game/Obstacle.hpp>
-#include <game/Malus.hpp>
-#include <game/Score.hpp>
-#include <game/Time.hpp>
 #include <utils/Error.hpp>
 #include <app/Map.hpp>
 #include <glimac/Sphere.hpp>
@@ -20,7 +12,6 @@
 #include <app/WindowEngine.hpp>
 #include <assimp/Importer.hpp>
 #include <glimac/Model.hpp>
-#include <app/SceneFactory.hpp>
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -49,6 +40,14 @@ int main(int argc, char** argv)
     Time ti;
     FilePath applicationPath(argv[0]);
     Asset asset(applicationPath);
+
+    Map map("../map/test2.txt");
+    map.readMap();
+
+    SceneFactory scene;
+    scene.constructSceneFromMap(map);
+
+
     //Assimp::Importer importer;
     //Sphere sp(3,1,1);
     //Box box1(1,1,1);
@@ -62,15 +61,12 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
-    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE");
+    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
     wind.initWindow(applicationPath);
 
    // Texture Texture1("../assets/textue/texture.jpg");
 
-    SceneFactory scene;
-    Map map("../map/test2.txt");
-    map.readMap();
-    scene.constructSceneFromMap(map);
+    
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)
@@ -84,9 +80,6 @@ int main(int argc, char** argv)
     {
         std::cerr << e.what() << std::endl;
     }
-
-    std::vector<int> result = map.getDatas();
-   
 
     return 0;
 }
