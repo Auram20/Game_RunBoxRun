@@ -19,7 +19,7 @@
 #include <glimac/Texture.hpp>
 #include <app/WindowEngine.hpp>
 #include <assimp/Importer.hpp>
-
+#include <glimac/Model.hpp>
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -48,25 +48,26 @@ int main(int argc, char** argv)
     Time ti;
     FilePath applicationPath(argv[0]);
     Asset asset(applicationPath);
-    Assimp::Importer importer;
+    //Assimp::Importer importer;
     //Sphere sp(3,1,1);
     //Box box1(1,1,1);
     //box1.displayInfos();
 
     // ------------- TESTS FONCTIONS ---------------------------
-    //readMap("../map/test.txt");
     decor.displayInfos();
     bo.displayInfos();
     co.displayInfos();
     en.displayInfos();
     mal.displayInfos();
     obs.displayInfos();
+
     
     WindowEngine wind(800,600, {"BON ANNIVERSAIRE LE MOCHE"});
     wind.initWindow(argv[0]);
     wind.rendWindow();
-    Texture Texture("../assets/texture/texture.jpg");
-    Map map("../map/test.txt");
+   // Texture Texture1("../assets/texture/texture.jpg");
+    Map map("../map/test2.txt");
+
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)

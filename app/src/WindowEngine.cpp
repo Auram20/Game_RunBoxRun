@@ -11,6 +11,7 @@
 #include <glimac/FilePath.hpp>
 #include <glimac/Program.hpp>
 #include <glimac/tiny_obj_loader.h>
+#include <glimac/Model.hpp>
 
 using namespace glimac;
 
@@ -72,6 +73,7 @@ void WindowEngine::rendWindow()
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     Box test(1, 1, 1);
 
+    Model model("../assets/obj/cone.obj");
     glEnable(GL_DEPTH_TEST);
 
     while(!done) {
@@ -92,8 +94,8 @@ void WindowEngine::rendWindow()
          *********************************/
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-         test.render();
+        model.draw();
+        test.render();
 
         // Update the display
         _windowManager.swapBuffers();
