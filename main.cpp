@@ -36,12 +36,12 @@ int main(int argc, char** argv)
     p->displayInfos();
     //InputManager man;
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
-    Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
+   // Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
     Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");
     Object ob(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Bonus bo(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
-    Coin co(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
-    Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
+   // Coin co(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
+   // Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Ui ui;
     UiElement ue;
     Button butt(100,100, "menu");
@@ -49,6 +49,14 @@ int main(int argc, char** argv)
     Time ti;
     FilePath applicationPath(argv[0]);
     Asset asset(applicationPath);
+
+    Map map("../map/test2.txt");
+    map.readMap();
+
+    SceneFactory scene;
+    scene.constructSceneFromMap(map);
+
+
     //Assimp::Importer importer;
     //Sphere sp(3,1,1);
     //Box box1(1,1,1);
@@ -62,15 +70,12 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
-    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE");
+    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
     wind.initWindow(applicationPath);
 
    // Texture Texture1("../assets/textue/texture.jpg");
 
-    SceneFactory scene;
-    Map map("../map/test2.txt");
-    map.readMap();
-    scene.constructSceneFromMap(map);
+    
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)
@@ -84,9 +89,6 @@ int main(int argc, char** argv)
     {
         std::cerr << e.what() << std::endl;
     }
-
-    std::vector<int> result = map.getDatas();
-   
 
     return 0;
 }

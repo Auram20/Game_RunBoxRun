@@ -9,26 +9,25 @@
 #include <glimac/Box.hpp>
 #include <glimac/FilePath.hpp>
 #include <glimac/Program.hpp>
-#include <glimac/tiny_obj_loader.h>
 #include <glimac/Model.hpp>
 #include <glimac/Render.hpp>
 #include <glimac/SDLWindowManager.hpp>
+#include <app/Map.hpp>
+#include <app/SceneFactory.hpp>
+
 
 using namespace glimac;
 
-
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
-
-WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title)
-: _windowManager(width, height, title)
+WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &scene)
+: _windowManager(width, height, title), _scene(scene)
 {}
 
 
 // --------------- WINDOW ENGINE FUNCTIONS --------------
 int WindowEngine::initWindow(FilePath app)
 {
-    std::cout << "coucou" << std::endl;
 
     GLenum glewInitError = glewInit();
     if(GLEW_OK != glewInitError) {
@@ -46,7 +45,18 @@ int WindowEngine::initWindow(FilePath app)
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     Box test(1, 1, 1);
-   // Model model("../assets/obj/IronMan.obj");
+  
+
+   // std::for_each(scene._objects.begin(), scene._object.end(), )
+
+    std::vector<Model> models;
+    int size = _scene._objects.size();
+    for(int i=0; i<size; i++)
+    {
+        models.push_back(_objects[i]._model);
+    }
+
+
     Model model("../assets/obj/boule.obj");
 
     glEnable(GL_DEPTH_TEST);
@@ -67,8 +77,12 @@ int WindowEngine::initWindow(FilePath app)
         _program.use();
         render.initRender();
         render.sendDatas();
-        model.draw();
+        //model.draw();
+        std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();})
            //test.render();
+        /* render of all objects*/
+        // vecteur qui va contenir tous les models
+     
         _windowManager.swapBuffers();
 
      }

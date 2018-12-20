@@ -13,8 +13,8 @@ using namespace RUNBOXRUN;
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState)
-: Object(speed, position, size, color),  _health(health), _jumpState(jumpState)
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState, const Model &model)
+: Object(speed, position, size, color, model),  _health(health), _jumpState(jumpState)
 {}
 
 

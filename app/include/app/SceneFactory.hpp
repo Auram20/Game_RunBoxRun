@@ -17,6 +17,7 @@
 #include <game/Coin.hpp>
 #include <game/Decor.hpp>
 #include <game/Enemy.hpp>
+#include <game/Object.hpp>
 #include <game/Obstacle.hpp>
 #include <game/Malus.hpp>
 #include <iostream>
@@ -24,6 +25,9 @@
 #include <algorithm>
 #include <vector>
 #include <game/glm.hpp>
+#include <glimac/Model.hpp>
+
+using namespace glimac;
 
 namespace RUNBOXRUN
 {
@@ -40,7 +44,7 @@ namespace RUNBOXRUN
 
 
 		private:
-		
+		std::vector<Object> _objects; /*!< al objects generated*/
 	};
 }
 
