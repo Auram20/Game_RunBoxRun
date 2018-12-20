@@ -12,7 +12,10 @@
 #include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
+#include <vector>
+#include <glimac/Image.hpp>
 #include <app/InputManager.hpp>
+#include <glimac/Program.hpp>
 
 namespace glimac
 {
@@ -23,20 +26,16 @@ namespace glimac
 			
 		public:
         // CONSTRUCTORS & DESTRUCTOR
+		//WindowEngine();	
 		WindowEngine(const uint32_t &width, const uint32_t &height, const char* title); /*!< constructor with parameters */
-		~WindowEngine() = default ; /*!< default destructor*/
+		~WindowEngine()=default; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
-		int initWindow(char* path); /*!< initialize window */
-		void rendWindow();/*!< render loop */
+		int initWindow(FilePath app); /*!< render loop */
 
 		private:
 		SDLWindowManager _windowManager; /*!< window */
-
-		public:
-		glm::mat4 _ProjMatrix;
-		glm::mat4 _MVMatrix;
-		glm::mat4 _NormalMatrix;
+		//Program _program;
 
 	};
 }
