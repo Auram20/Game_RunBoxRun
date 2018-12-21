@@ -23,8 +23,7 @@ class Mesh
 public:
   
     // CONSTRUCTORS & DESTRUCTOR
-    Mesh() = default;
-    Mesh(GLuint _VertexCount);/*!< object's constructor with arguments*/
+    Mesh();
     Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex); /*!< object's constructor with arguments*/
     ~Mesh();
         
@@ -52,8 +51,7 @@ public:
 
     static const GLuint VERTEX_ATTR_POSITION = 0;
     static const GLuint VERTEX_ATTR_NORMAL = 1;
-    static const GLuint VERTEX_ATTR_TEXCOORDS = 2 ;
-    static const GLuint VERTEX_ATTR_COLOR = 3 ;
+    static const GLuint VERTEX_ATTR_TEXCOORDS = 2;
 
 protected:
   

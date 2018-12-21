@@ -50,9 +50,9 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(ASSIMP REQUIRED)
 
-include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include)
+include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include utils/include)
 
-set(ALL_LIBRARIES app game glimac ${ASSIMP_LIBRARIES} ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+set(ALL_LIBRARIES app game glimac utils ${ASSIMP_LIBRARIES} ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 
@@ -64,7 +64,7 @@ set(ALL_LIBRARIES app game glimac ${ASSIMP_LIBRARIES} ${SDL_LIBRARY} ${OPENGL_LI
 add_subdirectory(app)
 add_subdirectory(game)
 add_subdirectory(glimac)
-#add_subdirectory(assimp-4.0.1/)
+add_subdirectory(utils)
 
 # compiler
 file(GLOB HEADER_FILES *.hpp)

@@ -20,8 +20,8 @@ using namespace glimac;
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
-WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &scene)
-: _windowManager(width, height, title), _scene(scene)
+WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &sceneFactory)
+: _windowManager(width, height, title), _scene(sceneFactory)
 {}
 
 
@@ -44,14 +44,17 @@ int WindowEngine::initWindow(FilePath app)
     
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
-    Box test(1, 1, 1);
+    //Box test(1, 1, 1);
   
 
-   // std::for_each(scene._objects.begin(), scene._object.end(), )
+    Scene scene;
 
     std::vector<Model> models;
 
     Model model("../assets/obj/boule.obj");
+
+    //Enemy *en = new Enemy(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+	//scene.push(GameObject(model, en));
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -72,8 +75,8 @@ int WindowEngine::initWindow(FilePath app)
         render.initRender();
         render.sendDatas();
         //model.draw();
-        //std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();})
-           //test.render();
+        //scene.drawScene();
+           model.draw();
         /* render of all objects*/
         // vecteur qui va contenir tous les models
      

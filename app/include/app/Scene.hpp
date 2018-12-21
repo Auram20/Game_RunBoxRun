@@ -9,7 +9,11 @@
 
 #include <GL/glew.h>
 #include <vector>
+#include <map>
+#include <glimac/Camera.hpp>
 #include <utils/Error.hpp>
+#include <algorithm>
+#include "app/GameObject.hpp"
 
 namespace RUNBOXRUN
 {
@@ -20,11 +24,24 @@ namespace RUNBOXRUN
 			
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-		Scene(); /*!< default constructor */
+		Scene() = default; /*!< default constructor */
 		~Scene() = default; /*!< default destructor*/
 
+		inline void drawScene() const {
+			std::for_each(
+				_GameObjects.begin(),
+				_GameObjects.end(),
+				[](const GameObject &gobj){ gobj.draw(); }
+			);
+		}
+
+		inline void push(GameObject gobj) {
+			_GameObjects.push_back(gobj);
+		}
+
 		private:
-            //std::vector<GameObject> _GameObjects;
+            std::vector<GameObject> _GameObjects;
+			std::map<std::string, glimac::Camera*> _Cameras;
             //std::vector<Material> _Materials;
             
 	};

@@ -10,7 +10,6 @@
 #include <glimac/glm.hpp>
 #include <GL/glew.h>
 #include <iostream>
-#include <app/Scene.hpp>
 #include <utils/Error.hpp>
 #include <app/Map.hpp>
 #include <game/Game.hpp>
@@ -19,6 +18,7 @@
 #include <algorithm>
 #include <vector>
 #include <glimac/Model.hpp>
+#include "app/Scene.hpp"
 
 using namespace glimac;
 
@@ -33,11 +33,7 @@ namespace RUNBOXRUN
 		// CONSTRUCTORS & DESTRUCTOR
 		SceneFactory(); /*!< default constructor */
 		~SceneFactory() = default; /*!< default destructor*/
-        void constructSceneFromMap(const Map &map);
-
-
-		private:
-		std::vector<Object> _objects; /*!< al objects generated*/
+        Scene constructSceneFromMap(const Map &map);
 	};
 }
 

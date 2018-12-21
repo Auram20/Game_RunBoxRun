@@ -30,7 +30,7 @@ namespace glimac
 		public:
         // CONSTRUCTORS & DESTRUCTOR
 		//WindowEngine();	
-		WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &scene); /*!< constructor with parameters */
+		WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &sceneFactory); /*!< constructor with parameters */
 		~WindowEngine()=default; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS

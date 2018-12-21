@@ -22,7 +22,7 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
     // Build all vertices
     // Front face
 
-    for(int i = 0; i < getVertexCount(); i++) {
+    for(int i = 0; i < 8; i++) {
         _VertexList.push_back(Vertex());
     }
     

@@ -12,21 +12,23 @@
 
 using namespace glimac; 
 
-Mesh::Mesh(GLuint VertexCount): _VertexList(), _index(), _textures(), _vao(0), _vbo(0), _ebo(0)
+Mesh::Mesh()
+: _VertexList(), _index(), _textures(), _vao(0), _vbo(0), _ebo(0)
 {
 
-}/*!< object's constructor with arguments*/
+}
 
-
-Mesh::Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex) /*!< object's constructor with arguments*/
-    : _VertexList(vert), _index(ind), _textures(tex)
+Mesh::Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex)
+    : _VertexList(vert), _index(ind), _textures(tex), _vao(0), _vbo(0), _ebo(0)
 {
     setupMesh();
-};
+}
 
 Mesh::~Mesh() {
-	glDeleteBuffers(1,&_vbo);
-	glDeleteBuffers(1, &_ebo);
+	glDeleteBuffers(1, &_vbo);
+	if(_index.size() > 0) {
+		glDeleteBuffers(1, &_ebo);
+	}
     glDeleteVertexArrays(1,&_vao);
 }
 
@@ -48,7 +50,7 @@ void Mesh::displayInfos()
 
 void Mesh::setupMesh() {
 	initVBO();
-	if(_index.size() != 0) {
+	if(_index.size() > 0) {
 		initEBO();
 	}
 	initVAO();
@@ -69,7 +71,6 @@ void Mesh::initVAO()
 	glEnableVertexAttribArray(Mesh::VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(Mesh::VERTEX_ATTR_NORMAL);
 	glEnableVertexAttribArray(Mesh::VERTEX_ATTR_TEXCOORDS);
-	glEnableVertexAttribArray(Mesh::VERTEX_ATTR_COLOR);
 
 	//Bind mesh VBO
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
@@ -78,11 +79,10 @@ void Mesh::initVAO()
 	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)(offsetof(Vertex, position)));
 	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)(offsetof(Vertex, normal)));
 	glVertexAttribPointer(VERTEX_ATTR_TEXCOORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)(offsetof(Vertex, texCoords)));
-	glVertexAttribPointer(VERTEX_ATTR_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)(offsetof(Vertex, color)));
 
 	//Unbind everything
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Mesh::initEBO() {
@@ -96,11 +96,11 @@ void Mesh::initEBO() {
     glBufferData(
         GL_ELEMENT_ARRAY_BUFFER,
         _index.size()*sizeof(uint32_t),
-        &_index[0],
+        _index.data(),
         GL_STATIC_DRAW
     );
 
-    //Debin de l'IBO
+    //Debind de l'IBO
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
@@ -117,9 +117,9 @@ void Mesh::initVBO()
 	glBufferData(
 				 GL_ARRAY_BUFFER,
 				 getVertexCount()*sizeof(Vertex),
-				 _VertexList.data(),
+				 getDataPointer(),
 				 GL_STATIC_DRAW
-				 );
+	);
 
 	//Unbind VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -153,8 +153,9 @@ void Mesh::draw() const
 
 	}
 
+
 	glBindVertexArray(_vao);
-	if(_ebo != 0) {
+	if(_index.size() > 0 && _ebo != 0) {
 		glDrawElements(GL_TRIANGLES, _index.size(), GL_UNSIGNED_INT, 0);
 	} else {
 		glDrawArrays(GL_TRIANGLES, 0, getVertexCount());

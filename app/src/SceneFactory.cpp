@@ -5,14 +5,16 @@
 //================================
 
 #include "app/SceneFactory.hpp"
+#include <glimac/Box.hpp>
 
 using namespace RUNBOXRUN;
 
 SceneFactory::SceneFactory(){} 
 
-void SceneFactory::constructSceneFromMap(const Map &map) {
+Scene SceneFactory::constructSceneFromMap(const Map &map) {
 
-	Model model("../assets/obj/boule.obj");
+	Scene newScene;
+	/*Model *model = new Model(Box(1, 1, 1));
 	std::vector<glm::vec4> datas = map.getAllInfosDatas();
 	int size = datas.size();
 
@@ -21,25 +23,27 @@ void SceneFactory::constructSceneFromMap(const Map &map) {
 		switch(indice){
 			case 0:
 			{
-				Enemy en(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100));
-				_objects.push_back(en);
+				Enemy *en = new Enemy(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100));
+				newScene.push(GameObject(model, en));
 			}
 			break;
 			case 1: 
 			{
-				Obstacle obs(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), "mur");
-				_objects.push_back(obs);
+				Obstacle *obs = new Obstacle(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), "mur");
+				newScene.push(GameObject(model, obs));
 			}
 			break;
 			case 3:
 			{
-				Coin co(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), 10);
-				_objects.push_back(co);
+				Coin *co = new Coin(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), 10);
+				newScene.push(GameObject(model, co));
 			}
 			break;
 			default: 
 			break;
 		}
-	}
+	}*/
+
+	return newScene;
 	
 }
