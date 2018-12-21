@@ -46,9 +46,12 @@ int WindowEngine::initWindow(FilePath app)
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     Box test(1, 1, 1);
 
-    std::vector<Model> models;
-
+    //std::vector<Model> models;
     //Model model("../assets/obj/boule.obj");
+
+    unsigned int nbIndiceX = _scene.getNbline();
+    unsigned int nbIndiceY = _scene.getNbCol();
+    unsigned int nbBloc = _scene.getNbBloc();
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -79,12 +82,11 @@ int WindowEngine::initWindow(FilePath app)
             std::cout << " y: " <<  _scene._objects[i]._position.z << std::endl;
             */
             render.initRender();
-            render._MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(((_scene._objects[i]._position.x)*10)-5,(_scene._objects[i]._position.y)-5, ((_scene._objects[i]._position.z)*-1)-10));
+            render._MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(_scene._objects[i]._position.x-(nbIndiceX/(nbBloc*2)),(_scene._objects[i]._position.y)-(nbBloc/2) , (_scene._objects[i]._position.z)-20));
             render._MVMatrix = glm::scale(render._MVMatrix, glm::vec3(0.2, 0.2, 0.2));
-            render._NormalMatrix = glm::transpose(glm::inverse(render._MVMatrix));
             Model model("../assets/obj/boule.obj");
             render.sendDatas();
-              model.draw();
+            model.draw();
            // models.push_back(_scene._objects[i]);
         }
         //render.initRender();

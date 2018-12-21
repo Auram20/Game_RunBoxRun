@@ -38,10 +38,15 @@ namespace RUNBOXRUN
 		SceneFactory(); /*!< default constructor */
 		~SceneFactory() = default; /*!< default destructor*/
         void constructSceneFromMap(const Map &map);
-
-
+        inline const unsigned int getNbline() const { return _nbLine; } 
+        inline const unsigned int getNbCol() const { return _nbCol; } 
+        inline const unsigned int getNbBloc() const { return _nbBloc; } 
+        
 		public:
 		std::vector<Object> _objects; /*!< al objects generated*/
+		unsigned int _nbLine;
+		unsigned int _nbCol;
+		unsigned int _nbBloc;
 	};
 }
 

@@ -51,7 +51,7 @@ int main(int argc, char** argv)
     FilePath applicationPath(argv[0]);
     Asset asset(applicationPath);
 
-    Map map("../map/test2.txt");
+    Map map("../map/test.txt");
     map.readMap();
 
     SceneFactory scene;

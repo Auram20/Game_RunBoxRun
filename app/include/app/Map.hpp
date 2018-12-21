@@ -33,9 +33,15 @@ namespace RUNBOXRUN
 		// GETTERS
 		inline const std::vector<int> getDatas() const { return _datas; }/*!< get map datas*/
 		inline const std::vector<glm::vec4> getAllInfosDatas() const { return _vecdata; }/*!< get all infos of datas*/
+		inline const unsigned int getNbline() const { return _nbline; } /*!< get nb lines */
+		inline const unsigned int getNbCol() const { return _nbcol; } /*!< get nb lines */
+		inline const unsigned int getNbBloc() const { return _nbBloc; } /*!< get nb lines */
 
 		private:
 		std::vector<int>  _datas; /*!< map's id */
+		unsigned int	_nbline; /*!< number of line in data map */
+		unsigned int	_nbcol; /*!< number of col in data map */
+		unsigned int 	_nbBloc; /*!< number of blocs in data map*/
 		unsigned int	_x; /*!< value x of datas */
 		unsigned int	_z; /*!< value z of datas */
 		unsigned int 	_y; /*!< value y of datas */
