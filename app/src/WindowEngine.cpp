@@ -57,7 +57,7 @@ int WindowEngine::initWindow(FilePath app)
     glEnable(GL_DEPTH_TEST);
 
     int prevX = 0;
-    int prevY = 0;
+    //int prevY = 0;
 
     bool click = false;
 
@@ -77,20 +77,22 @@ int WindowEngine::initWindow(FilePath app)
                
                     if(prevX-pos.x > 0)
                     {
-                        render._camera.rotateLeft(1);
+                        render._camera.rotateLeft(-1);
                     }
                     if(prevX-pos.x < 0)
                     {
-                        render._camera.rotateLeft(-1);
+                        render._camera.rotateLeft(1);
                     }
-                    if(prevY-pos.y > 0)
-                    {
-                        render._camera.rotateUp(1);
-                    }
-                    if(prevY-pos.y < 0)
-                    {
-                        render._camera.rotateUp(-1);
-                    }
+                    /*
+                        if(prevY-pos.y > 0)
+                        {
+                           // render._camera.rotateUp(1);
+                        }
+                        if(prevY-pos.y < 0)
+                        {
+                            //render._camera.rotateUp(-1);
+                        }
+                    */
                 }
             }
 
@@ -100,7 +102,7 @@ int WindowEngine::initWindow(FilePath app)
                 {
                     glm::vec2 pos = _windowManager.getMousePosition();
                     prevX = pos.x;
-                    prevY = pos.y;
+                    // prevY = pos.y;
                     click = true;
                 }
                 if(e.button.button == SDL_BUTTON_WHEELUP)

@@ -1,4 +1,6 @@
 #include <glimac/TrackballCamera.hpp>
+#include <math.h>
+#include <iostream>
 
 using namespace glimac;
 
@@ -13,8 +15,31 @@ void TrackballCamera::moveFront(float delta) {
 }
 
 void TrackballCamera::rotateLeft(float degrees) {
-    m_fAngleY += degrees;
+    if(m_fAngleY <= -90)
+    {
+        if(degrees>0)
+        {
+            std::cout<< "angleY : " << m_fAngleY << std::endl;
+            m_fAngleY += degrees;
+        }
+           
+    }
+    else if(m_fAngleY >= 90)
+    {
+        if(degrees<0)
+        {
+            std::cout<< "angleY : " << m_fAngleY << std::endl;
+            m_fAngleY += degrees;
+        }
+    }
+    if(m_fAngleY > -90 && m_fAngleY < 90)
+    {
+        std::cout<< "angleY : " << m_fAngleY << std::endl;
+        m_fAngleY += degrees;
+    }
+            
 }
+
 
 void TrackballCamera::rotateUp(float degrees) {
     m_fAngleX += degrees;
