@@ -67,7 +67,16 @@ protected:
     std::shared_ptr<GLuint> _ebo;
     void setupMesh();
     void initPtr();
-
+    static void deleteBuffers(GLuint* i) {
+        if(i == nullptr) return;
+        glDeleteBuffers(1, i);
+		delete i;
+    }
+    static void deleteVertexArrays(GLuint* i) {
+        if(i == nullptr) return;
+        glDeleteVertexArrays(1, i);
+		delete i;
+    }
 
 };
     

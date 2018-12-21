@@ -64,8 +64,8 @@ int WindowEngine::initWindow(FilePath app)
 
     Model model("../assets/obj/boule.obj");
 
-    //Enemy *en = new Enemy(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-	//scene.push(GameObject(model, en));
+    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+	scene.push(GameObject(model, en));
 
      model.displayInfos();
 
@@ -86,7 +86,7 @@ int WindowEngine::initWindow(FilePath app)
         render.clear();
         //model.draw();
         //scene.drawScene();
-           model.draw();
+           scene.drawScene();
         /* render of all objects*/
         // vecteur qui va contenir tous les models
      

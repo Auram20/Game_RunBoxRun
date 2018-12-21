@@ -35,7 +35,7 @@ namespace RUNBOXRUN
 			);
 		}
 
-		inline void push(GameObject gobj) {
+		inline void push(const GameObject &gobj) {
 			_GameObjects.push_back(gobj);
 		}
 

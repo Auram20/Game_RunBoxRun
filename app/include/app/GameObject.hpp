@@ -12,6 +12,7 @@
 #include "app/Transform.hpp"
 #include <glimac/Model.hpp>
 #include <game/Object.hpp>
+#include <memory>
 
 namespace RUNBOXRUN
 {
@@ -24,7 +25,8 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		GameObject(); /*!< default constructor */
-        GameObject(glimac::Model *model, Object *object);
+        GameObject(const glimac::Model &model, const Object &object);
+        GameObject(const GameObject &gobj);
 		~GameObject(); /*!< default destructor*/
 
         void draw() const;
@@ -38,8 +40,8 @@ namespace RUNBOXRUN
         }
 
 		private:
-            Object* _object;
-            glimac::Model* _model;
+            std::unique_ptr<Object> _object;
+            std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
             Transform _transform;
             //ShaderProgram sProgram;  utilisera un shader particulier s'il est assigné, le défaut sinon

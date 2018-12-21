@@ -14,16 +14,22 @@ GameObject::GameObject()
 
 }
 
-GameObject::GameObject(glimac::Model *model, Object *object)
-: _object(object), _model(model), _transform()
+GameObject::GameObject(const glimac::Model &model, const Object &object)
+: _object(new Object(object)), _model(std::make_shared<glimac::Model>(model)), _transform()
+{
+
+}
+
+GameObject::GameObject(const GameObject &gobj)
+: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(gobj._transform)
 {
 
 }
 
 GameObject::~GameObject()
 {
-    //delete _object; SEGFAULT
-    delete _model;
+    //delete _object;
+    //delete _model;
     //delete _mat;
 }
 

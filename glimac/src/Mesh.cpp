@@ -13,56 +13,23 @@
 using namespace glimac; 
 
 Mesh::Mesh()
-: _VertexList(), _index(), _textures(), 
-		_vao(
-		  new GLuint(0),
-		  [](GLuint* i) {
-		 	glDeleteBuffers(1, i);
-			delete i;
-		  }
-		),
-	 	_vbo(
-		  new GLuint(0),
-		  [](GLuint* i) {
-		 	glDeleteBuffers(1, i);
-			delete i;
-		  }
-	  	),
-	  _ebo(
-		  new GLuint(0),
-		  [](GLuint* i) {
-		 	glDeleteBuffers(1, i);
-			delete i;
-		  }
-	  )
+: _VertexList(),
+_index(),
+_textures(),
+_vao(nullptr, Mesh::deleteVertexArrays),
+_vbo(nullptr, Mesh::deleteBuffers),
+_ebo(nullptr, Mesh::deleteBuffers)
 {
 
 }
 
 Mesh::Mesh(std::vector<Vertex> vert, std::vector<uint32_t> ind, std::vector<Texture> tex)
-    : _VertexList(vert),
-	  _index(ind),
-	  _textures(tex),
-	  _vao(
-		  new GLuint(0),
-		  [](GLuint* i) {
-		 	glDeleteBuffers(1, i);
-			delete i;
-		  }
-		),
-	  _vbo(
-		  new GLuint(0),
-		  [](GLuint* i) {
-		 	glDeleteBuffers(1, i);
-			delete i;
-		  }
-	  ), _ebo(
-		  new GLuint(0),
-		  [](GLuint* i) {
-		 	glDeleteBuffers(1, i);
-			delete i;
-		  }
-	  )
+: _VertexList(vert),
+	_index(ind),
+	_textures(tex),
+	_vao(new GLuint(0), Mesh::deleteVertexArrays),
+	_vbo(new GLuint(0), Mesh::deleteBuffers),
+	_ebo(new GLuint(0), Mesh::deleteBuffers)
 {
     setupMesh();
 }
@@ -105,13 +72,16 @@ void Mesh::setupMesh() {
 
 void Mesh::initVAO()
 { 
-	if(*_vbo == 0)
+	if(_vbo == nullptr)
 		return; 
+
+	_vao = std::make_shared<GLuint>(0);
+
 
 	glGenVertexArrays(1, _vao.get());
 	glBindVertexArray(*_vao);
 
-	if(*_ebo != 0) {
+	if(_ebo != nullptr) {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *_ebo);
 	}
 
@@ -134,6 +104,9 @@ void Mesh::initVAO()
 }
 
 void Mesh::initEBO() {
+
+	_ebo = std::make_shared<GLuint>(0);
+
     //Création du IBO
     glGenBuffers(1, _ebo.get());
 
@@ -156,6 +129,7 @@ void Mesh::initEBO() {
 void Mesh::initVBO()
 {
 
+	_vbo = std::make_shared<GLuint>(0);
 
 	//Generate & bind VBO
 	glGenBuffers(1, _vbo.get());
@@ -203,7 +177,7 @@ void Mesh::draw() const
 
 
 	glBindVertexArray(*_vao);
-	if(_index.size() > 0 && *_ebo != 0) {
+	if(_index.size() > 0 && _ebo != nullptr) {
 		glDrawElements(GL_TRIANGLES, _index.size(), GL_UNSIGNED_INT, 0);
 	} else {
 		glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
