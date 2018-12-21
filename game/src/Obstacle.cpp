@@ -17,13 +17,13 @@ Obstacle::Obstacle()
 : EventObject()
 {}
 
-Obstacle::Obstacle(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type)
-: EventObject(speed, position, size, color), _type(type)
+Obstacle::Obstacle(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type, const std::string &pathObj)
+: EventObject(speed, position, size, color, pathObj), _type(type)
 {}
 
 
 Obstacle::Obstacle(const Obstacle &obstacle)
-: EventObject(obstacle._speed, obstacle._position, obstacle._size, obstacle._color), _type(obstacle._type)
+: EventObject(obstacle._speed, obstacle._position, obstacle._size, obstacle._color, obstacle._pathObj), _type(obstacle._type)
 {}
 
 Obstacle::~Obstacle()

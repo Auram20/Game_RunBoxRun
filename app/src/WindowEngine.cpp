@@ -46,9 +46,6 @@ int WindowEngine::initWindow(FilePath app)
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     Box test(1, 1, 1);
 
-    //std::vector<Model> models;
-    //Model model("../assets/obj/boule.obj");
-
     unsigned int nbIndiceX = _scene.getNbline();
     unsigned int nbIndiceY = _scene.getNbCol();
     unsigned int nbBloc = _scene.getNbBloc();
@@ -69,32 +66,18 @@ int WindowEngine::initWindow(FilePath app)
 
         render.clear();
         _program.use();
-        //render.initRender();
-        //render.sendDatas();
-        //model.draw();
 
-       int size = _scene._objects.size();
+        int size = _scene._objects.size();
         for(int i=0; i<size; i++)
         {
-            /*
-            std::cout << " x: " <<  _scene._objects[i]._position.x << std::endl;
-            std::cout << " y: " <<  _scene._objects[i]._position.y << std::endl;
-            std::cout << " y: " <<  _scene._objects[i]._position.z << std::endl;
-            */
             render.initRender();
             render._MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(_scene._objects[i]._position.x-(nbIndiceX/(nbBloc*2)),(_scene._objects[i]._position.y)-(nbBloc/2) , (_scene._objects[i]._position.z)-20));
+            
             render._MVMatrix = glm::scale(render._MVMatrix, glm::vec3(0.2, 0.2, 0.2));
-            Model model("../assets/obj/boule.obj");
+            Model model(_scene._objects[i]._pathObj);
             render.sendDatas();
             model.draw();
-           // models.push_back(_scene._objects[i]);
         }
-        //render.initRender();
-       // render.sendDatas();
-     //   std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();});
-           //test.render();
-        /* render of all objects*/
-        // vecteur qui va contenir tous les models
      
         _windowManager.swapBuffers();
 

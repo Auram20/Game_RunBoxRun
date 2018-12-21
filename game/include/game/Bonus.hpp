@@ -21,7 +21,7 @@ namespace RUNBOXRUN
 
 		// CONSTRUCTORS & DESTRUCTOR
 		Bonus(); /*!< default constructor */
-		Bonus(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &value); /*!< bonus's constructor with parameters*/
+		Bonus(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &value, const std::string &pathObj); /*!< bonus's constructor with parameters*/
 		Bonus(const Bonus &bonus); /*!< bonus's constructor by copy*/
 		~Bonus(); /*!< default destructor*/
 

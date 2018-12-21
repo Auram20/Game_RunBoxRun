@@ -16,12 +16,12 @@ Enemy::Enemy()
 : EventObject()
 {}
 
-Enemy::Enemy(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color)
-: EventObject(speed, position, size, color)
+Enemy::Enemy(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &pathObj)
+: EventObject(speed, position, size, color, pathObj)
 {}
 
 Enemy::Enemy(const Enemy &enemy)
-: EventObject(enemy._speed, enemy._position, enemy._size, enemy._color)
+: EventObject(enemy._speed, enemy._position, enemy._size, enemy._color, enemy._pathObj)
 {}
 
 Enemy::~Enemy()

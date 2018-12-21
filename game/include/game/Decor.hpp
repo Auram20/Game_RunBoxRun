@@ -21,7 +21,7 @@ namespace RUNBOXRUN
 
 		// CONSTRUCTORS & DESTRUCTOR
 		Decor();/*!<default constructor*/
-		Decor(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color); /*!< constructor width parameters */
+		Decor(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &pathObj); /*!< constructor width parameters */
 		Decor(const Decor &decor); /*!< constructor by copy */
 		~Decor(); /*!< default destructor*/
 

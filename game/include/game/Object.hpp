@@ -9,6 +9,7 @@
 
 // Includes 
 #include <game/glm.hpp>
+#include <string>
 
 namespace RUNBOXRUN
 {
@@ -21,7 +22,7 @@ namespace RUNBOXRUN
 			
 		// CONSTRUCTORS & DESTRUCTOR
 		Object(); /*!< default constructor */
-		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);/*!< object's constructor with arguments*/
+		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &pathObj);/*!< object's constructor with arguments*/
 		Object(const Object &object);/*!< constructor with arguments*/
 		~Object(); /*!< default destructor */
 		
@@ -40,6 +41,7 @@ namespace RUNBOXRUN
 		glm::vec3 _position ;  /*!< object's position */
 		glm::vec3 _size; /*!< object's size */
 		glm::vec3 _color; /*!< object's color */
+		std::string _pathObj;
 
 	};
 }

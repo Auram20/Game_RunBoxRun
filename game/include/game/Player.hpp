@@ -18,7 +18,7 @@ namespace RUNBOXRUN
 	{
 			
 		private:
-			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState); /*!< private constructor with parameters*/
+			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState, const std::string &pathObj); /*!< private constructor with parameters*/
 			unsigned int _health; /*!< health points of the player */
 			unsigned int _jumpState;  /*!< check if player is jumping = 2 /crouching = 1/standing = 0 */
 			static Player* _instance; /*! < here will be the instance stored */

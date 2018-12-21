@@ -21,7 +21,7 @@ namespace RUNBOXRUN
 
 		// CONSTRUCTORS & DESTRUCTOR
 		Coin(); /*!< default constructor */
-		Coin(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int value);  /*!<constructor with arguments */
+		Coin(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int value, const std::string &pathObj);  /*!<constructor with arguments */
 		Coin(const Coin &coin); /*!< coin's constructor by copy */
 		~Coin(); /*!< default destructor */
 

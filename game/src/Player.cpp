@@ -13,8 +13,8 @@ using namespace RUNBOXRUN;
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState)
-: Object(speed, position, size, color),  _health(health), _jumpState(jumpState)
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState, const std::string &pathObj)
+: Object(speed, position, size, color, pathObj),  _health(health), _jumpState(jumpState)
 {}
 
 
@@ -37,7 +37,7 @@ Player* Player::getInstance()
 {
 	if(_instance == nullptr)
 	{
-		_instance = new Player(1,glm::vec3(200),glm::vec3(200),glm::vec3(300),3,2);
+		_instance = new Player(1,glm::vec3(200),glm::vec3(200),glm::vec3(300),3,2, "../assets/obj/boule.obj");
 	}
 
 	return _instance;
