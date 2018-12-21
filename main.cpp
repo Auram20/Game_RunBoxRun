@@ -66,12 +66,12 @@ int main(int argc, char** argv)
 
    // Texture Texture1("../assets/textue/texture.jpg");
 
-    
+
     // ------------- TESTS ERRORS ---------------------------
 
     try // portion de code à tester (peut potentiellement lever une exception)
     {
-      
+       map.readMap();
 
        testException(79);
       // testException(0);

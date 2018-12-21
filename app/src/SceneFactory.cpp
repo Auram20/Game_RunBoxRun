@@ -8,7 +8,7 @@
 
 using namespace RUNBOXRUN;
 
-SceneFactory::SceneFactory(){} 
+SceneFactory::SceneFactory() {};
 
 void SceneFactory::constructSceneFromMap(const Map &map) {
 
