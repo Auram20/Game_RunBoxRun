@@ -37,7 +37,7 @@ namespace glimac
 		void sendDatas();
 	
 
-		private:
+		public:
 		glm::mat4 _ProjMatrix;
 		glm::mat4 _MVMatrix;
 		glm::mat4 _NormalMatrix;

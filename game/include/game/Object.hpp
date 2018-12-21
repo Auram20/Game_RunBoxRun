@@ -9,9 +9,6 @@
 
 // Includes 
 #include <game/glm.hpp>
-#include <glimac/Model.hpp>
-
-using namespace glimac;
 
 namespace RUNBOXRUN
 {
@@ -24,7 +21,7 @@ namespace RUNBOXRUN
 			
 		// CONSTRUCTORS & DESTRUCTOR
 		Object(); /*!< default constructor */
-		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const Model &model);/*!< object's constructor with arguments*/
+		Object(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color);/*!< object's constructor with arguments*/
 		Object(const Object &object);/*!< constructor with arguments*/
 		~Object(); /*!< default destructor */
 		
@@ -38,12 +35,11 @@ namespace RUNBOXRUN
 		virtual void displayInfos(); /*!< display object informations */
 		void moveHorizontal(const double &t); /*!< horizontal movement of the object */
 
-		protected:
+		public:
 		double _speed; /*!< object's speed */
 		glm::vec3 _position ;  /*!< object's position */
 		glm::vec3 _size; /*!< object's size */
 		glm::vec3 _color; /*!< object's color */
-		Model	_model; /*!< model obj of object */
 
 	};
 }

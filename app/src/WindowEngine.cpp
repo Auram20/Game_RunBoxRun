@@ -45,19 +45,10 @@ int WindowEngine::initWindow(FilePath app)
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     Box test(1, 1, 1);
-  
-
-   // std::for_each(scene._objects.begin(), scene._object.end(), )
 
     std::vector<Model> models;
-    int size = _scene._objects.size();
-    for(int i=0; i<size; i++)
-    {
-        models.push_back(_objects[i]._model);
-    }
 
-
-    Model model("../assets/obj/boule.obj");
+    //Model model("../assets/obj/boule.obj");
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -75,10 +66,30 @@ int WindowEngine::initWindow(FilePath app)
 
         render.clear();
         _program.use();
-        render.initRender();
-        render.sendDatas();
+        //render.initRender();
+        //render.sendDatas();
         //model.draw();
-        std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();})
+
+       int size = _scene._objects.size();
+        for(int i=0; i<size; i++)
+        {
+            /*
+            std::cout << " x: " <<  _scene._objects[i]._position.x << std::endl;
+            std::cout << " y: " <<  _scene._objects[i]._position.y << std::endl;
+            std::cout << " y: " <<  _scene._objects[i]._position.z << std::endl;
+            */
+            render.initRender();
+            render._MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(((_scene._objects[i]._position.x)*10)-5,(_scene._objects[i]._position.y)-5, ((_scene._objects[i]._position.z)*-1)-10));
+            render._MVMatrix = glm::scale(render._MVMatrix, glm::vec3(0.2, 0.2, 0.2));
+            render._NormalMatrix = glm::transpose(glm::inverse(render._MVMatrix));
+            Model model("../assets/obj/boule.obj");
+            render.sendDatas();
+              model.draw();
+           // models.push_back(_scene._objects[i]);
+        }
+        //render.initRender();
+       // render.sendDatas();
+     //   std::for_each(models.begin(), models.end(), [](const int i){models[i].draw();});
            //test.render();
         /* render of all objects*/
         // vecteur qui va contenir tous les models

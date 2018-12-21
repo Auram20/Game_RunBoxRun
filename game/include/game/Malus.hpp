@@ -8,7 +8,7 @@
 #define __MALUS__HPP
 
 // Includes 
-#include <game/EventObject.hpp>
+#include "EventObject.hpp"
 #include <string>
 
 namespace RUNBOXRUN
@@ -22,19 +22,13 @@ namespace RUNBOXRUN
 
 		// CONSTRUCTORS & DESTRUCTOR
 		Malus(); /*!< default constructor */
-		Malus(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type, const Model &model); /*!< malus's constructor with arguments*/
+		Malus(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const std::string &type); /*!< malus's constructor with arguments*/
 		Malus(const Malus &malus); /*!< constructor by copy */
 		~Malus(); /*!< default destructor */
 
 		
 		// MALUS FUNCTIONS
 		virtual void displayInfos(); /*!< display infos */
-
-
-
-
-
-
 
 			
 		

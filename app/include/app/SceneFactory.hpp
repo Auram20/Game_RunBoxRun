@@ -17,17 +17,14 @@
 #include <game/Coin.hpp>
 #include <game/Decor.hpp>
 #include <game/Enemy.hpp>
-#include <game/Object.hpp>
+#include <game/EventObject.hpp>
 #include <game/Obstacle.hpp>
-#include <game/Malus.hpp>
 #include <iostream>
 #include <functional>
 #include <algorithm>
 #include <vector>
 #include <game/glm.hpp>
-#include <glimac/Model.hpp>
 
-using namespace glimac;
 
 namespace RUNBOXRUN
 {
@@ -43,7 +40,7 @@ namespace RUNBOXRUN
         void constructSceneFromMap(const Map &map);
 
 
-		private:
+		public:
 		std::vector<Object> _objects; /*!< al objects generated*/
 	};
 }

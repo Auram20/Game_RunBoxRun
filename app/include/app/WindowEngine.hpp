@@ -20,6 +20,7 @@
 #include <app/SceneFactory.hpp>
 
 using namespace RUNBOXRUN;
+
 namespace glimac
 {
 	/// \class WindowEngine
@@ -39,7 +40,6 @@ namespace glimac
 		private:
 		SDLWindowManager _windowManager; /*!< window */
 		SceneFactory _scene;
-		//Program _program;
 
 	};
 }
