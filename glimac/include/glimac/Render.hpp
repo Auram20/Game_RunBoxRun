@@ -16,7 +16,8 @@
 #include <glimac/Image.hpp>
 #include <app/InputManager.hpp>
 #include <glimac/Program.hpp>
-
+#include <glimac/SDLWindowManager.hpp>
+#include <glimac/TrackballCamera.hpp>
 
 namespace glimac
 {
@@ -27,17 +28,20 @@ namespace glimac
 			
 		public:
         // CONSTRUCTORS & DESTRUCTOR
-		Render() = default ; /*!< constructor with parameters */
+		Render(const TrackballCamera &cam); /*!< constructor with parameters */
 		~Render() = default ; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
 		void program(const Program &program);
 		void initRender(); 
+		void getViewMatrix();
 		void clear(); 
+		void transformation(const SDLWindowManager &window);
 		void sendDatas();
 	
 
 		public:
+		glm::mat4 _newVM;
 		glm::mat4 _ProjMatrix;
 		glm::mat4 _MVMatrix;
 		glm::mat4 _NormalMatrix;
@@ -45,6 +49,7 @@ namespace glimac
 		GLint uMVMatrix;
 		GLint uNormalMatrix;
 		GLint uTexture;
+		TrackballCamera _camera;
 
 	};
 }
