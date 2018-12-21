@@ -10,7 +10,7 @@
 #include <vector>
 #include <glimac/common.hpp>
 #include <glimac/Texture.hpp>
-
+#include <memory>
 
 namespace glimac {
 
@@ -25,13 +25,14 @@ public:
     // CONSTRUCTORS & DESTRUCTOR
     Mesh();
     Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex); /*!< object's constructor with arguments*/
-    ~Mesh();
+    Mesh(const Mesh &mesh);
+    ~Mesh() = default;
         
     // GETTERS
     
     const Vertex* getDataPointer() const 
     {
-        return &_VertexList[0];
+        return _VertexList.data();
     } /*!< Returns pointor on datas */
     
     GLsizei getVertexCount() const 
@@ -39,7 +40,7 @@ public:
         return _VertexList.size();
     } /*!< Returns Vertex numbers */
   
-    virtual void displayInfos();/*!< displays info of a mesh - used for testing */
+    virtual void displayInfos() const;/*!< displays info of a mesh - used for testing */
   
     void initVBO(); /*!< initialize the vbo */
 
@@ -48,6 +49,8 @@ public:
     virtual void initEBO(); /*!< initialise the ebo */
 
     void draw() const; /*!< Render a mesh */
+
+    //Opérateur =
 
     static const GLuint VERTEX_ATTR_POSITION = 0;
     static const GLuint VERTEX_ATTR_NORMAL = 1;
@@ -59,10 +62,11 @@ protected:
     std::vector<uint32_t> _index;
     std::vector<Texture> _textures;
     
-    GLuint _vao;
-    GLuint _vbo;
-    GLuint _ebo;
+    std::shared_ptr<GLuint> _vao;
+    std::shared_ptr<GLuint> _vbo;
+    std::shared_ptr<GLuint> _ebo;
     void setupMesh();
+    void initPtr();
 
 
 };

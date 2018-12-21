@@ -36,6 +36,16 @@ namespace glimac
 		void clear(); 
 		void sendDatas();
 	
+		void displayInfos() const {
+			std::cout << _ProjMatrix << std::endl;
+			std::cout << _MVMatrix << std::endl;
+			std::cout << _NormalMatrix << std::endl;
+			std::cout << uMVPMatrix << std::endl;
+			std::cout << uMVMatrix << std::endl;
+			std::cout << uNormalMatrix << std::endl;
+			std::cout << uTexture << std::endl;
+		}
+
 
 		private:
 		glm::mat4 _ProjMatrix;

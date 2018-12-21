@@ -30,6 +30,12 @@ namespace glimac {
         public:
 
             void draw() const;
+            inline void displayInfos() const {
+                std::cout << "meshes : " << _meshes.size() << std::endl;
+                for(int i = 0; i < _meshes.size(); ++i) {
+                    _meshes[i].displayInfos();
+                }
+            }
 
             Model(std::string path)
             : Asset(), _meshes()

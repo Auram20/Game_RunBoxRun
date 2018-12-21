@@ -27,7 +27,7 @@ namespace glimac {
             Texture() = default;
             Texture(const std::string &path, const aiTextureType &type); /*!< Texture's constructor with parameters*/
             Texture(const Texture &tex);
-            ~Texture() = default; /*!< Texture's destructor */
+            ~Texture(); /*!< Texture's destructor */
             
             // FONCTIONS
             const std::string getTypeName() const;

@@ -38,23 +38,36 @@ int WindowEngine::initWindow(FilePath app)
     std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 
-    Program _program=loadProgram(app.dirPath()+"assets/shaders/3D.vs.glsl",app.dirPath()+"assets/shaders/normale.fs.glsl");
+    Program _program=loadProgram(
+        app.dirPath()+"assets/shaders/3D.vs.glsl",
+        app.dirPath()+"assets/shaders/normale.fs.glsl"
+    );
     Render render;
     render.program(_program);
+    _program.use();
+
+    render.initRender();
+
+    render.displayInfos();
+
+    render.sendDatas();
     
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
-    //Box test(1, 1, 1);
+    Box test(1, 1, 1);
   
 
     Scene scene;
 
     std::vector<Model> models;
+    //Sphere sphere(1, 38, 40);
 
     Model model("../assets/obj/boule.obj");
 
     //Enemy *en = new Enemy(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
 	//scene.push(GameObject(model, en));
+
+     model.displayInfos();
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -71,9 +84,6 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
-        _program.use();
-        render.initRender();
-        render.sendDatas();
         //model.draw();
         //scene.drawScene();
            model.draw();

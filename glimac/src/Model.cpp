@@ -34,7 +34,7 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
     {
         aiString str; 
         mat->GetTexture(type, i, &str);
-        Texture tex(_path.dirPath() + "/" + str.C_Str(), type);
+        Texture tex(_path.dirPath() +  str.C_Str(), type);
         textures.push_back(tex);
     }
     return textures;

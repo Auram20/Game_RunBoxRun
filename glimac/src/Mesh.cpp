@@ -13,39 +13,86 @@
 using namespace glimac; 
 
 Mesh::Mesh()
-: _VertexList(), _index(), _textures(), _vao(0), _vbo(0), _ebo(0)
+: _VertexList(), _index(), _textures(), 
+		_vao(
+		  new GLuint(0),
+		  [](GLuint* i) {
+		 	glDeleteBuffers(1, i);
+			delete i;
+		  }
+		),
+	 	_vbo(
+		  new GLuint(0),
+		  [](GLuint* i) {
+		 	glDeleteBuffers(1, i);
+			delete i;
+		  }
+	  	),
+	  _ebo(
+		  new GLuint(0),
+		  [](GLuint* i) {
+		 	glDeleteBuffers(1, i);
+			delete i;
+		  }
+	  )
 {
 
 }
 
-Mesh::Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex)
-    : _VertexList(vert), _index(ind), _textures(tex), _vao(0), _vbo(0), _ebo(0)
+Mesh::Mesh(std::vector<Vertex> vert, std::vector<uint32_t> ind, std::vector<Texture> tex)
+    : _VertexList(vert),
+	  _index(ind),
+	  _textures(tex),
+	  _vao(
+		  new GLuint(0),
+		  [](GLuint* i) {
+		 	glDeleteBuffers(1, i);
+			delete i;
+		  }
+		),
+	  _vbo(
+		  new GLuint(0),
+		  [](GLuint* i) {
+		 	glDeleteBuffers(1, i);
+			delete i;
+		  }
+	  ), _ebo(
+		  new GLuint(0),
+		  [](GLuint* i) {
+		 	glDeleteBuffers(1, i);
+			delete i;
+		  }
+	  )
 {
     setupMesh();
 }
 
-Mesh::~Mesh() {
-	glDeleteBuffers(1, &_vbo);
-	if(_index.size() > 0) {
-		glDeleteBuffers(1, &_ebo);
-	}
-    glDeleteVertexArrays(1,&_vao);
+Mesh::Mesh(const Mesh &mesh)
+: _VertexList(mesh._VertexList), _index(mesh._index), _textures(mesh._textures), _vao(mesh._vao), _vbo(mesh._vbo), _ebo(mesh._ebo)
+{
+
 }
 
-void Mesh::displayInfos()
+
+void Mesh::displayInfos() const
 {
 
 	std::cout << "--------------------  INFOS MESH -------------------- " << std::endl;
-	for (unsigned int i=0;i<getVertexCount();i++)
+	/*for (unsigned int i=0;i<getVertexCount();i++)
 	{
 		std::cout << _VertexList[i].position << std :: endl;
 
 		std::cout << _VertexList[i].normal << std :: endl;
 
 		std::cout << _VertexList[i].texCoords << std :: endl;
-	}
+	}*/
 
-
+	std::cout << "vbo : " << *_vbo << std::endl;
+	std::cout << "vao : " << *_vao << std::endl;
+	std::cout << "ebo : " << *_ebo << std::endl;
+	std::cout << "index : " << _index.size() << std::endl;
+	std::cout << "textures : " << _textures.size() << std::endl;
+	std::cout << "vertex : " << _VertexList.size() << std::endl;
 }
 
 void Mesh::setupMesh() {
@@ -58,14 +105,14 @@ void Mesh::setupMesh() {
 
 void Mesh::initVAO()
 { 
-	if(_vbo == 0)
+	if(*_vbo == 0)
 		return; 
 
-	glGenVertexArrays(1, &_vao);
-	glBindVertexArray(_vao);
+	glGenVertexArrays(1, _vao.get());
+	glBindVertexArray(*_vao);
 
-	if(_ebo != 0) {
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
+	if(*_ebo != 0) {
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *_ebo);
 	}
 
 	glEnableVertexAttribArray(Mesh::VERTEX_ATTR_POSITION);
@@ -73,7 +120,7 @@ void Mesh::initVAO()
 	glEnableVertexAttribArray(Mesh::VERTEX_ATTR_TEXCOORDS);
 
 	//Bind mesh VBO
-	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, *_vbo);
 
 	//Specify vertice properties positions
 	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)(offsetof(Vertex, position)));
@@ -81,16 +128,17 @@ void Mesh::initVAO()
 	glVertexAttribPointer(VERTEX_ATTR_TEXCOORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)(offsetof(Vertex, texCoords)));
 
 	//Unbind everything
-	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void Mesh::initEBO() {
     //Création du IBO
-    glGenBuffers(1, &_ebo);
+    glGenBuffers(1, _ebo.get());
 
     //Bin sur GL_ELEMENT_ARRAY_BUFFER, cible réservée pour les IBOs
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *_ebo);
 
     //On remplit l'IBO avec les indices
     glBufferData(
@@ -110,8 +158,8 @@ void Mesh::initVBO()
 
 
 	//Generate & bind VBO
-	glGenBuffers(1, &_vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glGenBuffers(1, _vbo.get());
+	glBindBuffer(GL_ARRAY_BUFFER, *_vbo);
 
 	//Fill VBO with data
 	glBufferData(
@@ -154,11 +202,13 @@ void Mesh::draw() const
 	}
 
 
-	glBindVertexArray(_vao);
-	if(_index.size() > 0 && _ebo != 0) {
+	glBindVertexArray(*_vao);
+	if(_index.size() > 0 && *_ebo != 0) {
 		glDrawElements(GL_TRIANGLES, _index.size(), GL_UNSIGNED_INT, 0);
 	} else {
 		glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
 	}
 	glBindVertexArray(0);
+
+	glActiveTexture(GL_TEXTURE0);
 }

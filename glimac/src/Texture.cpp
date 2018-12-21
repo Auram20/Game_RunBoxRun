@@ -108,3 +108,7 @@ Texture::Texture(const Texture &tex)
 {
 
 }
+
+Texture::~Texture() {
+	glDeleteTextures(1, &_id);
+}

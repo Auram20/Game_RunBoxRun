@@ -26,7 +26,7 @@ void Render::initRender()
                                    100.f);
 
     _MVMatrix = glm::translate(glm::mat4(1.f),glm::vec3(0.f, 0.f, -5.f));
-    _MVMatrix = glm::rotate(_MVMatrix, -45.f, glm::vec3(0.f, 1.f, 0.f));
+    //_MVMatrix = glm::rotate(_MVMatrix, -45.f, glm::vec3(0.f, 1.f, 0.f));
     _NormalMatrix = glm::transpose(glm::inverse(_MVMatrix));
 }
 

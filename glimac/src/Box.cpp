@@ -15,9 +15,9 @@ using namespace glimac;
 void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) {
 
     float w,h,t;
-    w = width / 2;        // 0.5
-    h = height / 2;       // 0.5
-    t = depth / 2;    // 0.5
+    w = width;        // 0.5
+    h = height;       // 0.5
+    t = depth;    // 0.5
 
     // Build all vertices
     // Front face
@@ -45,7 +45,7 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
 
 
     for(unsigned int i = 0; i < getVertexCount(); i++) {
-        _VertexList[i].normal = glm::normalize(_VertexList[i].position);
+        _VertexList[i].normal = _VertexList[i].position;
     }
 
 
