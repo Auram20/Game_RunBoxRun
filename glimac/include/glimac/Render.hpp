@@ -8,7 +8,6 @@
 #define __RENDER__HPP
 
 // Includes 
-#include <glimac/glm.hpp>
 #include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>

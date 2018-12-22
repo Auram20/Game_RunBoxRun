@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include <SDL/SDL.h>
-#include <glimac/glm.hpp>
+#include <utils/glm.hpp>
 
 namespace glimac {
 

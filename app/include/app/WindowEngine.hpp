@@ -8,7 +8,7 @@
 #define __WINDOWENGINE__HPP
 
 // Includes 
-#include <glimac/glm.hpp>
+#include <utils/glm.hpp>
 #include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
@@ -18,6 +18,7 @@
 #include <glimac/Program.hpp>
 #include <app/Map.hpp>
 #include <app/SceneFactory.hpp>
+#include <utils/FilePath.hpp>
 
 using namespace RUNBOXRUN;
 namespace glimac

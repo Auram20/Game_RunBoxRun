@@ -7,7 +7,7 @@
 #ifndef __SCENEFACTORY__HPP
 #define __SCENEFACTORY__HPP
 
-#include <glimac/glm.hpp>
+#include <utils/glm.hpp>
 #include <GL/glew.h>
 #include <iostream>
 #include <utils/Error.hpp>

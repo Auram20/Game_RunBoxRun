@@ -8,7 +8,6 @@
 #define __TIME__HPP
 
 // Includes 
-#include <game/glm.hpp>
 #include <game/UiElement.hpp>
 
 namespace RUNBOXRUN

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include <glimac/glm.hpp>
+#include <utils/glm.hpp>
 
 namespace glimac {
 

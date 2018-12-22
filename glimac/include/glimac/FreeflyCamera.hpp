@@ -8,7 +8,6 @@
 #ifndef FREEFLYCAMERA_H__
 #define FREEFLYCAMERA_H__
 
-#include <glimac/glm.hpp>
 #include <glimac/Camera.hpp>
 
 /*class FreeflyCamera : public Camera {

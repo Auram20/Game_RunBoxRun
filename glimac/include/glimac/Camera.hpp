@@ -8,7 +8,7 @@
 #define __CAMERA__HPP
 
 // Includes 
-#include <glimac/glm.hpp>
+#include <utils/glm.hpp>
 
 namespace glimac
 {

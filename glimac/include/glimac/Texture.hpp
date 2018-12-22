@@ -8,10 +8,10 @@
 #define __TEXTURE__HPP
 
 #include <glimac/Image.hpp>
-#include <glimac/FilePath.hpp>
+#include <utils/FilePath.hpp>
 #include <iostream>
 #include <string>
-#include <glimac/Asset.hpp>
+#include <utils/Asset.hpp>
 #include <assimp/material.h>
 
 

@@ -1,19 +1,3 @@
-#include <glimac/SDLWindowManager.hpp>
-#include <GL/glew.h>
-#include <iostream>
-#include <glimac/Program.hpp>
-#include <glimac/FilePath.hpp>
-#include <glimac/glm.hpp>
-#include <glimac/Sphere.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glimac/Image.hpp>
-#include <random>
-
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-
 #include <glimac/Model.hpp>
 
 using namespace glimac;

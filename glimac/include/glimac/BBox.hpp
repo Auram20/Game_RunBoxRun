@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <glimac/glm.hpp>
+#include <utils/glm.hpp>
 
 namespace glimac {
 

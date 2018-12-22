@@ -10,8 +10,8 @@
 #include <memory>
 #include <unordered_map>
 
-#include <glimac/glm.hpp>
-#include "FilePath.hpp"
+#include <utils/glm.hpp>
+#include <utils/FilePath.hpp>
 
 namespace glimac {
 

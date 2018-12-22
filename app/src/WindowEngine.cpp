@@ -7,7 +7,6 @@
 #include "app/WindowEngine.hpp"
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
-#include <glimac/FilePath.hpp>
 #include <glimac/Program.hpp>
 #include <glimac/Model.hpp>
 #include <glimac/Render.hpp>

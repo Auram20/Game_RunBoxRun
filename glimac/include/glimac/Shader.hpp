@@ -2,8 +2,8 @@
 
 #include <GL/glew.h>
 #include <string>
-#include "FilePath.hpp"
-#include <glimac/Asset.hpp>
+#include <utils/FilePath.hpp>
+#include <utils/Asset.hpp>
 
 #define GLIMAC_SHADER_SRC(str) #str
 

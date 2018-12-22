@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 #include <glimac/Image.hpp>
-#include "FilePath.hpp"
+#include <utils/FilePath.hpp>
 #include <glimac/BBox.hpp>
 
 namespace glimac {

@@ -4,18 +4,22 @@
 
 #include <glimac/SDLWindowManager.hpp>
 #include <iostream>
-#include <glimac/glm.hpp>
+#include <GL/glew.h>
 #include <random>
 #include <algorithm>
 #include <queue>
 #include <glimac/common.hpp>
 #include <glimac/Mesh.hpp>
 #include <glimac/Texture.hpp>
-
+#include <utils/FilePath.hpp>
+#include <utils/glm.hpp>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+
+#include <glimac/Image.hpp>
+#include <random>
 
 namespace glimac {
 
