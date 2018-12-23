@@ -16,7 +16,7 @@ Map::Map(const std::string &filename)
 : _filename(filename)
 {}
 
-int Map::readMap()
+bool Map::load()
 {
         std::ifstream file(_filename);
 
@@ -71,5 +71,5 @@ int Map::readMap()
         }
         */
 
-        return 1;
+        return true;
 }

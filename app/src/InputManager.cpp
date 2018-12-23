@@ -14,7 +14,7 @@ namespace RUNBOXRUN {
 	InputManager::InputManager()
 	: _inputs()
 	{
-		std::function<void()> move = [] () {};
+		/*std::function<void()> move = [] () {};
 
 
 		_inputs.emplace(SDLK_z, Input(move));
@@ -67,8 +67,26 @@ namespace RUNBOXRUN {
 	}
 
 	void InputManager::call(const SDLKey &key) {
-		if(_inputs.find(key) != _inputs.end())
-			_inputs.at(key).call();
+		/*if(_inputs.find(key) != _inputs.end())
+			_inputs.at(key).call();*/
+
+	_observers.emplace(EventCode::KEYDOWNEVENT, std::vector<utils::AbstractObserver*>());
+	_observers.emplace(EventCode::KEYUPEVENT, std::vector<utils::AbstractObserver*>());
+	_observers.emplace(EventCode::MOUSEEVENT, std::vector<utils::AbstractObserver*>());
+	_observers.emplace(EventCode::QUITEVENT, std::vector<utils::AbstractObserver*>());
+
+	}
+
+	void InputManager::execute(const SDL_Event &e) {
+		
+            if(e.type == SDL_QUIT) {
+                update(EventCode::QUITEVENT);
+            }
+
+            if(e.type == SDL_KEYDOWN) {
+                //man->call(e.key.keysym.sym);
+            }
+        
 	}
 
 	InputManager::~InputManager() {

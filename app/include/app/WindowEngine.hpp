@@ -19,6 +19,7 @@
 #include <app/Map.hpp>
 #include <app/SceneFactory.hpp>
 #include <utils/FilePath.hpp>
+#include <utils/Observable.hpp>
 
 using namespace RUNBOXRUN;
 namespace glimac

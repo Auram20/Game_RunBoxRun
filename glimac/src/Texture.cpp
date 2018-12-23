@@ -11,17 +11,19 @@ using namespace glimac;
 
 // CONSTRUCTORS
 Texture::Texture(const std::string &path, const aiTextureType &type)
-:_id(0), _type(type)
+:Asset(path, AssetType::TEXTURE), _id(0), _type(type)
 {
-	TextureFromFile(path);
+	load();
 }
 
-void Texture::TextureFromFile(const std::string &path){
+bool Texture::load(){
         GLuint tex;
-   		std::unique_ptr<Image> img = loadImage(path);
+   		std::unique_ptr<Image> img = loadImage(_path);
 
-		if (!img)
-			std::cerr<<"ERROR loading texture at " + path <<std::endl;
+		if (!img){
+			std::cerr<<"ERROR loading texture at " + std::string(_path) <<std::endl;
+			return false;
+		}
 
         glGenTextures(1, &tex);
         glBindTexture(GL_TEXTURE_2D,tex);
@@ -30,7 +32,8 @@ void Texture::TextureFromFile(const std::string &path){
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBindTexture(GL_TEXTURE_2D,0);
         _id = tex;
-		_path = FilePath(path.c_str());
+
+		return true;
 }
 
 const std::string Texture::getTypeName() const {
@@ -104,7 +107,7 @@ const std::string Texture::getTypeName() const {
 }
 
 Texture::Texture(const Texture &tex)
-: _id(tex._id), _type(tex._type)
+: Asset(tex), _id(tex._id), _type(tex._type)
 {
 
 }

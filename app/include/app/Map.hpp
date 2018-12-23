@@ -14,12 +14,13 @@
 #include <vector>
 #include <string>
 #include <utils/Error.hpp>
+#include <utils/Asset.hpp>
 
 namespace RUNBOXRUN
 {
 	/// \class Map
 	/// \brief class defining a new map.
-	class Map
+	class Map : public glimac::Asset
 	{
 			
 		public:
@@ -27,7 +28,7 @@ namespace RUNBOXRUN
 		Map(const std::string &filename); /*!< default constructor */
 		~Map() = default; /*!< default destructor*/
 
-		int readMap(); /*!< read map in parameters */
+		bool load() override; /*!< read map in parameters */
 
 		// GETTERS
 		inline const std::vector<int> getDatas() const { return _datas; }/*!< get map datas*/

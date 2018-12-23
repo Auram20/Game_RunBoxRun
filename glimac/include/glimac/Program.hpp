@@ -54,5 +54,7 @@ Program buildProgram(const GLchar* vsSrc, const GLchar* fsSrc);
 // Load source code from files and build a GLSL program
 Program loadProgram(const FilePath& vsFile, const FilePath& fsFile);
 
+// Load source code from files and build a GLSL program
+Program buildProgramFromShaders(Shader& vsShader, Shader& fsShader);
 
 }

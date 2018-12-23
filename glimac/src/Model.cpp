@@ -80,17 +80,17 @@ void Model::processNode(aiNode *node, const aiScene *scene)
     }
 }
 
-void Model::loadModel(std::string path){
+bool Model::load(){
     Assimp::Importer import;
-    const aiScene *scene = import.ReadFile(path,aiProcess_Triangulate | aiProcess_FlipUVs);
+    const aiScene *scene = import.ReadFile(_path,aiProcess_Triangulate | aiProcess_FlipUVs);
 
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
         std::cout << "ERROR::ASSIMP::"<< import.GetErrorString()<<std::endl;
-        return;
+        return false;
     }
 
-    _path = FilePath(path.c_str());
-
     processNode(scene->mRootNode, scene);
+
+    return true;
 }

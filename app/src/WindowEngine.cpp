@@ -68,18 +68,18 @@ int WindowEngine::initWindow(FilePath app)
 
      model.displayInfos();
 
+    man->attach(RUNBOXRUN::EventCode::QUITEVENT, new utils::Observer<bool>(&done, [](bool * done) {
+        std::cout << "ferme" << std::endl;
+        *done = true;
+    }));
+
+
     glEnable(GL_DEPTH_TEST);
     while(!done) {
         // Event loop:
         SDL_Event e;
         while(_windowManager.pollEvent(e)) {
-            if(e.type == SDL_QUIT) {
-                done = true; // Leave the loop after this iteration
-            }
-
-            if(e.type == SDL_KEYDOWN) {
-                man->call(e.key.keysym.sym);
-            }
+            man->execute(e);
         }
 
         render.clear();

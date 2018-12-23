@@ -49,8 +49,10 @@ Program buildProgram(const GLchar* vsSrc, const GLchar* fsSrc) {
 
 // Load source code from files and build a GLSL program
 Program loadProgram(const FilePath& vsFile, const FilePath& fsFile) {
-	Shader vs = loadShader(GL_VERTEX_SHADER, vsFile);
-	Shader fs = loadShader(GL_FRAGMENT_SHADER, fsFile);
+	Shader vs(GL_VERTEX_SHADER, vsFile);
+	vs.load();
+	Shader fs(GL_FRAGMENT_SHADER, fsFile);
+	fs.load();
 
 	if(!vs.compile()) {
 		throw std::runtime_error("Compilation error for vertex shader (from file " + std::string(vsFile) + "): " + vs.getInfoLog());
@@ -66,6 +68,39 @@ Program loadProgram(const FilePath& vsFile, const FilePath& fsFile) {
 
 	if(!program.link()) {
         throw std::runtime_error("Link error (for files " + vsFile.str() + " and " + fsFile.str() + "): " + program.getInfoLog());
+	}
+
+	return program;
+}
+
+// Load source code from files and build a GLSL program
+Program buildProgramFromShaders(Shader& vsShader, Shader& fsShader) {
+
+	if(vsShader.shaderType() != GL_VERTEX_SHADER) {
+		throw std::runtime_error("File " + vsShader.pathStr() + " is not a Vertex Shader");
+	}
+
+	if(fsShader.shaderType() != GL_FRAGMENT_SHADER) {
+		throw std::runtime_error("File " + vsShader.pathStr() + " is not a Fragment Shader");
+	}
+
+	vsShader.load();
+	fsShader.load();
+
+	if(!vsShader.compile()) {
+		throw std::runtime_error("Compilation error for vertex shader (from file " + vsShader.pathStr() + "): " + vsShader.getInfoLog());
+	}
+
+	if(!fsShader.compile()) {
+		throw std::runtime_error("Compilation error for fragment shader (from file " + fsShader.pathStr() + "): " + fsShader.getInfoLog());
+	}
+
+	Program program;
+	program.attachShader(vsShader);
+	program.attachShader(fsShader);
+
+	if(!program.link()) {
+        throw std::runtime_error("Link error (for files " + vsShader.pathStr() + " and " + fsShader.pathStr() + "): " + program.getInfoLog());
 	}
 
 	return program;

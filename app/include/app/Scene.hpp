@@ -35,6 +35,11 @@ namespace RUNBOXRUN
 			);
 		}
 
+		inline void setCurrentCamera(const std::string &cam) {
+			if(_Cameras.find(cam) != _Cameras.end())
+				_currentCam = _Cameras.at(cam);
+		}
+
 		inline void push(const GameObject &gobj) {
 			_GameObjects.push_back(gobj);
 		}
@@ -42,6 +47,7 @@ namespace RUNBOXRUN
 		private:
             std::vector<GameObject> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;
+			glimac::Camera *_currentCam;
             //std::vector<Material> _Materials;
             
 	};

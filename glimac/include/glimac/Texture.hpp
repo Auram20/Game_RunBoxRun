@@ -31,6 +31,7 @@ namespace glimac {
             
             // FONCTIONS
             const std::string getTypeName() const;
+            bool load() override;
             inline const GLuint id() const {
                 return _id;
             }

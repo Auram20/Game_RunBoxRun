@@ -41,10 +41,12 @@ namespace glimac {
                 }
             }
 
+            bool load() override;
+
             Model(std::string path)
-            : Asset(), _meshes()
+            : Asset(path, AssetType::MODEL), _meshes()
             {
-                loadModel(path);
+                load();
             }
             Model(Mesh mesh)
             : Asset(), _meshes()

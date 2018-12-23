@@ -11,7 +11,10 @@ namespace glimac {
 
 class Shader : public Asset {
 public:
-	Shader(GLenum type): m_nGLId(glCreateShader(type)) {
+	Shader(GLenum type, const FilePath &path): Asset(path, AssetType::SHADER), m_nGLId(glCreateShader(type)), _shaderType(type) {
+	}
+
+	Shader(GLenum type): Asset(FilePath(""), AssetType::SHADER), m_nGLId(glCreateShader(type)) {
 	}
 
 	~Shader() {
@@ -20,6 +23,10 @@ public:
 
 	Shader(Shader&& rvalue): m_nGLId(rvalue.m_nGLId) {
 		rvalue.m_nGLId = 0;
+	}
+
+	inline const GLenum shaderType() const {
+		return _shaderType; 
 	}
 
 	Shader& operator =(Shader&& rvalue) {
@@ -37,6 +44,7 @@ public:
 	}
 
 	bool compile();
+	bool load() override;
 
 	const std::string getInfoLog() const;
 
@@ -45,9 +53,7 @@ private:
 	Shader& operator =(const Shader&);
 
 	GLuint m_nGLId;
+	GLenum _shaderType;
 };
-
-// Load a shader (but does not compile it)
-Shader loadShader(GLenum type, const FilePath& filepath);
 
 }

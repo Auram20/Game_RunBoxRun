@@ -38,10 +38,9 @@ int main(int argc, char** argv)
     Score sc;
     Time ti;
     FilePath applicationPath(argv[0]);
-    Asset asset(applicationPath);
+    //Asset asset(applicationPath);
 
-    Map map("../map/test2.txt");
-    map.readMap();
+    Map map("../assets/map/test2.txt");
 
     SceneFactory scene;
     scene.constructSceneFromMap(map);
