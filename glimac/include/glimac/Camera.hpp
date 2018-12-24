@@ -22,7 +22,7 @@ namespace glimac
 		Camera() = default; /*!< default constructor */
 		~Camera() = default; /*!< default destructor*/
 
-        virtual glm::mat4 getViewMatrix() const = 0;
+        virtual const glm::mat4 getViewMatrix() const = 0;
 
 		// Camera FUNCTIONS
 		//void displayInfos(); /*!< display of Camera's informations */

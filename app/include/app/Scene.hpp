@@ -44,6 +44,10 @@ namespace RUNBOXRUN
 			_GameObjects.push_back(gobj);
 		}
 
+		inline const glm::mat4 getCurrentViewMatrix() const {
+			return _currentCam->getViewMatrix();
+		}
+
 		private:
             std::vector<GameObject> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;

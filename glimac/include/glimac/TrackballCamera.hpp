@@ -16,7 +16,7 @@ class TrackballCamera : public Camera {
         void moveFront(float delta);
         void rotateLeft(float degrees);
         void rotateUp(float degrees);
-        glm::mat4 getViewMatrix() const override;
+        const glm::mat4 getViewMatrix() const override;
         /*glm::vec3 getVectorDirection() const;*/
 };
 
