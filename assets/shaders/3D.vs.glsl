@@ -1,5 +1,12 @@
 
-#version 330 core
+# version 300 es
+
+#undef lowp
+#undef mediump
+#undef highp
+
+#define mediump float
+
 
 // Attributs de sommet
 layout(location = 0) in vec3 aVertexPosition; // Position du sommet
