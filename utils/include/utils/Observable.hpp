@@ -17,14 +17,21 @@ namespace utils {
 	class Observable {
 		public:
             Observable()
-            : _observers(), _ptr()
+            : _observers(), _ptr(new Observable*(this))
             {
-                _ptr = new Observable*(this);
+
             }
 
             ~Observable() {
-                if(*_ptr != nullptr && _ptr != nullptr) {
+                if(_ptr != nullptr) {
                     *_ptr = nullptr;
+                }
+                for(auto it = _observers.begin(); it != _observers.end(); ++it) {
+                    std::set<AbstractObserver*> second = it->second;
+                    for(auto jt = second.begin(); jt != second.end(); ++jt) {
+                        delete *jt;
+                    }
+                    second.clear();
                 }
             }
 

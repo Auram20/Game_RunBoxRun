@@ -15,7 +15,7 @@ namespace utils {
     class AbstractObserver {
         public:
             AbstractObserver() = default;
-            ~AbstractObserver() = default;
+            virtual ~AbstractObserver() = default;
 
             virtual void update(void *target) const = 0;
     };
@@ -29,6 +29,8 @@ namespace utils {
             {
 
             }
+
+            ~Observer() = default;
 
 			void update(void *target) const override {
                 if(target != nullptr)

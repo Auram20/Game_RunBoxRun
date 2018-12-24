@@ -44,6 +44,8 @@ namespace utils
 			for(auto it = _observables.begin(); it != _observables.end(); ++it) {
                 if(**it != nullptr)
 				    (**it)->notify(eventName);
+                else
+                    delete *it;
 			}
 		}
 
