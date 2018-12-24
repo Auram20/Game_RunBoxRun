@@ -20,7 +20,7 @@ using namespace glimac;
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const char* title, const SceneFactory &sceneFactory)
-: _windowManager(width, height, title), _scene(sceneFactory)
+: Observable(), _windowManager(width, height, title), _scene(sceneFactory)
 {}
 
 
@@ -68,9 +68,9 @@ int WindowEngine::initWindow(FilePath app)
 
      model.displayInfos();
 
-    man->attach(RUNBOXRUN::EventCode::QUITEVENT, new utils::Observer<bool>(&done, [](bool * done) {
+    man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, new utils::Observer<WindowEngine>([&done](WindowEngine *w) {
         std::cout << "ferme" << std::endl;
-        *done = true;
+        done = true;
     }));
 
 

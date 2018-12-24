@@ -70,15 +70,15 @@ namespace RUNBOXRUN {
 		/*if(_inputs.find(key) != _inputs.end())
 			_inputs.at(key).call();*/
 
-	_observers.emplace(EventCode::KEYDOWNEVENT, std::vector<utils::AbstractObserver*>());
+	/*_observers.emplace(EventCode::KEYDOWNEVENT, std::vector<utils::AbstractObserver*>());
 	_observers.emplace(EventCode::KEYUPEVENT, std::vector<utils::AbstractObserver*>());
 	_observers.emplace(EventCode::MOUSEEVENT, std::vector<utils::AbstractObserver*>());
-	_observers.emplace(EventCode::QUITEVENT, std::vector<utils::AbstractObserver*>());
+	_observers.emplace(EventCode::QUITEVENT, std::vector<utils::AbstractObserver*>());*/
 
 	}
 
 	void InputManager::execute(const SDL_Event &e) {
-		
+
             if(e.type == SDL_QUIT) {
                 update(EventCode::QUITEVENT);
             }

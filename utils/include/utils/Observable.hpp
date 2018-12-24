@@ -6,34 +6,67 @@
 
 #pragma once
 
+#include <map>
 #include <set>
 #include <algorithm>
 #include "Observer.hpp"
 
 namespace utils {
+
+    template<typename T>
 	class Observable {
 		public:
             Observable()
-            : _observers()
-            {};
-            ~Observable() = default;
-
-			inline void attach(const AbstractObserver *o) {
-                _observers.emplace(o);
+            : _observers(), _ptr()
+            {
+                _ptr = new Observable*(this);
             }
 
-            inline void detach() {
-                //_observers.erase(event);
-            }
-
-            inline void notify() {
-                for(auto it = _observers.begin(); it != _observers.end(); ++it) {
-                    (*it)->update();
+            ~Observable() {
+                if(*_ptr != nullptr && _ptr != nullptr) {
+                    *_ptr = nullptr;
                 }
             }
 
+
+            inline void attach(const T &eventName, AbstractObserver *o) {
+                if(_observers.find(eventName) == _observers.end()) {
+                   _observers.emplace(eventName, std::set<AbstractObserver*>({o}));
+                } else {
+                    findEventObservers(eventName)->emplace(o);
+                }
+            }
+
+            inline void detach(const T &eventName) {
+                _observers.erase(eventName);
+            }
+
+            inline void notifyAll() {
+                for(auto it = _observers.begin(); it != _observers.end(); ++it) {
+                    notify(it->first);
+                }
+            }
+
+            inline void notify(const T &eventName) {
+                std::set<AbstractObserver*> *setObservers = findEventObservers(eventName);
+                for(auto it = setObservers->begin(); it != setObservers->end(); it++) {
+                    (*it)->update(this);
+                }
+            }
+
+            inline std::set<AbstractObserver*> *findEventObservers(const T &eventName) {
+                if(_observers.find(eventName) == _observers.end()) return nullptr; //Error !
+                return &(_observers.at(eventName));
+            }
+
+            inline Observable ** ptr() const {
+                return _ptr;
+            }
+
         private:
-            std::set<const AbstractObserver*> _observers;
+            std::map<T, std::set<AbstractObserver*>> _observers;
+            Observable ** _ptr;
 
 	};
+    
 }
