@@ -40,7 +40,7 @@ int main(int argc, char** argv)
     FilePath applicationPath(argv[0]);
     //Asset asset(applicationPath);
 
-    Map map("../assets/map/test2.txt");
+    Map map("../assets/map/test3.txt");
 
     SceneFactory scene;
     scene.constructSceneFromMap(map);
@@ -59,9 +59,12 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
+
+
+    // ------------- FENÊTRE ---------------------------
+
     WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
     wind.initWindow(applicationPath);
-
    // Texture Texture1("../assets/textue/texture.jpg");
 
     

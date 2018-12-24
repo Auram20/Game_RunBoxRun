@@ -20,6 +20,8 @@ namespace RUNBOXRUN
         glm::mat4 _rotateLocal;
         glm::mat4 _rotateGlobal;
 
+
+        // Fonction rotate
         const glm::mat4 rotate(const glm::mat4 &matrix, const glm::vec3 &angles) {
             glm::mat4 rotate = matrix;
             rotate = glm::rotate(rotate, angles[2], glm::vec3(0.f, 0.f, 1.f));
@@ -28,6 +30,7 @@ namespace RUNBOXRUN
             return rotate;
         }
 
+        // Constructeur 
         Transform(
             const glm::vec3 &pos = glm::vec3(1.f, 1.f, 1.f),
             const glm::vec3 &scale = glm::vec3(1.f, 1.f, 1.f),
@@ -42,6 +45,7 @@ namespace RUNBOXRUN
             _rotateGlobal = rotate(_rotateGlobal, rotateGlobal);
         }
 
+        // Constructeur par copie 
         Transform(const Transform& transform)
         : _scale(transform._scale), _translate(transform._translate), _rotateLocal(transform._rotateLocal), _rotateGlobal(transform._rotateGlobal)
         {

@@ -85,6 +85,23 @@ namespace RUNBOXRUN {
 
             if(e.type == SDL_KEYDOWN) {
                 //man->call(e.key.keysym.sym);
+                if (e.key.keysym.sym==SDLK_z)
+	             { //up
+	                std::cout << "Going Up" << std::endl;
+	             }
+                 if (e.key.keysym.sym==SDLK_s)
+                 { //down
+	                std::cout << "Going Down" << std::endl;
+	             }
+                 
+                 if (e.key.keysym.sym==SDLK_d)
+                 { //right
+	                std::cout << "Going Right" << std::endl;
+	             }
+                 if (e.key.keysym.sym==SDLK_q)
+                 { //left
+	                std::cout << "Going Left" << std::endl;
+	             }
             }
         
 	}

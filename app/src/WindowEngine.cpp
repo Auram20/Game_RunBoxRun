@@ -64,9 +64,14 @@ int WindowEngine::initWindow(FilePath app)
     Model model("../assets/obj/boule.obj");
 
     Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+    Enemy en2(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+    Transform tran(glm::vec3(1.f),glm::vec3(2.f),glm::vec3(1.f),glm::vec3(1.f));
+    
 	scene.push(GameObject(model, en));
 
-     model.displayInfos();
+    scene.push(GameObject(model, en2, tran));
+
+    model.displayInfos();
 
     man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, new utils::Observer<WindowEngine>([&done](WindowEngine *w) {
         std::cout << "ferme" << std::endl;
@@ -84,8 +89,7 @@ int WindowEngine::initWindow(FilePath app)
 
         render.clear();
         //model.draw();
-        //scene.drawScene();
-           scene.drawScene();
+        scene.drawScene();
         /* render of all objects*/
         // vecteur qui va contenir tous les models
      
