@@ -13,6 +13,7 @@
 #include <glimac/SDLWindowManager.hpp>
 #include "app/Map.hpp"
 #include "app/SceneFactory.hpp"
+#include "glimac/Text.hpp"
 
 
 using namespace glimac;
@@ -51,6 +52,8 @@ int WindowEngine::initWindow(FilePath app)
 
     render.sendDatas();
     
+    SDL_Rect position;
+
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
     Box test(1, 1, 1);
@@ -73,6 +76,10 @@ int WindowEngine::initWindow(FilePath app)
         done = true;
     }));
 
+    std::vector<int> color = {0,0,0};
+    Text text1("./assets/valentine.ttf", 22, color, "ME VOILA");
+    text1.initText();
+    text1.write();
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -83,6 +90,12 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
+        SDL_FillRect(_windowManager, NULL, SDL_MapRGB(_windowManager->format, 255, 255, 255));
+       
+        position.x = 0;
+        position.y = 0;
+        SDL_BlitSurface(text1._fond, NULL, _windowManager, &position);
+        SDL_Flip(_windowManager);
         //model.draw();
         //scene.drawScene();
            scene.drawScene();
@@ -92,6 +105,7 @@ int WindowEngine::initWindow(FilePath app)
         _windowManager.swapBuffers();
 
      }
+     text1.stopTTF();
     return EXIT_SUCCESS;
 
 }
