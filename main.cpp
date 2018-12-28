@@ -11,6 +11,8 @@
 #include <app/WindowEngine.hpp>
 #include <assimp/Importer.hpp>
 #include <glimac/Model.hpp>
+#include <app/AssetManager.hpp>
+#include <SDL/SDL_ttf.h>
 
 using namespace RUNBOXRUN;
 using namespace glimac;
@@ -38,13 +40,17 @@ int main(int argc, char** argv)
     Score sc;
     Time ti;
     FilePath applicationPath(argv[0]);
+    std::cout << argv[0] << std::endl;
     //Asset asset(applicationPath);
 
-    Map map("../assets/map/test2.txt");
+    //Map map("../assets/map/test2.txt");
 
-    SceneFactory scene;
-    scene.constructSceneFromMap(map);
+    //SceneFactory scene;
+    //scene.constructSceneFromMap(map);
 
+    AssetManager::instanciate(argv[0]);
+    AssetManager *assetMan = AssetManager::getInstance();
+    assetMan->find();
 
     //Assimp::Importer importer;
     //Sphere sp(3,1,1);
@@ -59,8 +65,8 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
-    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
-    wind.initWindow(applicationPath);
+    //WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
+    //wind.initWindow(applicationPath);
 
    // Texture Texture1("../assets/textue/texture.jpg");
 

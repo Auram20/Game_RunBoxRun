@@ -65,6 +65,7 @@ int WindowEngine::initWindow(FilePath app)
 
     Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
 	scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
+    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
 
      model.displayInfos();
 
@@ -85,7 +86,7 @@ int WindowEngine::initWindow(FilePath app)
         render.clear();
         //model.draw();
         //scene.drawScene();
-           scene.drawScene(render);
+           scene.drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
         /* render of all objects*/
         // vecteur qui va contenir tous les models
      

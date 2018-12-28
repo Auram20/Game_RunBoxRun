@@ -13,12 +13,12 @@ using namespace RUNBOXRUN;
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 Map::Map(const std::string &filename)
-: _filename(filename)
+: Asset(filename, glimac::AssetType::MAP) 
 {}
 
-bool Map::load()
+bool Map::load() /*pas de retour de bool si exception*/
 {
-        std::ifstream file(_filename);
+        std::ifstream file(_path);
 
         unsigned int data;
         unsigned int size = 0;
@@ -31,7 +31,7 @@ bool Map::load()
         _z = 0;
 
         if(! file.is_open())
-            THROW_EXCEPTION(_filename + " is not found");
+            THROW_EXCEPTION(_path + " is not found");
 
         file >> j >> i >> k;
         int nbByBloc = (j*i)/k;

@@ -43,7 +43,7 @@ endif()
 # put the binary files in this directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
+list(INSERT CMAKE_MODULE_PATH 0 ${CMake_SOURCE_DIR}/modules)
 
 # package
 find_package(SDL REQUIRED)
@@ -52,9 +52,9 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(ASSIMP REQUIRED)
 
-include_directories(${SDL_INCLUDE_DIR} ${SDL2_TTF_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include utils/include)
+include_directories(${SDL_INCLUDE_DIR} ${SDL_TTF_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include utils/include)
 
-set(ALL_LIBRARIES app game glimac utils ${ASSIMP_LIBRARIES} ${SDL2_TTF_LIBRARY} ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+set(ALL_LIBRARIES app game glimac utils stdc++fs ${ASSIMP_LIBRARIES} ${SDL_TTF_LIBRARIES} ${SDL_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 

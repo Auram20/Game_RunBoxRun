@@ -12,6 +12,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <experimental/filesystem>
 
 namespace RUNBOXRUN
 {
@@ -22,15 +23,38 @@ namespace RUNBOXRUN
 			
 		public:
         // CONSTRUCTORS & DESTRUCTOR	
-		AssetManager *getInstance();
+		static inline void instanciate(const glimac::FilePath &bin) {
+			if(_instance == nullptr) {
+				_instance = new AssetManager(bin);	
+			}
+		}
+
+		static inline void instanciate(const char* bin) {
+			if(_instance == nullptr) {
+				_instance = new AssetManager(glimac::FilePath(bin));	
+			}
+		}
+
+		static inline void instanciate(const std::string &bin) {
+			if(_instance == nullptr) {
+				_instance = new AssetManager(glimac::FilePath(bin));	
+			}
+		}
+
+		static inline AssetManager *getInstance() {
+			return _instance;
+		}
+
+		void find();
 
 
 		private:
         AssetManager() = delete;
-        AssetManager(glimac::FilePath assetDir);/*!< constructor with parameters */
+        AssetManager(const glimac::FilePath &bin); /*!< constructor with parameters */
         ~AssetManager();
-		static glimac::FilePath _assetDir;
-        static std::map<std::string, std::shared_ptr<glimac::Asset>> _assets;
+		glimac::FilePath _assetDir;
+        std::map<glimac::AssetType, std::map<std::string, std::shared_ptr<glimac::Asset>>> _assets;
+		static AssetManager *_instance;
 
 	};
 }
