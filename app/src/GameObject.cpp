@@ -26,6 +26,12 @@ GameObject::GameObject(const GameObject &gobj)
 
 }
 
+GameObject::GameObject(const glimac::Model &model, const Object &object, const Transform &transform)
+: _object(new Object(object)), _model(std::make_shared<glimac::Model>(model)), _transform(transform)
+{
+    
+}
+
 GameObject::~GameObject()
 {
     //delete _object;

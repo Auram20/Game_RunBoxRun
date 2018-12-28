@@ -27,6 +27,7 @@ namespace RUNBOXRUN
 		GameObject(); /*!< default constructor */
         GameObject(const glimac::Model &model, const Object &object);
         GameObject(const GameObject &gobj);
+        GameObject(const glimac::Model &model, const Object &object, const Transform &transform);
 		~GameObject(); /*!< default destructor*/
 
         void draw() const;
@@ -37,6 +38,10 @@ namespace RUNBOXRUN
 
         inline const glm::vec3 getGlobalPos() const {
             return glm::vec3(_transform.matrix() * glm::vec4(getLocalPos(), 1.f));
+        }
+
+        inline const glm::mat4 transformMatrix() const {
+            return _transform.matrix();
         }
 
 		private:

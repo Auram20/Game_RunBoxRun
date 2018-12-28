@@ -14,6 +14,7 @@
 #include <utils/Error.hpp>
 #include <algorithm>
 #include "app/GameObject.hpp"
+#include <glimac/Render.hpp>
 
 namespace RUNBOXRUN
 {
@@ -27,11 +28,14 @@ namespace RUNBOXRUN
 		Scene() = default; /*!< default constructor */
 		~Scene() = default; /*!< default destructor*/
 
-		inline void drawScene() const {
+		inline void drawScene(const glimac::Render &render) const {
 			std::for_each(
 				_GameObjects.begin(),
 				_GameObjects.end(),
-				[](const GameObject &gobj){ gobj.draw(); }
+				[&render](const GameObject &gobj){
+					render.sendDatas(gobj.transformMatrix());
+					gobj.draw();
+				}
 			);
 		}
 

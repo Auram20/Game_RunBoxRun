@@ -29,10 +29,10 @@ namespace RUNBOXRUN
         }
 
         Transform(
-            const glm::vec3 &pos = glm::vec3(1.f, 1.f, 1.f),
+            const glm::vec3 &pos = glm::vec3(0.f, 0.f, 0.f),
             const glm::vec3 &scale = glm::vec3(1.f, 1.f, 1.f),
-            const glm::vec3 &rotateLocal = glm::vec3(1.f, 1.f, 1.f),
-            const glm::vec3 &rotateGlobal = glm::vec3(1.f, 1.f, 1.f)
+            const glm::vec3 &rotateLocal = glm::vec3(0.f, 0.f, 0.f),
+            const glm::vec3 &rotateGlobal = glm::vec3(0.f, 0.f, 0.f)
         )
         : _scale(glm::mat4(1.f)), _translate(glm::mat4(1.f)), _rotateLocal(glm::mat4(1.f)), _rotateGlobal(glm::mat4(1.f))
         {

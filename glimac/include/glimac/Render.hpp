@@ -15,7 +15,6 @@
 #include <glimac/Image.hpp>
 #include <app/InputManager.hpp>
 #include <glimac/Program.hpp>
-#include <app/Scene.hpp>
 
 
 namespace glimac
@@ -34,9 +33,9 @@ namespace glimac
 		void program(const Program &program);
 		void initRender(); 
 		void clear(); 
-		void sendDatas();
-		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix);
-		void sendDatas(const glm::mat4 &MVMatrix);
+		void sendDatas() const;
+		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const;
+		void sendDatas(const glm::mat4 &MVMatrix) const;
 	
 		void displayInfos() const {
 			std::cout << _ProjMatrix << std::endl;
