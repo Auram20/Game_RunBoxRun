@@ -72,6 +72,8 @@ int WindowEngine::initWindow(FilePath app)
 
 // TESTS CREATION SCENE FROM MAP 
     Map map("../assets/map/test2.txt");
+    map.load();
+    std::cout << "taille de ma map si ça marchee" << map._datas.size() << std::endl;
     SceneFactory sceneMap;
     sceneMap.constructSceneFromMap(map);
 

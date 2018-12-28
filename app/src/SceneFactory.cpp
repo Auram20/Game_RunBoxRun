@@ -19,7 +19,6 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 	std::vector<glm::vec4> datas = map.getAllInfosDatas();
 	int size = datas.size();
 	
-		
 	for(int i=0 ; i<size ; i++){
 		int indice = datas[i][0];
 		switch(indice){

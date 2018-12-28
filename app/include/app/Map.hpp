@@ -34,7 +34,7 @@ namespace RUNBOXRUN
 		inline const std::vector<int> getDatas() const { return _datas; }/*!< get map datas*/
 		inline const std::vector<glm::vec4> getAllInfosDatas() const { return _vecdata; }/*!< get all infos of datas*/
 
-		private:
+		public:
 		std::vector<int>  _datas; /*!< map's id */
 		unsigned int	_x; /*!< value x of datas */
 		unsigned int	_z; /*!< value z of datas */
