@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 
     //Map map("../assets/map/test2.txt");
 
-    //SceneFactory scene;
+    SceneFactory scene;
     //scene.constructSceneFromMap(map);
 
     AssetManager::instanciate(argv[0]);
@@ -65,8 +65,8 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
-    //WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
-    //wind.initWindow(applicationPath);
+    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
+    wind.initWindow(applicationPath);
 
    // Texture Texture1("../assets/textue/texture.jpg");
 
