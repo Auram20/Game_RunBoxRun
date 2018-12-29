@@ -40,13 +40,15 @@ int main(int argc, char** argv)
     Score sc;
     Time ti;
     FilePath applicationPath(argv[0]);
-    std::cout << argv[0] << std::endl;
+    //std::cout << argv[0] << std::endl;
     //Asset asset(applicationPath);
 
     Map map("../assets/map/test2.txt");
 
     SceneFactory scene;
-    scene.constructSceneFromMap(map);
+    //scene.constructSceneFromMap(map);
+
+    AssetManager::instanciate(argv[0]);
 
     //Assimp::Importer importer;
     //Sphere sp(3,1,1);

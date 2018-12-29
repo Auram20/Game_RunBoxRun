@@ -19,6 +19,7 @@
 #include <vector>
 #include <glimac/Model.hpp>
 #include "app/Scene.hpp"
+#include <app/GameObject.hpp>
 
 using namespace glimac;
 

@@ -62,7 +62,7 @@ int WindowEngine::initWindow(FilePath app)
     Box test(1, 1, 1);
   
 
-    Scene scene;
+
 
     std::vector<Model> models;
     //Sphere sphere(1, 38, 40);
@@ -75,7 +75,24 @@ int WindowEngine::initWindow(FilePath app)
 	//scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
     //scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
 
-     model.displayInfos();
+
+// TESTS CREATION SCENE NORMALE
+ //    Scene scene;
+ //    Model model("../assets/obj/boule.obj");
+ //    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+	// scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5),glm::vec3(0.5))));
+ //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
+ //    model.displayInfos();
+
+
+// TESTS CREATION SCENE FROM MAP 
+    Map map("../assets/map/test2.txt");
+    map.load();
+    //std::cout << "taille de ma map si ça marchee" << map._datas.size() << std::endl;
+    SceneFactory sceneMap;
+    sceneMap.constructSceneFromMap(map);
+
+
 
     man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, new utils::Observer<WindowEngine>([&done](WindowEngine *w) {
         std::cout << "ferme" << std::endl;
@@ -92,9 +109,13 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
-        //model.draw();
-        //scene.drawScene();
-           scene.drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
+ // TESTS CREATION SCENE NORMALE
+       // scene.drawScene(render);
+      
+ // TESTS CREATION SCENE FROM MAP
+        (sceneMap.constructSceneFromMap(map)).drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
+       
+
         /* render of all objects*/
         // vecteur qui va contenir tous les models
      
