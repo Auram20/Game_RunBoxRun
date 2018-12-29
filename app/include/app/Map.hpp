@@ -36,9 +36,9 @@ namespace RUNBOXRUN
 
 		public:
 		std::vector<int>  _datas; /*!< map's id */
-		unsigned int	_x; /*!< value x of datas */
-		unsigned int	_z; /*!< value z of datas */
-		unsigned int 	_y; /*!< value y of datas */
+		int	_x; /*!< value x of datas */
+		int	_z; /*!< value z of datas */
+		int _y; /*!< value y of datas */
 		std::string _filename; /*! < map's filename */
 		std::vector<glm::vec4> _vecdata; /*!< id, x, y, z of datas */
 	};

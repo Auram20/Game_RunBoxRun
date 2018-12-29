@@ -20,11 +20,11 @@ bool Map::load() /*pas de retour de bool si exception*/
 {
         std::ifstream file(_path);
 
-        unsigned int data;
+         int data;
         unsigned int size = 0;
-        unsigned int i =0; // nb col
-        unsigned int j =0; // nb line
-        unsigned int k = 0; // nb bloc
+         int i =0; // nb col
+         int j =0; // nb line
+         int k = 0; // nb bloc
 
         _x = 0;
         _y = 0;
@@ -68,8 +68,7 @@ bool Map::load() /*pas de retour de bool si exception*/
         for(int l= 0; l< sizeVec; l++)
         {
         std::cout << "dataVec : " << _vecdata[l] << std::endl;
-        }
-        */
-
+        }*/
+        
         return true;
 }
