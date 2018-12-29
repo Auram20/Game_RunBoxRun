@@ -27,6 +27,9 @@ namespace RUNBOXRUN
 		
 		// GETTERS
 		inline const glm::vec3 getPos() const {return _position;} /*!< getter object's position */ 
+		inline const double getSpeed() const {return _speed;} /*!< getter object's speed */ 
+		inline const glm::vec3 getSize() const {return _size;} /*!< getter object's size */ 
+		inline const glm::vec3 getColor() const {return _color;} /*!< getter object's color */ 
 	
 		// SETTERS
 		inline void setPos(glm::vec3 &newPos){ _position = newPos;}	/*!< setter object's position */

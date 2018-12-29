@@ -8,13 +8,14 @@
 #define __PLAYER__HPP
 
 // Includes 
-#include <game/Object.hpp>
+#include <app/GameObject.hpp>
+
 
 namespace RUNBOXRUN
 {
 	/// \class Player
 	/// \brief class defining a new player.
-	class Player : public Object
+	class Player : public GameObject
 	{
 			
 		private:

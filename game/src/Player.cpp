@@ -14,7 +14,7 @@ using namespace RUNBOXRUN;
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState)
-: Object(speed, position, size, color),  _health(health), _jumpState(jumpState)
+: GameObject(Object(speed, position, size, color)),  _health(health), _jumpState(jumpState)
 {}
 
 
@@ -26,7 +26,7 @@ Player::~Player()
 void  Player::displayInfos() 
 {
 	std::cout << "\n------------ PLAYER INFORMATIONS ------------" << std::endl;
-	Object::displayInfos();
+	GameObject::displayInfos();
 	std::cout << "health : " << _health << std::endl;
 	std::cout << "jumpState : " << _jumpState << std::endl;
 }
@@ -46,5 +46,5 @@ Player* Player::getInstance()
 void const Player::jump(const double indice)
 {
 	_jumpState = 2;
-	_position.y+= indice;
+//	GameObject::getLocalPos().y+= indice;
 }

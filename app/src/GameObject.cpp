@@ -14,6 +14,12 @@ GameObject::GameObject()
 
 }
 
+GameObject::GameObject(const Object &object)
+: _object(new Object(object)), _model(), _transform()
+{
+
+}
+
 GameObject::GameObject(const glimac::Model &model, const Object &object)
 : _object(new Object(object)), _model(new glimac::Model(model)), _transform()
 {
@@ -60,4 +66,13 @@ void GameObject::draw() const {
 
     if(_model.get() != nullptr)
         _model->draw();
+}
+
+
+void  GameObject::displayInfos() 
+{
+    std::cout << "speed: " << getLocalSpeed() << std::endl
+    << "position : " << getLocalPos() << std::endl
+    << "size : " << getLocalSize() << std::endl
+    << "color : " << getLocalColor() << std::endl;
 }

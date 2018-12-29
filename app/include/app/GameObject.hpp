@@ -25,6 +25,7 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		GameObject(); /*!< default constructor */
+        GameObject(const Object &object);
         GameObject(const glimac::Model &model, const Object &object);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform);
@@ -38,6 +39,18 @@ namespace RUNBOXRUN
             return _object->getPos();
         }
 
+        inline const double getLocalSpeed() const {
+            return _object->getSpeed();
+        }
+
+        inline const glm::vec3 getLocalSize() const {
+            return _object->getSize();
+        }
+        
+        inline const glm::vec3 getLocalColor() const {
+            return _object->getColor();
+        }
+
         inline const glm::vec3 getGlobalPos() const {
             return glm::vec3(_transform.matrix() * glm::vec4(getLocalPos(), 1.f));
         }
@@ -46,7 +59,12 @@ namespace RUNBOXRUN
             return _transform.matrix();
         }
 
-		private:
+
+
+        virtual void displayInfos(); /*!< display object informations */
+
+
+		protected:
             std::unique_ptr<Object> _object;
             std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
