@@ -7,7 +7,7 @@
 #include "game/Enemy.hpp"
 #include "game/Obstacle.hpp"
 #include "game/Malus.hpp"
-#include "game/Player.hpp"
+#include "app/Player.hpp"
 #include "game/Score.hpp"
 #include "game/Time.hpp"
 

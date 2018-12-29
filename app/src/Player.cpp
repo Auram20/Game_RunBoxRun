@@ -5,7 +5,7 @@
 //================================
 
 
-#include <game/Player.hpp>
+#include <app/Player.hpp>
 #include <iostream>
 
 using namespace RUNBOXRUN;
@@ -46,5 +46,5 @@ Player* Player::getInstance()
 void const Player::jump(const double indice)
 {
 	_jumpState = 2;
-//	GameObject::getLocalPos().y+= indice;
+//	_position.y+= indice;
 }

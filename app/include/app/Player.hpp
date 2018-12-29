@@ -9,13 +9,15 @@
 
 // Includes 
 #include <app/GameObject.hpp>
+#include <utils/Observable.hpp>
+
 
 
 namespace RUNBOXRUN
 {
 	/// \class Player
 	/// \brief class defining a new player.
-	class Player : public GameObject
+	class Player : public GameObject, public utils::Observable<SDLKey>
 	{
 			
 		private:
