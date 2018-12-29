@@ -20,6 +20,8 @@ GameObject::GameObject(const glimac::Model &model, const Object &object)
 
 }
 
+
+
 GameObject::GameObject(const GameObject &gobj)
 : _object(new Object(*(gobj._object))), _model(gobj._model), _transform(gobj._transform)
 {

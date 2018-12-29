@@ -13,6 +13,10 @@
 #include <map>
 #include <memory>
 #include <experimental/filesystem>
+#include <glimac/Model.hpp>
+#include <glimac/Shader.hpp>
+#include <app/Map.hpp>
+#include <glimac/Texture.hpp>
 
 namespace RUNBOXRUN
 {
@@ -45,15 +49,27 @@ namespace RUNBOXRUN
 			return _instance;
 		}
 
-		void find();
+		static inline void destruct() {
+			if(_instance == nullptr) return;
+			delete _instance;
+		}
 
+		void find();
+		void sortFile(const std::experimental::filesystem::directory_entry &dirEntry);
+
+		glimac::Asset *get(const glimac::AssetType &type, const std::string &filename) {
+			if(_assets.find(type) == _assets.end()) return nullptr;
+			if(_assets[type].find(filename) == _assets[type].end()) return nullptr;
+			return _assets[type][filename];
+		}
 
 		private:
         AssetManager() = delete;
         AssetManager(const glimac::FilePath &bin); /*!< constructor with parameters */
         ~AssetManager();
+		void deleteFor(const glimac::AssetType &type);
 		glimac::FilePath _assetDir;
-        std::map<glimac::AssetType, std::map<std::string, std::shared_ptr<glimac::Asset>>> _assets;
+        std::map<glimac::AssetType, std::map<std::string, glimac::Asset*>> _assets;
 		static AssetManager *_instance;
 
 	};

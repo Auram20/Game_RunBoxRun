@@ -13,6 +13,7 @@
 #include <glimac/SDLWindowManager.hpp>
 #include "app/Map.hpp"
 #include "app/SceneFactory.hpp"
+#include "app/AssetManager.hpp"
 
 
 using namespace glimac;
@@ -41,6 +42,11 @@ int WindowEngine::initWindow(FilePath app)
         app.dirPath()+"assets/shaders/3D.vs.glsl",
         app.dirPath()+"assets/shaders/normale.fs.glsl"
     );
+
+    AssetManager *assetMan = AssetManager::getInstance();
+    assetMan->find();
+
+
     Render render;
     render.program(_program);
     _program.use();
@@ -61,11 +67,13 @@ int WindowEngine::initWindow(FilePath app)
     std::vector<Model> models;
     //Sphere sphere(1, 38, 40);
 
-    Model model("../assets/obj/boule.obj");
+    Model model(FilePath("../assets/obj/boule.obj"));
+
+    std::cout << assetMan->get(AssetType::MODEL, "boule.obj") << std::endl;
 
     Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-	scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
-    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
+	//scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
+    //scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
 
      model.displayInfos();
 

@@ -48,6 +48,13 @@ namespace glimac {
             {
                 load();
             }
+
+            Model(const glimac::FilePath &path)
+            : Asset(path, AssetType::MODEL), _meshes()
+            {
+                load();
+            }
+
             Model(Mesh mesh)
             : Asset(), _meshes()
             {
