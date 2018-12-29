@@ -96,10 +96,10 @@ int WindowEngine::initWindow(FilePath app)
 
 
 
-    man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, new utils::Observer<WindowEngine>([&done](WindowEngine *w) {
+    man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, [&done](const SDL_Event &w) {
         std::cout << "ferme" << std::endl;
         done = true;
-    }));
+    });
 
 
     glEnable(GL_DEPTH_TEST);

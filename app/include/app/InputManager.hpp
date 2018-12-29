@@ -37,7 +37,7 @@ namespace RUNBOXRUN
 
 	/// \class Bonus
 	/// \brief class defining the input manager.
-	class InputManager : public utils::EventManager<EventCode>
+	class InputManager : public utils::EventManager<EventCode, SDL_Event>
 	{
 			
 		public:

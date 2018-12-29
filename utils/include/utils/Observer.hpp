@@ -12,32 +12,31 @@
 
 namespace utils {
 
-    class AbstractObserver {
+    /*class AbstractObserver {
         public:
             AbstractObserver() = default;
             virtual ~AbstractObserver() = default;
 
             virtual void update(void *target) const = 0;
-    };
+    };*/
 
 
     template<typename T>
-	class Observer : public AbstractObserver {
+	class Observer /*: public AbstractObserver*/ {
 		public:
-            Observer(const std::function<void(T*)> &action)
-            : AbstractObserver(), _action(action)
+            Observer(const std::function<void(const T&)> &action)
+            : /*AbstractObserver(), */_action(action)
             {
 
             }
 
             ~Observer() = default;
 
-			void update(void *target) const override {
-                if(target != nullptr)
-                _action((T*)(target));
+			void update(const T &target) const /*override*/ {
+                _action(target);
             }
 
         private:
-            const std::function<void(T*)> _action;
+            const std::function<void(const T&)> _action;
 	};
 }

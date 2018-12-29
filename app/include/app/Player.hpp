@@ -18,7 +18,7 @@ namespace RUNBOXRUN
 {
 	/// \class Player
 	/// \brief class defining a new player.
-	class Player : public GameObject, public utils::Observable<EventCode>
+	class Player : public GameObject, public utils::Observable<EventCode, SDL_Event>
 	{
 			
 		private:

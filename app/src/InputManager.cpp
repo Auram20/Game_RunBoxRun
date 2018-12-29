@@ -80,7 +80,7 @@ namespace RUNBOXRUN {
 	void InputManager::execute(const SDL_Event &e) {
 
             if(e.type == SDL_QUIT) {
-                update(EventCode::QUITEVENT);
+                update(EventCode::QUITEVENT, e);
             }
 
             if(e.type == SDL_KEYDOWN) {

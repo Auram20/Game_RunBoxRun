@@ -13,7 +13,7 @@
 
 namespace utils {
 
-    template<typename T>
+    template<typename T, typename U>
 	class Observable {
 		public:
             Observable()
@@ -27,7 +27,7 @@ namespace utils {
                     *_ptr = nullptr;
                 }
                 for(auto it = _observers.begin(); it != _observers.end(); ++it) {
-                    std::set<AbstractObserver*> second = it->second;
+                    std::set<Observer<U>*> second = it->second;
                     for(auto jt = second.begin(); jt != second.end(); ++jt) {
                         delete *jt;
                     }
@@ -36,9 +36,9 @@ namespace utils {
             }
 
 
-            inline void attach(const T &eventName, AbstractObserver *o) {
+            inline void attach(const T &eventName, Observer<U> *o) {
                 if(_observers.find(eventName) == _observers.end()) {
-                   _observers.emplace(eventName, std::set<AbstractObserver*>({o}));
+                   _observers.emplace(eventName, std::set<Observer<U>*>({o}));
                 } else {
                     findEventObservers(eventName)->emplace(o);
                 }
@@ -48,20 +48,20 @@ namespace utils {
                 _observers.erase(eventName);
             }
 
-            inline void notifyAll() {
+            inline void notifyAll(const U &target) {
                 for(auto it = _observers.begin(); it != _observers.end(); ++it) {
-                    notify(it->first);
+                    notify(it->first, target);
                 }
             }
 
-            inline void notify(const T &eventName) {
-                std::set<AbstractObserver*> *setObservers = findEventObservers(eventName);
+            inline void notify(const T &eventName, const U &target) {
+                std::set<Observer<U>*> *setObservers = findEventObservers(eventName);
                 for(auto it = setObservers->begin(); it != setObservers->end(); it++) {
-                    (*it)->update(this);
+                    (*it)->update(target);
                 }
             }
 
-            inline std::set<AbstractObserver*> *findEventObservers(const T &eventName) {
+            inline std::set<Observer<U>*> *findEventObservers(const T &eventName) {
                 if(_observers.find(eventName) == _observers.end()) return nullptr; //Error !
                 return &(_observers.at(eventName));
             }
@@ -71,7 +71,7 @@ namespace utils {
             }
 
         private:
-            std::map<T, std::set<AbstractObserver*>> _observers;
+            std::map<T, std::set<Observer<U>*>> _observers;
             Observable ** _ptr;
 
 	};
