@@ -10,6 +10,7 @@
 // Includes 
 #include <app/GameObject.hpp>
 #include <utils/Observable.hpp>
+#include <app/InputManager.hpp>
 
 
 
@@ -17,7 +18,7 @@ namespace RUNBOXRUN
 {
 	/// \class Player
 	/// \brief class defining a new player.
-	class Player : public GameObject, public utils::Observable<SDLKey>
+	class Player : public GameObject, public utils::Observable<EventCode>
 	{
 			
 		private:
