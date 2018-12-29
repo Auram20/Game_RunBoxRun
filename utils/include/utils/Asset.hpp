@@ -46,6 +46,10 @@ namespace glimac {
 				return _path.str();
 			}
 
+			inline const AssetType type() const {
+				return _type;
+			}
+
 		protected:
 			FilePath _path; /*!< path */
 			AssetType _type;

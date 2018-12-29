@@ -52,6 +52,16 @@ public:
         return m_FilePath.substr(pos + 1);
     }
 
+    /*! returns the filename of a filepath  */
+    std::string filename() const {
+        size_t pos = m_FilePath.find_last_of(PATH_SEPARATOR);
+        if (pos == std::string::npos) { return m_FilePath; }
+        std::string file = m_FilePath.substr(pos + 1);
+        pos = file.find_first_of('.', 1);
+        if (pos == std::string::npos) { return file; }
+        return file.substr(0, pos);
+    }
+
     /*! returns the file extension */
     std::string ext() const {
         size_t pos = m_FilePath.find_last_of('.');

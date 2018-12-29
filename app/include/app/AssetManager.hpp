@@ -57,7 +57,7 @@ namespace RUNBOXRUN
 		void find();
 		void sortFile(const std::experimental::filesystem::directory_entry &dirEntry);
 
-		glimac::Asset *get(const glimac::AssetType &type, const std::string &filename) {
+		const std::shared_ptr<glimac::Asset> get(const glimac::AssetType &type, const std::string &filename) {
 			if(_assets.find(type) == _assets.end()) return nullptr;
 			if(_assets[type].find(filename) == _assets[type].end()) return nullptr;
 			return _assets[type][filename];
@@ -69,7 +69,7 @@ namespace RUNBOXRUN
         ~AssetManager();
 		void deleteFor(const glimac::AssetType &type);
 		glimac::FilePath _assetDir;
-        std::map<glimac::AssetType, std::map<std::string, glimac::Asset*>> _assets;
+        std::map<glimac::AssetType, std::map<std::string, std::shared_ptr<glimac::Asset>>> _assets;
 		static AssetManager *_instance;
 
 	};

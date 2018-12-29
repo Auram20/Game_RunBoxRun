@@ -69,10 +69,12 @@ int WindowEngine::initWindow(FilePath app)
 
     Model model(FilePath("../assets/obj/boule.obj"));
 
-    std::cout << assetMan->get(AssetType::MODEL, "boule.obj") << std::endl;
+    //std::cout << assetMan->get(AssetType::MODEL, "boule.obj") << std::endl;
+
+    Scene scene;
 
     Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-	//scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
+	scene.push(GameObject(assetMan->get(AssetType::MODEL, "boule"), en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
     //scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
 
 
@@ -113,7 +115,7 @@ int WindowEngine::initWindow(FilePath app)
        // scene.drawScene(render);
       
  // TESTS CREATION SCENE FROM MAP
-        (sceneMap.constructSceneFromMap(map)).drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
+        scene.drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
        
 
         /* render of all objects*/
