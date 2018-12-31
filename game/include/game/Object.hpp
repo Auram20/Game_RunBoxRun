@@ -33,7 +33,7 @@ namespace RUNBOXRUN
 	
 		// SETTERS
 		inline void setPos(glm::vec3 &newPos){ _position = newPos;}	/*!< setter object's position */
-
+		
 		// OBJECT FUNCTIONS 
 		virtual void displayInfos(); /*!< display object informations */
 		void moveHorizontal(const double &t); /*!< horizontal movement of the object */

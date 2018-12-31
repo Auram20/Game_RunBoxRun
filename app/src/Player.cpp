@@ -45,6 +45,10 @@ Player* Player::getInstance()
 
 void const Player::jump(const double indice)
 {
+	 glm::vec3 jumpvec(0.f);
+	 jumpvec[1]=indice;
 	_jumpState = 2;
-//	_position.y+= indice;
+ 	_object->setPos(jumpvec);
+ 	//+= indice;
 }
+
