@@ -13,11 +13,11 @@ using namespace RUNBOXRUN;
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState)
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState)
 : GameObject(Object(speed, position, size, color)),  _health(health), _jumpState(jumpState)
 {}
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &jumpState, const glimac::Model &model, const Transform &transform)
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform)
 : GameObject(glimac::Model(model),Object(speed, position, size, color),Transform(transform)),  _health(health), _jumpState(jumpState)
 {}
 
@@ -52,10 +52,11 @@ Player* Player::getInstance()
 void const Player::jump(const double indice)
 {
 	 glm::vec3 jumpvec(0.f);
+ 	 jumpvec=_object->getPos();
 	 jumpvec[1]=indice;
 	_jumpState = indice;
- 	_object->setPos(jumpvec);
- 	//+= indice;
+ 	 setTrans(jumpvec);
+ 	 _object->setPos(jumpvec);
 }
 
  void Player::moveHorizontal(const double indice)
@@ -63,9 +64,8 @@ void const Player::jump(const double indice)
  	 glm::vec3 horizvec(0.f);
  	 horizvec=_object->getPos();
 	 horizvec[0]=indice;
- 	_object->setPos(horizvec);
- 	//+= indice;
-
+ 	 setTrans(horizvec);
+ 	 _object->setPos(horizvec);
  }
 
 void Player::updatePlayer(SDL_Event e) 
@@ -76,19 +76,19 @@ void Player::updatePlayer(SDL_Event e)
 
             case SDL_KEYDOWN:
  
-                if (e.key.keysym.sym==273){ //up
+                if (e.key.keysym.sym==SDLK_z){ //up
                     jump(1);
                     displayInfos();
                 }
-                 if (e.key.keysym.sym==274){ //down
+                 if (e.key.keysym.sym==SDLK_s){ //down
                    jump(-1);
                    displayInfos();
                 }
-                 if (e.key.keysym.sym==275){ //right
+                 if (e.key.keysym.sym==SDLK_d){ //right
                   	moveHorizontal(1);
                     displayInfos();  
                 }
-                 if (e.key.keysym.sym==276){ //left
+                 if (e.key.keysym.sym==SDLK_q){ //left
                    	moveHorizontal(-1);
                     displayInfos();
                 } 
@@ -97,22 +97,22 @@ void Player::updatePlayer(SDL_Event e)
 
             case SDL_KEYUP:
 
-                if (e.key.keysym.sym == 273){ //up
+                if (e.key.keysym.sym == SDLK_z){ //up
 					jump(0);
                     displayInfos();
                 }
                 
-                if (e.key.keysym.sym == 274){ //down
+                if (e.key.keysym.sym == SDLK_s){ //down
                      jump(0);
                      displayInfos();
                  }
                 
-                if (e.key.keysym.sym==275){ //right
+                if (e.key.keysym.sym==SDLK_d){ //right
                   	moveHorizontal(0);
                     displayInfos();  
                 }
                 
-                if (e.key.keysym.sym==276){ //left
+                if (e.key.keysym.sym==SDLK_q){ //left
                    	moveHorizontal(0);
                     displayInfos();
                 }

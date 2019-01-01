@@ -79,6 +79,7 @@ void  GameObject::displayInfos()
 {
     std::cout << "speed: " << getLocalSpeed() << std::endl
     << "position : " << getLocalPos() << std::endl
+    << "position : " << getGlobalPos() << std::endl
     << "size : " << getLocalSize() << std::endl
     << "color : " << getLocalColor() << std::endl;
 }

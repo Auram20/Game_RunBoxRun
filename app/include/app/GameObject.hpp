@@ -60,7 +60,9 @@ namespace RUNBOXRUN
             return _transform.matrix();
         }
 
-
+        // SETTERS
+        inline void setTrans(glm::vec3 &newTrans){ _transform = newTrans;} /*!< setter object's position */
+        
 
         virtual void displayInfos(); /*!< display object informations */
 

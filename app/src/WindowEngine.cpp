@@ -51,40 +51,22 @@ int WindowEngine::initWindow(FilePath app)
     render.program(_program);
     _program.use();
 
-    render.initRender();
+        render.initRender();
+
+        render.sendDatas();
 
     render.displayInfos();
-
-    render.sendDatas();
     
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
-    Box test(1, 1, 1);
-  
-
-
-
-    std::vector<Model> models;
-    //Sphere sphere(1, 38, 40);
-
-   // Model model(FilePath("../assets/obj/boule.obj"));
-
-    //std::cout << assetMan->get(AssetType::MODEL, "boule.obj") << std::endl;
-
-    Scene scene;
-
-    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-	scene.push(GameObject(assetMan->get(AssetType::MODEL, "boule"), en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5))));
-    //scene.push(GameObject(*(assetMan->get(AssetType::MODEL, "boule.obj")), en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
-
 
 // TESTS CREATION SCENE NORMALE
- //    Scene scene;
- //    Model model("../assets/obj/boule.obj");
- //    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-	// scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5),glm::vec3(0.5))));
- //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
- //    model.displayInfos();
+     //    Scene scene;
+     // Model model(FilePath("../assets/obj/boule.obj"));
+     //    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+     // scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5),glm::vec3(0.5))));
+     //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
+     //    model.displayInfos();
 
 
 // TESTS CREATION SCENE FROM MAP 
@@ -94,6 +76,7 @@ int WindowEngine::initWindow(FilePath app)
     // SceneFactory sceneMap;
     // sceneMap.constructSceneFromMap(map);
 
+
 // TESTS CREATION SCENE JOUEUR
     Player* p = Player::getInstance();
     std::cout << " Avant changement " << std::endl;
@@ -101,12 +84,14 @@ int WindowEngine::initWindow(FilePath app)
     Scene sceneplayer; 
     sceneplayer.push(*p);
 
-    man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, [&done](const SDL_Event &w) {
-        std::cout << "ferme" << std::endl;
-        done = true;
-    });
+// EVENT CODE TO QUIT - TO PUT LATER
+    // man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, [&done](const SDL_Event &w) {
+    //     std::cout << "ferme" << std::endl;
+    //     done = true;
+    // });
 
 
+// BOUCLE DE RENDU 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
         // Event loop:
@@ -116,32 +101,36 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
+
  // TESTS CREATION SCENE NORMALE
        // scene.drawScene(render);
       
- // TESTS CREATION SCENE FROM MAP
-        sceneplayer.drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
-
+ // TESTS CREATION SCENE PLAYER
+        sceneplayer.drawScene(render); 
         p->updatePlayer(e);
 
 
 
 
-
-        // On quitte le jeu
+// POUR QUITTER LE JEU 
         switch(e.type) {
 
             case SDL_QUIT:
                 done = true;
             break;
+
+
+            case SDL_KEYDOWN:
+            if (e.key.keysym.sym==27){ ///escape
+                    done=true;
+            }
+            break;            
         }
 
-        /* render of all objects*/
-        // vecteur qui va contenir tous les models
-     
-        _windowManager.swapBuffers();
+       _windowManager.swapBuffers();
 
      }
+
     return EXIT_SUCCESS;
 
 }
