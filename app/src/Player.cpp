@@ -42,8 +42,8 @@ Player* Player::getInstance()
 	if(_instance == nullptr)
 	{
  		 glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
- 		 Transform transformPlayer(glm::vec3(0, 0, -5),glm::vec3(0.5),glm::vec3(0.f, 0.f, 0.f),glm::vec3(0.f, 0.f, 0.f));
-		_instance = new Player(1,glm::vec3(0, 0, -5), glm::vec3(1),glm::vec3(100),3,0,modelPlayer,transformPlayer);
+ 		 Transform transformPlayer(glm::vec3(0, 0, -5),glm::vec3(0.5));
+		_instance = new Player(1,glm::vec3(0, -0 , -5), glm::vec3(0.5),glm::vec3(100),3,0,modelPlayer,transformPlayer);
 		}
 
 	return _instance;

@@ -30,7 +30,7 @@ namespace RUNBOXRUN
 
         Transform(
             const glm::vec3 &pos = glm::vec3(0.f, 0.f, 0.f),
-            const glm::vec3 &scale = glm::vec3(1.f, 1.f, 1.f),
+            const glm::vec3 &scale = glm::vec3(0.5f, 0.5f, 0.5f),
             const glm::vec3 &rotateLocal = glm::vec3(0.f, 0.f, 0.f),
             const glm::vec3 &rotateGlobal = glm::vec3(0.f, 0.f, 0.f)
         )
@@ -46,6 +46,8 @@ namespace RUNBOXRUN
         : _scale(transform._scale), _translate(transform._translate), _rotateLocal(transform._rotateLocal), _rotateGlobal(transform._rotateGlobal)
         {
         }
+
+
 
         ~Transform() = default;
 

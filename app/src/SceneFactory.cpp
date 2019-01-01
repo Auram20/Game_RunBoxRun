@@ -31,14 +31,14 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 			case 0:
 			{
 				Enemy *en = new Enemy(1, glm::vec3(0), glm::vec3(100), glm::vec3(100));
-				GameObject *go= new GameObject(bo, *en,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)));
+				GameObject *go= new GameObject(model, *en,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)));
 				newScene.push(go);
 			}
 			break;
 			case 1: 
 			{
 				Obstacle *obs = new Obstacle(1, glm::vec3(0), glm::vec3(100), glm::vec3(100), "mur");
-				GameObject *go = new GameObject(model, *obs,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)));
+				GameObject *go = new GameObject(bo, *obs,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)));
 				newScene.push(go);
 			}
 			break;

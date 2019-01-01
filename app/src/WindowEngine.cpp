@@ -59,14 +59,25 @@ int WindowEngine::initWindow(FilePath app)
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
 
+// TESTS CREATION SCENE NORMALE
+     //    Scene scene;
+     // Model model(FilePath("../assets/obj/boule.obj"));
+     //    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
+     // scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5),glm::vec3(0.5))));
+     //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
+     //    model.displayInfos();
 
-// TESTS CREATION SCENE JOUEUR
+
+// TESTS CREATION SCENE FROM MAP + PLAYER
+    Map map("../assets/map/test2.txt");
+    map.load();
+    SceneFactory sceneMap;
+    Scene sceneplayer(sceneMap.constructSceneFromMap(map));
+
     Player* p = Player::getInstance();
     std::cout << " Avant changement " << std::endl;
     p->displayInfos(); 
-    Scene sceneplayer; 
     sceneplayer.push(p);
-//  sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
 
 
 // BOUCLE DE RENDU 

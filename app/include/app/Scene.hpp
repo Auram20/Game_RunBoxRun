@@ -26,6 +26,8 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		Scene() = default; /*!< default constructor */
+		Scene(const Scene &sc);
+
 		~Scene() = default; /*!< default destructor*/
 
 		inline void drawScene(const glimac::Render &render) const {

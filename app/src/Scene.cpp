@@ -7,3 +7,11 @@
 #include "app/Scene.hpp"
 
 using namespace RUNBOXRUN;
+
+Scene::Scene(const Scene &sc)
+: _GameObjects(sc._GameObjects), _Cameras(sc._Cameras), _currentCam(sc._currentCam)
+{
+
+}
+
+          
