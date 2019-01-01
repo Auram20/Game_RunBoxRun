@@ -16,6 +16,7 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 
 	Scene newScene;
 	Model model(FilePath("../assets/obj/boule.obj"));
+	Model coin(FilePath("../assets/obj/coin.obj"));
 	Box bo(1,1,1);
 	std::vector<glm::vec4> datas = map.getAllInfosDatas();
 	int size = datas.size();
@@ -43,9 +44,10 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 			}
 			break;
 			case 3:
-			{
-				Coin *co = new Coin(1, glm::vec3(datas[i][1], datas[i][2], datas[i][3]), glm::vec3(1), glm::vec3(100), 10);
-				//newScene.push(GameObject(model, *co));
+			{	
+				Coin *co = new Coin(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
+				GameObject *go = new GameObject(coin, *co,Transform(glm::vec3(datas[i+1][0], datas[i+2][0]-0.5, datas[i+3][0]),glm::vec3(0.25)));
+				newScene.push(go);
 			}
 			break;
 			default: 
