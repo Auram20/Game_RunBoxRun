@@ -65,7 +65,7 @@ int WindowEngine::initWindow(FilePath app)
     std::cout << " Avant changement " << std::endl;
     p->displayInfos(); 
     Scene sceneplayer; 
-    sceneplayer.push(*p);
+    sceneplayer.push(p);
 //  sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
 
 

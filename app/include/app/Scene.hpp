@@ -44,9 +44,9 @@ namespace RUNBOXRUN
 				_currentCam = _Cameras.at(cam);
 		}
 
-		inline void push(const GameObject gobj) {
-			 GameObject* gobj2 = new GameObject(gobj);
-			_GameObjects.push_back(gobj2);
+		inline void push(GameObject *gobj) {
+			 //GameObject* gobj2 = new GameObject(gobj);
+			_GameObjects.push_back(gobj);
 		}
 
 		inline const glm::mat4 getCurrentViewMatrix() const {
