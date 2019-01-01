@@ -14,3 +14,9 @@
 #include "app/Map.hpp"
 #include "app/SceneFactory.hpp"
 #include "app/AssetManager.hpp"
+
+
+void Menu::mainMenuRender()
+{
+	
+}
