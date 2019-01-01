@@ -37,7 +37,7 @@ Mesh::Mesh(std::vector<Vertex> vert, std::vector<uint32_t> ind, std::vector<Text
 Mesh::Mesh(const Mesh &mesh)
 : _VertexList(mesh._VertexList), _index(mesh._index), _textures(mesh._textures), _vao(mesh._vao), _vbo(mesh._vbo), _ebo(mesh._ebo)
 {
-
+  setupMesh();
 }
 
 
@@ -102,6 +102,7 @@ void Mesh::initVAO()
 	glBindVertexArray(0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
+
 
 void Mesh::initEBO() {
 

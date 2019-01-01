@@ -32,9 +32,9 @@ namespace RUNBOXRUN
 			std::for_each(
 				_GameObjects.begin(),
 				_GameObjects.end(),
-				[&render](const GameObject &gobj){
-					render.sendDatas(gobj.transformMatrix());
-					gobj.draw();
+				[&render]( GameObject *gobj){
+					render.sendDatas(gobj->transformMatrix());
+					gobj->draw();
 				}
 			);
 		}
@@ -44,8 +44,9 @@ namespace RUNBOXRUN
 				_currentCam = _Cameras.at(cam);
 		}
 
-		inline void push(const GameObject &gobj) {
-			_GameObjects.push_back(gobj);
+		inline void push(const GameObject gobj) {
+			 GameObject* gobj2 = new GameObject(gobj);
+			_GameObjects.push_back(gobj2);
 		}
 
 		inline const glm::mat4 getCurrentViewMatrix() const {
@@ -53,7 +54,7 @@ namespace RUNBOXRUN
 		}
 
 		private:
-            std::vector<GameObject> _GameObjects;
+            std::vector<GameObject *> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;
 			glimac::Camera *_currentCam;
             //std::vector<Material> _Materials;

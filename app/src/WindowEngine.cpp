@@ -48,33 +48,16 @@ int WindowEngine::initWindow(FilePath app)
     AssetManager *assetMan = AssetManager::getInstance();
     assetMan->find();
 
-    // UNIFORM MATRIX DEFINITIONS
+    //  SHADERS & UMATRIX DEFINITIONS
     Render render;
     render.program(_program);
     _program.use();
-
     render.displayInfos();
-
     render.initRender();
+    render.sendDatas();
 
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
-
-// TESTS CREATION SCENE NORMALE
-     //    Scene scene;
-     // Model model(FilePath("../assets/obj/boule.obj"));
-     //    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-     // scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5),glm::vec3(0.5))));
-     //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
-     //    model.displayInfos();
-
-
-// TESTS CREATION SCENE FROM MAP 
-    // Map map("../assets/map/test2.txt");
-    // map.load();
-    // //std::cout << "taille de ma map si ça marchee" << map._datas.size() << std::endl;
-    // SceneFactory sceneMap;
-    // sceneMap.constructSceneFromMap(map);
 
 
 // TESTS CREATION SCENE JOUEUR
@@ -82,13 +65,8 @@ int WindowEngine::initWindow(FilePath app)
     std::cout << " Avant changement " << std::endl;
     p->displayInfos(); 
     Scene sceneplayer; 
-    //sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
-    
-// EVENT CODE TO QUIT - TO PUT LATER
-    // man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, [&done](const SDL_Event &w) {
-    //     std::cout << "ferme" << std::endl;
-    //     done = true;
-    // });
+    sceneplayer.push(*p);
+//  sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
 
 
 // BOUCLE DE RENDU 
@@ -101,26 +79,15 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
-        render.sendDatas();
-    
- // TESTS CREATION SCENE NORMALE
-       // scene.drawScene(render);
-      
- // TESTS CREATION SCENE PLAYER
         p->updatePlayer(e);
-        sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
-        // render.sendDatas(p->_transform.matrix());
         sceneplayer.drawScene(render); 
 
 
 // POUR QUITTER LE JEU 
         switch(e.type) {
-
             case SDL_QUIT:
                 done = true;
             break;
-
-
             case SDL_KEYDOWN:
             if (e.key.keysym.sym==27){ ///escape
                     done=true;

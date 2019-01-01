@@ -87,5 +87,6 @@ void  GameObject::displayInfos()
     << "position : " << getLocalPos() << std::endl
     << "position : " << getGlobalPos() << std::endl
     << "size : " << getLocalSize() << std::endl
-    << "color : " << getLocalColor() << std::endl;
+    << "color : " << getLocalColor() << std::endl
+    << "MVMATRIX" << _transform.matrix() << std::endl;
 }
