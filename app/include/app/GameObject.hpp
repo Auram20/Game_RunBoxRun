@@ -31,6 +31,7 @@ namespace RUNBOXRUN
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform);
         GameObject(const GameObject &gobj);
+        GameObject(const GameObject &gobj, const Transform &transform);
         GameObject(const glimac::Model &model, const Object &object, const Transform &transform);
 		~GameObject(); /*!< default destructor*/
 
@@ -67,11 +68,12 @@ namespace RUNBOXRUN
         virtual void displayInfos(); /*!< display object informations */
 
 
+        std::unique_ptr<Object> _object;
+        Transform _transform;
 		protected:
-            std::unique_ptr<Object> _object;
             std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
-            Transform _transform;
+  
             //ShaderProgram sProgram;  utilisera un shader particulier s'il est assigné, le défaut sinon
             
 	};

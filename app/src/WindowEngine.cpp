@@ -29,6 +29,7 @@ WindowEngine::WindowEngine(const uint32_t &width, const uint32_t &height, const 
 int WindowEngine::initWindow(FilePath app)
 {
 
+    // INITIALIZING GLEW
     GLenum glewInitError = glewInit();
     if(GLEW_OK != glewInitError) {
         std::cerr << glewGetErrorString(glewInitError) << std::endl;
@@ -37,7 +38,8 @@ int WindowEngine::initWindow(FilePath app)
 
     std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
-
+    
+    // INITIALIZING SHADERS
     Program _program=loadProgram(
         app.dirPath()+"assets/shaders/3D.vs.glsl",
         app.dirPath()+"assets/shaders/normale.fs.glsl"
@@ -46,17 +48,15 @@ int WindowEngine::initWindow(FilePath app)
     AssetManager *assetMan = AssetManager::getInstance();
     assetMan->find();
 
-
+    // UNIFORM MATRIX DEFINITIONS
     Render render;
     render.program(_program);
     _program.use();
 
-        render.initRender();
-
-        render.sendDatas();
-
     render.displayInfos();
-    
+
+    render.initRender();
+
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
 
@@ -82,8 +82,8 @@ int WindowEngine::initWindow(FilePath app)
     std::cout << " Avant changement " << std::endl;
     p->displayInfos(); 
     Scene sceneplayer; 
-    sceneplayer.push(*p);
-
+    //sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
+    
 // EVENT CODE TO QUIT - TO PUT LATER
     // man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, [&done](const SDL_Event &w) {
     //     std::cout << "ferme" << std::endl;
@@ -101,15 +101,16 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
-
+        render.sendDatas();
+    
  // TESTS CREATION SCENE NORMALE
        // scene.drawScene(render);
       
  // TESTS CREATION SCENE PLAYER
-        sceneplayer.drawScene(render); 
         p->updatePlayer(e);
-
-
+        sceneplayer.push(GameObject(*p,RUNBOXRUN::Transform(p->_object->_position,glm::vec3(0.5))));
+        // render.sendDatas(p->_transform.matrix());
+        sceneplayer.drawScene(render); 
 
 
 // POUR QUITTER LE JEU 

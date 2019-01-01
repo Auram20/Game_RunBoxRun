@@ -38,9 +38,10 @@ namespace RUNBOXRUN
 		virtual void displayInfos(); /*!< display object informations */
 		virtual void moveHorizontal(const double &t); /*!< horizontal movement of the object */
 
+
+		glm::vec3 _position ;  /*!< object's position */
 		protected:
 		double _speed; /*!< object's speed */
-		glm::vec3 _position ;  /*!< object's position */
 		glm::vec3 _size; /*!< object's size */
 		glm::vec3 _color; /*!< object's color */
 
