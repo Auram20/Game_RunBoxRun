@@ -26,6 +26,7 @@ namespace RUNBOXRUN
 		// CONSTRUCTORS & DESTRUCTOR
 		GameObject(); /*!< default constructor */
         GameObject(const Object &object);
+        GameObject(const glimac::Model &model);
         GameObject(const glimac::Model &model, const Object &object);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform);

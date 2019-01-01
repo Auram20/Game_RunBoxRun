@@ -67,7 +67,7 @@ int WindowEngine::initWindow(FilePath app)
     std::vector<Model> models;
     //Sphere sphere(1, 38, 40);
 
-    Model model(FilePath("../assets/obj/boule.obj"));
+   // Model model(FilePath("../assets/obj/boule.obj"));
 
     //std::cout << assetMan->get(AssetType::MODEL, "boule.obj") << std::endl;
 
@@ -88,13 +88,18 @@ int WindowEngine::initWindow(FilePath app)
 
 
 // TESTS CREATION SCENE FROM MAP 
-    Map map("../assets/map/test2.txt");
-    map.load();
-    //std::cout << "taille de ma map si ça marchee" << map._datas.size() << std::endl;
-    SceneFactory sceneMap;
-    sceneMap.constructSceneFromMap(map);
+    // Map map("../assets/map/test2.txt");
+    // map.load();
+    // //std::cout << "taille de ma map si ça marchee" << map._datas.size() << std::endl;
+    // SceneFactory sceneMap;
+    // sceneMap.constructSceneFromMap(map);
 
-
+// TESTS CREATION SCENE JOUEUR
+    Player* p = Player::getInstance();
+    std::cout << " Avant changement " << std::endl;
+    p->displayInfos(); 
+    Scene sceneplayer; 
+    sceneplayer.push(*p);
 
     man->attach(*this, RUNBOXRUN::EventCode::QUITEVENT, [&done](const SDL_Event &w) {
         std::cout << "ferme" << std::endl;
@@ -115,8 +120,21 @@ int WindowEngine::initWindow(FilePath app)
        // scene.drawScene(render);
       
  // TESTS CREATION SCENE FROM MAP
-        scene.drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
-       
+        sceneplayer.drawScene(render); //scène dans render brise la césure moteurs rendu/jeu
+
+        p->updatePlayer(e);
+
+
+
+
+
+        // On quitte le jeu
+        switch(e.type) {
+
+            case SDL_QUIT:
+                done = true;
+            break;
+        }
 
         /* render of all objects*/
         // vecteur qui va contenir tous les models

@@ -42,7 +42,7 @@ namespace RUNBOXRUN
             _rotateGlobal = rotate(_rotateGlobal, rotateGlobal);
         }
 
-        Transform(const Transform& transform)
+        Transform(const Transform &transform)
         : _scale(transform._scale), _translate(transform._translate), _rotateLocal(transform._rotateLocal), _rotateGlobal(transform._rotateGlobal)
         {
         }

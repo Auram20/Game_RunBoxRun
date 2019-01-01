@@ -23,9 +23,9 @@ int main(int argc, char** argv)
 
     
     // ------------- INSTANTIATION ---------------------------
-    Player* p = Player::getInstance();
-    std::cout << " Avant changement " << std::endl;
-    p->displayInfos();
+    // Player* p = Player::getInstance();
+    // std::cout << " Avant changement " << std::endl;
+    // p->displayInfos();
     //InputManager man;
     Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
