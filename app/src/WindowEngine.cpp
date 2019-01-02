@@ -12,6 +12,7 @@
 #include <glimac/Render.hpp>
 #include <glimac/SDLWindowManager.hpp>
 #include "app/Map.hpp"
+#include "app/Menu.hpp"
 #include "app/SceneFactory.hpp"
 #include "app/AssetManager.hpp"
 
@@ -90,9 +91,10 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render.clear();
-        p->updatePlayer(e);
-        sceneplayer.drawScene(render); 
-
+        // p->updatePlayer(e);
+        // sceneplayer.drawScene(render); 
+        Menu main;
+        (main.mainMenuRender()).drawScene(render);
 
 // POUR QUITTER LE JEU 
         switch(e.type) {
