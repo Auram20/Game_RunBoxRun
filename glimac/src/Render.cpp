@@ -47,7 +47,7 @@ void Render::sendDatasTex(const std::vector<Texture> &tex) const {
     }
     unsigned int size = (tex.size() > MAX_TEXTURE) ? MAX_TEXTURE : tex.size();
     glUniform1uiv(uTexture, MAX_TEXTURE, textures);
-    glUniform1ui(uTextureSize, tex.size());
+    glUniform1ui(uTextureSize, size);
 }
 
 void Render::sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const
