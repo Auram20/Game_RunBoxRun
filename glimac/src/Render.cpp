@@ -17,6 +17,7 @@ void Render::program(const unsigned int &id){
 	uMVMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uMVMatrix");
 	uNormalMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uNormalMatrix");
 	uTexture = glGetUniformLocation(_sPrograms[id].getGLId(), "uTexture");
+    uTextureSize = glGetUniformLocation(_sPrograms[id].getGLId(), "uTextureSize");
     use(id);
 }
 
@@ -40,15 +41,13 @@ void Render::clear()
 }
 
 void Render::sendDatasTex(const std::vector<Texture> &tex) const {
-    GLint textures[10];
-    for(int i = 0; i < 10; ++i) {
-        if(i >= tex.size()) {
-            textures[i] = -1;
-        } else {
-            textures[i] = tex[i].id();
-        }
+    GLuint textures[MAX_TEXTURE];
+    for(int i = 0; i < tex.size(); ++i) {
+        textures[i] = tex[i].id();
     }
-    glUniform1iv(uTexture, 10, textures);
+    unsigned int size = (tex.size() > MAX_TEXTURE) ? MAX_TEXTURE : tex.size();
+    glUniform1uiv(uTexture, MAX_TEXTURE, textures);
+    glUniform1ui(uTextureSize, tex.size());
 }
 
 void Render::sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const

@@ -18,6 +18,8 @@
 #include <glimac/Texture.hpp>
 #include <memory>
 
+#define MAX_TEXTURE 10
+
 
 namespace glimac
 {
@@ -98,6 +100,7 @@ namespace glimac
 		GLint uMVMatrix;
 		GLint uNormalMatrix;
 		GLint uTexture;
+		GLint uTextureSize;
 		Render() = default ; /*!< constructor with parameters */
 		static std::vector<Program> _sPrograms;
 		static Render* _instance;
