@@ -106,10 +106,16 @@ const std::string Texture::getTypeName() const {
 	return typeName;
 }
 
-Texture::Texture(const Texture &tex)
+Texture::Texture(Texture &&tex) noexcept
 : Asset(tex), _id(tex._id), _type(tex._type)
 {
+	tex._id = 0;
+}
 
+Texture::Texture(const Texture &tex)
+: Asset(tex), _id(0), _type(tex._type)
+{
+	load();
 }
 
 Texture::~Texture() {

@@ -15,6 +15,8 @@
 #include <glimac/Image.hpp>
 #include <app/InputManager.hpp>
 #include <glimac/Program.hpp>
+#include <glimac/Texture.hpp>
+#include <memory>
 
 
 namespace glimac
@@ -26,16 +28,31 @@ namespace glimac
 			
 		public:
         // CONSTRUCTORS & DESTRUCTOR
-		Render() = default ; /*!< constructor with parameters */
-		~Render() = default ; /*!< default destructor*/
+		~Render() {
+			_instance = nullptr;
+		} /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
-		void program(const Program &program);
+		void program(const unsigned int &id);
 		void initRender(); 
 		void clear(); 
 		void sendDatas() const;
 		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const;
 		void sendDatas(const glm::mat4 &MVMatrix) const;
+		void sendDatasTex(const std::vector<Texture> &tex) const;
+
+		static inline void destroy() {
+			if(_instance != nullptr)
+				delete _instance;
+		}
+
+		static inline Render *getInstance() {
+			if(_instance == nullptr) {
+				_instance = new Render();
+				_instance->initRender();
+			}
+			return _instance;
+		}
 	
 		void displayInfos() const {
 			std::cout << _ProjMatrix << std::endl;
@@ -47,6 +64,31 @@ namespace glimac
 			std::cout << uTexture << std::endl;
 		}
 
+		inline void use(const unsigned int &id) const {
+			if(getProgramSize() <= id) return;
+			_sPrograms[id].use();
+		}
+
+		static inline const unsigned int getProgramSize() {
+			return _sPrograms.size();
+		}
+
+		static inline const unsigned int pushNewProgram(Shader& vsShader, Shader& fsShader) {
+			unsigned int id = getProgramSize();
+			_sPrograms.push_back(buildProgramFromShaders(vsShader, fsShader));
+			return id;
+		}
+
+		static inline const unsigned int pushNewProgram(const std::shared_ptr<Asset> &vsShaderPtr, const std::shared_ptr<Asset> &fsShaderPtr) {
+			unsigned int id = getProgramSize();
+			_sPrograms.push_back(buildProgramFromShaders(*(std::dynamic_pointer_cast<Shader>(vsShaderPtr)), *(std::dynamic_pointer_cast<Shader>(fsShaderPtr))));
+			return id;
+		} 
+
+		static inline const unsigned int pushNewProgram() {
+			_sPrograms.push_back(Program());
+			return getProgramSize() - 1;
+		} 
 
 		private:
 		glm::mat4 _ProjMatrix;
@@ -56,6 +98,9 @@ namespace glimac
 		GLint uMVMatrix;
 		GLint uNormalMatrix;
 		GLint uTexture;
+		Render() = default ; /*!< constructor with parameters */
+		static std::vector<Program> _sPrograms;
+		static Render* _instance;
 
 	};
 }

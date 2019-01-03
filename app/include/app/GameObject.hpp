@@ -13,6 +13,7 @@
 #include <glimac/Model.hpp>
 #include <game/Object.hpp>
 #include <memory>
+#include <glimac/Program.hpp>
 
 namespace RUNBOXRUN
 {
@@ -61,6 +62,10 @@ namespace RUNBOXRUN
             return _transform.matrix();
         }
 
+        inline const GLuint programID() const {
+            return _sProgramID;
+        }
+
         // SETTERS
         inline void setTrans(glm::vec3 &newTrans){ _transform = newTrans;} /*!< setter object's position */
         
@@ -74,7 +79,7 @@ namespace RUNBOXRUN
             std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
   
-            //ShaderProgram sProgram;  utilisera un shader particulier s'il est assigné, le défaut sinon
+            GLuint _sProgramID;  //utilisera un shader particulier s'il est assigné, le défaut sinon
             
 	};
 }

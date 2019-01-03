@@ -21,7 +21,7 @@ public:
 		glDeleteShader(m_nGLId);
 	}
 
-	Shader(Shader&& rvalue): m_nGLId(rvalue.m_nGLId) {
+	Shader(Shader&& rvalue): Asset(rvalue._path, AssetType::SHADER), m_nGLId(rvalue.m_nGLId), _shaderType(rvalue._shaderType) {
 		rvalue.m_nGLId = 0;
 	}
 

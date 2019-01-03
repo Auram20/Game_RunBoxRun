@@ -41,21 +41,22 @@ int WindowEngine::initWindow(FilePath app)
     std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
     
     // INITIALIZING SHADERS
-    Program _program=loadProgram(
+    /*Program _program=loadProgram(
         app.dirPath()+"assets/shaders/3D.vs.glsl",
         app.dirPath()+"assets/shaders/normale.fs.glsl"
-    );
+    );*/
 
     AssetManager *assetMan = AssetManager::getInstance();
     assetMan->find();
 
+    Render::pushNewProgram(assetMan->get(AssetType::SHADER, "3D"), assetMan->get(AssetType::SHADER, "texture"));
+
     //  SHADERS & UMATRIX DEFINITIONS
-    Render render;
-    render.program(_program);
-    _program.use();
-    render.displayInfos();
-    render.initRender();
-    render.sendDatas();
+    Render *render = Render::getInstance();
+    render->program(0);
+    render->displayInfos();
+    render->initRender();
+    render->sendDatas();
 
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
@@ -80,6 +81,8 @@ int WindowEngine::initWindow(FilePath app)
     p->displayInfos(); 
     sceneplayer.push(p);
 
+    Menu main;
+    Scene scene = main.mainMenuRender();
 
 // BOUCLE DE RENDU 
     glEnable(GL_DEPTH_TEST);
@@ -90,11 +93,10 @@ int WindowEngine::initWindow(FilePath app)
             man->execute(e);
         }
 
-        render.clear();
+        render->clear();
         // p->updatePlayer(e);
         // sceneplayer.drawScene(render); 
-        Menu main;
-        (main.mainMenuRender()).drawScene(render);
+        scene.drawScene();
 
 // POUR QUITTER LE JEU 
         switch(e.type) {

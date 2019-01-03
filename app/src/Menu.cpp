@@ -14,7 +14,7 @@ Menu::Menu()
 
 Scene Menu::mainMenuRender()
 {
-	glimac::Texture BG(FilePath("../assets/img/BG.jpg"),aiTextureType_NONE);
+	glimac::Texture BG(FilePath("../assets/img/BG.jpg"),aiTextureType_DIFFUSE);
 	glimac::Model monBG(FilePath("../assets/obj/BG.obj"));
 	glimac::Box Rectangle1(1,1,0);
 	Scene scene;

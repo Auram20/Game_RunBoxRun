@@ -55,11 +55,11 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     if(mesh->mMaterialIndex >= 0)
     {
         aiMaterial *mat = scene->mMaterials[mesh->mMaterialIndex];
-        std::vector<Texture> diffuseMaps = loadMaterialTextures(mat, aiTextureType_DIFFUSE);
-        textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+        std::vector<Texture> diffuseMaps = std::move(loadMaterialTextures(mat, aiTextureType_DIFFUSE));
+        textures.insert(textures.end(), std::make_move_iterator(diffuseMaps.begin()), std::make_move_iterator(diffuseMaps.end()));
 
-        std::vector<Texture> specularMaps = loadMaterialTextures(mat, aiTextureType_SPECULAR);
-        textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+        std::vector<Texture> specularMaps = std::move(loadMaterialTextures(mat, aiTextureType_SPECULAR));
+        textures.insert(textures.end(), std::make_move_iterator(specularMaps.begin()), std::make_move_iterator(specularMaps.end()));
 
     }
 
