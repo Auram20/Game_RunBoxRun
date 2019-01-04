@@ -15,6 +15,8 @@
 #include <algorithm>
 #include "app/GameObject.hpp"
 #include <glimac/Render.hpp>
+#include <glimac/Box.hpp>
+#include <utils/FilePath.hpp>
 
 namespace RUNBOXRUN
 {
@@ -29,6 +31,9 @@ namespace RUNBOXRUN
 		Scene(const Scene &sc);
 
 		~Scene() = default; /*!< default destructor*/
+
+
+		void mainMenu();
 
 		inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 
