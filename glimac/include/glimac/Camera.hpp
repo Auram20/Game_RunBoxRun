@@ -20,9 +20,14 @@ namespace glimac
 		public:
         // CONSTRUCTORS & DESTRUCTOR
 		Camera() = default; /*!< default constructor */
-		~Camera() = default; /*!< default destructor*/
+		virtual ~Camera() = default; /*!< default destructor*/
 
         virtual const glm::mat4 getViewMatrix() const = 0;
+		virtual void rotateLeft(float degrees) = 0;
+        virtual void rotateUp(float degrees) = 0;
+		virtual void translateZ(float t) = 0;
+		virtual void translateX(float t) = 0;
+		virtual void translateY(float t) = 0;
 
 		// Camera FUNCTIONS
 		//void displayInfos(); /*!< display of Camera's informations */

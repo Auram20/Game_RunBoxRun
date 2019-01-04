@@ -25,7 +25,7 @@ namespace RUNBOXRUN
 			
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-		Scene() = default; /*!< default constructor */
+		Scene(); /*!< default constructor */
 		Scene(const Scene &sc);
 
 		~Scene() = default; /*!< default destructor*/
@@ -35,17 +35,22 @@ namespace RUNBOXRUN
 			std::for_each(
 				_GameObjects.begin(),
 				_GameObjects.end(),
-				[&render]( GameObject *gobj){
+				[&]( GameObject *gobj){
 					render->program(gobj->programID());
-					render->sendDatas(gobj->transformMatrix());
+					render->sendDatas(gobj->transformMatrix() * getCurrentViewMatrix());
 					gobj->draw();
 				}
 			);
 		}
 
-		inline void setCurrentCamera(const std::string &cam) {
-			if(_Cameras.find(cam) != _Cameras.end())
-				_currentCam = _Cameras.at(cam);
+		inline void setCurrentCamera(const std::string &name) {
+			if(_Cameras.find(name) != _Cameras.end())
+				_currentCam = _Cameras.at(name).get();
+		}
+
+		inline void addCamera(const std::string &name, const glimac::Camera &cam) {
+			if(_Cameras.find(name) == _Cameras.end())
+				_Cameras.emplace(name, cam);
 		}
 
 		inline void push(GameObject *gobj) {
@@ -54,14 +59,17 @@ namespace RUNBOXRUN
 		}
 
 		inline const glm::mat4 getCurrentViewMatrix() const {
-			return _currentCam->getViewMatrix();
+			if(_currentCam == nullptr) {
+				return glm::mat4(1.f);
+			} else {
+				return _currentCam->getViewMatrix();
+			}
 		}
 
 		private:
             std::vector<GameObject *> _GameObjects;
-			std::map<std::string, glimac::Camera*> _Cameras;
+			std::map<std::string, std::unique_ptr<glimac::Camera>> _Cameras;
 			glimac::Camera *_currentCam;
-            //std::vector<Material> _Materials;
             
 	};
 }
