@@ -24,6 +24,7 @@ void Menu::initmainMenu()
 
 	GameObject *bg = new GameObject(monBG, *Rec,Transform(glm::vec3(-0.5, -0.8, -5),glm::vec3(0.125)));
 	GameObject *frame = new GameObject(myCorner, *Rec,Transform(glm::vec3(1.9, -2.3, -4.9),glm::vec3(1,0.45,0)));
+	_etat=0;
 
     this->push(bg,"1");
 	this->push(frame,"2");
@@ -32,9 +33,9 @@ void Menu::initmainMenu()
 }
 
 
-void Menu::rendermainMenu(SDL_Event e)
+void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 {	
-            	
+      	      	
 	  switch(e.type) {
 
             case SDL_KEYDOWN:
@@ -51,9 +52,9 @@ void Menu::rendermainMenu(SDL_Event e)
 
 							 _GameObjects.find(id)->second->_transform._translate[3][0]=1.9;
 							 _GameObjects.find(id)->second->_transform._scale[0][0]=1;
+							 _etat=0; // INSTRUCTIONS
 						}
                 }
-
 
                 if (e.key.keysym.sym==276) //left arrow 
                 { 
@@ -66,9 +67,28 @@ void Menu::rendermainMenu(SDL_Event e)
 						{ // found
 							 _GameObjects.find(id)->second->_transform._translate[3][0]=-2.6;
 							 _GameObjects.find(id)->second->_transform._scale[0][0]=0.8;
+							 _etat=1;
 						}
 				}
-				
+
+
+				if (e.key.keysym.sym==SDLK_RETURN) //left arrow 
+                { 
+	               	if (_etat==0)
+	               	{
+	               		_GameObjects.clear();
+	               		// ECRAN INSTRUCTIONS
+	               	}
+
+	               	if (_etat==1)
+	               	{
+	               		_GameObjects.clear();
+	               		// ON LANCE LE JEU 
+	               	}
+
+				}
+
+
         }
 
 }

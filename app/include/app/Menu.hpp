@@ -8,6 +8,7 @@
 #define __MENU__HPP
 
 #include <app/Scene.hpp>
+#include "app/WindowEngine.hpp"
 
 namespace RUNBOXRUN
 {
@@ -22,9 +23,10 @@ namespace RUNBOXRUN
 		~Menu() = default; /*!< default destructor*/
 
 		void initmainMenu();  /*!< initialize main menu */
-		void rendermainMenu(SDL_Event e);  /*!< render main menu */
+		void rendermainMenu(SDL_Event e,glimac::Render *render);  /*!< render main menu */
 
-		
+		protected : 
+		int _etat;
             
 	};
 }
