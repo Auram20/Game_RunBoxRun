@@ -12,7 +12,6 @@
 #include <glimac/Render.hpp>
 #include <glimac/SDLWindowManager.hpp>
 #include "app/Map.hpp"
-#include "app/Menu.hpp"
 #include "app/SceneFactory.hpp"
 #include "app/AssetManager.hpp"
 
