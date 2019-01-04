@@ -33,10 +33,6 @@ namespace RUNBOXRUN
 		~Scene() = default; /*!< default destructor*/
 
 
-
-		void initmainMenu();
-		void mainMenu(SDL_Event e);
-
 		inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 
 			std::for_each(
@@ -49,7 +45,7 @@ namespace RUNBOXRUN
 					pair.second->draw();
 				}
 			);
-		}
+		} /*!< draw all game objects from map*/
 
 		inline void setCurrentCamera(const std::string &cam) {
 			if(_Cameras.find(cam) != _Cameras.end())
@@ -57,15 +53,14 @@ namespace RUNBOXRUN
 		}
 
 		inline void push(GameObject *gobj, std::string id) {
-			 //GameObject* gobj2 = new GameObject(gobj);
 			_GameObjects.insert(std::pair<std::string,GameObject *>(id,gobj));
-		}
+		} /*!< push game object in scene */
 
 		inline const glm::mat4 getCurrentViewMatrix() const {
 			return _currentCam->getViewMatrix();
 		}
 
-		private:
+		protected:
             std::map<std::string, GameObject *> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;
 			glimac::Camera *_currentCam;

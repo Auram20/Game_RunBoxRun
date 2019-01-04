@@ -5,6 +5,7 @@
 //================================
 
 #include "app/WindowEngine.hpp"
+#include <app/Menu.hpp>
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <glimac/Program.hpp>
@@ -80,11 +81,15 @@ int WindowEngine::initWindow(FilePath app)
     p->displayInfos(); 
     sceneplayer.push(p,"Player");
 
-// TESTS DE MENU 
-    Scene Primary;
+// TESTS CREATION MENU 
+    Menu Primary;
     Primary.initmainMenu();
 
+
+// -----------------
 // BOUCLE DE RENDU 
+// -----------------
+
     glEnable(GL_DEPTH_TEST);
     while(!done) {
         // Event loop:
@@ -97,7 +102,7 @@ int WindowEngine::initWindow(FilePath app)
         // p->updatePlayer(e);
         // sceneplayer.drawScene(render); 
 
-        Primary.mainMenu(e);
+        Primary.rendermainMenu(e);
         Primary.drawScene();
 
 
