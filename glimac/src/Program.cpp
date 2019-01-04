@@ -81,7 +81,7 @@ Program buildProgramFromShaders(Shader& vsShader, Shader& fsShader) {
 	}
 
 	if(fsShader.shaderType() != GL_FRAGMENT_SHADER) {
-		throw std::runtime_error("File " + vsShader.pathStr() + " is not a Fragment Shader");
+		throw std::runtime_error("File " + fsShader.pathStr() + " is not a Fragment Shader");
 	}
 
 	vsShader.load();

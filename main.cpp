@@ -50,6 +50,7 @@ int main(int argc, char** argv)
 
     AssetManager::instanciate(argv[0]);
 
+
     //Assimp::Importer importer;
     //Sphere sp(3,1,1);
     //Box box1(1,1,1);
@@ -62,8 +63,6 @@ int main(int argc, char** argv)
     en.displayInfos();
     mal.displayInfos();
     obs.displayInfos();
-
-    AssetManager::instanciate(argv[0]);
 
     WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
     wind.initWindow(applicationPath);

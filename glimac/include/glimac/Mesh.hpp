@@ -11,6 +11,7 @@
 #include <glimac/common.hpp>
 #include <glimac/Texture.hpp>
 #include <memory>
+#include <glimac/Render.hpp>
 
 namespace glimac {
 
@@ -24,7 +25,7 @@ public:
   
     // CONSTRUCTORS & DESTRUCTOR
     Mesh();
-    Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture> tex); /*!< object's constructor with arguments*/
+    Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const std::vector<Texture> &tex); /*!< object's constructor with arguments*/
     Mesh(const Mesh &mesh);
     ~Mesh() = default;
         

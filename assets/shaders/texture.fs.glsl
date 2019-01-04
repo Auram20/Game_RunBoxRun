@@ -11,11 +11,11 @@ in vec2 vTexCoords; // Coordonnées de texture du sommet
 out vec3 fFragColor;
 
 //uniform vec3 uColor;
-uniform sampler2D uTexture;
+uniform sampler2D uTexture[10];
 
 void main() {
-  //fFragColor.rgb = vec3(1,0,0);
-
-  fFragColor = normalize(vNormal_vs);
-  //fFragColor = vec3(texture(uTexture, vTexCoords).xyz);
+  //fFragColor = vec3(1, 1, 1);
+  //for(int i = 0; i < uTexture.length(); ++i) {
+    fFragColor = texture2D(uTexture[0], vTexCoords).xyz;
+  //}
  }

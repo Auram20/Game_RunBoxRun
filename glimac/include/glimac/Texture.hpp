@@ -26,6 +26,7 @@ namespace glimac {
             // CONSTRUCTORS & DESTRUCTOR
             Texture() = default;
             Texture(const std::string &path, const aiTextureType &type); /*!< Texture's constructor with parameters*/
+            Texture(Texture &&tex) noexcept;
             Texture(const Texture &tex);
             ~Texture(); /*!< Texture's destructor */
             
@@ -36,10 +37,17 @@ namespace glimac {
                 return _id;
             }
 
+            Texture& operator =(Texture&& rvalue) {
+                _id = rvalue._id;
+                rvalue._id = 0;
+                return *this;
+            }
+
         private:
             GLuint _id; /*!< idTexture */
             aiTextureType _type; /*!< texture type */
             void TextureFromFile(const std::string &path);
+	        Texture& operator =(const Texture&);
     };
     
 }

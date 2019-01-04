@@ -8,19 +8,29 @@
 #define __MENU__HPP
 
 // Includes 
-#include <utils/glm.hpp>
-#include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>
-#include <glimac/Image.hpp>
-#include <app/InputManager.hpp>
-#include <glimac/Program.hpp>
-#include <app/Map.hpp>
-#include <app/SceneFactory.hpp>
+
+#include <utils/glm.hpp>
 #include <utils/FilePath.hpp>
 #include <utils/Observable.hpp>
+#include <utils/Asset.hpp>
 
+#include <glimac/SDLWindowManager.hpp>
+#include <glimac/Image.hpp>
+#include <glimac/Program.hpp>
+#include <glimac/Sphere.hpp>
+#include <glimac/Box.hpp>
+#include <glimac/Model.hpp>
+#include <glimac/Render.hpp>
+#include <glimac/Texture.hpp>
+
+#include "app/SceneFactory.hpp"
+#include "app/AssetManager.hpp"
+#include <app/Scene.hpp>
+#include <app/GameObject.hpp>
+#include <app/InputManager.hpp>
 
 namespace RUNBOXRUN
 {
@@ -35,10 +45,11 @@ namespace RUNBOXRUN
 		~Menu()=default; /*!< default destructor*/
 
 		// MENUS FUNCTIONS
-		void mainMenuRender();
+		Scene mainMenuRender();
 
 		private:
 		
+};
 }
 
 

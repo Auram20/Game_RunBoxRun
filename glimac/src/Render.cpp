@@ -11,16 +11,19 @@
 
 using namespace glimac;
 
-void Render::program(const Program &program){
-	uMVPMatrix = glGetUniformLocation(program.getGLId(), "uMVPMatrix");
-	uMVMatrix = glGetUniformLocation(program.getGLId(), "uMVMatrix");
-	uNormalMatrix = glGetUniformLocation(program.getGLId(), "uNormalMatrix");
-	uTexture = glGetUniformLocation(program.getGLId(), "uTexture");
+void Render::program(const unsigned int &id){
+    if(getProgramSize() <= id) return;
+	uMVPMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uMVPMatrix");
+	uMVMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uMVMatrix");
+	uNormalMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uNormalMatrix");
+	uTexture = glGetUniformLocation(_sPrograms[id].getGLId(), "uTexture");
+    use(id);
 }
 
 
 void Render::initRender()
 {
+
    	_ProjMatrix = glm::perspective(glm::radians(70.f),
                                   (float)800/600,
                                    0.1f,
@@ -34,6 +37,18 @@ void Render::initRender()
 void Render::clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
+}
+
+void Render::sendDatasTex(const std::vector<Texture> &tex) const {
+    GLint textures[10];
+    for(int i = 0; i < 10; ++i) {
+        if(i >= tex.size()) {
+            textures[i] = -1;
+        } else {
+            textures[i] = tex[i].id();
+        }
+    }
+    glUniform1iv(uTexture, 10, textures);
 }
 
 void Render::sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const
@@ -56,3 +71,6 @@ void Render::sendDatas() const
     glUniformMatrix4fv(uMVMatrix, 1, GL_FALSE, glm::value_ptr(_MVMatrix)); 
     glUniformMatrix4fv(uNormalMatrix, 1, GL_FALSE, glm::value_ptr(_NormalMatrix));
 }
+
+std::vector<Program> Render::_sPrograms;
+Render* Render::_instance = nullptr;

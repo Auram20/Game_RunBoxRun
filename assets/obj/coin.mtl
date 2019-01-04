@@ -10,7 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd C:\Users\Myriam\Downloads\12isnymbm6o2-coin\coin\coin-texture.jpg
+map_Kd coin.jpg
 
 newmtl gold
 Ns 96.078431
@@ -21,4 +21,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd C:\Users\Myriam\Downloads\12isnymbm6o2-coin\coin\gold.jpg
+map_Kd gold.jpg

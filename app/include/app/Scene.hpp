@@ -30,12 +30,14 @@ namespace RUNBOXRUN
 
 		~Scene() = default; /*!< default destructor*/
 
-		inline void drawScene(const glimac::Render &render) const {
+		inline void drawScene() const {
+			glimac::Render *render = glimac::Render::getInstance(); 
 			std::for_each(
 				_GameObjects.begin(),
 				_GameObjects.end(),
 				[&render]( GameObject *gobj){
-					render.sendDatas(gobj->transformMatrix());
+					render->program(gobj->programID());
+					render->sendDatas(gobj->transformMatrix());
 					gobj->draw();
 				}
 			);

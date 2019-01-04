@@ -23,10 +23,10 @@ _ebo(nullptr, Mesh::deleteBuffers)
 
 }
 
-Mesh::Mesh(std::vector<Vertex> vert, std::vector<uint32_t> ind, std::vector<Texture> tex)
+Mesh::Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const std::vector<Texture> &tex)
 : _VertexList(vert),
 	_index(ind),
-	_textures(tex),
+	_textures(std::move(tex)),
 	_vao(new GLuint(0), Mesh::deleteVertexArrays),
 	_vbo(new GLuint(0), Mesh::deleteBuffers),
 	_ebo(new GLuint(0), Mesh::deleteBuffers)
@@ -37,7 +37,7 @@ Mesh::Mesh(std::vector<Vertex> vert, std::vector<uint32_t> ind, std::vector<Text
 Mesh::Mesh(const Mesh &mesh)
 : _VertexList(mesh._VertexList), _index(mesh._index), _textures(mesh._textures), _vao(mesh._vao), _vbo(mesh._vbo), _ebo(mesh._ebo)
 {
-  setupMesh();
+	setupMesh();
 }
 
 
@@ -173,6 +173,9 @@ void Mesh::draw() const
 			glBindTexture(GL_TEXTURE_2D, _textures[i].id());
 		}
 		glActiveTexture(GL_TEXTURE0);
+
+		Render *render = Render::getInstance();
+		render->sendDatasTex(_textures);
 
 	}
 
