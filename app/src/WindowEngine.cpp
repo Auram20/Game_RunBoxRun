@@ -78,7 +78,7 @@ int WindowEngine::initWindow(FilePath app)
     Player* p = Player::getInstance();
     std::cout << " Avant changement " << std::endl;
     p->displayInfos(); 
-    sceneplayer.push(p,0);
+    sceneplayer.push(p,"Player");
 
     // Menu main;
     // Scene scene = main.mainMenuRender();

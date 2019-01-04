@@ -42,12 +42,10 @@ void Scene::mainMenu(SDL_Event e)
  
                 if (e.key.keysym.sym==275)
                 { //right
-                 	cornerleft->_transform._translate[3][2]=0;
+             
                 }
                  if (e.key.keysym.sym==276)
                 { //left
-                 	cornerleft->_transform._translate[3][2]=0;
-                 	cornerright->_transform._translate[3][2]=0;
 
 	      		}
 
@@ -55,14 +53,10 @@ void Scene::mainMenu(SDL_Event e)
 
                  if (e.key.keysym.sym == 275)
                  { //right 
-                   	cornerright->_transform._translate[3][2]=-4.9; 
-                   	cornerleft->_transform._translate[3][2]=0;
                  }
                  
                  if (e.key.keysym.sym == 276)
-                 { //left                }
-                	cornerright->_transform._translate[3][2]=0; 
-                   	cornerleft->_transform._translate[3][2]=-4.9;
+                 { //left                
                  }	
                  break;
 
