@@ -33,21 +33,21 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 			{
 				Enemy *en = new Enemy(1, glm::vec3(0), glm::vec3(100), glm::vec3(100));
 				GameObject *go= new GameObject(model, *en,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)));
-				newScene.push(go);
+				newScene.push(go,"Enemy");
 			}
 			break;
 			case 1: 
 			{
 				Obstacle *obs = new Obstacle(1, glm::vec3(0), glm::vec3(100), glm::vec3(100), "mur");
 				GameObject *go = new GameObject(bo, *obs,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)));
-				newScene.push(go);
+				newScene.push(go,"Obstacle");
 			}
 			break;
 			case 3:
 			{	
 				Coin *co = new Coin(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
 				GameObject *go = new GameObject(coin, *co,Transform(glm::vec3(datas[i+1][0], datas[i+2][0]-0.5, datas[i+3][0]),glm::vec3(0.25)));
-				newScene.push(go);
+				newScene.push(go,"Coin");
 			}
 			break;
 			default: 

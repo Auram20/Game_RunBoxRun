@@ -73,8 +73,8 @@ namespace RUNBOXRUN
         virtual void displayInfos(); /*!< display object informations */
 
 
-        std::unique_ptr<Object> _object;
-        Transform _transform;
+            std::unique_ptr<Object> _object;
+            Transform _transform;
 		protected:
             std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle

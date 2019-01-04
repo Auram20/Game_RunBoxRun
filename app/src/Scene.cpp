@@ -14,6 +14,11 @@ Scene::Scene(const Scene &sc)
 
 }
 
+void Scene::initmainMenu()
+{
+
+}
+
 
 void Scene::mainMenu(SDL_Event e)
 {	
@@ -46,8 +51,6 @@ void Scene::mainMenu(SDL_Event e)
 
 	      		}
 
-               
-
              case SDL_KEYUP:
 
                  if (e.key.keysym.sym == 275)
@@ -69,9 +72,9 @@ void Scene::mainMenu(SDL_Event e)
         }
 
 
-        this->push(bg);
-		this->push(cornerleft);
-		this->push(cornerright);
+        this->push(bg,"1");
+		this->push(cornerleft,"2");
+		this->push(cornerright,"3");
 
     glEnable(GL_DEPTH_TEST);
 }
