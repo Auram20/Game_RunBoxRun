@@ -33,7 +33,7 @@ namespace RUNBOXRUN
 		~Scene() = default; /*!< default destructor*/
 
 
-		void mainMenu();
+		void mainMenu(SDL_Event e);
 
 		inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 

@@ -83,7 +83,6 @@ int WindowEngine::initWindow(FilePath app)
     // Menu main;
     // Scene scene = main.mainMenuRender();
     Scene Primary;
-    Primary.mainMenu();
 
 // BOUCLE DE RENDU 
     glEnable(GL_DEPTH_TEST);
@@ -97,6 +96,8 @@ int WindowEngine::initWindow(FilePath app)
         render->clear();
         // p->updatePlayer(e);
         // sceneplayer.drawScene(render); 
+
+        Primary.mainMenu(e);
         Primary.drawScene();
 
 // POUR QUITTER LE JEU 
