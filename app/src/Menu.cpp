@@ -84,6 +84,7 @@ void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 	               	if (_etat==1)
 	               	{
 	               		_GameObjects.clear();
+	               		_etat=2;
 	               		// ON LANCE LE JEU 
 	               	}
 

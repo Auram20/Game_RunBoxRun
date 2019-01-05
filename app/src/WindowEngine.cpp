@@ -70,23 +70,25 @@ int WindowEngine::initWindow(FilePath app)
      //    model.displayInfos();
 
 
-// TESTS CREATION SCENE FROM MAP + PLAYER
-    // Map map("../assets/map/test2.txt");
-    // map.load();
-    // SceneFactory sceneMap;
-    // Scene sceneplayer(sceneMap.constructSceneFromMap(map));
-
-    // Player* p = Player::getInstance();
-    // std::cout << " Avant changement " << std::endl;
-    // p->displayInfos(); 
-    // sceneplayer.push(p,"Player");
 
 // TESTS CREATION MENU 
     Menu Primary;
     Primary.initmainMenu();
 
+// TESTS CREATION SCENE FROM MAP + PLAYER
+    Map map("../assets/map/test2.txt");
+    map.load();
+    SceneFactory sceneMap;
+    Scene sceneplayer(sceneMap.constructSceneFromMap(map));
 
-// -----------------
+    Player* p = Player::getInstance();
+    std::cout << " Avant changement " << std::endl;
+    p->displayInfos(); 
+    sceneplayer.push(p,"Player");
+
+//     sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
+//     sceneplayer.setCurrentCamera("TrackBall");
+// // -----------------
 // BOUCLE DE RENDU 
 // -----------------
 
@@ -99,13 +101,18 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render->clear();
-        // p->updatePlayer(e);
-        // sceneplayer.drawScene(render); 
-
         Primary.rendermainMenu(e,render);
         Primary.drawScene();
+
         man->updateAll();
 
+        if (Primary._etat==2)
+            {
+
+                     p->updatePlayer(e);
+                     sceneplayer.drawScene(); 
+
+           }
 
 // POUR QUITTER LE JEU 
         switch(e.type) {
