@@ -24,7 +24,7 @@ void Menu::initmainMenu()
 	Object *Rec = new Object(1, glm::vec3(0,0,-5), glm::vec3(1), glm::vec3(100));
 
 	GameObject *bg = new GameObject(monBG, *Rec,Transform(glm::vec3(-0.5, -0.8, -5),glm::vec3(0.125)));
-	GameObject *frame = new GameObject(myCorner, *Rec,Transform(glm::vec3(1.9, -2.3, -4.9),glm::vec3(1,0.45,0)));
+	GameObject *frame = new GameObject(myCorner, *Rec,Transform(glm::vec3(-2.6, -2.3, -4.9),glm::vec3(0.8,0.45,0)));
 	_etat=0;
 
     this->push(bg,"1");
