@@ -19,7 +19,7 @@ namespace utils
 
 	/// \class EventManager
 	/// \brief class defining the event manager.
-    template<typename T, typename U>
+    template<typename U>
 	class EventManager
 	{
 			
@@ -34,29 +34,79 @@ namespace utils
 
         ~EventManager() = default;
 
-        inline void attach(Observable<T, U> &target, const T &eventName, Observer<U> *o) {
-            if(target.ptr() == nullptr || *(target.ptr()) == nullptr) return;
-            target.attach(eventName, o);
+		inline int attach(Observable<U> &target, const std::function<void(U&)> &action) {
+            if(target.ptr() == nullptr || *(target.ptr()) == nullptr) return -1;
 			_observables.emplace(target.ptr());
+			return target.attach(action);
 		}
 
-		inline void attach(Observable<T, U> &target, const T &eventName, const std::function<void(const U&)> &action) {
-            if(target.ptr() == nullptr || *(target.ptr()) == nullptr) return;
-            target.attach(eventName, new Observer<U>(action));
-			_observables.emplace(target.ptr());
+		inline void update(Observable<U>** observable, const std::set<unsigned int> &id, U &target) {
+			auto it = _observables.find(observable);
+			if(it == _observables.end()) return;
+			if(**it != nullptr) {
+				(**it)->notify(id, target);
+			} else {
+				_observables.erase(it);
+			}
 		}
 
-		inline void update(const T &eventName, const U &target) const {
+		inline void updateAll(U &target) {
 			for(auto it = _observables.begin(); it != _observables.end(); ++it) {
                 if(**it != nullptr)
-				    (**it)->notify(eventName, target);
+				    (**it)->notifyAll(target);
                 else
                     delete *it;
 			}
 		}
 
 		private:
-			std::set<Observable<T, U>**> _observables;
+			std::set<Observable<U>**> _observables;
+	};
+
+	/// \class EventManager
+	/// \brief class defining the event manager.
+    template<>
+	class EventManager<void>
+	{
+			
+		public:
+		
+        EventManager()
+        : _observables()
+        {
+            //_observables.reserve(100);
+            //_observables.fill(nullptr);
+        }
+
+        ~EventManager() = default;
+
+		inline int attach(Observable<void> &target, const std::function<void(void)> &action) {
+            if(target.ptr() == nullptr || *(target.ptr()) == nullptr) return -1;
+			_observables.emplace(target.ptr());
+			return target.attach(action);
+		}
+
+		inline void update(Observable<void>** observable, const std::set<unsigned int> &id) {
+			auto it = _observables.find(observable);
+			if(it == _observables.end()) return;
+			if(**it != nullptr) {
+				(**it)->notify(id);
+			} else {
+				_observables.erase(it);
+			}
+		}
+
+		inline void updateAll() {
+			for(auto it = _observables.begin(); it != _observables.end(); ++it) {
+                if(**it != nullptr)
+				    (**it)->notifyAll();
+                else
+                    delete *it;
+			}
+		}
+
+		private:
+			std::set<Observable<void>**> _observables;
 	};
 }
 

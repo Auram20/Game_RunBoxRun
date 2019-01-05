@@ -104,6 +104,7 @@ int WindowEngine::initWindow(FilePath app)
 
         Primary.rendermainMenu(e,render);
         Primary.drawScene();
+        man->updateAll();
 
 
 // POUR QUITTER LE JEU 

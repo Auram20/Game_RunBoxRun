@@ -13,3 +13,10 @@ Scene::Scene(const Scene &sc)
 {
 
 }
+
+Scene::Scene()
+: _GameObjects(), _Cameras(), _currentCam(nullptr)
+{
+
+}
+          

@@ -24,19 +24,48 @@ namespace utils {
     template<typename T>
 	class Observer /*: public AbstractObserver*/ {
 		public:
-            Observer(const std::function<void(const T&)> &action)
-            : /*AbstractObserver(), */_action(action)
+            Observer(const std::function<void(T&)> &action, unsigned int &id)
+            : /*AbstractObserver(), */_action(action), _id(id)
             {
 
             }
 
             ~Observer() = default;
 
-			void update(const T &target) const /*override*/ {
+			void update(T &target) const {
                 _action(target);
             }
 
+            inline const unsigned int id() const {
+                return _id;
+            }
+
         private:
-            const std::function<void(const T&)> _action;
+            const std::function<void(T&)> _action;
+            unsigned int _id;
+	};
+
+    template<>
+	class Observer<void> /*: public AbstractObserver*/ {
+		public:
+            Observer(const std::function<void(void)> &action, unsigned int &id)
+            : /*AbstractObserver(), */_action(action), _id(id)
+            {
+
+            }
+
+            ~Observer() = default;
+
+			void update() const {
+                _action();
+            }
+
+            inline const unsigned int id() const {
+                return _id;
+            }
+
+        private:
+            const std::function<void(void)> _action;
+            unsigned int _id;
 	};
 }
