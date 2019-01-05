@@ -26,14 +26,14 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		GameObject(); /*!< default constructor */
-        GameObject(const Object &object);
-        GameObject(const glimac::Model &model);
-        GameObject(const glimac::Model &model, const Object &object);
-        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object);
-        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform);
+        GameObject(const Object &object, const unsigned int &sProgramID = 0);
+        GameObject(const glimac::Model &model, const unsigned int &sProgramID = 0);
+        GameObject(const glimac::Model &model, const Object &object, const unsigned int &sProgramID = 0);
+        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const unsigned int &sProgramID = 0);
+        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform, const unsigned int &sProgramID = 0);
         GameObject(const GameObject &gobj);
         GameObject(const GameObject &gobj, const Transform &transform);
-        GameObject(const glimac::Model &model, const Object &object, const Transform &transform);
+        GameObject(const glimac::Model &model, const Object &object, const Transform &transform, const unsigned int &sProgramID = 0);
 		~GameObject(); /*!< default destructor*/
 
         void draw() const;

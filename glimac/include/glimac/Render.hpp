@@ -83,6 +83,7 @@ namespace glimac
 		static inline const unsigned int pushNewProgram(const std::shared_ptr<Asset> &vsShaderPtr, const std::shared_ptr<Asset> &fsShaderPtr) {
 			unsigned int id = getProgramSize();
 			_sPrograms.push_back(buildProgramFromShaders(*(std::dynamic_pointer_cast<Shader>(vsShaderPtr)), *(std::dynamic_pointer_cast<Shader>(fsShaderPtr))));
+			std::cout << "Program::" << id << std::endl;
 			return id;
 		} 
 

@@ -79,6 +79,7 @@ int WindowEngine::initWindow(FilePath app)
     Map map("../assets/map/test2.txt");
     map.load();
     SceneFactory sceneMap;
+    sceneMap.initSPrograms();
     Scene sceneplayer(sceneMap.constructSceneFromMap(map));
 
     Player* p = Player::getInstance();

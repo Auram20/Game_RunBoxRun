@@ -14,53 +14,53 @@ GameObject::GameObject()
 
 }
 
-GameObject::GameObject(const Object &object)
-: _object(new Object(object)), _model(), _transform(), _sProgramID(0)
+GameObject::GameObject(const Object &object, const unsigned int &sProgramID)
+: _object(new Object(object)), _model(), _transform(), _sProgramID(sProgramID)
 {
 
 }
 
-GameObject::GameObject(const glimac::Model &model, const Object &object)
-: _object(new Object(object)), _model(new glimac::Model(model)), _transform(), _sProgramID(0)
+GameObject::GameObject(const glimac::Model &model, const Object &object, const unsigned int &sProgramID)
+: _object(new Object(object)), _model(new glimac::Model(model)), _transform(), _sProgramID(sProgramID)
 {
 
 }
 
 
-GameObject::GameObject(const glimac::Model &model)
-: _object(), _model(new glimac::Model(model)), _transform(), _sProgramID(0)
+GameObject::GameObject(const glimac::Model &model, const unsigned int &sProgramID)
+: _object(), _model(new glimac::Model(model)), _transform(), _sProgramID(sProgramID)
 {
 
 }
 
 
 GameObject::GameObject(const GameObject &gobj)
-: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(gobj._transform), _sProgramID(0)
+: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(gobj._transform), _sProgramID(gobj._sProgramID)
 {
 
 }
 
 GameObject::GameObject(const GameObject &gobj, const Transform &transform)
-: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(transform), _sProgramID(0)
+: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(transform), _sProgramID(gobj._sProgramID)
 {
 
 }
 
-GameObject::GameObject(const glimac::Model &model, const Object &object, const Transform &transform)
-: _object(new Object(object)), _model(new glimac::Model(model)), _transform(transform), _sProgramID(0)
+GameObject::GameObject(const glimac::Model &model, const Object &object, const Transform &transform, const unsigned int &sProgramID)
+: _object(new Object(object)), _model(new glimac::Model(model)), _transform(transform), _sProgramID(sProgramID)
 {
     
 }
 
-GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object)
-: _object(new Object(object)), _model(nullptr), _transform(), _sProgramID(0)
+GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const unsigned int &sProgramID)
+: _object(new Object(object)), _model(nullptr), _transform(), _sProgramID(sProgramID)
 {
     if(asset.get() != nullptr && asset->type() == glimac::AssetType::MODEL)
     _model = std::dynamic_pointer_cast<glimac::Model>(asset);
 }
 
-GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform)
-: _object(new Object(object)), _model(nullptr), _transform(transform), _sProgramID(0)
+GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform, const unsigned int &sProgramID)
+: _object(new Object(object)), _model(nullptr), _transform(transform), _sProgramID(sProgramID)
 {
     std::cout << asset.get() << std::endl;
     if(asset.get() != nullptr && asset->type() == glimac::AssetType::MODEL)

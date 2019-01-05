@@ -20,6 +20,7 @@
 #include <glimac/Model.hpp>
 #include "app/Scene.hpp"
 #include <app/GameObject.hpp>
+#include <app/AssetManager.hpp>
 
 using namespace glimac;
 
@@ -29,12 +30,16 @@ namespace RUNBOXRUN
 	/// \brief class defining a new Scene from a Map.
 	class SceneFactory
 	{
-			
+		
+		private:
+		unsigned int _sPrograms[10];
+
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		SceneFactory(); /*!< default constructor */
 		~SceneFactory() = default; /*!< default destructor*/
         Scene constructSceneFromMap(const Map &map);
+		void initSPrograms();
 	};
 }
 

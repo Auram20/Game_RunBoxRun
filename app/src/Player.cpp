@@ -78,19 +78,15 @@ void Player::updatePlayer(SDL_Event e)
  
                 if (e.key.keysym.sym==SDLK_z){ //up
                     jump(1);
-                    displayInfos();
                 }
                  if (e.key.keysym.sym==SDLK_s){ //down
                    jump(-1);
-                   displayInfos();
                 }
                  if (e.key.keysym.sym==SDLK_d){ //right
                   	moveHorizontal(1);
-                    displayInfos();  
                 }
                  if (e.key.keysym.sym==SDLK_q){ //left
                    	moveHorizontal(-1);
-                    displayInfos();
                 } 
 
                 break;
@@ -99,22 +95,18 @@ void Player::updatePlayer(SDL_Event e)
 
                 if (e.key.keysym.sym == SDLK_z){ //up
 					jump(0);
-                    displayInfos();
                 }
                 
                 if (e.key.keysym.sym == SDLK_s){ //down
                      jump(0);
-                     displayInfos();
                  }
                 
                 if (e.key.keysym.sym==SDLK_d){ //right
                   	moveHorizontal(0);
-                    displayInfos();  
                 }
                 
                 if (e.key.keysym.sym==SDLK_q){ //left
                    	moveHorizontal(0);
-                    displayInfos();
                 }
                 break;
 

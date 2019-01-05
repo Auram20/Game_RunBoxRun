@@ -132,7 +132,7 @@ namespace RUNBOXRUN
 			if(it != _observersMouse.end()) {
 				(it->second).emplace(id);
 			} else {
-				_observersMouse.emplace(target.ptr(), std::set<unsigned int>({id}));
+				_observersMouse.emplace(target.ptr(), std::set<unsigned int>({uint(id)}));
 			}
 			return id;
 		}
