@@ -11,6 +11,7 @@
 #include <unordered_set>
 #include <algorithm>
 #include "Observer.hpp"
+#include <iostream>
 
 namespace utils {
 
@@ -57,8 +58,8 @@ namespace utils {
 
             inline void notify(const std::set<unsigned int> &id, U &target) {
                 unsigned int found = 0;
-                for(auto jt = _observers.begin(); jt != _observers.end() && found >= _observers.size(); ++jt) {
-                    if(id.find((*jt)->id()) != id.end() && *jt != nullptr) {
+                for(auto jt = _observers.begin(); jt != _observers.end() && found < _observers.size(); ++jt) {
+                    if(*jt != nullptr && id.find((*jt)->id()) != id.end()) {
                         (*jt)->update(target);
                         ++found;
                     }
@@ -130,7 +131,7 @@ namespace utils {
 
             inline void notify(const std::set<unsigned int> &id) {
                 unsigned int found = 0;
-                for(auto jt = _observers.begin(); jt != _observers.end() && found >= _observers.size(); ++jt) {
+                for(auto jt = _observers.begin(); jt != _observers.end() && found < _observers.size(); ++jt) {
                     if(id.find((*jt)->id()) != id.end() && *jt != nullptr) {
                         (*jt)->update();
                         ++found;

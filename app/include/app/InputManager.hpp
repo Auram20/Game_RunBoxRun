@@ -30,27 +30,32 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		Input(const bool isContinuous = false)
-		: _isActive(false), _isContinuous(isContinuous), _observers()
+		: _isActive(false), _isContinuous(isContinuous), _observables()
 		{
 
 		} /*!< Input's constructor with parameters*/
+		Input(const Input &input)
+		: _isActive(input._isActive), _isContinuous(input._isContinuous), _observables(input._observables)
+		{
+
+		}
 		~Input() = default; /*!< default destructor*/
 
 		inline void attach(utils::Observable<InputManager>** target, const unsigned int &id) {
-			auto it = _observers.find(target);
-			if(it == _observers.end()) {
+			auto it = _observables.find(target);
+			if(it != _observables.end()) {
 				(it->second).emplace(id);
 			} else {
-				_observers.emplace(target, std::set<unsigned int>({id}));
+				_observables.emplace(target, std::set<unsigned int>({id}));
 			}
 		}
 
 		inline const std::map<utils::Observable<InputManager>**, std::set<unsigned int>>::iterator begin() {
-			return _observers.begin();
+			return _observables.begin();
 		}
 
 		inline const std::map<utils::Observable<InputManager>**, std::set<unsigned int>>::iterator end() {
-			return _observers.end();
+			return _observables.end();
 		}
 
 		inline void turnOn() {
@@ -70,7 +75,7 @@ namespace RUNBOXRUN
 		}
 
 		private:
-		std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observers;
+		std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observables;
 
 		bool _isActive;
 		bool _isContinuous;
@@ -114,25 +119,27 @@ namespace RUNBOXRUN
 
 
 		inline int attachKey(utils::Observable<InputManager> &target, const SDLKey &key, const std::function<void(InputManager&)> &action) {
+			int id = utils::EventManager<InputManager>::attach(target, action);
+			if(id == -1) return -1;
 			auto it = _inputs.find(key);
 			if(it != _inputs.end()) {
-				int id = utils::EventManager<InputManager>::attach(target, action);
-				if(id != -1) {
-					(it->second).attach(target.ptr(), id);
-					return id;
-				}
+				(it->second).attach(target.ptr(), id);
+			} else {
+				Input newInput;
+				newInput.attach(target.ptr(), id);
+				_inputs.emplace(key, newInput);
 			}
-			return -1;
+			return id;
 		}
 
 		inline int attachMouse(utils::Observable<InputManager> &target, const std::function<void(InputManager&)> &action) {
 			int id = utils::EventManager<InputManager>::attach(target, action);
 			if(id == -1) return -1;
-			auto it = _observersMouse.find(target.ptr());
-			if(it != _observersMouse.end()) {
+			auto it = _observablesMouse.find(target.ptr());
+			if(it != _observablesMouse.end()) {
 				(it->second).emplace(id);
 			} else {
-				_observersMouse.emplace(target.ptr(), std::set<unsigned int>({uint(id)}));
+				_observablesMouse.emplace(target.ptr(), std::set<unsigned int>({uint(id)}));
 			}
 			return id;
 		}
@@ -156,6 +163,12 @@ namespace RUNBOXRUN
 			if(!(input->second).hasToContinue()) (input->second).turnOff();
 		}
 
+		inline void updateMouse() {
+			for(auto it = _observablesMouse.begin(); it != _observablesMouse.end(); ++it) {
+				utils::EventManager<InputManager>::update(it->first, it->second, *this);
+			}
+		}
+
 		inline void turnOff(const SDLKey &key) {
 			std::map<SDLKey, Input>::iterator it = _inputs.find(key);
 			if(it == _inputs.end()) return;
@@ -170,7 +183,7 @@ namespace RUNBOXRUN
 			static InputManager *_instance;
 			InputManager(); /*!< default constructor */
 			std::map<SDLKey, Input> _inputs;
-			std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observersMouse;
+			std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observablesMouse;
 			~InputManager(); /*!< default destructor*/
 			glm::ivec2 _cursor;
 	};

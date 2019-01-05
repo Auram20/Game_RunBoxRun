@@ -12,7 +12,7 @@ namespace RUNBOXRUN {
 
 	// --------------- CONSTRUCTORS && DESTRUCTORS --------------
 	InputManager::InputManager()
-	: _inputs(), _observersMouse(), _cursor(0, 0)
+	: _inputs(), _observablesMouse(), _cursor(0, 0)
 	{
 		/*std::function<void()> move = [] () {};
 
@@ -84,8 +84,12 @@ namespace RUNBOXRUN {
             }
 
             if(e.type == SDL_KEYDOWN) {
-                //man->call(e.key.keysym.sym);
+                update(e.key.keysym.sym);
             }
+
+			if(e.type == SDL_MOUSEMOTION) {
+				updateMouse();
+			}
         
 	}
 

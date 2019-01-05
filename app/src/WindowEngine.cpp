@@ -16,7 +16,7 @@
 #include "app/SceneFactory.hpp"
 #include "app/AssetManager.hpp"
 #include "app/TrackballCamera.hpp"
-
+#include "app/FreeflyCamera.hpp"
 
 using namespace glimac;
 
@@ -89,7 +89,12 @@ int WindowEngine::initWindow(FilePath app)
     sceneplayer.push(p,"Player");
 
      sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
+     sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
      sceneplayer.setCurrentCamera("TrackBall");
+
+     man->attachKey(*this, SDLK_e, [&](RUNBOXRUN::InputManager &im) {
+         sceneplayer.setCurrentCamera("Freefly");
+     });
 // // -----------------
 // BOUCLE DE RENDU 
 // -----------------
@@ -106,7 +111,7 @@ int WindowEngine::initWindow(FilePath app)
         Primary.rendermainMenu(e,render);
         Primary.drawScene();
 
-        man->updateAll();
+        //man->updateAll();
 
         if (Primary._etat==2)
             {
