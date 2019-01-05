@@ -36,14 +36,14 @@ void Menu::initmainMenu()
 
 void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 {	
-      	      	
+
 	  switch(e.type) {
 
             case SDL_KEYDOWN:
  
                 if (e.key.keysym.sym==275) //right arrow
                 { 
-             		std::string id="2";
+             			std::string id="2";
 						if ( _GameObjects.find(id) == _GameObjects.end() ) 
 						{ // not found
 							std::cout << id <<" n'est pas stockée dans la map." << std::endl;
@@ -59,7 +59,7 @@ void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 
                 if (e.key.keysym.sym==276) //left arrow 
                 { 
-	               	std::string id="2";
+	               		std::string id="2";
 						if ( _GameObjects.find(id) == _GameObjects.end() ) 
 						{ // not found
 							std::cout << id <<" n'est pas stockée dans la map." << std::endl;
@@ -75,13 +75,13 @@ void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 
 				if (e.key.keysym.sym==SDLK_RETURN) //left arrow 
                 { 
-	               	if (_etat==0)
+	               	if (_etat==1)
 	               	{
 	               		_GameObjects.clear();
 	               		// ECRAN INSTRUCTIONS
 	               	}
 
-	               	if (_etat==1)
+	               	if (_etat==0)
 	               	{
 	               		_GameObjects.clear();
 	               		_etat=2;
