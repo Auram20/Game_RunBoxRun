@@ -50,6 +50,7 @@ namespace RUNBOXRUN
 			static Player* getInstance();  /* Static access method. */
 			void updatePlayer(SDL_Event e);
 			void moveHorizontal(const double indice);
+			void turnRight();
 			void run();
 
 	};

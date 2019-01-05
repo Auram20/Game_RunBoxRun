@@ -54,6 +54,16 @@ namespace RUNBOXRUN
         inline const glm::mat4 matrix() const {
             return _rotateGlobal * _translate * _rotateLocal * _scale;
         }
+
+         inline void setRotation(glm::vec3 &angles){
+            glm::mat4 rotate = _rotateGlobal;
+            rotate = glm::rotate(rotate, angles[2], glm::vec3(0.f, 0.f, 1.f));
+            rotate = glm::rotate(rotate, angles[1], glm::vec3(0.f, 1.f, 1.f));
+            rotate = glm::rotate(rotate, angles[0], glm::vec3(1.f, 0.f, 1.f));
+            _rotateGlobal = rotate;
+        } 
+        
+        
     };
 	
 }

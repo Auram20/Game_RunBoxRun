@@ -42,8 +42,8 @@ Player* Player::getInstance()
 	if(_instance == nullptr)
 	{
  		 glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
- 		 Transform transformPlayer(glm::vec3(0, 0, -5),glm::vec3(0.5));
-		_instance = new Player(0.1,glm::vec3(0, -0 , -5), glm::vec3(0.5),glm::vec3(100),3,0,modelPlayer,transformPlayer);
+ 		 Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
+		_instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),3,0,modelPlayer,transformPlayer);
 		}
 
 	return _instance;
@@ -77,6 +77,12 @@ void const Player::jump(const double indice)
      _object->setPos(runvec);
  }
 
+ void Player::turnRight()
+ {  
+    glm::vec3 myVec=glm::vec3(0,45,0);
+    _transform.setRotation(myVec);
+ }
+
 void Player::updatePlayer(SDL_Event e) 
 {
     //gameEvents handling
@@ -93,11 +99,25 @@ void Player::updatePlayer(SDL_Event e)
                    jump(-1);
                 }
                  if (e.key.keysym.sym==SDLK_d){ //right
-                  	moveHorizontal(1);
+                    if (_object->getPos()[0] >= -1 && _object->getPos()[0] < 1)
+                        {
+                             moveHorizontal((_object->getPos()[0]+1));
+                        }
+                    // if (_object->getPos()[0] == 1) 
+                    //     {
+                    //         std::cout << _object->getPos()[0] << std::endl;
+                    //        // turnRight();
+                    //        // moveHorizontal((_object->getPos()[0]+1));
+                    //     }    
                 }
+
                  if (e.key.keysym.sym==SDLK_q){ //left
-                   	moveHorizontal(-1);
-                } 
+
+                    if (_object->getPos()[0] > -1 && _object->getPos()[0] <= 1)
+                        {
+                             moveHorizontal((_object->getPos()[0]-1));
+                        }
+                 } 
 
                 break;
 
@@ -112,11 +132,10 @@ void Player::updatePlayer(SDL_Event e)
                  }
                 
                 if (e.key.keysym.sym==SDLK_d){ //right
-                  	moveHorizontal(0);
                 }
                 
                 if (e.key.keysym.sym==SDLK_q){ //left
-                   	moveHorizontal(0);
+                   
                 }
                 break;
 
