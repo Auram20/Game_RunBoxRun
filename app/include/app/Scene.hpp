@@ -53,6 +53,17 @@ namespace RUNBOXRUN
 			(_currentCam->second)->activate();
 		}
 
+		inline void runCameras(){
+			std::for_each(
+				_Cameras.begin(),
+				_Cameras.end(),
+				[&](const std::pair<std::string, glimac:: Camera*> &pair)
+					{
+						pair.second->translateZ(0.1);
+					}
+				);
+		}
+
 		inline void changeCurrentCamera() {
 			(_currentCam->second)->activate();
 			++_currentCam;

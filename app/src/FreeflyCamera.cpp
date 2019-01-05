@@ -52,3 +52,5 @@ void FreeflyCamera::rotateUp(float degrees) {
 const glm::mat4 FreeflyCamera::getViewMatrix() const {
     return glm::lookAt(m_Position, m_Position + m_FrontVector, m_UpVector);
 }
+
+

@@ -90,7 +90,8 @@ int WindowEngine::initWindow(FilePath app)
 
      sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
      sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
-     sceneplayer.setCurrentCamera("TrackBall");
+     sceneplayer.setCurrentCamera("Freefly");
+
 
      man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
          sceneplayer.changeCurrentCamera();
@@ -111,14 +112,14 @@ int WindowEngine::initWindow(FilePath app)
             man->execute(e);
         }
 
-         render->clear();
+        render->clear();
         Primary.drawScene();
         Primary.rendermainMenu(e,render);
         //man->updateAll();
 
         if (Primary._etat==2)
             {
-
+                     sceneplayer.runCameras(),
                      p->updatePlayer(e);
                      sceneplayer.drawScene(); 
 

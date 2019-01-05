@@ -42,6 +42,7 @@ namespace RUNBOXRUN
 			_jumpState = jumpState;
 			}/*!< display player's state : jumping, crouching or running*/
 
+
 			//  PLAYER FUNCTIONS
 
 			virtual void displayInfos(); /*!< display of player's informations */		
@@ -49,6 +50,7 @@ namespace RUNBOXRUN
 			static Player* getInstance();  /* Static access method. */
 			void updatePlayer(SDL_Event e);
 			void moveHorizontal(const double indice);
+			void run();
 
 	};
 }
