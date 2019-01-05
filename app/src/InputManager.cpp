@@ -12,7 +12,7 @@ namespace RUNBOXRUN {
 
 	// --------------- CONSTRUCTORS && DESTRUCTORS --------------
 	InputManager::InputManager()
-	: _inputs()
+	: _inputs(), _observersMouse(), _cursor(0, 0)
 	{
 		/*std::function<void()> move = [] () {};
 
@@ -80,7 +80,7 @@ namespace RUNBOXRUN {
 	void InputManager::execute(const SDL_Event &e) {
 
             if(e.type == SDL_QUIT) {
-                update(EventCode::QUITEVENT, e);
+                //update(EventCode::QUITEVENT);
             }
 
             if(e.type == SDL_KEYDOWN) {
@@ -90,7 +90,7 @@ namespace RUNBOXRUN {
 	}
 
 	InputManager::~InputManager() {
-		delete _instance;
+		_instance = nullptr;
 	}
 
 	InputManager *InputManager::getInstance() {

@@ -11,6 +11,7 @@
 #include <utils/EventManager.hpp>
 #include <vector>
 #include <SDL/SDL.h>
+#include <utils/glm.hpp>
 
 namespace RUNBOXRUN
 {
@@ -22,35 +23,156 @@ namespace RUNBOXRUN
 		QUITEVENT
 	};
 
-	struct Input {
+	class InputManager;
+
+	class Input {
+
+		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		Input(const bool isContinuous = false)
-		: _isActive(false), _isContinuous(isContinuous)
-		{}; /*!< Input's constructor with parameters*/
+		: _isActive(false), _isContinuous(isContinuous), _observers()
+		{
+
+		} /*!< Input's constructor with parameters*/
 		~Input() = default; /*!< default destructor*/
 
+		inline void attach(utils::Observable<InputManager>** target, const unsigned int &id) {
+			auto it = _observers.find(target);
+			if(it == _observers.end()) {
+				(it->second).emplace(id);
+			} else {
+				_observers.emplace(target, std::set<unsigned int>({id}));
+			}
+		}
+
+		inline const std::map<utils::Observable<InputManager>**, std::set<unsigned int>>::iterator begin() {
+			return _observers.begin();
+		}
+
+		inline const std::map<utils::Observable<InputManager>**, std::set<unsigned int>>::iterator end() {
+			return _observers.end();
+		}
+
+		inline void turnOn() {
+			_isActive = true;
+		}
+
+		inline void turnOff() {
+			_isActive = false;
+		}
+
+		inline bool hasToContinue() const {
+			return _isActive && _isContinuous;
+		}
+
+		inline const bool isActive() const {
+			return _isActive;
+		}
+
+		private:
+		std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observers;
 
 		bool _isActive;
 		bool _isContinuous;
 	};
 
-
 	/// \class Bonus
 	/// \brief class defining the input manager.
-	class InputManager : public utils::EventManager<EventCode, SDL_Event>
+	class InputManager : public utils::EventManager<InputManager>
 	{
 			
 		public:
-
 		// CONSTRUCTORS & DESTRUCTOR
 		static InputManager *getInstance();
 		void execute(const SDL_Event &e);
+		static const glm::ivec2 getMousePosition() {
+			glm::ivec2 mousePos;
+			SDL_GetMouseState(&mousePos.x, &mousePos.y);
+			return mousePos;
+		}
+		
+		inline void setMousePosition() {
+			SDL_GetMouseState(&_cursor.x, &_cursor.y);
+		}
+
+		inline bool pollEvent(SDL_Event& e) {
+			return SDL_PollEvent(&e);
+		}
+
+		inline bool isKeyPressed(SDLKey key) const {
+			return SDL_GetKeyState(nullptr)[key];
+		}
+
+		// button can SDL_BUTTON_LEFT, SDL_BUTTON_RIGHT and SDL_BUTTON_MIDDLE
+		inline bool isMouseButtonPressed(uint32_t button) const {
+			return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON(button);
+		}
+
+		inline const glm::ivec2 mousePosition() const {
+			return _cursor;
+		}
+
+
+		inline int attachKey(utils::Observable<InputManager> &target, const SDLKey &key, const std::function<void(InputManager&)> &action) {
+			auto it = _inputs.find(key);
+			if(it != _inputs.end()) {
+				int id = utils::EventManager<InputManager>::attach(target, action);
+				if(id != -1) {
+					(it->second).attach(target.ptr(), id);
+					return id;
+				}
+			}
+			return -1;
+		}
+
+		inline int attachMouse(utils::Observable<InputManager> &target, const std::function<void(InputManager&)> &action) {
+			int id = utils::EventManager<InputManager>::attach(target, action);
+			if(id == -1) return -1;
+			auto it = _observersMouse.find(target.ptr());
+			if(it != _observersMouse.end()) {
+				(it->second).emplace(id);
+			} else {
+				_observersMouse.emplace(target.ptr(), std::set<unsigned int>({id}));
+			}
+			return id;
+		}
+
+		inline void update(const SDLKey &key) {
+			std::map<SDLKey, Input>::iterator input = _inputs.find(key);
+			if(input == _inputs.end()) return;
+
+			if(!(input->second).isActive()) {
+				(input->second).turnOn();
+			}
+			else {
+				return;
+			}
+
+			for(auto it = (input->second).begin(); it != (input->second).end(); ++it) {
+				utils::EventManager<InputManager>::update(it->first, it->second, *this);
+			}
+
+
+			if(!(input->second).hasToContinue()) (input->second).turnOff();
+		}
+
+		inline void turnOff(const SDLKey &key) {
+			std::map<SDLKey, Input>::iterator it = _inputs.find(key);
+			if(it == _inputs.end()) return;
+			(it->second).turnOff();
+		}
+
+		inline void updateAll() {
+			utils::EventManager<InputManager>::updateAll(*this);
+		}
 
 		private:
 			static InputManager *_instance;
 			InputManager(); /*!< default constructor */
 			std::map<SDLKey, Input> _inputs;
+			std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observersMouse;
 			~InputManager(); /*!< default destructor*/
+			glm::ivec2 _cursor;
 	};
 }
 

@@ -10,7 +10,7 @@
 #include <GL/glew.h>
 #include <vector>
 #include <map>
-#include <glimac/Camera.hpp>
+#include <app/Camera.hpp>
 #include <utils/Error.hpp>
 #include <algorithm>
 #include "app/GameObject.hpp"
@@ -45,10 +45,10 @@ namespace RUNBOXRUN
 
 		inline void setCurrentCamera(const std::string &name) {
 			if(_Cameras.find(name) != _Cameras.end())
-				_currentCam = _Cameras.at(name).get();
+				_currentCam = _Cameras.at(name);
 		}
 
-		inline void addCamera(const std::string &name, const glimac::Camera &cam) {
+		inline void addCamera(const std::string &name, glimac::Camera *cam) {
 			if(_Cameras.find(name) == _Cameras.end())
 				_Cameras.emplace(name, cam);
 		}
@@ -68,7 +68,7 @@ namespace RUNBOXRUN
 
 		private:
             std::vector<GameObject *> _GameObjects;
-			std::map<std::string, std::unique_ptr<glimac::Camera>> _Cameras;
+			std::map<std::string, glimac::Camera *> _Cameras;
 			glimac::Camera *_currentCam;
             
 	};

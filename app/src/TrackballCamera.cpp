@@ -1,4 +1,4 @@
-#include <glimac/TrackballCamera.hpp>
+#include <app/TrackballCamera.hpp>
 
 using namespace glimac;
 
@@ -33,10 +33,10 @@ void TrackballCamera::translateY(float t) {
 }
 
 const glm::mat4 TrackballCamera::getViewMatrix() const {
-    glm::vec3 position = glm::vec3(0.f, 0.f, -m_fDistance);
-    position *= glm::rotate(glm::mat4(1.0), glm::radians(m_fAngleY), glm::vec3(0.f, 1.f, 0.f));
-    position *= glm::rotate(glm::mat4(1.0), glm::radians(m_fAngleX), glm::vec3(1.f, 0.f, 0.f));
-    return glm::lookAt(position + m_PosTarget, m_PosTarget, glm::vec3(0, 1, 0));
+    glm::vec4 position = glm::vec4(0.f, 0.f, -m_fDistance, 0.f);
+    position = glm::rotate(glm::mat4(1.f), glm::radians(m_fAngleY), glm::vec3(0.f, 1.f, 0.f)) * position;
+    position = glm::rotate(glm::mat4(1.f), glm::radians(m_fAngleX), glm::vec3(1.f, 0.f, 0.f)) * position;
+    return glm::lookAt(glm::vec3(position) + m_PosTarget, m_PosTarget, glm::vec3(0, 1, 0));
 }
 
 /*glm::vec3 TrackballCamera::getVectorDirection() const {

@@ -2,7 +2,7 @@
 #define TRACKBALLCAMERA_H__
 
 #include <utils/glm.hpp>
-#include <glimac/Camera.hpp>
+#include <app/Camera.hpp>
 
 namespace glimac {
 

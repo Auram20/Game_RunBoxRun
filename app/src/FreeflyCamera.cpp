@@ -1,4 +1,4 @@
-#include "glimac/FreeflyCamera.hpp"
+#include "app/FreeflyCamera.hpp"
 
 using namespace glimac;
 

@@ -8,7 +8,7 @@
 #ifndef FREEFLYCAMERA_H__
 #define FREEFLYCAMERA_H__
 
-#include <glimac/Camera.hpp>
+#include <app/Camera.hpp>
 
 namespace glimac {
 

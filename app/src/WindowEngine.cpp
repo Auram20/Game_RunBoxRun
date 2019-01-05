@@ -15,7 +15,7 @@
 #include "app/Menu.hpp"
 #include "app/SceneFactory.hpp"
 #include "app/AssetManager.hpp"
-
+#include <app/TrackballCamera.hpp>
 
 using namespace glimac;
 
@@ -83,6 +83,8 @@ int WindowEngine::initWindow(FilePath app)
 
     Menu main;
     Scene scene = main.mainMenuRender();
+    scene.addCamera("TrackBall", new glimac::TrackballCamera());
+    scene.setCurrentCamera("TrackBall");
 
 // BOUCLE DE RENDU 
     glEnable(GL_DEPTH_TEST);
@@ -97,6 +99,7 @@ int WindowEngine::initWindow(FilePath app)
         // p->updatePlayer(e);
         // sceneplayer.drawScene(render); 
         scene.drawScene();
+        man->updateAll();
 
 // POUR QUITTER LE JEU 
         switch(e.type) {

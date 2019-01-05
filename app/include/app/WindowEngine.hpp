@@ -26,7 +26,7 @@ namespace glimac
 {
 	/// \class WindowEngine
 	/// \brief class for  WindowEngine.
-	class WindowEngine : public utils::Observable<EventCode, SDL_Event>
+	class WindowEngine : public utils::Observable<InputManager>
 	{
 			
 		public:
