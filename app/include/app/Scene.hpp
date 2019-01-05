@@ -48,8 +48,18 @@ namespace RUNBOXRUN
 		} /*!< draw all game objects from map*/
 
 		inline void setCurrentCamera(const std::string &name) {
-			if(_Cameras.find(name) != _Cameras.end())
-				_currentCam = _Cameras.at(name);
+			if(_currentCam != _Cameras.end()) (_currentCam->second)->activate();
+			_currentCam = _Cameras.find(name);
+			(_currentCam->second)->activate();
+		}
+
+		inline void changeCurrentCamera() {
+			(_currentCam->second)->activate();
+			++_currentCam;
+			if(_currentCam == _Cameras.end()) {
+				_currentCam = _Cameras.begin();
+			}
+			(_currentCam->second)->activate();
 		}
 
 		inline void addCamera(const std::string &name, glimac::Camera *cam) {
@@ -62,10 +72,10 @@ namespace RUNBOXRUN
 		} /*!< push game object in scene */
 
 		inline const glm::mat4 getCurrentViewMatrix() const {
-			if(_currentCam == nullptr) {
+			if(_currentCam == _Cameras.end()) {
 				return glm::mat4(1.f);
 			} else {
-				return _currentCam->getViewMatrix();
+				return (_currentCam->second)->getViewMatrix();
 			}
 		}
 
@@ -73,7 +83,7 @@ namespace RUNBOXRUN
 		protected:
             std::map<std::string, GameObject *> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;
-			glimac::Camera *_currentCam;
+			std::map<std::string, glimac::Camera*>::iterator _currentCam;
             
 	};
 }

@@ -92,8 +92,12 @@ int WindowEngine::initWindow(FilePath app)
      sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
      sceneplayer.setCurrentCamera("TrackBall");
 
-     man->attachKey(*this, SDLK_e, [&](RUNBOXRUN::InputManager &im) {
-         sceneplayer.setCurrentCamera("Freefly");
+     man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
+         sceneplayer.changeCurrentCamera();
+     });
+
+     man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
+         Camera::lock();
      });
 // // -----------------
 // BOUCLE DE RENDU 

@@ -22,34 +22,7 @@ namespace glimac
 			
 		public:
         // CONSTRUCTORS & DESTRUCTOR
-		Camera()
-		: Observable()
-		{
-			RUNBOXRUN::InputManager *im = RUNBOXRUN::InputManager::getInstance();
-			im->attachMouse(*this, [&](RUNBOXRUN::InputManager &im) {
-				glm::vec2 pos = im.getMousePosition();
-				glm::vec2 cursor = im.mousePosition();
-				
-				if(cursor.x-pos.x > 0)
-				{
-					rotateLeft(-1);
-				}
-				if(cursor.x-pos.x < 0)
-				{
-					rotateLeft(1);
-				}
-				if(cursor.y-pos.y > 0)
-				{
-					rotateUp(1);
-				}
-				if(cursor.y-pos.y < 0)
-				{
-					rotateUp(-1);
-				}
-
-				im.setMousePosition();
-			});
-		} /*!< default constructor */
+		Camera(); /*!< default constructor */
 		virtual ~Camera() = default; /*!< default destructor*/
 
         virtual const glm::mat4 getViewMatrix() const = 0;
@@ -59,10 +32,23 @@ namespace glimac
 		virtual void translateX(float t) = 0;
 		virtual void translateY(float t) = 0;
 
+		inline void activate() {
+			_isActive = !_isActive;
+		}
+
+		static inline void lock() {
+			_locked = !_locked;
+		}
+
+		private:
+		static bool _locked;
+		bool _isActive;
+
 		// Camera FUNCTIONS
 		//void displayInfos(); /*!< display of Camera's informations */
 
 	};
+
 }
 
 #endif

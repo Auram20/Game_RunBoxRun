@@ -9,13 +9,13 @@
 using namespace RUNBOXRUN;
 
 Scene::Scene(const Scene &sc)
-: _GameObjects(sc._GameObjects), _Cameras(sc._Cameras), _currentCam(sc._currentCam)
+: _GameObjects(sc._GameObjects), _Cameras(sc._Cameras), _currentCam(_Cameras.begin())
 {
 
 }
 
 Scene::Scene()
-: _GameObjects(), _Cameras(), _currentCam(nullptr)
+: _GameObjects(), _Cameras(), _currentCam(_Cameras.end())
 {
 
 }
