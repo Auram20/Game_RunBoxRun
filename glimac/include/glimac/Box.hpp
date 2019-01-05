@@ -38,7 +38,7 @@ public:
     inline void initIndex() {
         _index = {
             0, 4, 7, //Left Face
-            0, 3, 4,
+            0, 3, 7,
             0, 1, 2, //Front Face
             0, 2, 3,
             1, 5, 6, //Right Face
