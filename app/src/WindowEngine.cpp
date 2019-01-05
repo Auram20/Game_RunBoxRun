@@ -106,6 +106,7 @@ int WindowEngine::initWindow(FilePath app)
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
+        Uint32 startTime = SDL_GetTicks();
         // Event loop:
         SDL_Event e;
         while(_windowManager.pollEvent(e)) {
@@ -138,6 +139,13 @@ int WindowEngine::initWindow(FilePath app)
         }
 
        _windowManager.swapBuffers();
+
+        Uint32 elapsedTime = SDL_GetTicks() - startTime;
+
+        /* Si trop peu de temps s'est écoulé, on met en pause le programme */
+        if (elapsedTime < FRAMERATE_MILLISECONDS) {
+        SDL_Delay(FRAMERATE_MILLISECONDS - elapsedTime);
+}
 
      }
 

@@ -22,6 +22,9 @@
 #include <utils/FilePath.hpp>
 #include <utils/Observable.hpp>
 
+#define FPS 60
+#define FRAMERATE_MILLISECONDS 1000 / FPS
+
 using namespace RUNBOXRUN;
 namespace glimac
 {
