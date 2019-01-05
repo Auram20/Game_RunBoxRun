@@ -15,6 +15,7 @@
 #include "app/Map.hpp"
 #include "app/SceneFactory.hpp"
 #include "app/AssetManager.hpp"
+#include "app/TrackballCamera.hpp"
 
 
 using namespace glimac;
@@ -87,8 +88,8 @@ int WindowEngine::initWindow(FilePath app)
     p->displayInfos(); 
     sceneplayer.push(p,"Player");
 
-//     sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
-//     sceneplayer.setCurrentCamera("TrackBall");
+     sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
+     sceneplayer.setCurrentCamera("TrackBall");
 // // -----------------
 // BOUCLE DE RENDU 
 // -----------------

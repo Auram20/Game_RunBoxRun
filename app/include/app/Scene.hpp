@@ -40,11 +40,8 @@ namespace RUNBOXRUN
 
 				[&](const std::pair<std::string,GameObject *> &pair)
 				{
-					std::cout << pair.first << std::endl; 
-					if(pair.second->programID() > 0)
-						std::cout << "Program used::" << pair.second->programID() << std::endl;
 					render->program(pair.second->programID());
-					render->sendDatas(pair.second->transformMatrix() * getCurrentViewMatrix());
+					render->sendDatas(getCurrentViewMatrix() * pair.second->transformMatrix());
 					pair.second->draw();
 				}
 			);

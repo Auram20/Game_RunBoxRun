@@ -47,7 +47,7 @@ public:
             4, 6, 7,
             2, 6, 7, //Top Face
             2, 3, 7,
-            0, 1, 3, //Bottom Face
+            0, 1, 5, //Bottom Face
             0, 5, 4
         };
     };
