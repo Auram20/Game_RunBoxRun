@@ -111,10 +111,9 @@ int WindowEngine::initWindow(FilePath app)
             man->execute(e);
         }
 
-        render->clear();
-        Primary.rendermainMenu(e,render);
+         render->clear();
         Primary.drawScene();
-
+        Primary.rendermainMenu(e,render);
         //man->updateAll();
 
         if (Primary._etat==2)
