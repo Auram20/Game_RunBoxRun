@@ -95,8 +95,10 @@ namespace RUNBOXRUN
                 if(it != gobjs.end()) {
                     GameObject *gobj = it->second;
                     if(gobj != nullptr && glimac::conjoint(_boundingBox * _transform.matrix(), gobj->_boundingBox * gobj->_transform.matrix())) {
+                        
                         gobj->atCollision(target->second);
-                    }
+                        
+                        }
                 }
             }
         }
@@ -104,10 +106,10 @@ namespace RUNBOXRUN
 
             std::unique_ptr<Object> _object;
             Transform _transform;
+
 		protected:
             std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
-  
             GLuint _sProgramID;  //utilisera un shader particulier s'il est assigné, le défaut sinon
             glimac::BBox3f _boundingBox;
             std::vector<std::function<void(void)>> _atCollision;

@@ -22,11 +22,15 @@ namespace RUNBOXRUN
 	{
 			
 		private:
-			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState); /*!< private constructor with parameters*/
-			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform); /*!< private constructor with parameters and model*/
+			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState,const bool &touched); /*!< private constructor with parameters*/
+			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState,const bool &touched, const Uint32 &vulnerabilityTime, const glimac::Model &model, const Transform &transform); /*!< private constructor with parameters and model*/
 			unsigned int _health; /*!< health points of the player */
 			int _jumpState;  /*!< check if player is jumping = 2 /crouching = 1/standing = 0 */	
 			static Player* _instance; /*! < here will be the instance stored */
+			bool _touched;
+			Uint32  _vulnerabilityTime;
+			Uint32  _vulnerabilityDelay;
+
 
 		public:
 			~Player();/*!< default destructor*/
@@ -43,6 +47,11 @@ namespace RUNBOXRUN
 			}/*!< display player's state : jumping, crouching or running*/
 
 
+			inline void setTouched(const bool touched)
+			{
+			_touched = touched;
+			}
+
 			//  PLAYER FUNCTIONS
 
 			virtual void displayInfos(); /*!< display of player's informations */		
@@ -52,6 +61,8 @@ namespace RUNBOXRUN
 			void moveHorizontal(const double indice);
 			void turnRight();
 			void run();
+			bool const isInvulnerable();
+			void const vulnerabity();
 
 	};
 }
