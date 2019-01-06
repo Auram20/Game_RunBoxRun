@@ -15,12 +15,12 @@ namespace RUNBOXRUN
 {
     
     struct Transform {
-        glm::mat4 _scale;
-        glm::mat4 _translate;
-        glm::mat4 _rotateLocal;
-        glm::mat4 _rotateGlobal;
+        glm::vec3 _scale;
+        glm::vec3 _translate;
+        glm::vec3 _rotateLocal;
+        glm::vec3 _rotateGlobal;
 
-        const glm::mat4 rotate(const glm::mat4 &matrix, const glm::vec3 &angles) {
+        const glm::mat4 rotate(const glm::mat4 &matrix, const glm::vec3 &angles) const {
             glm::mat4 rotate = matrix;
             rotate = glm::rotate(rotate, angles[2], glm::vec3(0.f, 0.f, 1.f));
             rotate = glm::rotate(rotate, angles[1], glm::vec3(0.f, 1.f, 1.f));
@@ -34,12 +34,8 @@ namespace RUNBOXRUN
             const glm::vec3 &rotateLocal = glm::vec3(0.f, 0.f, 0.f),
             const glm::vec3 &rotateGlobal = glm::vec3(0.f, 0.f, 0.f)
         )
-        : _scale(glm::mat4(1.f)), _translate(glm::mat4(1.f)), _rotateLocal(glm::mat4(1.f)), _rotateGlobal(glm::mat4(1.f))
+        : _scale(scale), _translate(pos), _rotateLocal(rotateLocal), _rotateGlobal(rotateGlobal)
         {
-            _translate = glm::translate(_translate, pos);
-            _scale = glm::scale(_scale, scale);
-            _rotateLocal = rotate(_rotateLocal, rotateLocal);
-            _rotateGlobal = rotate(_rotateGlobal, rotateGlobal);
         }
 
         Transform(const Transform &transform)
@@ -52,15 +48,16 @@ namespace RUNBOXRUN
         ~Transform() = default;
 
         inline const glm::mat4 matrix() const {
-            return _rotateGlobal * _translate * _rotateLocal * _scale;
+            glm::mat4 translate = glm::translate(glm::mat4(1.f), _translate);
+            glm::mat4 scale = glm::scale(glm::mat4(1.f), _scale);
+            glm::mat4 rotateLocal = rotate(glm::mat4(1.f), _rotateLocal);
+            glm::mat4 rotateGlobal = rotate(glm::mat4(1.f), _rotateGlobal);
+
+            return rotateGlobal * translate * rotateLocal * scale;
         }
 
          inline void setRotation(glm::vec3 &angles){
-            glm::mat4 rotate = _rotateGlobal;
-            rotate = glm::rotate(rotate, angles[2], glm::vec3(0.f, 0.f, 1.f));
-            rotate = glm::rotate(rotate, angles[1], glm::vec3(0.f, 1.f, 1.f));
-            rotate = glm::rotate(rotate, angles[0], glm::vec3(1.f, 0.f, 1.f));
-            _rotateGlobal = rotate;
+           _rotateLocal = angles;
         } 
         
         

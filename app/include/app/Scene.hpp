@@ -40,6 +40,7 @@ namespace RUNBOXRUN
 
 				[&](const std::pair<std::string,GameObject *> &pair)
 				{
+					(pair.second)->checkCollisions(_GameObjects);
 					render->program(pair.second->programID());
 					render->sendDatas(getCurrentViewMatrix() * pair.second->transformMatrix());
 					pair.second->draw();

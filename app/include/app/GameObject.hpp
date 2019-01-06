@@ -13,7 +13,10 @@
 #include <glimac/Model.hpp>
 #include <game/Object.hpp>
 #include <memory>
+#include <vector>
+#include <functional>
 #include <glimac/Program.hpp>
+#include <glimac/BBox.hpp>
 
 namespace RUNBOXRUN
 {
@@ -72,6 +75,32 @@ namespace RUNBOXRUN
 
         virtual void displayInfos(); /*!< display object informations */
 
+        inline void atCollision(const unsigned int &id) {
+            if(id > _atCollision.size()) return;
+            _atCollision[id]();
+        }
+
+        inline unsigned int addCollisionBehaviour(const std::function<void(void)> &newBehaviour) {
+            _atCollision.push_back(newBehaviour);
+            return _atCollision.size() - 1;
+        }
+
+        inline void addCollisionTarget(const std::string &id, const unsigned int &behaviour) {
+            _targets.emplace(id, behaviour);
+        }
+
+        inline void checkCollisions(const std::map<std::string, GameObject *> &gobjs) {
+            for(auto target = _targets.begin(); target != _targets.end(); target++) {
+                auto it = gobjs.find(target->first);
+                if(it != gobjs.end()) {
+                    GameObject *gobj = it->second;
+                    if(gobj != nullptr && glimac::conjoint(_boundingBox * _transform.matrix(), gobj->_boundingBox * gobj->_transform.matrix())) {
+                        gobj->atCollision(target->second);
+                    }
+                }
+            }
+        }
+
 
             std::unique_ptr<Object> _object;
             Transform _transform;
@@ -80,7 +109,9 @@ namespace RUNBOXRUN
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
   
             GLuint _sProgramID;  //utilisera un shader particulier s'il est assigné, le défaut sinon
-            
+            glimac::BBox3f _boundingBox;
+            std::vector<std::function<void(void)>> _atCollision;
+            std::map<std::string, unsigned int> _targets;
 	};
 }
 

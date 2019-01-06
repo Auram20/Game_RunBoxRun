@@ -51,8 +51,8 @@ void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 						else 
 						{ // found
 
-							 _GameObjects.find(id)->second->_transform._translate[3][0]=1.9;
-							 _GameObjects.find(id)->second->_transform._scale[0][0]=1;
+							 _GameObjects.find(id)->second->_transform._translate[0]=1.9;
+							 _GameObjects.find(id)->second->_transform._scale[0]=1;
 							 _etat=1; // INSTRUCTIONS
 						}
                 }
@@ -66,8 +66,8 @@ void Menu::rendermainMenu(SDL_Event e,glimac::Render *render)
 						} 
 						else 
 						{ // found
-							 _GameObjects.find(id)->second->_transform._translate[3][0]=-2.6;
-							 _GameObjects.find(id)->second->_transform._scale[0][0]=0.8;
+							 _GameObjects.find(id)->second->_transform._translate[0]=-2.6;
+							 _GameObjects.find(id)->second->_transform._scale[0]=0.8;
 							 _etat=0;
 						}
 				}

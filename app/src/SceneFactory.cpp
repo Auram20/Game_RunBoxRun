@@ -38,6 +38,7 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 			{
 				Obstacle *obs = new Obstacle(1, glm::vec3(0), glm::vec3(100), glm::vec3(100), "mur");
 				GameObject *go = new GameObject(bo, *obs,Transform(glm::vec3(datas[i+1][0], datas[i+2][0], datas[i+3][0]),glm::vec3(0.5)), _sPrograms[1]);
+				go->addCollisionTarget("Player", 0);
 				newScene.push(go,"Obstacle"+std::to_string(i));
 			}
 			break;

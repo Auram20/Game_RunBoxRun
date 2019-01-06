@@ -44,6 +44,9 @@ Player* Player::getInstance()
  		 glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
  		 Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
 		_instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),3,0,modelPlayer,transformPlayer);
+        _instance->addCollisionBehaviour([](){
+            std::cout << "touché !" << std::endl;
+        });
 		}
 
 	return _instance;

@@ -29,6 +29,19 @@ struct BBox3f
     bool empty() const { for (auto i = 0u; i < dim; i++) if (lower[i] > upper[i]) return true; return false; }
 
     glm::vec3 size() const { return upper - lower; }
+
+    const BBox3f operator+(const glm::vec3& v) {
+      BBox3f bbox(lower + v, upper + v);
+      return bbox;
+    }
+
+    const BBox3f operator*(const glm::mat4& m) {
+      BBox3f bbox(
+        glm::vec3(m * glm::vec4(lower, 1)),
+        glm::vec3(m * glm::vec4(upper, 1))
+      );
+      return bbox;
+    }
 };
 
 /*! tests if box is empty */
