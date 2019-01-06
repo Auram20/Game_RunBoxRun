@@ -28,20 +28,18 @@ namespace RUNBOXRUN
 			
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-		GameObject(); /*!< default constructor */
-        GameObject(const Object &object, const unsigned int &sProgramID = 0);
+        GameObject(const unsigned int &sProgramID = 0); /*!< default constructor */
         GameObject(const glimac::Model &model, const unsigned int &sProgramID = 0);
-        GameObject(const glimac::Model &model, const Object &object, const unsigned int &sProgramID = 0);
-        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const unsigned int &sProgramID = 0);
-        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform, const unsigned int &sProgramID = 0);
+        GameObject(const std::shared_ptr<glimac::Asset> &asset, const Transform &transform, const unsigned int &sProgramID = 0);
+        GameObject(const std::shared_ptr<glimac::Asset> &asset, const unsigned int &sProgramID = 0);
         GameObject(const GameObject &gobj);
         GameObject(const GameObject &gobj, const Transform &transform);
-        GameObject(const glimac::Model &model, const Object &object, const Transform &transform, const unsigned int &sProgramID = 0);
+        GameObject(const glimac::Model &model, const Transform &transform, const unsigned int &sProgramID = 0);
 		~GameObject(); /*!< default destructor*/
 
         void draw() const;
 
-        inline const glm::vec3 getLocalPos() const {
+        /*inline const glm::vec3 getLocalPos() const {
             return _object->getPos();
         }
 
@@ -59,7 +57,7 @@ namespace RUNBOXRUN
 
         inline const glm::vec3 getGlobalPos() const {
             return glm::vec3(_transform.matrix() * glm::vec4(getLocalPos(), 1.f));
-        }
+        }*/
 
         inline const glm::mat4 transformMatrix() const {
             return _transform.matrix();
@@ -72,6 +70,10 @@ namespace RUNBOXRUN
         // SETTERS
         inline void setTrans(glm::vec3 &newTrans){ _transform = newTrans;} /*!< setter object's position */
         
+        inline const glm::vec3 position() const {
+            return _transform._translate;
+        }
+
 
         virtual void displayInfos(); /*!< display object informations */
 
@@ -102,7 +104,6 @@ namespace RUNBOXRUN
         }
 
 
-            std::unique_ptr<Object> _object;
             Transform _transform;
 		protected:
             std::shared_ptr<glimac::Model> _model;

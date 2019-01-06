@@ -14,11 +14,11 @@ using namespace RUNBOXRUN;
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState)
-: GameObject(Object(speed, position, size, color)),  _health(health), _jumpState(jumpState)
+: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState)
 {}
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform)
-: GameObject(glimac::Model(model),Object(speed, position, size, color),Transform(transform)),  _health(health), _jumpState(jumpState)
+: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState)
 {}
 
 
@@ -55,29 +55,29 @@ Player* Player::getInstance()
 void const Player::jump(const double indice)
 {
 	 glm::vec3 jumpvec(0.f);
- 	 jumpvec=_object->getPos();
+ 	 jumpvec=_transform._translate;
 	 jumpvec[1]=indice;
 	_jumpState = indice;
  	 setTrans(jumpvec);
- 	 _object->setPos(jumpvec);
+ 	 _transform._translate = jumpvec;
 }
 
  void Player::moveHorizontal(const double indice)
  {
  	 glm::vec3 horizvec(0.f);
- 	 horizvec=_object->getPos();
+ 	 horizvec=_transform._translate;
 	 horizvec[0]=indice;
  	 setTrans(horizvec);
- 	 _object->setPos(horizvec);
+ 	 _transform._translate = horizvec;
  }
 
  void Player::run()
  {
      glm::vec3 runvec(0.f);
-     runvec=_object->getPos();
-     runvec[2]-=_object->getSpeed();
+     runvec=_transform._translate;
+     runvec[2]-= _speed;
      setTrans(runvec);
-     _object->setPos(runvec);
+     _transform._translate = runvec;
  }
 
  void Player::turnRight()
@@ -102,9 +102,9 @@ void Player::updatePlayer(SDL_Event e)
                    jump(-1);
                 }
                  if (e.key.keysym.sym==SDLK_d){ //right
-                    if (_object->getPos()[0] >= -1 && _object->getPos()[0] < 1)
+                    if (_transform._translate[0] >= -1 && _transform._translate[0] < 1)
                         {
-                             moveHorizontal((_object->getPos()[0]+1));
+                             moveHorizontal((position()[0]+1));
                         }
                     // if (_object->getPos()[0] == 1) 
                     //     {
@@ -116,9 +116,9 @@ void Player::updatePlayer(SDL_Event e)
 
                  if (e.key.keysym.sym==SDLK_q){ //left
 
-                    if (_object->getPos()[0] > -1 && _object->getPos()[0] <= 1)
+                    if (position()[0] > -1 && position()[0] <= 1)
                         {
-                             moveHorizontal((_object->getPos()[0]-1));
+                             moveHorizontal((position()[0]-1));
                         }
                  } 
 

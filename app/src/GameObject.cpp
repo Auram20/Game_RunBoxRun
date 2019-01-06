@@ -8,61 +8,39 @@
 
 using namespace RUNBOXRUN;
 
-GameObject::GameObject()
-: _object(nullptr), _model(), /*_mat(nullptr),*/ _transform(), _sProgramID(0), _boundingBox(), _atCollision(), _targets()
+GameObject::GameObject(const unsigned int &sProgramID)
+: _model(), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
 {
 
 }
-
-GameObject::GameObject(const Object &object, const unsigned int &sProgramID)
-: _object(new Object(object)), _model(), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
-{
-
-}
-
-GameObject::GameObject(const glimac::Model &model, const Object &object, const unsigned int &sProgramID)
-: _object(new Object(object)), _model(new glimac::Model(model)), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
-{
-
-}
-
 
 GameObject::GameObject(const glimac::Model &model, const unsigned int &sProgramID)
-: _object(), _model(new glimac::Model(model)), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
+: _model(new glimac::Model(model)), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
 {
 
 }
 
-
 GameObject::GameObject(const GameObject &gobj)
-: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(gobj._transform), _sProgramID(gobj._sProgramID), _boundingBox(gobj._boundingBox), _atCollision(gobj._atCollision), _targets(gobj._targets)
+: _model(gobj._model), _transform(gobj._transform), _sProgramID(gobj._sProgramID), _boundingBox(gobj._boundingBox), _atCollision(gobj._atCollision), _targets(gobj._targets)
 {
 
 }
 
 GameObject::GameObject(const GameObject &gobj, const Transform &transform)
-: _object(new Object(*(gobj._object))), _model(gobj._model), _transform(transform), _sProgramID(gobj._sProgramID), _boundingBox(gobj._boundingBox), _atCollision(gobj._atCollision), _targets(gobj._targets)
+: _model(gobj._model), _transform(transform), _sProgramID(gobj._sProgramID), _boundingBox(gobj._boundingBox), _atCollision(gobj._atCollision), _targets(gobj._targets)
 {
 
 }
 
-GameObject::GameObject(const glimac::Model &model, const Object &object, const Transform &transform, const unsigned int &sProgramID)
-: _object(new Object(object)), _model(new glimac::Model(model)), _transform(transform), _sProgramID(sProgramID), _boundingBox(glm::vec3(-0.5, -0.5, -0.5), glm::vec3(0.5, 0.5, 0.5)), _atCollision(), _targets()
+GameObject::GameObject(const glimac::Model &model, const Transform &transform, const unsigned int &sProgramID)
+: _model(new glimac::Model(model)), _transform(transform), _sProgramID(sProgramID), _boundingBox(glm::vec3(-0.5, -0.5, -0.5), glm::vec3(0.5, 0.5, 0.5)), _atCollision(), _targets()
 {
     
 }
 
-GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const unsigned int &sProgramID)
-: _object(new Object(object)), _model(nullptr), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
+GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const unsigned int &sProgramID)
+: _model(nullptr), _transform(), _sProgramID(sProgramID), _boundingBox(), _atCollision(), _targets()
 {
-    if(asset.get() != nullptr && asset->type() == glimac::AssetType::MODEL)
-    _model = std::dynamic_pointer_cast<glimac::Model>(asset);
-}
-
-GameObject::GameObject(const std::shared_ptr<glimac::Asset> &asset, const Object &object, const Transform &transform, const unsigned int &sProgramID)
-: _object(new Object(object)), _model(nullptr), _transform(transform), _sProgramID(sProgramID), _boundingBox(glm::vec3(-0.5, -0.5, -0.5), glm::vec3(0.5, 0.5, 0.5)), _atCollision(), _targets()
-{
-    std::cout << asset.get() << std::endl;
     if(asset.get() != nullptr && asset->type() == glimac::AssetType::MODEL)
     _model = std::dynamic_pointer_cast<glimac::Model>(asset);
 }
@@ -83,10 +61,10 @@ void GameObject::draw() const {
 
 void  GameObject::displayInfos() 
 {
-    std::cout << "speed: " << getLocalSpeed() << std::endl
+    std::cout /*<< "speed: " << getLocalSpeed() << std::endl
     << "position : " << getLocalPos() << std::endl
     << "position : " << getGlobalPos() << std::endl
     << "size : " << getLocalSize() << std::endl
-    << "color : " << getLocalColor() << std::endl
+    << "color : " << getLocalColor() << std::endl*/
     << "MVMATRIX" << _transform.matrix() << std::endl;
 }
