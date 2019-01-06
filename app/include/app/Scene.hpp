@@ -17,6 +17,7 @@
 #include <glimac/Render.hpp>
 #include <glimac/Box.hpp>
 #include <utils/FilePath.hpp>
+#include <app/GameManager.hpp>
 
 namespace RUNBOXRUN
 {
@@ -30,7 +31,7 @@ namespace RUNBOXRUN
 		Scene(); /*!< default constructor */
 		Scene(const Scene &sc);
 
-		~Scene() = default; /*!< default destructor*/
+		~Scene(); /*!< default destructor*/
 
 		inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 
@@ -47,6 +48,11 @@ namespace RUNBOXRUN
 				}
 			);
 		} /*!< draw all game objects from map*/
+
+		inline void runScene() {
+			_gameManager.runScene(*this);
+			drawScene();
+		}
 
 		inline void setCurrentCamera(const std::string &name) {
 			if(_currentCam != _Cameras.end()) (_currentCam->second)->activate();
@@ -83,6 +89,15 @@ namespace RUNBOXRUN
 			_GameObjects.insert(std::pair<std::string,GameObject *>(id,gobj));
 		} /*!< push game object in scene */
 
+		inline GameObject *find(const std::string &id) const {
+			auto it = _GameObjects.find(id);
+			if(it == _GameObjects.end()) {
+				return nullptr;
+			} else {
+				return it->second;
+			}
+		}
+
 		inline const glm::mat4 getCurrentViewMatrix() const {
 			if(_currentCam == _Cameras.end()) {
 				return glm::mat4(1.f);
@@ -91,11 +106,54 @@ namespace RUNBOXRUN
 			}
 		}
 
+		inline void setGameManager(const GameManager &gm) {
+			_gameManager = gm;
+			_gameManager.initScene(*this);
+		}
+
+		Scene &operator=(const Scene &scene) {
+			if(this != &scene) {
+				clearScene();
+				_GameObjects = scene._GameObjects;
+				_Cameras = scene._Cameras;
+				_gameManager = scene._gameManager;
+				_gameManager.initScene(*this);
+			}
+			return *this;
+		}
+
+		Scene &operator+(Scene &scene) {
+			if(this != &scene) {
+				_GameObjects.insert(_GameObjects.end(), scene._GameObjects.begin(), scene._GameObjects.end());
+				scene._GameObjects.clear();
+			}
+
+			return *this;
+		}
+
+		inline void clearScene() {
+			
+			_gameManager.closeScene(*this);
+			resetMap<GameObject>(_GameObjects);
+			resetMap<Camera>(_Cameras);
+			_currentCam = _Cameras.end();
+		}
+
+		template<typename T>
+		inline void resetMap(std::map<std::string, T*> &map) {
+			for(auto it = map.begin(); it != map.end(); ++it) {
+				delete it->second;
+			}
+			map.clear();
+		}
+
 
 		protected:
             std::map<std::string, GameObject *> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;
 			std::map<std::string, glimac::Camera*>::iterator _currentCam;
+			GameManager _gameManager;
+			//std::vector<glimac::Light> _lights;
             
 	};
 }

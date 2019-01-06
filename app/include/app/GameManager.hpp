@@ -8,6 +8,7 @@
 #define __GAMEMANAGER__HPP
 
 #include <iostream>
+#include <app/Scene.hpp>
 
 namespace RUNBOXRUN
 {
@@ -24,7 +25,13 @@ namespace RUNBOXRUN
 		~GameManager() = default; /*!< default destructor*/
         
 
-        };
+		virtual void initScene(Scene &scene) {};
+
+		virtual void runScene(Scene &scene) {};
+
+		virtual void closeScene(Scene &scene) {};
+
+    };
 }
 
 #endif
