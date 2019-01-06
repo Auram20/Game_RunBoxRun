@@ -16,13 +16,17 @@ using namespace RUNBOXRUN;
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const bool &touched)
-: GameObject(Object(speed, position, size, color)),  _health(health), _jumpState(jumpState), _touched(touched)
-{}
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState)
+: GameObject(Object(speed, position, size, color)),  _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0)
+{
+    initCollisionBehaviours();
+}
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const bool &touched, const Uint32 &vulnerabilityTime, const glimac::Model &model, const Transform &transform)
-: GameObject(glimac::Model(model),Object(speed, position, size, color),Transform(transform)),  _health(health), _jumpState(jumpState), _touched(touched), _vulnerabilityTime(vulnerabilityTime)
-{}
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform)
+: GameObject(glimac::Model(model),Object(speed, position, size, color),Transform(transform)),  _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0)
+{
+    initCollisionBehaviours();
+}
 
 
 Player::~Player()
@@ -40,6 +44,19 @@ void  Player::displayInfos()
 
 Player* Player::_instance = nullptr;
 
+void Player::initCollisionBehaviours() {
+    addCollisionBehaviour([&](){
+
+          
+            if(!isInvulnerable()) {
+              setTouched(true); 
+              _health--;
+              vulnerability();
+              std::cout << _touched << std::endl;        
+              std::cout << _health << std::endl;
+            }
+    });
+}
 
 Player* Player::getInstance()
 {
@@ -47,30 +64,14 @@ Player* Player::getInstance()
     {
          glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
          Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
-        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),4,0,0,0,modelPlayer,transformPlayer);
-        _instance->addCollisionBehaviour([_instance](){
-
-          
-            if(!_instance->isInvulnerable()) {
-              _instance->setTouched(true); 
-              _instance->_health--;
-              _instance->vulnerabity();
-            }
-            
-            std::cout << _instance->_touched << std::endl;        
-            std::cout << _instance->_health << std::endl;
-            });
-        }
+        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),4,0,modelPlayer,transformPlayer);
+        
+    }
 
     return _instance;
 }
 
-bool const Player::isInvulnerable()  
-{ 
-  return SDL_GetTicks() < _vulnerabilityDelay + _vulnerabilityTime;
-}
-
-void const Player::vulnerabity()
+void Player::vulnerability()
 {   
     if(_touched) 
   {
