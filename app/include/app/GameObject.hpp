@@ -35,7 +35,7 @@ namespace RUNBOXRUN
         GameObject(const GameObject &gobj);
         GameObject(const GameObject &gobj, const Transform &transform);
         GameObject(const glimac::Model &model, const Transform &transform, const unsigned int &sProgramID = 0);
-		~GameObject(); /*!< default destructor*/
+		virtual ~GameObject(); /*!< default destructor*/
 
         void draw() const;
 

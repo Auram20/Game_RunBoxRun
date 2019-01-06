@@ -17,10 +17,35 @@
 #include <glimac/Render.hpp>
 #include <glimac/Box.hpp>
 #include <utils/FilePath.hpp>
-#include <app/GameManager.hpp>
 
 namespace RUNBOXRUN
 {
+
+	class Scene;
+
+	/// \class GameManager
+	/// \brief class defining a new GameManager.
+	class GameManager
+	{
+		
+		private:
+
+		public:
+		// CONSTRUCTORS & DESTRUCTOR
+		GameManager() = default; /*!< default constructor */
+		~GameManager() = default; /*!< default destructor*/
+        
+
+		virtual void initScene(Scene &scene) {};
+
+		virtual void runScene(Scene &scene) {};
+
+		virtual void closeScene(Scene &scene) {};
+
+    };
+
+
+
 	/// \class Scene
 	/// \brief class defining a new Scene
 	class Scene
@@ -124,7 +149,7 @@ namespace RUNBOXRUN
 
 		Scene &operator+(Scene &scene) {
 			if(this != &scene) {
-				_GameObjects.insert(_GameObjects.end(), scene._GameObjects.begin(), scene._GameObjects.end());
+				_GameObjects.insert(scene._GameObjects.begin(), scene._GameObjects.end());
 				scene._GameObjects.clear();
 			}
 
@@ -135,7 +160,7 @@ namespace RUNBOXRUN
 			
 			_gameManager.closeScene(*this);
 			resetMap<GameObject>(_GameObjects);
-			resetMap<Camera>(_Cameras);
+			resetMap<glimac::Camera>(_Cameras);
 			_currentCam = _Cameras.end();
 		}
 

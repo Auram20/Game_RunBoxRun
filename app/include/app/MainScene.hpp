@@ -9,7 +9,6 @@
 
 #include <iostream>
 #include <app/Scene.hpp>
-#include <app/GameManager.hpp>
 
 namespace RUNBOXRUN
 {
