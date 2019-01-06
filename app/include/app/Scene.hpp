@@ -44,6 +44,8 @@ namespace RUNBOXRUN
 
     };
 
+	
+
 
 
 	/// \class Scene
@@ -75,7 +77,7 @@ namespace RUNBOXRUN
 		} /*!< draw all game objects from map*/
 
 		inline void runScene() {
-			_gameManager.runScene(*this);
+			_gameManager->runScene(*this);
 			drawScene();
 		}
 
@@ -133,7 +135,7 @@ namespace RUNBOXRUN
 
 		inline void setGameManager(const GameManager &gm) {
 			_gameManager = gm;
-			_gameManager.initScene(*this);
+			_gameManager->initScene(*this);
 		}
 
 		Scene &operator=(const Scene &scene) {
@@ -142,7 +144,7 @@ namespace RUNBOXRUN
 				_GameObjects = scene._GameObjects;
 				_Cameras = scene._Cameras;
 				_gameManager = scene._gameManager;
-				_gameManager.initScene(*this);
+				_gameManager->initScene(*this);
 			}
 			return *this;
 		}
@@ -158,7 +160,7 @@ namespace RUNBOXRUN
 
 		inline void clearScene() {
 			
-			_gameManager.closeScene(*this);
+			_gameManager->closeScene(*this);
 			resetMap<GameObject>(_GameObjects);
 			resetMap<glimac::Camera>(_Cameras);
 			_currentCam = _Cameras.end();
@@ -172,12 +174,12 @@ namespace RUNBOXRUN
 			map.clear();
 		}
 
-
+		GameManager *_gameManager;
 		protected:
             std::map<std::string, GameObject *> _GameObjects;
 			std::map<std::string, glimac::Camera*> _Cameras;
 			std::map<std::string, glimac::Camera*>::iterator _currentCam;
-			GameManager _gameManager;
+
 			//std::vector<glimac::Light> _lights;
             
 	};

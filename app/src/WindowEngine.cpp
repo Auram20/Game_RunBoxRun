@@ -17,6 +17,7 @@
 #include "app/AssetManager.hpp"
 #include "app/TrackballCamera.hpp"
 #include "app/FreeflyCamera.hpp"
+#include "app/ingameScene.hpp"
 
 using namespace glimac;
 
@@ -83,15 +84,19 @@ int WindowEngine::initWindow(FilePath app)
     sceneMap.initSPrograms();
     Scene sceneplayer(sceneMap.constructSceneFromMap(map));
 
-    Player* p = Player::getInstance();
-    std::cout << " Avant changement " << std::endl;
-    p->displayInfos(); 
-    sceneplayer.push(p,"Player");
+    IGScene myIGScene;
+    sceneplayer.setGameManager(myIGScene);
+    sceneplayer._gameManager->initScene(sceneplayer);
+
+    // Player* p = Player::getInstance();
+    // std::cout << " Avant changement " << std::endl;
+    // p->displayInfos(); 
+    // sceneplayer.push(p,"Player");
 
 
-     sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
-     sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
-     sceneplayer.setCurrentCamera("Freefly");
+     // sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
+     // sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
+     // sceneplayer.setCurrentCamera("Freefly");
 
 
      man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
@@ -122,8 +127,9 @@ int WindowEngine::initWindow(FilePath app)
         if (Primary._etat==2)
             {
                      sceneplayer.runCameras(),
-                     p->updatePlayer(e);
+                    // //p->updatePlayer(e);
                      sceneplayer.drawScene(); 
+                    //(sceneplayer._gameManager).runScene(sceneplayer);
 
            }
 
