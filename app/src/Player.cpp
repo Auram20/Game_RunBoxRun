@@ -81,6 +81,8 @@ void Player::vulnerability()
 }
 
 
+// --------------- PLAYER MOVEMENTS ---------------
+
 void const Player::jump(const double indice)
 {
 	 glm::vec3 jumpvec(0.f);
@@ -177,3 +179,4 @@ void Player::updatePlayer(SDL_Event e)
         }
     
 }
+    

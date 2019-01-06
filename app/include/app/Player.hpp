@@ -9,8 +9,11 @@
 
 // Includes 
 #include <app/GameObject.hpp>
+#include <app/Scene.hpp>
 #include <utils/Observable.hpp>
 #include <app/InputManager.hpp>
+#include <glimac/Model.hpp>
+#include <app/SceneFactory.hpp>
 #define VULNERABILITY_DELAY 1500 
 
 
@@ -24,7 +27,7 @@ namespace RUNBOXRUN
 		private:
 			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState); /*!< private constructor with parameters*/
 			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform); /*!< private constructor with parameters and model*/
-			unsigned int _health; /*!< health points of the player */
+		
 			double _speed;
 			int _jumpState;  /*!< check if player is jumping = 2 /crouching = 1/standing = 0 */	
 			static Player* _instance; /*! < here will be the instance stored */
@@ -33,6 +36,8 @@ namespace RUNBOXRUN
 
 
 		public:
+				unsigned int _health; /*!< health points of the player */
+
 			~Player();/*!< default destructor*/
 
 			// SETTERS

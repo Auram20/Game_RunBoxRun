@@ -88,6 +88,7 @@ int WindowEngine::initWindow(FilePath app)
     p->displayInfos(); 
     sceneplayer.push(p,"Player");
 
+
      sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
      sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
      sceneplayer.setCurrentCamera("Freefly");
