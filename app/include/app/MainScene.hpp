@@ -21,15 +21,17 @@ namespace RUNBOXRUN
 
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-		MainScene(); /*!< default constructor */
+		MainScene() : GameManager() {}; /*!< default constructor */
 		~MainScene() = default; /*!< default destructor*/
         
 
-		void initScene(Scene &scene) override;
+		void initScene(Scene &scene) override {
+            std::cout << "oui" << std::endl;
+        }
 
-		void runScene(Scene &scene) override;
+		void runScene(Scene &scene) override {};
 
-		void closeScene(Scene &scene) override;
+		void closeScene(Scene &scene) override {};
 
     };
 }

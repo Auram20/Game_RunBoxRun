@@ -30,7 +30,9 @@ Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &
 
 
 Player::~Player()
-{}
+{
+    _instance = nullptr;
+}
 
 
 // --------------- PLAYER'S FUNCTIONS --------------

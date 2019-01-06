@@ -11,7 +11,7 @@ using namespace RUNBOXRUN;
 Scene::Scene(const Scene &sc)
 : _GameObjects(sc._GameObjects), _Cameras(sc._Cameras), _currentCam(_Cameras.begin()), _gameManager(sc._gameManager)
 {
-    _gameManager.initScene(*this);
+    _gameManager->initScene(*this);
 }
 
 Scene::Scene()

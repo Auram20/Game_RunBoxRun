@@ -17,6 +17,7 @@
 #include "app/AssetManager.hpp"
 #include "app/TrackballCamera.hpp"
 #include "app/FreeflyCamera.hpp"
+#include "app/MainScene.hpp"
 
 using namespace glimac;
 
@@ -82,6 +83,11 @@ int WindowEngine::initWindow(FilePath app)
     SceneFactory sceneMap;
     sceneMap.initSPrograms();
     Scene sceneplayer(sceneMap.constructSceneFromMap(map));
+
+    sceneplayer.setGameManager<MainScene>(MainScene());
+
+    //Scene testscene;
+    //testscene = sceneplayer;
 
     Player* p = Player::getInstance();
     std::cout << " Avant changement " << std::endl;
