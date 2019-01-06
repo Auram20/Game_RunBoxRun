@@ -11,7 +11,7 @@
 #include <app/GameObject.hpp>
 #include <utils/Observable.hpp>
 #include <app/InputManager.hpp>
-
+#define VULNERABILITY_DELAY 1500 
 
 
 namespace RUNBOXRUN
@@ -28,6 +28,9 @@ namespace RUNBOXRUN
 			double _speed;
 			int _jumpState;  /*!< check if player is jumping = 2 /crouching = 1/standing = 0 */	
 			static Player* _instance; /*! < here will be the instance stored */
+			bool _touched;
+			Uint32  _vulnerabilityTime;
+
 
 		public:
 			~Player();/*!< default destructor*/
@@ -44,6 +47,11 @@ namespace RUNBOXRUN
 			}/*!< display player's state : jumping, crouching or running*/
 
 
+			inline void setTouched(const bool touched)
+			{
+			_touched = touched;
+			}
+
 			//  PLAYER FUNCTIONS
 
 			virtual void displayInfos(); /*!< display of player's informations */		
@@ -53,6 +61,12 @@ namespace RUNBOXRUN
 			void moveHorizontal(const double indice);
 			void turnRight();
 			void run();
+			inline bool const isInvulnerable() const
+			{ 
+			return SDL_GetTicks() < VULNERABILITY_DELAY + _vulnerabilityTime;
+			}
+			void vulnerability();
+			void initCollisionBehaviours();
 
 	};
 }

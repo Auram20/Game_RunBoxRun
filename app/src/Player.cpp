@@ -7,6 +7,9 @@
 
 #include <app/Player.hpp>
 #include <iostream>
+#include "SDL/SDL.h" 
+ #include <string> 
+ #include <sstream>
 
 using namespace RUNBOXRUN;
 
@@ -14,12 +17,16 @@ using namespace RUNBOXRUN;
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState)
-: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState)
-{}
+: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0)
+{
+    initCollisionBehaviours();
+}
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform)
-: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState)
-{}
+: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0)
+{
+    initCollisionBehaviours();
+}
 
 
 Player::~Player()
@@ -37,20 +44,42 @@ void  Player::displayInfos()
 
 Player* Player::_instance = nullptr;
 
+void Player::initCollisionBehaviours() {
+    addCollisionBehaviour([&](){
+
+          
+            if(!isInvulnerable()) {
+              setTouched(true); 
+              _health--;
+              vulnerability();
+              std::cout << _touched << std::endl;        
+              std::cout << _health << std::endl;
+            }
+    });
+}
+
 Player* Player::getInstance()
 {
-	if(_instance == nullptr)
-	{
- 		 glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
- 		 Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
-		_instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),3,0,modelPlayer,transformPlayer);
-        _instance->addCollisionBehaviour([](){
-            std::cout << "touché !" << std::endl;
-        });
-		}
+    if(_instance == nullptr)
+    {
+         glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
+         Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
+        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),4,0,modelPlayer,transformPlayer);
+        
+    }
 
-	return _instance;
+    return _instance;
 }
+
+void Player::vulnerability()
+{   
+    if(_touched) 
+  {
+    _vulnerabilityTime =  SDL_GetTicks();
+  }
+  _touched = false;
+}
+
 
 void const Player::jump(const double indice)
 {
