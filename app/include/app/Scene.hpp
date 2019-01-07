@@ -17,6 +17,7 @@
 #include <glimac/Render.hpp>
 #include <glimac/Box.hpp>
 #include <utils/FilePath.hpp>
+#include <glimac/Light.hpp>
 
 namespace RUNBOXRUN
 {
@@ -33,12 +34,12 @@ namespace RUNBOXRUN
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
 		GameManager() = default; /*!< default constructor */
-		~GameManager() = default; /*!< default destructor*/
+		virtual ~GameManager() = default; /*!< default destructor*/
         
 
 		virtual void initScene(Scene &scene) {};
 
-		virtual void runScene(Scene &scene) {};
+		virtual void runScene(Scene &scene, SDL_Event &e) {};
 
 		virtual void closeScene(Scene &scene) {};
 
@@ -76,8 +77,10 @@ namespace RUNBOXRUN
 			);
 		} /*!< draw all game objects from map*/
 
-		inline void runScene() {
-			_gameManager->runScene(*this);
+
+		inline void run(SDL_Event &e) {
+			if(_gameManager.get() != nullptr)
+				_gameManager->runScene(*this, e);
 			drawScene();
 		}
 
@@ -133,9 +136,15 @@ namespace RUNBOXRUN
 			}
 		}
 
-		inline void setGameManager(const GameManager &gm) {
+		template<typename T>
+		inline void setGameManager(const T &gm) {
+			_gameManager = std::make_shared<T>(gm);
+			init();
+		}
+
+		inline void setGameManager(const std::shared_ptr<GameManager> &gm) {
 			_gameManager = gm;
-			_gameManager->initScene(*this);
+			init();
 		}
 
 		Scene &operator=(const Scene &scene) {
@@ -144,7 +153,7 @@ namespace RUNBOXRUN
 				_GameObjects = scene._GameObjects;
 				_Cameras = scene._Cameras;
 				_gameManager = scene._gameManager;
-				_gameManager->initScene(*this);
+				init();
 			}
 			return *this;
 		}
@@ -160,10 +169,21 @@ namespace RUNBOXRUN
 
 		inline void clearScene() {
 			
-			_gameManager->closeScene(*this);
+
+			close();
 			resetMap<GameObject>(_GameObjects);
 			resetMap<glimac::Camera>(_Cameras);
 			_currentCam = _Cameras.end();
+		}
+
+		inline void init() {
+			if(_gameManager.get() != nullptr)
+				_gameManager->initScene(*this);
+		}
+
+		inline void close() {
+			if(_gameManager.get() != nullptr)
+				_gameManager->closeScene(*this);
 		}
 
 		template<typename T>
@@ -174,13 +194,14 @@ namespace RUNBOXRUN
 			map.clear();
 		}
 
-		GameManager *_gameManager;
-		protected:
+		
+			std::shared_ptr<GameManager> _gameManager;
             std::map<std::string, GameObject *> _GameObjects;
+            int _etat;
+		protected:
 			std::map<std::string, glimac::Camera*> _Cameras;
 			std::map<std::string, glimac::Camera*>::iterator _currentCam;
-
-			//std::vector<glimac::Light> _lights;
+			std::vector<glimac::Light> _lights;
             
 	};
 }

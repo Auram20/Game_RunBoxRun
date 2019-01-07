@@ -17,7 +17,8 @@
 #include "app/AssetManager.hpp"
 #include "app/TrackballCamera.hpp"
 #include "app/FreeflyCamera.hpp"
-#include "app/ingameScene.hpp"
+#include "app/InGameScene.hpp"
+#include "app/MainMenuScene.hpp"
 
 using namespace glimac;
 
@@ -53,62 +54,44 @@ int WindowEngine::initWindow(FilePath app)
 
     Render::pushNewProgram(assetMan->get(AssetType::SHADER, "3D"), assetMan->get(AssetType::SHADER, "texture"));
 
-    //  SHADERS & UMATRIX DEFINITIONS
+//  SHADERS & UMATRIX DEFINITIONS
     Render *render = Render::getInstance();
     render->program(0);
     render->displayInfos();
     render->initRender();
     render->sendDatas();
 
+// INPUT MANAGER
     bool done = false;
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
-
-// TESTS CREATION SCENE NORMALE
-     //    Scene scene;
-     //    Model model(FilePath("../assets/obj/boule.obj"));
-     //    Enemy en(1, glm::vec3(0, 0, -5), glm::vec3(1), glm::vec3(100));
-     //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(0, 0, -5),glm::vec3(0.5))));
-     //    scene.push(GameObject(model, en, RUNBOXRUN::Transform(glm::vec3(1, 0, -5))));
-     //    model.displayInfos();
-
 
 
 // TESTS CREATION MENU 
     Menu Primary;
-    Primary.initmainMenu();
+    Primary.setGameManager<MMScene>(MMScene());   
 
 // TESTS CREATION SCENE FROM MAP + PLAYER
     Map map("../assets/map/test2.txt");
     map.load();
     SceneFactory sceneMap;
     sceneMap.initSPrograms();
-    Scene sceneplayer(sceneMap.constructSceneFromMap(map));
+    Scene myIGScene(sceneMap.constructSceneFromMap(map));
 
-    IGScene myIGScene;
-    sceneplayer.setGameManager(myIGScene);
-    sceneplayer._gameManager->initScene(sceneplayer);
+// INITIALISATION SCENES + GAME MANAGER 
+     myIGScene.setGameManager<IGScene>(IGScene());   
 
-    // Player* p = Player::getInstance();
-    // std::cout << " Avant changement " << std::endl;
-    // p->displayInfos(); 
-    // sceneplayer.push(p,"Player");
-
-
-     // sceneplayer.addCamera("TrackBall", new glimac::TrackballCamera());
-     // sceneplayer.addCamera("Freefly", new glimac::FreeflyCamera());
-     // sceneplayer.setCurrentCamera("Freefly");
-
-
+// ATTACH CAMERAS TO SCENE
      man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
-         sceneplayer.changeCurrentCamera();
+         myIGScene.changeCurrentCamera();
      });
 
      man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
          Camera::lock();
      });
-// // -----------------
-// BOUCLE DE RENDU 
-// -----------------
+
+// -----------------------------------------------------------------------------------------
+//                                      BOUCLE DE RENDU 
+// -----------------------------------------------------------------------------------------
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -126,14 +109,11 @@ int WindowEngine::initWindow(FilePath app)
 
         if (Primary._etat==2)
             {
-                     sceneplayer.runCameras(),
-                    // //p->updatePlayer(e);
-                     sceneplayer.drawScene(); 
-                    //(sceneplayer._gameManager).runScene(sceneplayer);
-
+                    (myIGScene._gameManager)->runScene(myIGScene,e);
            }
 
-// POUR QUITTER LE JEU 
+
+    // POUR QUITTER LE JEU (pour les tests, sera enlevé à la fin)
         switch(e.type) {
             case SDL_QUIT:
                 done = true;
@@ -152,7 +132,7 @@ int WindowEngine::initWindow(FilePath app)
         /* Si trop peu de temps s'est écoulé, on met en pause le programme */
         if (elapsedTime < FRAMERATE_MILLISECONDS) {
         SDL_Delay(FRAMERATE_MILLISECONDS - elapsedTime);
-}
+        }
 
      }
 

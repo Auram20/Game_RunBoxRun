@@ -49,7 +49,7 @@ namespace RUNBOXRUN
 		void rendermainMenu(SDL_Event e,glimac::Render *render);  /*!< render main menu */
 
 		public : 
-		int _etat;
+		//int _etat;
 
 		// MENUS FUNCTIONS
 		Scene mainMenuRender();

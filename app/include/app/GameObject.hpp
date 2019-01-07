@@ -106,8 +106,8 @@ namespace RUNBOXRUN
         }
 
 
-            Transform _transform;
-
+        
+        Transform _transform;
 		protected:
             std::shared_ptr<glimac::Model> _model;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle

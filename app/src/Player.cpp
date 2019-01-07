@@ -30,7 +30,9 @@ Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &
 
 
 Player::~Player()
-{}
+{
+    _instance = nullptr;
+}
 
 
 // --------------- PLAYER'S FUNCTIONS --------------
@@ -53,7 +55,7 @@ void Player::initCollisionBehaviours() {
               _health--;
               vulnerability();
               std::cout << _touched << std::endl;        
-              std::cout << _health << std::endl;
+              std::cout << "PLAYER'S HEALTH CHANGED" << _health << std::endl;
             }
     });
 }
