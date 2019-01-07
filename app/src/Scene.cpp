@@ -23,4 +23,3 @@ Scene::Scene()
 Scene::~Scene() {
     clearScene();
 }
-          

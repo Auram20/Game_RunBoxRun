@@ -55,7 +55,7 @@ void Player::initCollisionBehaviours() {
               _health--;
               vulnerability();
               std::cout << _touched << std::endl;        
-              std::cout << _health << std::endl;
+              std::cout << "PLAYER'S HEALTH CHANGED" << _health << std::endl;
             }
     });
 }

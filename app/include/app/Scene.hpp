@@ -39,11 +39,13 @@ namespace RUNBOXRUN
 
 		virtual void initScene(Scene &scene) {};
 
-		virtual void runScene(Scene &scene) {};
+		virtual void runScene(Scene &scene, SDL_Event &e) {};
 
 		virtual void closeScene(Scene &scene) {};
 
     };
+
+	
 
 
 
@@ -75,9 +77,10 @@ namespace RUNBOXRUN
 			);
 		} /*!< draw all game objects from map*/
 
-		inline void run() {
+
+		inline void run(SDL_Event &e) {
 			if(_gameManager.get() != nullptr)
-				_gameManager->runScene(*this);
+				_gameManager->runScene(*this, e);
 			drawScene();
 		}
 
@@ -166,6 +169,7 @@ namespace RUNBOXRUN
 
 		inline void clearScene() {
 			
+
 			close();
 			resetMap<GameObject>(_GameObjects);
 			resetMap<glimac::Camera>(_Cameras);
@@ -190,12 +194,14 @@ namespace RUNBOXRUN
 			map.clear();
 		}
 
-
-		protected:
+		
+			std::shared_ptr<GameManager> _gameManager;
             std::map<std::string, GameObject *> _GameObjects;
+            int _etat;
+		protected:
 			std::map<std::string, glimac::Camera*> _Cameras;
 			std::map<std::string, glimac::Camera*>::iterator _currentCam;
-			std::shared_ptr<GameManager> _gameManager;
+			//std::shared_ptr<GameManager> _gameManager;
 			std::map<glimac::LightType, std::vector<glimac::Light>> _lights;
 			glm::vec3 _color;
             
