@@ -16,12 +16,24 @@
 #include <app/InputManager.hpp>
 #include <glimac/Program.hpp>
 #include <glimac/Texture.hpp>
+#include <glimac/Light.hpp>
 #include <memory>
 #define MAX_TEXTURE 10
 
-
 namespace glimac
 {
+
+	enum class LightType {
+		DIRECTIONAL,
+		POINT
+	};
+
+	enum class ProgramShader {
+		ENEMY,
+		COIN
+	};
+
+
 	/// \class Render
 	/// \brief class for the rendering.
 	class Render
@@ -41,6 +53,7 @@ namespace glimac
 		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const;
 		void sendDatas(const glm::mat4 &MVMatrix) const;
 		void sendDatasTex(const std::vector<Texture> &tex) const;
+		void sendDatasLight(const std::vector<Light> &lights) const;
 
 		static inline void destroy() {
 			if(_instance != nullptr)
@@ -101,6 +114,11 @@ namespace glimac
 		GLint uNormalMatrix;
 		GLint uTexture;
 		GLint uTextureSize;
+		GLint uKdColor;
+		GLint uKsColor;
+		GLint uShininess;
+		GLint uLightPos;
+		GLint uLightIntensity;
 		Render() = default ; /*!< constructor with parameters */
 		static std::vector<Program> _sPrograms;
 		static Render* _instance;

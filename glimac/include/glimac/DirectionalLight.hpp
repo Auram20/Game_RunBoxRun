@@ -1,35 +1,35 @@
 // ================================
 // OPENGL / C++ - IMAC 2
 // _________ RUNBOXRUN ___________ 
-// _________ LIGHT.HPP_____ 
+// _________ POINTLIGHT.HPP_____ 
 //================================
 
-#ifndef __LIGHT__HPP
-#define __LIGHT__HPP
+#ifndef __DIRECTIONALLIGHT__HPP
+#define __DIRECTIONALLIGHT__HPP
 
 #include <iostream>
 #include <utils/glm.hpp>
+#include <glimac/Light.hpp>
 
 namespace glimac
 {
 	/// \class MainScene
 	/// \brief class defining a new GameManager MainScene.
-	class Light
+	class DirectionalLight : public Light
 	{
 		
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-		Light(
+		DirectionalLight(
             const glm::vec3 &position = glm::vec3(0, 0, 0),
             const glm::vec3 &intensity = glm::vec3(1, 1, 1)
         )
-        : _position(position), _intensity(intensity)
+        : Light(position, intensity)
         {};/*!< default constructor */
-		virtual ~Light() = default; /*!< default destructor*/
+		~DirectionalLight() = default; /*!< default destructor*/
         
         private:
-        glm::vec3 _position;
-        glm::vec3 _intensity;
+
 
     };
 }

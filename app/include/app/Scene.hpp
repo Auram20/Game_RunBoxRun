@@ -196,7 +196,8 @@ namespace RUNBOXRUN
 			std::map<std::string, glimac::Camera*> _Cameras;
 			std::map<std::string, glimac::Camera*>::iterator _currentCam;
 			std::shared_ptr<GameManager> _gameManager;
-			std::vector<glimac::Light> _lights;
+			std::map<glimac::LightType, std::vector<glimac::Light>> _lights;
+			glm::vec3 _color;
             
 	};
 }
