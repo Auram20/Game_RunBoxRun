@@ -148,13 +148,13 @@ namespace RUNBOXRUN
 		}
 
 		Scene &operator=(const Scene &scene) {
-			if(this != &scene) {
-				clearScene();
-				_GameObjects = scene._GameObjects;
-				_Cameras = scene._Cameras;
+			 if(this != &scene) {
+			 	clearScene();
+			 	_GameObjects = scene._GameObjects;
+			 	_Cameras = scene._Cameras;
 				_gameManager = scene._gameManager;
-				init();
-			}
+				//init();
+			 }
 			return *this;
 		}
 

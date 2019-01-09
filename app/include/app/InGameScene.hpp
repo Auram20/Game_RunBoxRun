@@ -28,6 +28,14 @@ namespace RUNBOXRUN
 
 		void initScene(Scene &scene) override
 		{
+
+			Map map("../assets/map/test2.txt");
+		    map.load();
+    		SceneFactory sceneMap;
+    		sceneMap.initSPrograms();
+    		Scene Masc(sceneMap.constructSceneFromMap(map)); // Car const 
+    		scene=scene+Masc;
+
 			std::cout << "non" << std::endl;
 		    Player* p = Player::getInstance();
 		    std::cout << " Avant changement " << std::endl;

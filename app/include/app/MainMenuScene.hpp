@@ -44,13 +44,75 @@ namespace RUNBOXRUN
 
 		void runScene(Scene &scene, SDL_Event &e) override 
 		{
-     				
+			    Render *render = Render::getInstance();
+   		        scene.drawScene();
+        		rendermainMenu(scene, e,*render);
 		};
 
 		void closeScene(Scene &scene) override {};
 
 
+		void rendermainMenu(Scene &scene, SDL_Event e,glimac::Render &render)
+		{	
+			  switch(e.type) {
+
+	            case SDL_KEYDOWN:
+	 
+	                if (e.key.keysym.sym==275) //right arrow
+	                { 
+	             			std::string id="2";
+							if ( scene._GameObjects.find(id) == scene._GameObjects.end() ) 
+							{ // not found
+								std::cout << id <<" n'est pas stockée dans la map." << std::endl;
+							} 
+							else 
+							{ // found
+								 scene._GameObjects.find(id)->second->_transform._translate[0]=1.9;
+								 scene._GameObjects.find(id)->second->_transform._scale[0]=1;
+								 scene._etat=1; // INSTRUCTIONS
+							}
+	                }
+
+	                if (e.key.keysym.sym==276) //left arrow 
+	                { 
+		               		std::string id="2";
+							if ( scene._GameObjects.find(id) == scene._GameObjects.end() ) 
+							{ // not found
+								std::cout << id <<" n'est pas stockée dans la map." << std::endl;
+							} 
+							else 
+							{ // found
+								 scene._GameObjects.find(id)->second->_transform._translate[0]=-2.6;
+								 scene._GameObjects.find(id)->second->_transform._scale[0]=0.8;
+								 scene._etat=0;
+							}
+					}
+
+					if (e.key.keysym.sym==SDLK_RETURN) //left arrow 
+	                { 
+		               	if (scene._etat==1)
+		               	{
+		               		scene._GameObjects.clear();
+		               		// ECRAN INSTRUCTIONS
+		               	}
+
+		               	if (scene._etat==0)
+		               	{
+		               		scene._GameObjects.clear();
+		               		scene._etat=2;
+		               		// ON LANCE LE JEU 
+		               	}
+
+					}
+					}
+				}
+
+
+
+
     };
+
+
 }
 
 #endif

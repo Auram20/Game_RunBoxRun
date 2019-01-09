@@ -9,7 +9,6 @@
 
 // Includes 
 #include <utils/glm.hpp>
-#include <app/Menu.hpp>
 #include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
