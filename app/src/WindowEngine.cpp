@@ -19,6 +19,7 @@
 #include "app/InGameScene.hpp"
 #include "app/MainMenuScene.hpp"
 #include "app/SceneManager.hpp"
+#include "app/GameoverScene.hpp"
 
 using namespace glimac;
 
@@ -75,6 +76,7 @@ int WindowEngine::initWindow(FilePath app)
 
 // INITIALISATION SCENES + GAME MANAGER 
     sm->push<IGScene>(IGScene());
+    sm->push<GOScene>(GOScene());
 
     sm->setIndex(0);
 

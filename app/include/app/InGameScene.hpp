@@ -10,6 +10,7 @@
 #include <GL/glew.h>
 #include <vector>
 #include <map>
+#include <unistd.h>
 #include <app/Scene.hpp>
 #include <app/SceneManager.hpp>
 
@@ -73,7 +74,7 @@ namespace RUNBOXRUN
 
 			if(player->_health == 0) {
 				SceneManager *sm = SceneManager::getInstance();
-				sm->setIndex(0);
+				sm->setIndex(2);
 			}
 
 
