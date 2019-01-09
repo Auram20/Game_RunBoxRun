@@ -53,7 +53,7 @@ public:
 
     virtual void initEBO(); /*!< initialise the ebo */
 
-    void draw() const; /*!< Render a mesh */
+    virtual void draw() const; /*!< Render a mesh */
 
     //Opérateur =
 

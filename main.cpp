@@ -64,7 +64,7 @@ int main(int argc, char** argv)
     mal.displayInfos();
     obs.displayInfos();
 
-    WindowEngine wind(800,600, "BON ANNIVERSAIRE LE MOCHE", scene);
+    WindowEngine wind(800,600, "RunBoxRun", scene);
     wind.initWindow(applicationPath);
 
    // Texture Texture1("../assets/textue/texture.jpg");

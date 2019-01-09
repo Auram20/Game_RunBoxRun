@@ -26,13 +26,14 @@ namespace RUNBOXRUN
 			
 		private:
 			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState); /*!< private constructor with parameters*/
-			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform); /*!< private constructor with parameters and model*/
+			Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &score, const  int &jumpState, const glimac::Model &model, const Transform &transform); /*!< private constructor with parameters and model*/
 		
 			double _speed;
 			int _jumpState;  /*!< check if player is jumping = 2 /crouching = 1/standing = 0 */	
 			static Player* _instance; /*! < here will be the instance stored */
-			bool _touched;
-			Uint32  _vulnerabilityTime;
+			bool _touched;  /*! Player Touched or not */
+			Uint32  _vulnerabilityTime;  /*! Vulnerability Time*/
+			unsigned int _score; /*! Game scored by player */
 
 
 		public:

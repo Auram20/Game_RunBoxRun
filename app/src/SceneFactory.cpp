@@ -42,7 +42,8 @@ Scene SceneFactory::constructSceneFromMap(const Map &map) {
 			break;
 			case 3:
 			{	
-				GameObject *go = new GameObject(coin,Transform(glm::vec3(datas[i+1][0], datas[i+2][0]-0.5, datas[i+3][0]),glm::vec3(0.25)), _sPrograms[1]);
+				GameObject *go = new GameObject(coin,Transform(glm::vec3(datas[i+1][0], datas[i+2][0]-0.5, datas[i+3][0]),glm::vec3(0.5)), _sPrograms[1]);
+				go->addCollisionTarget("Player", 1);
 				newScene.push(go,"Coin"+std::to_string(i));
 			}
 			break;

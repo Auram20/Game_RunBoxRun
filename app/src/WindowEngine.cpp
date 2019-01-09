@@ -4,8 +4,7 @@
 // _________ WINDOWENGINE.CPP_____ 
 //================================
 
-#include "app/WindowEngine.hpp"
-#include <app/Menu.hpp>
+#include "app/WindowEngine.hpp"     
 #include <glimac/Sphere.hpp>
 #include <glimac/Box.hpp>
 #include <glimac/Program.hpp>
@@ -19,6 +18,8 @@
 #include "app/FreeflyCamera.hpp"
 #include "app/InGameScene.hpp"
 #include "app/MainMenuScene.hpp"
+#include "app/SceneManager.hpp"
+#include "app/GameoverScene.hpp"
 
 using namespace glimac;
 
@@ -66,32 +67,31 @@ int WindowEngine::initWindow(FilePath app)
     RUNBOXRUN::InputManager *man = RUNBOXRUN::InputManager::getInstance();
 
 
-// TESTS CREATION MENU 
-    Menu Primary;
-    Primary.setGameManager<MMScene>(MMScene());   
+// My Scene Manager
+    SceneManager *sm = SceneManager::getInstance();
 
-// TESTS CREATION SCENE FROM MAP + PLAYER
-    Map map("../assets/map/test2.txt");
-    map.load();
-    SceneFactory sceneMap;
-    sceneMap.initSPrograms();
-    Scene myIGScene(sceneMap.constructSceneFromMap(map));
+// TESTS CREATION MENU 
+    sm->push<MMScene>(MMScene());
+
 
 // INITIALISATION SCENES + GAME MANAGER 
-     myIGScene.setGameManager<IGScene>(IGScene());   
+    sm->push<IGScene>(IGScene());
+    sm->push<GOScene>(GOScene());
+
+    sm->setIndex(0);
 
 // ATTACH CAMERAS TO SCENE
-     man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
-         myIGScene.changeCurrentCamera();
-     });
-
-     man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
-         Camera::lock();
-     });
+     // man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
+     //     myIGScene.changeCurrentCamera();
+     // });
+     // man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
+     //     Camera::lock();
+     // });
 
 // -----------------------------------------------------------------------------------------
 //                                      BOUCLE DE RENDU 
 // -----------------------------------------------------------------------------------------
+
 
     glEnable(GL_DEPTH_TEST);
     while(!done) {
@@ -103,14 +103,9 @@ int WindowEngine::initWindow(FilePath app)
         }
 
         render->clear();
-        Primary.drawScene();
-        Primary.rendermainMenu(e,render);
         //man->updateAll();
 
-        if (Primary._etat==2)
-            {
-                    (myIGScene._gameManager)->runScene(myIGScene,e);
-           }
+        sm->run(e);
 
 
     // POUR QUITTER LE JEU (pour les tests, sera enlevé à la fin)

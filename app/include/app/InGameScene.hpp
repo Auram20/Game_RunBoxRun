@@ -10,14 +10,17 @@
 #include <GL/glew.h>
 #include <vector>
 #include <map>
+#include <unistd.h>
 #include <app/Scene.hpp>
+#include <time.h> 
+#include <app/SceneManager.hpp>
 
 namespace RUNBOXRUN
 {
 
 /// \class In Game 
 	/// \brief class defining a new GameManager.
-	class IGScene : public GameManager
+	class IGScene : public GameManager, public utils::Observable<InputManager>
 	{
 	
 	private:
@@ -28,6 +31,22 @@ namespace RUNBOXRUN
 
 		void initScene(Scene &scene) override
 		{
+			/*InputManager *man= InputManager::getInstance();
+			man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
+        		 scene.changeCurrentCamera();
+     		});
+		     man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
+		         Camera::lock();
+		     });*/
+
+
+			Map map("../assets/map/test3.txt");
+		    map.load();
+    		SceneFactory sceneMap;
+    		sceneMap.initSPrograms();
+    		Scene Masc(sceneMap.constructSceneFromMap(map)); // Car const 
+    		scene=scene+Masc;
+
 			std::cout << "non" << std::endl;
 		    Player* p = Player::getInstance();
 		    std::cout << " Avant changement " << std::endl;
@@ -51,6 +70,15 @@ namespace RUNBOXRUN
   			{
 	    		dynamic_cast<Player*>(it->second)->updatePlayer(e);
 			}
+
+			Player *player = Player::getInstance();
+
+			if(player->_health == 0) {
+				SceneManager *sm = SceneManager::getInstance();
+				sm->setIndex(2);
+				}
+
+
 		};
 
 		void closeScene(Scene &scene) override{};		

@@ -115,6 +115,7 @@ namespace RUNBOXRUN
             glimac::BBox3f _boundingBox;
             std::vector<std::function<void(void)>> _atCollision;
             std::map<std::string, unsigned int> _targets;
+            bool _enable; // Enable le render du GameObject ou pas
 	};
 }
 

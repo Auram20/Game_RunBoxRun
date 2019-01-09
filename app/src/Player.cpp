@@ -22,8 +22,8 @@ Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &
     initCollisionBehaviours();
 }
 
-Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState, const glimac::Model &model, const Transform &transform)
-: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0)
+Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &score, const  int &jumpState, const glimac::Model &model, const Transform &transform)
+: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0), _score(health)
 {
     initCollisionBehaviours();
 }
@@ -48,15 +48,22 @@ Player* Player::_instance = nullptr;
 
 void Player::initCollisionBehaviours() {
     addCollisionBehaviour([&](){
-
-          
-            if(!isInvulnerable()) {
+         
+            if(!isInvulnerable() && _health > 0) {
               setTouched(true); 
               _health--;
               vulnerability();
               std::cout << _touched << std::endl;        
               std::cout << "PLAYER'S HEALTH CHANGED" << _health << std::endl;
             }
+
+    });
+
+    addCollisionBehaviour([&](){
+         
+              std::cout << "COIN TOUCHED" << _score <<std::endl;
+              _score++;
+            
     });
 }
 
@@ -66,7 +73,7 @@ Player* Player::getInstance()
     {
          glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
          Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
-        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),4,0,modelPlayer,transformPlayer);
+        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),2,0,0,modelPlayer,transformPlayer);
         
     }
 

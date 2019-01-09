@@ -61,7 +61,7 @@ namespace RUNBOXRUN
 
 		~Scene(); /*!< default destructor*/
 
-		inline void drawScene() const {
+		virtual inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 
 			std::for_each(
 				_GameObjects.begin(),
@@ -138,23 +138,25 @@ namespace RUNBOXRUN
 
 		template<typename T>
 		inline void setGameManager(const T &gm) {
+			clearScene();
 			_gameManager = std::make_shared<T>(gm);
 			init();
 		}
 
 		inline void setGameManager(const std::shared_ptr<GameManager> &gm) {
+			clearScene();
 			_gameManager = gm;
 			init();
 		}
 
 		Scene &operator=(const Scene &scene) {
-			if(this != &scene) {
-				clearScene();
-				_GameObjects = scene._GameObjects;
-				_Cameras = scene._Cameras;
+			 if(this != &scene) {
+			 	clearScene();
+			 	_GameObjects = scene._GameObjects;
+			 	_Cameras = scene._Cameras;
 				_gameManager = scene._gameManager;
-				init();
-			}
+				//init();
+			 }
 			return *this;
 		}
 
@@ -174,8 +176,6 @@ namespace RUNBOXRUN
 		}
 
 		inline void clearScene() {
-			
-
 			close();
 			resetMap<GameObject>(_GameObjects);
 			resetMap<glimac::Camera>(_Cameras);
