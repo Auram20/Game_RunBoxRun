@@ -12,6 +12,7 @@
 #include <map>
 #include <unistd.h>
 #include <app/Scene.hpp>
+#include <time.h> 
 #include <app/SceneManager.hpp>
 
 namespace RUNBOXRUN
@@ -39,7 +40,7 @@ namespace RUNBOXRUN
 		     });*/
 
 
-			Map map("../assets/map/test2.txt");
+			Map map("../assets/map/test3.txt");
 		    map.load();
     		SceneFactory sceneMap;
     		sceneMap.initSPrograms();
@@ -75,7 +76,7 @@ namespace RUNBOXRUN
 			if(player->_health == 0) {
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(2);
-			}
+				}
 
 
 		};

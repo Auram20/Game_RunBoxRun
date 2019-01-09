@@ -10,7 +10,7 @@
 #include <iostream>
 #include <app/Scene.hpp>
 #include <app/SceneManager.hpp>
-
+#include <time.h>  
 
 namespace RUNBOXRUN
 {
@@ -30,7 +30,7 @@ namespace RUNBOXRUN
 		void initScene(Scene &scene) override 
 		{
 				glDisable(GL_DEPTH_TEST);
-				glimac::Model monBG2(glimac::FilePath("../assets/obj/boule.obj"));
+				glimac::Model monBG2(glimac::FilePath("../assets/obj/GameOver.obj"));
 				glimac::Box Rectangle1(1,1,0);
 
 				GameObject *bg = new GameObject(monBG2,Transform(glm::vec3(-0.5, -0.8, -5),glm::vec3(0.125)));
@@ -38,16 +38,30 @@ namespace RUNBOXRUN
 		    	scene.push(bg,"1");
 
 			    glEnable(GL_DEPTH_TEST);	
+
 		};
+
+
 
 		void runScene(Scene &scene, SDL_Event &e) override 
 		{
 
 				SceneManager *sm = SceneManager::getInstance();
-   		        scene.drawScene();
-   		        SDL_Delay(1000);
-				sm->setIndex(0);
- 		};
+   				scene.drawScene();
+   		       
+   		        switch(e.type) {
+	            case SDL_KEYDOWN:
+	 
+	                if (e.key.keysym.sym==SDLK_m)  { 
+	             		sm->setIndex(0);	
+	                }
+
+	                if (e.key.keysym.sym==SDLK_r) //left arrow 
+	                { 
+		             	sm->setIndex(1);  		
+					}
+ 				};
+ 		}
 
 		void closeScene(Scene &scene) override {
 					
@@ -55,6 +69,10 @@ namespace RUNBOXRUN
 		};
 
 };
+
+
+
+
 
 }
 

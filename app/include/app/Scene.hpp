@@ -61,7 +61,7 @@ namespace RUNBOXRUN
 
 		~Scene(); /*!< default destructor*/
 
-		inline void drawScene() const {
+		virtual inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 
 			std::for_each(
 				_GameObjects.begin(),
@@ -170,8 +170,6 @@ namespace RUNBOXRUN
 		}
 
 		inline void clearScene() {
-			
-
 			close();
 			resetMap<GameObject>(_GameObjects);
 			resetMap<glimac::Camera>(_Cameras);

@@ -71,34 +71,7 @@ namespace RUNBOXRUN
 			_GameManagers.push_back(gm);
 		}
 
-
-
-	 	void swapScenes(Scene &Menu, Scene &Jeu,SDL_Event &e) 
-	 	{
-
-	// 	    Player *player = Player::getInstance();
-	// 		(Menu._gameManager)->runScene(Menu,e);
-	// 		if (Menu._etat==2)
-    //            {
-    //                    (Jeu._gameManager)->runScene(Jeu,e);
-            		
-    //            }
-
-	//            if (player->_health==0)
-	//            {
-	// 			Jeu.setGameManager(GameManager());
-	// 			//Jeu._GameObjects.clear();
-	// 			Menu._etat=0;
-
-	// 			(Menu._gameManager)->runScene(Menu,e);
-                
- 	//             std::cout << " PERDU" << std::endl;
-                
- 	//                player->_health=4;
- 	//        }
-		};
-
-	 };
+ };
 
 	 SceneManager * SceneManager::_instance = nullptr;
 }
