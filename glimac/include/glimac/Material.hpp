@@ -8,6 +8,7 @@
 #define __MATERIAL__HPP
 
 #include <glimac/Texture.hpp>
+#include <iostream>
 
 namespace glimac
 {
@@ -23,8 +24,8 @@ namespace glimac
 
         }
 
-        Material(Material&& material) noexcept
-        : _textures(std::move(material._textures)), _colors(material._colors), _shininess(material._shininess) 
+        Material(const Material& material)
+        : _textures(material._textures), _colors(material._colors), _shininess(material._shininess) 
         {
 
         }
@@ -63,19 +64,19 @@ namespace glimac
             _colors.emplace(type, color);
         }
 
-        inline const std::map<aiTextureType, Texture>::const_iterator& textureBegin() const {
+        inline const std::map<aiTextureType, Texture>::const_iterator textureBegin() const {
             return _textures.begin();
         }
 
-        inline const std::map<aiTextureType, Texture>::const_iterator& textureEnd() const {
+        inline const std::map<aiTextureType, Texture>::const_iterator textureEnd() const {
             return _textures.end();
         }
 
-        inline const std::map<aiTextureType, glm::vec3>::const_iterator& colorBegin() const {
+        inline const std::map<aiTextureType, glm::vec3>::const_iterator colorBegin() const {
             return _colors.begin();
         }
 
-        inline const std::map<aiTextureType, glm::vec3>::const_iterator& colorEnd() const {
+        inline const std::map<aiTextureType, glm::vec3>::const_iterator colorEnd() const {
             return _colors.end();
         }
 
@@ -149,27 +150,11 @@ namespace glimac
             return typeName;
         }
 
-        const Material &operator=(Material&& material) noexcept {
-            if(this != &material) {
-                _textures = std::move(material._textures);
-                _colors = material._colors;
-                _shininess = material._shininess;
-            }
-
-            return *this;
-        }
-
-        Material(const Material &mat)
-        : _textures(), _colors(), _shininess(1) 
-        {
-
-        };
 
         private:
         std::map<aiTextureType, Texture> _textures;
         std::map<aiTextureType, glm::vec3> _colors;
         float _shininess;
-        Material &operator=(const Material&);
         
 		
 	};

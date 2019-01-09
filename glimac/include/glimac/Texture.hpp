@@ -25,20 +25,14 @@ namespace glimac {
         public:
             // CONSTRUCTORS & DESTRUCTOR
             Texture();
+            Texture(const Texture&);
             Texture(const std::string &path); /*!< Texture's constructor with parameters*/
-            Texture(Texture &&tex) noexcept;
-            ~Texture(); /*!< Texture's destructor */
+            ~Texture() = default; /*!< Texture's destructor */
             
             // FONCTIONS
             bool load() override;
             inline const GLuint id() const {
-                return _id;
-            }
-
-            Texture& operator =(Texture&& rvalue) noexcept {
-                _id = rvalue._id;
-                rvalue._id = 0;
-                return *this;
+                return *_id;
             }
 
             Texture& operator =(const std::string &path) {
@@ -57,12 +51,18 @@ namespace glimac {
                 return *this;
             }
 
-            Texture(const Texture& tex) {};
 
         private:
-            GLuint _id; /*!< idTexture */
+            std::shared_ptr<GLuint> _id; /*!< idTexture */
             void TextureFromFile(const std::string &path);
-	        Texture& operator =(const Texture&);
+            static void deleteTexID(GLuint *id) {
+                std::cout << "delete !" << std::endl;
+                if(id != nullptr) {
+                    if(*id != 0)
+                        glDeleteTextures(1, id);
+                    delete id;
+                }
+            }
     };
     
 }

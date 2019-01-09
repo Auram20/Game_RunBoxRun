@@ -11,14 +11,21 @@ using namespace glimac;
 
 // CONSTRUCTORS
 Texture::Texture()
-: Asset(std::string(""), AssetType::TEXTURE), _id(0)
+: Asset(std::string(""), AssetType::TEXTURE), _id(std::shared_ptr<GLuint>(nullptr, Texture::deleteTexID))
 {
 }
 
 Texture::Texture(const std::string &path)
-:Asset(path, AssetType::TEXTURE), _id(0)
+:Asset(path, AssetType::TEXTURE), _id(std::shared_ptr<GLuint>(new uint(0), Texture::deleteTexID))
 {
 	load();
+}
+
+
+Texture::Texture(const Texture &tex)
+: Asset(tex), _id(tex._id)
+{
+
 }
 
 bool Texture::load(){
@@ -36,18 +43,7 @@ bool Texture::load(){
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBindTexture(GL_TEXTURE_2D,0);
-        _id = tex;
+        _id = std::make_shared<GLuint>(tex);
 
 		return true;
-}
-
-Texture::Texture(Texture &&tex) noexcept
-: Asset(tex), _id(tex._id)
-{
-	tex._id = 0;
-}
-
-Texture::~Texture() {
-	if(_id != 0)
-		glDeleteTextures(1, &_id);
 }

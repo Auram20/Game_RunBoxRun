@@ -10,14 +10,15 @@ void Model::draw() const{
         unsigned int diffuseNr = 1;
         unsigned int specularNr = 1;
 
+
         const Material &mat = _materials[_meshes[i].materialID()];
 
         if(mat.textureNb() > 0) {
             uint i = 0;
             for(std::map<aiTextureType, Texture>::const_iterator it = mat.textureBegin(); it != mat.textureEnd();it++){
-                //glActiveTexture(GL_TEXTURE0+i);
+                glActiveTexture(GL_TEXTURE0+i);
 
-                /*std::string number;
+                std::string number;
                 std::string name = Material::getTypeName(it->first);
 
                 if(name == "texture_diffuse")
@@ -26,12 +27,12 @@ void Model::draw() const{
                     number = std::to_string(specularNr++);
 
                 glBindTexture(GL_TEXTURE_2D, (it->second).id());
-                ++i;*/
+                ++i;
             }
-            //glActiveTexture(GL_TEXTURE0);
+            glActiveTexture(GL_TEXTURE0);
 
-            /*Render *render = Render::getInstance();
-            render->sendDatasTex(mat.textureBegin(), mat.textureEnd());*/
+            Render *render = Render::getInstance();
+            render->sendDatasTex(mat.textureBegin(), mat.textureEnd());
 
         }
 
@@ -92,12 +93,12 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
         aiString str; 
         mat->GetTexture(aiTextureType_DIFFUSE, 0, &str);
         std::cout << _path.dirPath() + str.C_Str() << std::endl;
-        //newMaterial.addTexture(aiTextureType_DIFFUSE, _path.dirPath() + str.C_Str());
+        newMaterial.addTexture(aiTextureType_DIFFUSE, _path.dirPath() + str.C_Str());
 
         mat->GetTexture(aiTextureType_SPECULAR, 0, &str);
-        //newMaterial.addTexture(aiTextureType_SPECULAR, _path.dirPath() + str.C_Str());
+        newMaterial.addTexture(aiTextureType_SPECULAR, _path.dirPath() + str.C_Str());
 
-        _materials.push_back(std::move(newMaterial));
+        _materials.push_back(newMaterial);
 
     }
 
