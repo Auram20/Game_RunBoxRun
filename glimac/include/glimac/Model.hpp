@@ -19,14 +19,14 @@
 #include <assimp/postprocess.h>
 
 #include <glimac/Image.hpp>
-#include <random>
+#include <glimac/Material.hpp>
 
 namespace glimac {
 
     class Model : public Asset {
         private:
             std::vector<Mesh> _meshes;
-
+            std::vector<Material> _materials;
             void loadModel(std::string path);
             void processNode(aiNode *node, const aiScene *scene);
             Mesh processMesh(aiMesh *mesh, const aiScene *scene);

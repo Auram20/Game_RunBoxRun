@@ -7,11 +7,41 @@ void Model::draw() const{
 
     for(unsigned int i = 0;i < _meshes.size();i++)
     {
+        unsigned int diffuseNr = 1;
+        unsigned int specularNr = 1;
+
+        const Material &mat = _materials[_meshes[i].materialID()];
+
+        if(mat.textureNb() > 0) {
+            uint i = 0;
+            for(std::map<aiTextureType, Texture>::const_iterator it = mat.textureBegin(); it != mat.textureEnd();it++){
+                //glActiveTexture(GL_TEXTURE0+i);
+
+                /*std::string number;
+                std::string name = Material::getTypeName(it->first);
+
+                if(name == "texture_diffuse")
+                    number = std::to_string(diffuseNr++);
+                else if(name == "texture_specular")
+                    number = std::to_string(specularNr++);
+
+                glBindTexture(GL_TEXTURE_2D, (it->second).id());
+                ++i;*/
+            }
+            //glActiveTexture(GL_TEXTURE0);
+
+            /*Render *render = Render::getInstance();
+            render->sendDatasTex(mat.textureBegin(), mat.textureEnd());*/
+
+        }
+
+
         _meshes[i].draw();
+
     }
 }
 
-std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type)
+/*std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type)
 {
     std::vector<Texture> textures;
     for(unsigned int i = 0;i < mat->GetTextureCount(type);i++)
@@ -22,13 +52,14 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
         textures.push_back(tex);
     }
     return textures;
-}
+}*/
 
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 {
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
     std::vector<Texture> textures;
+    int materialID = -1;
 
     for(unsigned int i = 0;i < mesh->mNumVertices;i++)
     {
@@ -54,16 +85,23 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 
     if(mesh->mMaterialIndex >= 0)
     {
+        materialID = _materials.size();
+        Material newMaterial;
         aiMaterial *mat = scene->mMaterials[mesh->mMaterialIndex];
-        std::vector<Texture> diffuseMaps = std::move(loadMaterialTextures(mat, aiTextureType_DIFFUSE));
-        textures.insert(textures.end(), std::make_move_iterator(diffuseMaps.begin()), std::make_move_iterator(diffuseMaps.end()));
 
-        std::vector<Texture> specularMaps = std::move(loadMaterialTextures(mat, aiTextureType_SPECULAR));
-        textures.insert(textures.end(), std::make_move_iterator(specularMaps.begin()), std::make_move_iterator(specularMaps.end()));
+        aiString str; 
+        mat->GetTexture(aiTextureType_DIFFUSE, 0, &str);
+        std::cout << _path.dirPath() + str.C_Str() << std::endl;
+        //newMaterial.addTexture(aiTextureType_DIFFUSE, _path.dirPath() + str.C_Str());
+
+        mat->GetTexture(aiTextureType_SPECULAR, 0, &str);
+        //newMaterial.addTexture(aiTextureType_SPECULAR, _path.dirPath() + str.C_Str());
+
+        _materials.push_back(std::move(newMaterial));
 
     }
 
-    return Mesh(vertices, indices, textures);
+    return Mesh(vertices, indices, materialID);
 }
 
 void Model::processNode(aiNode *node, const aiScene *scene)

@@ -24,28 +24,43 @@ namespace glimac {
 
         public:
             // CONSTRUCTORS & DESTRUCTOR
-            Texture() = default;
-            Texture(const std::string &path, const aiTextureType &type); /*!< Texture's constructor with parameters*/
+            Texture();
+            Texture(const std::string &path); /*!< Texture's constructor with parameters*/
             Texture(Texture &&tex) noexcept;
-            Texture(const Texture &tex);
             ~Texture(); /*!< Texture's destructor */
             
             // FONCTIONS
-            const std::string getTypeName() const;
             bool load() override;
             inline const GLuint id() const {
                 return _id;
             }
 
-            Texture& operator =(Texture&& rvalue) {
+            Texture& operator =(Texture&& rvalue) noexcept {
                 _id = rvalue._id;
                 rvalue._id = 0;
                 return *this;
             }
 
+            Texture& operator =(const std::string &path) {
+                if(path != "") {
+                    _path = path;
+                    load();
+                }
+                return *this;
+            }
+
+            Texture& operator =(const FilePath &path) {
+                if(path != "") {
+                    _path = path;
+                    load();
+                }
+                return *this;
+            }
+
+            Texture(const Texture& tex) {};
+
         private:
             GLuint _id; /*!< idTexture */
-            aiTextureType _type; /*!< texture type */
             void TextureFromFile(const std::string &path);
 	        Texture& operator =(const Texture&);
     };

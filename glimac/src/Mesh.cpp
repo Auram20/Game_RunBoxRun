@@ -15,7 +15,7 @@ using namespace glimac;
 Mesh::Mesh()
 : _VertexList(),
 _index(),
-_textures(),
+_materialID(),
 _vao(nullptr, Mesh::deleteVertexArrays),
 _vbo(nullptr, Mesh::deleteBuffers),
 _ebo(nullptr, Mesh::deleteBuffers)
@@ -23,10 +23,10 @@ _ebo(nullptr, Mesh::deleteBuffers)
 
 }
 
-Mesh::Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const std::vector<Texture> &tex)
+Mesh::Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const int &mat)
 : _VertexList(vert),
 	_index(ind),
-	_textures(std::move(tex)),
+	_materialID(mat),
 	_vao(new GLuint(0), Mesh::deleteVertexArrays),
 	_vbo(new GLuint(0), Mesh::deleteBuffers),
 	_ebo(new GLuint(0), Mesh::deleteBuffers)
@@ -35,7 +35,7 @@ Mesh::Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, co
 }
 
 Mesh::Mesh(const Mesh &mesh)
-: _VertexList(mesh._VertexList), _index(mesh._index), _textures(mesh._textures), _vao(mesh._vao), _vbo(mesh._vbo), _ebo(mesh._ebo)
+: _VertexList(mesh._VertexList), _index(mesh._index), _materialID(mesh._materialID), _vao(mesh._vao), _vbo(mesh._vbo), _ebo(mesh._ebo)
 {
 	setupMesh();
 }
@@ -58,7 +58,7 @@ void Mesh::displayInfos() const
 	std::cout << "vao : " << *_vao << std::endl;
 	std::cout << "ebo : " << *_ebo << std::endl;
 	std::cout << "index : " << _index.size() << std::endl;
-	std::cout << "textures : " << _textures.size() << std::endl;
+	std::cout << "textures : " << _materialID << std::endl;
 	std::cout << "vertex : " << _VertexList.size() << std::endl;
 }
 
@@ -153,31 +153,7 @@ void Mesh::initVBO()
 
 void Mesh::draw() const
 {
-
-	unsigned int diffuseNr = 1;
-    unsigned int specularNr = 1;
-
-	if(_textures.size() > 0) {
-
-		for(unsigned int i = 0;i < _textures.size();i++){
-			glActiveTexture(GL_TEXTURE0+i);
-
-			std::string number;
-			std::string name = _textures[i].getTypeName();
-
-			if(name == "texture_diffuse")
-				number = std::to_string(diffuseNr++);
-			else if(name == "texture_specular")
-				number = std::to_string(specularNr++);
-
-			glBindTexture(GL_TEXTURE_2D, _textures[i].id());
-		}
-		glActiveTexture(GL_TEXTURE0);
-
-		Render *render = Render::getInstance();
-		render->sendDatasTex(_textures);
-
-	}
+	//std::map Model ? Material
 
 
 	glBindVertexArray(*_vao);
@@ -187,6 +163,4 @@ void Mesh::draw() const
 		glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
 	}
 	glBindVertexArray(0);
-
-	glActiveTexture(GL_TEXTURE0);
 }
