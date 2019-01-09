@@ -49,13 +49,14 @@ Player* Player::_instance = nullptr;
 void Player::initCollisionBehaviours() {
     addCollisionBehaviour([&](){
          
-            if(!isInvulnerable()) {
+            if(!isInvulnerable() && _health > 0) {
               setTouched(true); 
               _health--;
               vulnerability();
               std::cout << _touched << std::endl;        
               std::cout << "PLAYER'S HEALTH CHANGED" << _health << std::endl;
             }
+
     });
 
     addCollisionBehaviour([&](){
@@ -72,7 +73,7 @@ Player* Player::getInstance()
     {
          glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
          Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
-        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),4,0,0,modelPlayer,transformPlayer);
+        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),2,0,0,modelPlayer,transformPlayer);
         
     }
 

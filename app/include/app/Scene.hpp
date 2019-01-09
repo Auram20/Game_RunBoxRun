@@ -138,11 +138,13 @@ namespace RUNBOXRUN
 
 		template<typename T>
 		inline void setGameManager(const T &gm) {
+			clearScene();
 			_gameManager = std::make_shared<T>(gm);
 			init();
 		}
 
 		inline void setGameManager(const std::shared_ptr<GameManager> &gm) {
+			clearScene();
 			_gameManager = gm;
 			init();
 		}
