@@ -37,9 +37,9 @@ namespace RUNBOXRUN
 				glimac::Box Rectangle1(1,1,0);
 
 				Player* p = Player::getInstance();
-				p->_transform._translate[0]=-0.2;
-				p->_transform._rotateLocal[0]=-1;
-				p->_transform._rotateLocal[1]=-1;
+				p->transform()._translate[0]=-0.2;
+				p->transform()._rotateLocal[0]=-1;
+				p->transform()._rotateLocal[1]=-1;
 		    	scene.push(p,"Player");
 
 				GameObject *bg = new GameObject(monBG,Transform(glm::vec3(-0.5, -0.8, -5.1),glm::vec3(0.125)));
@@ -56,7 +56,7 @@ namespace RUNBOXRUN
 		{
 
 				Player* p = Player::getInstance();
-				p->_transform._rotateLocal[1]+=0.001;
+				p->transform()._rotateLocal[1]+=0.001;
 			    Render *render = Render::getInstance();
    		        scene.drawScene();
         		rendermainMenu(scene, e,*render);

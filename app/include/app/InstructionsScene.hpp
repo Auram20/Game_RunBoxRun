@@ -38,10 +38,10 @@ namespace RUNBOXRUN
 		    	scene.push(bg,"1");
 
 				Player* p = Player::getInstance();
-				p->_transform._translate[0]=-0.2;
-				p->_transform._translate[1]=-0.8;
-				p->_transform._rotateLocal[0]=-1;
-				p->_transform._rotateLocal[1]=-1;
+				p->transform()._translate[0]=-0.2;
+				p->transform()._translate[1]=-0.8;
+				p->transform()._rotateLocal[0]=-1;
+				p->transform()._rotateLocal[1]=-1;
 		    	scene.push(p,"Player");
 
 			    glEnable(GL_DEPTH_TEST);	
@@ -54,7 +54,7 @@ namespace RUNBOXRUN
 		{
 
 				Player* p = Player::getInstance();
-				p->_transform._rotateLocal[1]-=0.001;
+				p->transform()._rotateLocal[1]-=0.001;
 
 				SceneManager *sm = SceneManager::getInstance();
    				scene.drawScene();
