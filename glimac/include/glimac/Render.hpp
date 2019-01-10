@@ -15,7 +15,7 @@
 #include <glimac/Image.hpp>
 #include <app/InputManager.hpp>
 #include <glimac/Program.hpp>
-#include <glimac/Texture.hpp>
+#include <glimac/Material.hpp>
 #include <glimac/Light.hpp>
 #include <memory>
 #define MAX_TEXTURE aiTextureType::aiTextureType_UNKNOWN
@@ -54,7 +54,8 @@ namespace glimac
 		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const;
 		void sendDatas(const glm::mat4 &MVMatrix) const;
 		void sendDatasTex(const std::map<aiTextureType, Texture>::const_iterator &begin, const std::map<aiTextureType, Texture>::const_iterator &end) const;
-		void sendDatasLight(const std::vector<Light> &lights) const;
+		void sendDatasLight(const std::map<LightType, std::vector<Light>> &lights) const;
+		void sendDatasMat(const Material &mat) const;
 
 		static inline void destroy() {
 			if(_instance != nullptr)
@@ -115,6 +116,7 @@ namespace glimac
 		GLint uNormalMatrix;
 		GLint uTexture;
 		GLint uLightSize;
+		GLint uLightType;
 		GLint uColors;
 		GLint uShininess;
 		GLint uLightPos;

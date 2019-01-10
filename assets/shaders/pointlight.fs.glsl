@@ -15,6 +15,7 @@ uniform float uShininess;
 uniform vec3 uLightPos_vs[MAX_LIGHT];
 uniform vec3 uLightIntensity[MAX_LIGHT];
 uniform int uLightType[MAX_LIGHT];
+uniform uint uLightSize;
 
 uniform sampler2D uTexture[MAX_SIZE];
 
@@ -23,22 +24,28 @@ float dotN(vec3 v1, vec3 v2) {
     return (d < 0) ? 0 : d;
 }
 
-vec3 blinnPhongPoint() {
-    vec3 diffuse = uKd * dotN(normalize(uLightPos_vs - vPosition_vs), normalize(vNormal_vs));
-    vec3 glossy = uKs * pow(dotN(((normalize(uLightPos_vs) + normalize(-vPosition_vs)) / 2.f), normalize(vNormal_vs)), uShininess);
-    float d = distance(uLightPos_vs, vPosition_vs);
-    vec3 color = (uLightIntensity / (d * d)) * (diffuse + glossy);
+vec3 blinnPhongPoint(vec3 lightPos, vec3 lightIntensity) {
+    vec3 diffuse = uK[1] * dotN(normalize(lightPos - vPosition_vs), normalize(vNormal_vs));
+    vec3 glossy = uK[2] * pow(dotN(((normalize(lightPos) + normalize(-vPosition_vs)) / 2.f), normalize(vNormal_vs)), uShininess);
+    float d = distance(lightPos, vPosition_vs);
+    vec3 color = (lightIntensity / (d * d)) * (diffuse + glossy);
     return color;
 }
 
-vec3 blinnPhongDirectional() {
-    vec3 diffuse = uKd * dotN(normalize(uLightDir_vs), normalize(vNormal_vs));
-    vec3 glossy = uKs * pow(dotN(((normalize(uLightDir_vs) + normalize(-vPosition_vs)) / 2.f), normalize(vNormal_vs)), uShininess);
-    vec3 color = uLightIntensity * (diffuse + glossy);
+vec3 blinnPhongDirectional(vec3 lightDir, vec3 lightIntensity) {
+    vec3 diffuse = uK[1] * dotN(normalize(lightDir), normalize(vNormal_vs));
+    vec3 glossy = uK[2] * pow(dotN(((normalize(lightDir) + normalize(-vPosition_vs)) / 2.f), normalize(vNormal_vs)), uShininess);
+    vec3 color = lightIntensity * (diffuse + glossy);
     return color;
 }
 
 void main() {
-    vec3 color = mix(color[1], texture(uTexture[1], vTexCoords));
-    fFragColor = color *  blinnPhong();
+    vec3 color = texture(uTexture[1], vTexCoords);
+    fFragColor = color;
+    for(uint i = 0; i < uLightSize; ++i) {
+    if(uLightType[i] == 0) {
+        fFragColor *= blinnPhongPoint(uLightPos_vs[i], uLightIntensity[i]);
+    else if(uLightType[i] == 1) {
+        fFragColor *= blinnPhongDirectional(uLightPos_vs[i], uLightIntensity[i]);
+    }
 }

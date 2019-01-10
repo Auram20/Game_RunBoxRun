@@ -42,7 +42,7 @@ namespace glimac
             _textures.emplace(type, path);
         }
 
-        inline const glm::vec3 color(const aiTextureType &type) {
+        inline const glm::vec3 color(const aiTextureType &type) const {
             auto it = _colors.find(type);
             if(_colors.find(type) == _colors.end()) return glm::vec3(1, 1, 1);
             return (it->second);
@@ -56,7 +56,7 @@ namespace glimac
             return _textures.size();
         }
 
-        inline const float shininess() {
+        inline const float shininess() const {
             return _shininess;
         }
 

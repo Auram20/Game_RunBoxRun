@@ -27,6 +27,14 @@ namespace glimac
         {};/*!< default constructor */
 		virtual ~Light() = default; /*!< default destructor*/
         
+        inline const glm::vec3 position() const {
+            return _position;
+        }
+
+        inline const glm::vec3 intensity() const {
+            return _intensity;
+        }
+
         private:
         glm::vec3 _position;
         glm::vec3 _intensity;

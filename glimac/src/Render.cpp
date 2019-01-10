@@ -18,6 +18,7 @@ void Render::program(const unsigned int &id){
 	uNormalMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uNormalMatrix");
 	uTexture = glGetUniformLocation(_sPrograms[id].getGLId(), "uTexture");
     uLightSize = glGetUniformLocation(_sPrograms[id].getGLId(), "uLightSize");
+    uLightType = glGetUniformLocation(_sPrograms[id].getGLId(), "uLightType");
     uColors = glGetUniformLocation(_sPrograms[id].getGLId(), "uK");
     uShininess = glGetUniformLocation(_sPrograms[id].getGLId(), "uShininess");
     uLightPos = glGetUniformLocation(_sPrograms[id].getGLId(), "uLightPos_vs");
@@ -44,6 +45,16 @@ void Render::clear()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 }
 
+void Render::sendDatasMat(const Material &mat) const {
+    glm::vec3 colors[MAX_TEXTURE];
+    for(int i = 0; i < MAX_TEXTURE; ++i) {
+        colors[i] = mat.color(aiTextureType(i));
+    }
+    glUniform3fv(uColors, MAX_TEXTURE, &colors[0].x);
+    glUniform1ui(uShininess, mat.shininess());
+
+}
+
 void Render::sendDatasTex(const std::map<aiTextureType, Texture>::const_iterator &begin, const std::map<aiTextureType, Texture>::const_iterator &end) const {
     GLuint textures[MAX_TEXTURE];
     for(auto i = begin; i != end; ++i) {
@@ -52,8 +63,27 @@ void Render::sendDatasTex(const std::map<aiTextureType, Texture>::const_iterator
     glUniform1uiv(uTexture, MAX_TEXTURE, textures);
 }
 
-void Render::sendDatasLight(const std::vector<Light> &lights) const {
+void Render::sendDatasLight(const std::map<LightType, std::vector<Light>> &lights) const {
+    uint size = 0;
+    glm::vec3 lightPos[MAX_LIGHT];
+    glm::vec3 lightIntensity[MAX_LIGHT];
+    int lightType[MAX_LIGHT];
 
+    for(auto it = lights.begin(); it != lights.end(); ++it) {
+        for(uint i = 0; i < (it->second).size(); ++i) {
+            lightPos[i] = (it->second)[i].position();
+            lightIntensity[i] = (it->second)[i].intensity();
+            lightType[i] = int(it->first);
+            size++;
+        }
+    }
+
+    if(size > 0) {
+        glUniform3fv(uLightPos, size, &lightPos[0].x);
+        glUniform3fv(uLightIntensity, size, &lightIntensity[0].x);
+        glUniform1iv(uLightType, size, lightType);
+    }
+    glUniform1ui(uLightSize, size);
 }
 
 void Render::sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const
