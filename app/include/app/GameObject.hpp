@@ -37,7 +37,7 @@ namespace RUNBOXRUN
         GameObject(const glimac::Model &model, const Transform &transform, const unsigned int &sProgramID = 0);
 		virtual ~GameObject(); /*!< default destructor*/
 
-        void draw() const;
+        virtual void draw() const;
 
         /*inline const glm::vec3 getLocalPos() const {
             return _object->getPos();

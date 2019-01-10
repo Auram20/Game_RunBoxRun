@@ -25,6 +25,8 @@ namespace RUNBOXRUN
 		// CONSTRUCTORS & DESTRUCTOR
 		MMScene() : GameManager(), _etat(0) {}; /*!< default constructor */
 		~MMScene() = default; /*!< default destructor*/
+
+		
         
 
 		void initScene(Scene &scene) override 

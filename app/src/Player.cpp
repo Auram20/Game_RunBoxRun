@@ -73,7 +73,7 @@ Player* Player::getInstance()
     {
          glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
          Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
-        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),2,0,0,modelPlayer,transformPlayer);
+        _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),3,0,0,modelPlayer,transformPlayer);
         
     }
 
@@ -112,12 +112,13 @@ void const Player::jump(const double indice)
  }
 
  void Player::run()
- {
+ {  
      glm::vec3 runvec(0.f);
      runvec=_transform._translate;
      runvec[2]-= _speed;
      setTrans(runvec);
      _transform._translate = runvec;
+   
  }
 
  void Player::turnRight()
@@ -129,6 +130,8 @@ void const Player::jump(const double indice)
 void Player::updatePlayer(SDL_Event e) 
 {
     //gameEvents handling
+     
+    
         run();
         switch(e.type) {
 
