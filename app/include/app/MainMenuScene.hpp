@@ -36,8 +36,14 @@ namespace RUNBOXRUN
 				glimac::Model myCorner(glimac::FilePath("../assets/obj/CornerBox.obj"));
 				glimac::Box Rectangle1(1,1,0);
 
-				GameObject *bg = new GameObject(monBG,Transform(glm::vec3(-0.5, -0.8, -5),glm::vec3(0.125)));
-				GameObject *frame = new GameObject(myCorner,Transform(glm::vec3(-2.6, -2.3, -4.9),glm::vec3(0.8,0.45,0)));
+				Player* p = Player::getInstance();
+				p->_transform._translate[0]=-0.2;
+				p->_transform._rotateLocal[0]=-1;
+				p->_transform._rotateLocal[1]=-1;
+		    	scene.push(p,"Player");
+
+				GameObject *bg = new GameObject(monBG,Transform(glm::vec3(-0.5, -0.8, -5.1),glm::vec3(0.125)));
+				GameObject *frame = new GameObject(myCorner,Transform(glm::vec3(-2.6, -2.3, -5),glm::vec3(0.8,0.45,0)));
 				_etat=0;
 
 		    	scene.push(bg,"1");
@@ -48,6 +54,9 @@ namespace RUNBOXRUN
 
 		void runScene(Scene &scene, SDL_Event &e) override 
 		{
+
+				Player* p = Player::getInstance();
+				p->_transform._rotateLocal[1]+=0.001;
 			    Render *render = Render::getInstance();
    		        scene.drawScene();
         		rendermainMenu(scene, e,*render);
@@ -99,7 +108,9 @@ namespace RUNBOXRUN
 	                { 
 		               	if (_etat==1)
 		               	{
-		               		scene._GameObjects.clear();
+		               		SceneManager *sm = SceneManager::getInstance();
+		               		sm->setIndex(4);
+		               		_etat=2;
 		               		// ECRAN INSTRUCTIONS
 		               	}
 

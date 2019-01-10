@@ -19,19 +19,19 @@ namespace glimac {
 				
 				if(cursor.x-pos.x > 0)
 				{
-					rotateLeft(-1);
+					rotateLeft(-0.5);
 				}
 				if(cursor.x-pos.x < 0)
 				{
-					rotateLeft(1);
+					rotateLeft(0.5);
 				}
 				if(cursor.y-pos.y > 0)
 				{
-					rotateUp(1);
+					rotateUp(0.5);
 				}
 				if(cursor.y-pos.y < 0)
 				{
-					rotateUp(-1);
+					rotateUp(-0.5);
 				}
 
 				im.setMousePosition();

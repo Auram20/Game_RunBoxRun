@@ -94,19 +94,6 @@ namespace RUNBOXRUN
 	    		dynamic_cast<PlayerHealth*>(it->second)->run();
 			}
 
-			// it = scene._GameObjects.find("Skybox");
-  	// 		if (it != scene._GameObjects.end())
-  	// 		{	
-  	// 			glm::vec3 runvec(0.f);
-   //   			runvec=it->second->_transform._translate;
-   //   			runvec[0]-= 0.00000000000000001;
-			// 	(it->second)->setTrans(runvec);
-			// 	it->second->_transform._translate = runvec;
-   //   			std::cout << "RUNVEC" << it->second->_transform._translate[0] << "RUNVEC"<< it->second->_transform._translate[1] << "RUNVEC" <<it->second->_transform._translate[2] << std::endl;
-			
-			// }
-
-
 
 			Player *player = Player::getInstance();
 			if(player->_health == 0 && player->_victory==0) {
