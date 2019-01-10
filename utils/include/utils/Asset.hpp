@@ -27,7 +27,8 @@ namespace glimac {
 		MODEL,
 		SHADER,
 		MAP,
-		MATERIAL
+		MATERIAL,
+		SOUND
 	};
 
 	class Asset {
