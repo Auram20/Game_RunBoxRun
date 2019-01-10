@@ -40,13 +40,18 @@ void FreeflyCamera::moveUp(float t) {
 }
 
 void FreeflyCamera::rotateLeft(float degrees) {
-    m_fPhi += glm::radians(degrees);
-    computeDirectionVectors();
+
+        m_fPhi += glm::radians(degrees);
+        computeDirectionVectors();
+
 }
 
 void FreeflyCamera::rotateUp(float degrees) {
+    // if (m_fTheta+degrees>-2 && m_fTheta+degrees<2)
+    // {
     m_fTheta += glm::radians(degrees);
     computeDirectionVectors();
+    //}
 }
 
 const glm::mat4 FreeflyCamera::getViewMatrix() const {

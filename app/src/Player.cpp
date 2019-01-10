@@ -60,8 +60,7 @@ void Player::initCollisionBehaviours() {
     });
 
     addCollisionBehaviour([&](){
-         
-              std::cout << "COIN TOUCHED" << _score <<std::endl;
+               std::cout << "COIN TOUCHED" << _score <<std::endl;
               _score++;
             
     });
