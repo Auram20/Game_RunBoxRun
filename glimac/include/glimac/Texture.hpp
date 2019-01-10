@@ -60,7 +60,7 @@ namespace glimac {
             void TextureFromFile(const std::string &path);
             static void deleteTexID(GLuint *id) {
                 if(id != nullptr) {
-                    std::cout << "delete !" << std::endl;
+                    //std::cout << "delete !" << std::endl;
                     if(*id != 0)
                         glDeleteTextures(1, id);
                     delete id;

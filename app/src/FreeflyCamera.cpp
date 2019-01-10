@@ -16,7 +16,7 @@ void FreeflyCamera::computeDirectionVectors() {
 
 
 void FreeflyCamera::translateZ(float t) {
-    moveFront(t);
+    moveFront(-t);
 }
 
 void FreeflyCamera::translateX(float t) {
