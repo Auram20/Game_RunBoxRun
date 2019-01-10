@@ -47,7 +47,7 @@ namespace glimac {
             if(!check) ++it;
         }
 
-        if(it - vec.begin() < vec.size()) {
+        if(it - vec.begin() < int(vec.size())) {
             r = it - vec.begin();
         }
 

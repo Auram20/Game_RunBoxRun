@@ -36,7 +36,7 @@ namespace glimac {
             void draw() const;
             inline void displayInfos() const {
                 std::cout << "meshes : " << _meshes.size() << std::endl;
-                for(int i = 0; i < _meshes.size(); ++i) {
+                for(unsigned int i = 0; i < _meshes.size(); ++i) {
                     _meshes[i].displayInfos();
                 }
             }

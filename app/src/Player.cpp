@@ -16,7 +16,7 @@ using namespace RUNBOXRUN;
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState)
-: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0), _victory(0)
+: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState), _victory(0), _touched(false), _vulnerabilityTime(0)
 {
     initCollisionBehaviours();
 }

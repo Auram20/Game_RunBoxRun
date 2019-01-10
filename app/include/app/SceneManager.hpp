@@ -54,7 +54,7 @@ namespace RUNBOXRUN
 		void setIndex(const int &index)
 		{
 			_currentindex=index;
-			if (index < _GameManagers.size())
+			if (index < int(_GameManagers.size()))
 			{
 			_scene.setGameManager(_GameManagers[index]);
 			}

@@ -11,7 +11,6 @@
 #include <utils/Error.hpp>
 #include "app/Transform.hpp"
 #include <glimac/Model.hpp>
-#include <game/Object.hpp>
 #include <memory>
 #include <vector>
 #include <functional>
@@ -105,10 +104,18 @@ namespace RUNBOXRUN
             }
         }
 
+        inline Transform &transform() {
+            return _transform;
+        }
 
-        Transform _transform;
+        inline const Transform transform() const {
+            return _transform;
+        }
+
+
 		protected:
             std::shared_ptr<glimac::Model> _model;
+            Transform _transform;
             //Material* _mat; material qu'utilisera le modèle. En ce moment la texture est incorporée au modèle
             GLuint _sProgramID;  //utilisera un shader particulier s'il est assigné, le défaut sinon
             glimac::BBox3f _boundingBox;

@@ -14,7 +14,7 @@
 #include <app/InputManager.hpp>
 #include <glimac/Model.hpp>
 #include <app/SceneFactory.hpp>
-
+#include <app/Player.hpp>
 
 namespace RUNBOXRUN
 {

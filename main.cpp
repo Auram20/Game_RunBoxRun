@@ -26,17 +26,6 @@ int main(int argc, char** argv)
     // std::cout << " Avant changement " << std::endl;
     // p->displayInfos();
     //InputManager man;
-    Decor decor(1,glm::vec3(10), glm::vec3(10), glm::vec3(100));
-    Obstacle obs(1, glm::vec3(100), glm::vec3(10), glm::vec3(100), "cailloux");
-    Malus mal(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), "maladie");
-    Object ob(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
-    Bonus bo(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
-    Coin co(1, glm::vec3(10), glm::vec3(10), glm::vec3(100), 10);
-    Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
-    Ui ui;
-    UiElement ue;
-    Score sc;
-    Time ti;
     FilePath applicationPath(argv[0]);
     //std::cout << argv[0] << std::endl;
     //Asset asset(applicationPath);
@@ -55,12 +44,6 @@ int main(int argc, char** argv)
     //box1.displayInfos();
 
     // ------------- TESTS FONCTIONS ---------------------------
-    decor.displayInfos();
-    bo.displayInfos();
-    co.displayInfos();
-    en.displayInfos();
-    mal.displayInfos();
-    obs.displayInfos();
 
     WindowEngine wind(800,600, "RunBoxRun", scene);
     wind.initWindow(applicationPath);

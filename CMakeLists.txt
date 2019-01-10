@@ -16,7 +16,6 @@ set(CMAKE_CXX_FLAGS_DEBUG_INIT "-g")
 # set(CMAKE_CACHEFILE_DIR  ${PROJECT_BINARY_DIR}/caches)
 
 set(GLIMAC_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/glimac/include)
-set(GAME_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/game/include)
 
 # specify the system
 # see: https://cmake.org/cmake/help/v3.9/manual/cmake-variables.7.html
@@ -58,9 +57,9 @@ find_package(SDL_mixer REQUIRED)
 
 
 
-include_directories(${SDL_INCLUDE_DIR} ${SDL_TTF_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${SDL_MIXER_INCLUDE_DIRS}  ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} ${GAME_INCLUDE_DIR} app/include utils/include)
+include_directories(${SDL_INCLUDE_DIR} ${SDL_TTF_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${SDL_MIXER_INCLUDE_DIRS}  ${ASSIMP_INCLUDE_DIRS} ${GLIMAC_INCLUDE_DIR} app/include utils/include)
 
-set(ALL_LIBRARIES app game glimac utils stdc++fs ${ASSIMP_LIBRARIES} ${SDL_TTF_LIBRARIES} ${SDL_LIBRARY} ${SDL_MIXER_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+set(ALL_LIBRARIES app glimac utils stdc++fs ${ASSIMP_LIBRARIES} ${SDL_TTF_LIBRARIES} ${SDL_LIBRARY} ${SDL_MIXER_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
 
 
 
@@ -71,7 +70,6 @@ set(ALL_LIBRARIES app game glimac utils stdc++fs ${ASSIMP_LIBRARIES} ${SDL_TTF_L
 #    PRIVATE cxx_variadic_templates)
 
 add_subdirectory(app)
-add_subdirectory(game)
 add_subdirectory(glimac)
 add_subdirectory(utils)
 

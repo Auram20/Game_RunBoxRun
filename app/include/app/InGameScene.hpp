@@ -109,11 +109,11 @@ namespace RUNBOXRUN
 
 
 			Player *player = Player::getInstance();
-			if(player->_health == 0 && player->_victory==0) {
+			if(player->health() == 0 && player->victory()==0) {
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(2);
 				}
-			if(player->_victory == 1 && player->_health >0) {
+			if(player->victory() == 1 && player->health() >0) {
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(3);
 				}

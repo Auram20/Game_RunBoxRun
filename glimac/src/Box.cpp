@@ -44,7 +44,7 @@ void Box::build(GLfloat width = 1.0, GLfloat height = 1.0, GLfloat depth = 1.0) 
     // }
 
 
-    for(unsigned int i = 0; i < getVertexCount(); i++) {
+    for(int i = 0; i < getVertexCount(); i++) {
         _VertexList[i].normal = _VertexList[i].position;
     }
 
@@ -66,7 +66,7 @@ void Box::displayInfos()
 {
 
     std::cout << " -------------------- INFOS BOX -------------------- " << std::endl;
-    for (size_t i = 0; i < getVertexCount(); i++)
+    for (int i = 0; i < getVertexCount(); i++)
     {
         std::cout << _VertexList[i].position << std :: endl;
         std::cout << _VertexList[i].normal << std :: endl;

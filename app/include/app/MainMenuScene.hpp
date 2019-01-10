@@ -74,8 +74,8 @@ namespace RUNBOXRUN
 							} 
 							else 
 							{ // found
-								 scene._GameObjects.find(id)->second->_transform._translate[0]=1.9;
-								 scene._GameObjects.find(id)->second->_transform._scale[0]=1;
+								 scene._GameObjects.find(id)->second->transform()._translate[0]=1.9;
+								 scene._GameObjects.find(id)->second->transform()._scale[0]=1;
 								 _etat=1; // INSTRUCTIONS
 							}
 	                }
@@ -89,8 +89,8 @@ namespace RUNBOXRUN
 							} 
 							else 
 							{ // found
-								 scene._GameObjects.find(id)->second->_transform._translate[0]=-2.6;
-								 scene._GameObjects.find(id)->second->_transform._scale[0]=0.8;
+								 scene._GameObjects.find(id)->second->transform()._translate[0]=-2.6;
+								 scene._GameObjects.find(id)->second->transform()._scale[0]=0.8;
 								 _etat=0;
 							}
 					}

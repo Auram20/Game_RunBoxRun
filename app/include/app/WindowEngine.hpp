@@ -52,6 +52,8 @@ namespace glimac
 
         Mix_Music *game_music = Mix_LoadMUS( "../assets/sounds/runboyrun.mp3");
         Mix_PlayMusic(game_music, -1);
+
+			return EXIT_SUCCESS;
 		};
 
 

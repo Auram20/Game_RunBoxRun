@@ -59,8 +59,8 @@ PlayerHealth* PlayerHealth::getInstance()
 
      Player* p = Player::getInstance();
 
-     _transform._scale[0]=(float)((float)(p->_health)/8);
-     _transform._scale[1]=(float)((float)(p->_health)/8);
-     _transform._scale[2]=(float)((float)(p->_health)/8);
+     _transform._scale[0]=(float)((float)(p->health())/8);
+     _transform._scale[1]=(float)((float)(p->health())/8);
+     _transform._scale[2]=(float)((float)(p->health())/8);
      
 }

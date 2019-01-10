@@ -75,10 +75,9 @@ namespace RUNBOXRUN
 		}
 
 		private:
-		std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observables;
-
 		bool _isActive;
 		bool _isContinuous;
+		std::map<utils::Observable<InputManager>**, std::set<unsigned int>> _observables;
 	};
 
 	/// \class Bonus
