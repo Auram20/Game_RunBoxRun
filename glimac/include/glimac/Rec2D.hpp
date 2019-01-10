@@ -19,7 +19,7 @@ class Rec2D : public Box
 
 public:
       // CONSTRUCTORS & DESTRUCTOR
-    Rec2D(GLfloat width, GLfloat height, GLfloat depth)
+    Rec2D(GLfloat width, GLfloat height)
     : Box()
     {
         build(width, height, 0);

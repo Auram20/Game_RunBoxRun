@@ -12,6 +12,7 @@
 #include <map>
 #include <app/Scene.hpp>
 #include <app/Player.hpp>
+#include <app/PlayerHealth.hpp>
 
 namespace RUNBOXRUN
 {

@@ -14,6 +14,12 @@
 #include <app/Scene.hpp>
 #include <time.h> 
 #include <app/SceneManager.hpp>
+#include <SDL/SDL.h>
+#include <sstream>  
+#include <string>  
+#include <utils/FilePath.hpp> 	
+
+
 
 namespace RUNBOXRUN
 {
@@ -29,9 +35,12 @@ namespace RUNBOXRUN
 		IGScene() : GameManager(), Observable() {}; 
 		~IGScene() = default ;
 
+
 		void initScene(Scene &scene) override
 		{
 
+		    Player* p = Player::getInstance();
+		    PlayerHealth* ph = PlayerHealth::getInstance();
 			Map map("../assets/map/test3.txt");
 		    map.load();
     		SceneFactory sceneMap;
@@ -40,11 +49,11 @@ namespace RUNBOXRUN
     		scene=scene+Masc;
 
 			std::cout << "non" << std::endl;
-		    Player* p = Player::getInstance();
 		    std::cout << " Avant changement " << std::endl;
 		    p->displayInfos(); 
 		    scene.push(p,"Player");
-
+		    scene.push(ph,"PH");
+			    	
 		    scene.addCamera("TrackBall", new glimac::TrackballCamera());
 		    scene.addCamera("Freefly", new glimac::FreeflyCamera());
 		    scene.setCurrentCamera("Freefly");
@@ -63,18 +72,22 @@ namespace RUNBOXRUN
 
 		void runScene(Scene &scene, SDL_Event &e) override
 		{
+			
 			scene.drawScene(); 
 			scene.runCameras();
-			
 			std::map<std::string,GameObject *>::iterator it;
 			it = scene._GameObjects.find("Player");
   			if (it != scene._GameObjects.end())
   			{
 	    		dynamic_cast<Player*>(it->second)->updatePlayer(e);
 			}
+			it = scene._GameObjects.find("PH");
+  			if (it != scene._GameObjects.end())
+  			{
+	    		dynamic_cast<PlayerHealth*>(it->second)->run();
+			}
 
 			Player *player = Player::getInstance();
-
 			if(player->_health == 0) {
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(2);
