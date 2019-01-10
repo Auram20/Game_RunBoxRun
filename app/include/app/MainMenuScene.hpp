@@ -13,7 +13,7 @@
 
 namespace RUNBOXRUN
 {
-	/// \class MainMenuScene
+	/// \class MMScene
 	/// \brief class defining a new GameManager MainMenuScene.
 	class MMScene : public GameManager
 	{

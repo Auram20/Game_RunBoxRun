@@ -17,7 +17,7 @@
 namespace RUNBOXRUN
 {
 
-/// \class In Scene Manager 
+	/// \class  SceneManager 
 	/// \brief class defining a new Scene manager.
 	class SceneManager 
 	{

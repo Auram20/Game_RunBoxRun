@@ -22,10 +22,10 @@
 
 
 namespace RUNBOXRUN
+	
 {
-
-	/// \class In Game 
-	/// \brief class defining a new GameManager.
+	/// \class IGScene
+	/// \brief class defining a new InGameScene.
 	class IGScene : public GameManager, public utils::Observable<InputManager>
 	{
 	

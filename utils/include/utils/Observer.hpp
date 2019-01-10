@@ -21,6 +21,8 @@ namespace utils {
     };*/
 
 
+    /// \class Observer
+    /// \brief Observer to notify/update.
     template<typename T>
 	class Observer /*: public AbstractObserver*/ {
 		public:

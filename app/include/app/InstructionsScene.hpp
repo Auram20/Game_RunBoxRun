@@ -14,8 +14,8 @@
 
 namespace RUNBOXRUN
 {
-	/// \class MainMenuScene
-	/// \brief class defining a new GameManager Instruction Scene.
+	/// \class INScene
+	/// \brief class defining a new Instruction scene.
 	class INScene : public GameManager
 	{
 		

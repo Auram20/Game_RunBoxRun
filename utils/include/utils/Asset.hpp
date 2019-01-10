@@ -30,7 +30,8 @@ namespace glimac {
 		MATERIAL,
 		SOUND
 	};
-
+	/// \class Asset
+	/// \brief class defining asset with path and type.
 	class Asset {
 		public:
 			Asset() = default; /*!< default constructor */

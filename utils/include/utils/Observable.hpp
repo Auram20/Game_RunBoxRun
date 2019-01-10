@@ -14,7 +14,8 @@
 #include <iostream>
 
 namespace utils {
-
+    /// \class Observable
+    /// \brief observable to notify/update.
     template<typename U>
 	class Observable {
 		public:

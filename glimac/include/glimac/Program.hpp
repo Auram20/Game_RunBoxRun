@@ -6,6 +6,8 @@
 
 namespace glimac {
 
+	/// \class Program
+    /// \brief class defining a new Program.
 class Program {
 public:
 	Program(): m_nGLId(glCreateProgram()) {

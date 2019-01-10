@@ -28,9 +28,9 @@ namespace glimac
         virtual const glm::mat4 getViewMatrix() const = 0; /*!< return a new View Matrix */
 		virtual void rotateLeft(float degrees) = 0;/*!< rotation on horizontal axis  */
         virtual void rotateUp(float degrees) = 0;/*!< rotation on vertical axis */
-		virtual void translateZ(float t) = 0;
-		virtual void translateX(float t) = 0;
-		virtual void translateY(float t) = 0;
+		virtual void translateZ(float t) = 0;/*!< translate on Z axis */
+		virtual void translateX(float t) = 0;/*!<  translate on X axis */
+		virtual void translateY(float t) = 0;/*!<  translate on Y axis */
 
 		/*!< to (des)active the camera */
 		inline void activate() {

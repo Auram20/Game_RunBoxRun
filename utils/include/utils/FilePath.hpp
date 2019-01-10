@@ -10,6 +10,8 @@
 
 namespace glimac {
 
+    /// \class FilePath
+    /// \brief class read file from its path
 class FilePath {
 public:
 #ifdef _WIN32

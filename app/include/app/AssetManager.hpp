@@ -81,7 +81,7 @@ namespace RUNBOXRUN
 		private:
         AssetManager() = delete; /*!< default constructor */
         AssetManager(const glimac::FilePath &bin); /*!< constructor with parameters */
-        ~AssetManager();
+        ~AssetManager();/*!< default destructor */
 		void deleteFor(const glimac::AssetType &type);
 		glimac::FilePath _assetDir; // Filepath for assets
         std::map<glimac::AssetType, std::map<std::string, std::shared_ptr<glimac::Asset>>> _assets; //  AssetType = MODEL | SHADER | MAP | NONE | TEXTURE , configuration of all assets 
