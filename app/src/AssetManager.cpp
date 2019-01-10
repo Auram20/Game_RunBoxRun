@@ -37,6 +37,7 @@ void AssetManager::find() {
     }
 }
 
+
 void AssetManager::sortFile(const std::experimental::filesystem::directory_entry &dirEntry) {
     glimac::FilePath filepath(dirEntry.path());
     int i;

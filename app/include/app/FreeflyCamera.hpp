@@ -11,28 +11,28 @@
 #include <app/Camera.hpp>
 
 namespace glimac {
-
+    
     class FreeflyCamera : public Camera {
         private:
-            glm::vec3 m_Position;
-            float m_fPhi;
-            float m_fTheta;
+            glm::vec3 m_Position; // Position x,y and z
+            float m_fPhi; // angle of rotation
+            float m_fTheta; 
             glm::vec3 m_FrontVector;
             glm::vec3 m_LeftVector;
             glm::vec3 m_UpVector;
 
             void computeDirectionVectors();
         public:
-            FreeflyCamera();
-            void moveFront(float t);
-            void moveLeft(float t);
-            void moveUp(float t);
-            void rotateLeft(float degrees);
-            void rotateUp(float degrees);
-            void translateZ(float t) override;
-            void translateX(float t) override;
-            void translateY(float t) override;
-            const glm::mat4 getViewMatrix() const override;
+            FreeflyCamera(); /*!< cosntructor */
+            void moveFront(float t); /*!< move camera on Z axis */
+            void moveLeft(float t); /*!< move camera on X axis */ 
+            void moveUp(float t); /*!< move camera on Y axis */
+            void rotateLeft(float degrees); /*!< rotate camera on horizontal axis */
+            void rotateUp(float degrees); /*!< rotate camera on vertical axis */
+            void translateZ(float t) override; /*!< translate camera on Z axis */
+            void translateX(float t) override; /*!< translate camera on X axis */
+            void translateY(float t) override; /*!< translate camera on Y axis */
+            const glm::mat4 getViewMatrix() const override; /*!< implement getViewMatrix() of Camera's class */
     };
 }
 
