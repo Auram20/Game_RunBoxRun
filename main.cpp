@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <SDL/SDL.h>
 #include <GL/glew.h>
-#include <app/Button.hpp>
 #include <utils/Error.hpp>
 #include <app/Map.hpp>
 #include <glimac/Sphere.hpp>
@@ -36,7 +35,6 @@ int main(int argc, char** argv)
     Enemy en(1, glm::vec3(10), glm::vec3(10), glm::vec3(100));
     Ui ui;
     UiElement ue;
-    Button butt(100,100, "menu");
     Score sc;
     Time ti;
     FilePath applicationPath(argv[0]);
