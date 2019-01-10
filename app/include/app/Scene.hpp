@@ -26,6 +26,8 @@ namespace RUNBOXRUN
 
 	/// \class GameManager
 	/// \brief class defining a new GameManager.
+	/*!< CLasse qui définit un new GameManager */
+
 	class GameManager
 	{
 		
@@ -37,20 +39,21 @@ namespace RUNBOXRUN
 		virtual ~GameManager() = default; /*!< default destructor*/
         
 
-		virtual void initScene(Scene &scene) {};
+		virtual void initScene(Scene &scene) {};  /*!< virtual initialisation scene */
 
-		virtual void runScene(Scene &scene, SDL_Event &e) {};
+		virtual void runScene(Scene &scene, SDL_Event &e) {}; /*!< virtual function to draw scene */
 
-		virtual void closeScene(Scene &scene) {};
+		virtual void closeScene(Scene &scene) {}; /*!< virtual function to close/quit scene */
 
     };
 
 	
 
 
-
-	/// \class Scene
+/// \class Scene
 	/// \brief class defining a new Scene
+	/*!< Class Scene avec l'appel à drawScene, lumière, caméra, tous les gameObject. 
+		la classe gère aussi le reset de la map */
 	class Scene
 	{
 			
@@ -61,6 +64,7 @@ namespace RUNBOXRUN
 
 		~Scene(); /*!< default destructor*/
 
+		/*!< draw all game objects from map*/
 		virtual inline void drawScene() const {
 			glimac::Render *render = glimac::Render::getInstance(); 
 			std::for_each(
@@ -84,6 +88,7 @@ namespace RUNBOXRUN
 			drawScene();
 		}
 
+		/*!< display the current camera */ 
 		inline void setCurrentCamera(const std::string &name) {
 			if(_currentCam != _Cameras.end()) (_currentCam->second)->activate();
 			_currentCam = _Cameras.find(name);
@@ -109,12 +114,14 @@ namespace RUNBOXRUN
 			}
 			(_currentCam->second)->activate();
 		}
-
+		
+		/*!< insert a new camera */
 		inline void addCamera(const std::string &name, glimac::Camera *cam) {
 			if(_Cameras.find(name) == _Cameras.end())
 				_Cameras.emplace(name, cam);
 		}
-
+		
+		/*!< push game object in scene */
 		inline void push(GameObject *gobj, std::string id) {
 			_GameObjects.insert(std::pair<std::string,GameObject *>(id,gobj));
 		} /*!< push game object in scene */
@@ -128,6 +135,7 @@ namespace RUNBOXRUN
 			}
 		}
 
+		/* give the current view matrice to display */
 		inline const glm::mat4 getCurrentViewMatrix() const {
 			if(_currentCam == _Cameras.end()) {
 				return glm::mat4(1.f);
@@ -171,7 +179,7 @@ namespace RUNBOXRUN
 
 		inline void addLight(const glimac::LightType &type, const glimac::Light &light) {
 			auto it = _lights.find(type);
-			if(it == _lights.end()) _lights.emplace(type, std::vector<glimac::Light>({light}));
+			if(it == _lights.end()) _lights.emplace(type, std::vector<glimac::Light>({light})); // insert a new light
 			(it->second).push_back(light);
 		}
 
@@ -205,7 +213,7 @@ namespace RUNBOXRUN
             std::map<std::string, GameObject *> _GameObjects;
 		protected:
 			std::map<std::string, glimac::Camera*> _Cameras;
-			std::map<std::string, glimac::Camera*>::iterator _currentCam;
+			std::map<std::string, glimac::Camera*>::iterator _currentCam; // iterato for map with camera in second data
 			std::shared_ptr<GameManager> _gameManager;
 			std::map<glimac::LightType, std::vector<glimac::Light>> _lights;
 			glm::vec3 _color;

@@ -16,6 +16,7 @@ namespace RUNBOXRUN
 {
 	/// \class MainMenuScene
 	/// \brief class defining a new GameManager Victory screen.
+	/*!< Il s'agit de la classe qui gère l'écran de fin  lorsque le joueur gagne */
 	class VIScene : public GameManager
 	{
 		
@@ -35,14 +36,14 @@ namespace RUNBOXRUN
 
 				GameObject *bg = new GameObject(monBG2,Transform(glm::vec3(-0.5, -0.8, -5),glm::vec3(0.125)));
 
-		    	scene.push(bg,"1");
+		    	scene.push(bg,"1"); // index == 1
 
 			    glEnable(GL_DEPTH_TEST);	
 
 		};
 
 
-
+		/*!< lance l'appel à l'affichage de la scene */
 		void runScene(Scene &scene, SDL_Event &e) override 
 		{
 
@@ -52,17 +53,18 @@ namespace RUNBOXRUN
    		        switch(e.type) {
 	            case SDL_KEYDOWN:
 	 
-	                if (e.key.keysym.sym==SDLK_m)  { 
+	                if (e.key.keysym.sym==SDLK_m)  {  // Pour repartir dans le menu
 	             		sm->setIndex(0);	
 	                }
 
-	                if (e.key.keysym.sym==SDLK_r) 
+	                if (e.key.keysym.sym==SDLK_r) // Pour recommencer
 	                { 
 		             	sm->setIndex(1);  		
 					}
  				};
  		}
 
+ 		/*!< quitte la scene */
 		void closeScene(Scene &scene) override {
 					
 		

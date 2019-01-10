@@ -25,10 +25,15 @@ namespace RUNBOXRUN
 
 	class InputManager;
 
+	/// \class InputManager
+	/// \brief class defining the input.
+	/*<! class defining the input*/
+
 	class Input {
 
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
+		/*!< Input's constructor with parameters*/
 		Input(const bool isContinuous = false)
 		: _isActive(false), _isContinuous(isContinuous), _observables()
 		{
@@ -41,6 +46,7 @@ namespace RUNBOXRUN
 		}
 		~Input() = default; /*!< default destructor*/
 
+		/*!< On observe tous les observables, chaque observables a ses observateurs spécifiques, ont insert les observateurs*/
 		inline void attach(utils::Observable<InputManager>** target, const unsigned int &id) {
 			auto it = _observables.find(target);
 			if(it != _observables.end()) {
@@ -50,18 +56,22 @@ namespace RUNBOXRUN
 			}
 		}
 
+		/*!< iterator qui retourne le debut des observables */
 		inline const std::map<utils::Observable<InputManager>**, std::set<unsigned int>>::iterator begin() {
 			return _observables.begin();
 		}
 
+		/*!< iterator qui retourne la fin des observables */
 		inline const std::map<utils::Observable<InputManager>**, std::set<unsigned int>>::iterator end() {
 			return _observables.end();
 		}
 
+		/*!< desactive observable*/
 		inline void turnOn() {
 			_isActive = true;
 		}
 
+		/*!< desactive observable*/
 		inline void turnOff() {
 			_isActive = false;
 		}
@@ -81,15 +91,18 @@ namespace RUNBOXRUN
 		bool _isContinuous;
 	};
 
-	/// \class Bonus
-	/// \brief class defining the input manager.
 	class InputManager : public utils::EventManager<InputManager>
 	{
 			
+		/// \class InputManager
+		/// \brief class defining the inputmanager.
+		/*<! class defining the inputmanager */
+
+
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-		static InputManager *getInstance();
-		void execute(const SDL_Event &e);
+		static InputManager *getInstance(); // Instance 
+		void execute(const SDL_Event &e); /*!< Met à jour en fonction de l'évènement */
 		static const glm::ivec2 getMousePosition() {
 			glm::ivec2 mousePos;
 			SDL_GetMouseState(&mousePos.x, &mousePos.y);
@@ -117,7 +130,7 @@ namespace RUNBOXRUN
 			return _cursor;
 		}
 
-
+		/*!< On observe tous les observables, chaque observables a ses observateurs spécifiques, ont insert les observateurs*/
 		inline int attachKey(utils::Observable<InputManager> &target, const SDLKey &key, const std::function<void(InputManager&)> &action) {
 			int id = utils::EventManager<InputManager>::attach(target, action);
 			if(id == -1) return -1;
@@ -132,6 +145,7 @@ namespace RUNBOXRUN
 			return id;
 		}
 
+		/*!< On observe tous les observables, chaque observables a ses observateurs spécifiques, ont insert les observateurs*/
 		inline int attachMouse(utils::Observable<InputManager> &target, const std::function<void(InputManager&)> &action) {
 			int id = utils::EventManager<InputManager>::attach(target, action);
 			if(id == -1) return -1;
@@ -169,6 +183,7 @@ namespace RUNBOXRUN
 			}
 		}
 
+		/*!< desactive observable*/
 		inline void turnOff(const SDLKey &key) {
 			std::map<SDLKey, Input>::iterator it = _inputs.find(key);
 			if(it == _inputs.end()) return;

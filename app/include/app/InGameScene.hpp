@@ -24,7 +24,7 @@
 namespace RUNBOXRUN
 {
 
-/// \class In Game 
+	/// \class In Game 
 	/// \brief class defining a new GameManager.
 	class IGScene : public GameManager, public utils::Observable<InputManager>
 	{
@@ -35,7 +35,7 @@ namespace RUNBOXRUN
 		IGScene() : GameManager(), Observable() {}; 
 		~IGScene() = default ;
 
-
+		/*!< Initiate a scene with Player, PlayerHealth */
 		void initScene(Scene &scene) override
 		{
 
@@ -76,6 +76,7 @@ namespace RUNBOXRUN
 		};
 
 
+		/*!< affiche la scène et permet la MAJ des éléments */
 		void runScene(Scene &scene, SDL_Event &e) override
 		{
 			
@@ -93,7 +94,6 @@ namespace RUNBOXRUN
   			{
 	    		dynamic_cast<PlayerHealth*>(it->second)->run();
 			}
-
 
 			Player *player = Player::getInstance();
 			if(player->_health == 0 && player->_victory==0) {

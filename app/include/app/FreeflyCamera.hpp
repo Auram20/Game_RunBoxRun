@@ -11,7 +11,11 @@
 #include <app/Camera.hpp>
 
 namespace glimac {
-    
+    /// \class FreeflyCamera
+    /// \brief class for FreeflyCamera.
+
+    /*!< Cette classe est la caméra qui permet de voir ce qui est derrière le joueur */
+
     class FreeflyCamera : public Camera {
         private:
             glm::vec3 m_Position; // Position x,y and z

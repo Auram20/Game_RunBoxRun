@@ -30,6 +30,7 @@ namespace glimac
 {
 	/// \class WindowEngine
 	/// \brief class for  WindowEngine.
+	/*!< Class WindowEngine */
 	class WindowEngine : public utils::Observable<InputManager>
 	{
 			
@@ -40,25 +41,28 @@ namespace glimac
 		~WindowEngine()=default; /*!< default destructor*/
 
 		// WINDOWENGINE FUNCTIONS
+
 		int initWindow(FilePath app); /*!< render loop */
+
+		/*!< load et joue la musique du jeu */
 		inline int playMusic()
 		{
 
-        if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1){
-        	std::cout <<"ERROR initializing mix" << std::endl;
-            return EXIT_FAILURE;
-        }
+	        if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1){
+	        	std::cout <<"ERROR initializing mix" << std::endl;
+	            return EXIT_FAILURE;
+	        }
 
 
-        Mix_Music *game_music = Mix_LoadMUS( "../assets/sounds/runboyrun.mp3");
-        Mix_PlayMusic(game_music, -1);
+	        Mix_Music *game_music = Mix_LoadMUS( "../assets/sounds/runboyrun.mp3");// load music for the game 
+	        Mix_PlayMusic(game_music, -1); // play music
+
 		};
 
 
 		private:
 		SDLWindowManager _windowManager; /*!< window */
 		SceneFactory _scene;
-		//Program _program;
 
 	};
 }

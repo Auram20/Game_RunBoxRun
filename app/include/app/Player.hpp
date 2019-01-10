@@ -21,6 +21,7 @@ namespace RUNBOXRUN
 {
 	/// \class Player
 	/// \brief class defining a new player.
+	/*!< Classe Joueur avec de ses positions, size, mouvements...*/
 	class Player : public GameObject, public utils::Observable<InputManager>
 	{
 			
