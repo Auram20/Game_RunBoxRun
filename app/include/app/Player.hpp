@@ -14,6 +14,8 @@
 #include <app/InputManager.hpp>
 #include <glimac/Model.hpp>
 #include <app/SceneFactory.hpp>
+#include <SDL/SDL_mixer.h>
+
 #define VULNERABILITY_DELAY 1500 
 
 
@@ -73,6 +75,7 @@ namespace RUNBOXRUN
 			}
 			void vulnerability();
 			void initCollisionBehaviours();
+		
 
 	};
 }
