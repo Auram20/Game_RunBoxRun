@@ -14,23 +14,26 @@ namespace glimac {
 
     /// \class Rec2D
     /// \brief class defining a new Rec2D.
+    /*!< Classe pour réaliser un rectangle en 2D */
 class Rec2D : public Box
 {
 
 public:
       // CONSTRUCTORS & DESTRUCTOR
+    /*!< init constructor*/
     Rec2D(GLfloat width, GLfloat height)
     : Box()
     {
         build(width, height, 0);
         initIndex();
         setupMesh();
-    } /*!< init constructor*/
+    } 
 
+    /*!< Render a Rec2D */
     void draw() const override {
         glDisable(GL_DEPTH_TEST);
         Mesh::draw();
-    }; /*!< Render a Rec2D */
+    };
 
 };  
 

@@ -13,22 +13,19 @@
 namespace glimac
 {
 
-	/// \class Material
-	/// \brief class defining a Material
-	class Material
-	{
-		public:
+    /// \class Material
+    /// \brief class defining a Material
+    /*!< classe de materiaux */
+    class Material
+    {
+        public:
         Material()
         : _textures(), _colors(), _shininess(1) 
-        {
-
-        }
+        {} /*< constructor with parameters */
 
         Material(const Material& material)
         : _textures(material._textures), _colors(material._colors), _shininess(material._shininess) 
-        {
-
-        }
+        {} /*< constructor by copy */
 
         ~Material() = default;
 
@@ -37,7 +34,7 @@ namespace glimac
             if(_textures.find(type) == _textures.end()) return -1;
             return (it->second).id();
         }
-
+        /*!< insert a new texture */
         inline void addTexture(const aiTextureType &type, const std::string &path) {
             _textures.emplace(type, path);
         }
@@ -48,38 +45,47 @@ namespace glimac
             return (it->second);
         }
 
+        /*!< getter size of map color */
         inline const uint colorNb() const {
             return _colors.size();
         }
 
+         /*!< getter size of map texture  */
         inline const uint textureNb() const {
             return _textures.size();
         }
 
+        /*!< getter shininess of material */
         inline const float shininess() const {
             return _shininess;
         }
 
+        /*!< insert a new color */
         inline void setColor(const aiTextureType &type, const glm::vec3 &color) {
             _colors.emplace(type, color);
         }
 
+        /*!< getter iterator for the beginning of map texture  */
         inline const std::map<aiTextureType, Texture>::const_iterator textureBegin() const {
             return _textures.begin();
         }
 
+        /*!< getter iterator for the end of map texture  */
         inline const std::map<aiTextureType, Texture>::const_iterator textureEnd() const {
             return _textures.end();
         }
 
+        /*!< getter iterator for the beginning of map color */
         inline const std::map<aiTextureType, glm::vec3>::const_iterator colorBegin() const {
             return _colors.begin();
         }
 
+        /*!< getter iterator for the end of map color */
         inline const std::map<aiTextureType, glm::vec3>::const_iterator colorEnd() const {
             return _colors.end();
         }
 
+        /*!< getter Typename of aiTextureType */
         static const std::string getTypeName(const aiTextureType &type) {
 
             std::string typeName;
@@ -150,6 +156,7 @@ namespace glimac
             return typeName;
         }
 
+        /*!< insert a new vector color */
         inline void setColor(const aiTextureType &type, const aiColor3D &color) {
             _colors.emplace(type, glm::vec3(color.r, color.g, color.b));
         }
@@ -160,8 +167,8 @@ namespace glimac
         std::map<aiTextureType, glm::vec3> _colors;
         float _shininess;
         
-		
-	};
+        
+    };
 }
 
 #endif

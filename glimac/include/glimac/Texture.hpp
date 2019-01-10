@@ -7,6 +7,7 @@
 #ifndef __TEXTURE__HPP
 #define __TEXTURE__HPP
 
+// include
 #include <glimac/Image.hpp>
 #include <utils/FilePath.hpp>
 #include <iostream>
@@ -19,13 +20,14 @@ namespace glimac {
 
         /// \class Texture
         /// \brief class defining a new texture.
+        /*!< Classe qui définie une texture */
     class Texture : public Asset
     {
 
         public:
             // CONSTRUCTORS & DESTRUCTOR
-            Texture();
-            Texture(const Texture&);
+            Texture(); /*!< constructeur par défaut */
+            Texture(const Texture&); /*!< constructor width parameters */
             Texture(const std::string &path); /*!< Texture's constructor with parameters*/
             ~Texture() = default; /*!< Texture's destructor */
             
@@ -38,6 +40,7 @@ namespace glimac {
                     return 0;
             }
 
+            // surcharge operator 
             Texture& operator =(const std::string &path) {
                 if(path != "") {
                     _path = path;
