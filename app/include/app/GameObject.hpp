@@ -28,7 +28,7 @@ namespace RUNBOXRUN
 			
 		public:
 		// CONSTRUCTORS & DESTRUCTOR
-        GameObject(const unsigned int &sProgramID = 0); /*!< default constructor */
+        explicit GameObject(const unsigned int &sProgramID = 0); /*!< default constructor */
         GameObject(const glimac::Model &model, const unsigned int &sProgramID = 0);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const Transform &transform, const unsigned int &sProgramID = 0);
         GameObject(const std::shared_ptr<glimac::Asset> &asset, const unsigned int &sProgramID = 0);
