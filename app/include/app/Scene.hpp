@@ -1,4 +1,4 @@
-// ================================
+	// ================================
 // OPENGL / C++ - IMAC 2
 // _________ RUNBOXRUN ___________ 
 // _________ SCENE.HPP_____ 
@@ -95,7 +95,7 @@ namespace RUNBOXRUN
 				_Cameras.begin(),
 				_Cameras.end(),
 				[&](const std::pair<std::string, glimac:: Camera*> &pair)
-					{
+					{	
 						pair.second->translateZ(-0.1);
 					}
 				);

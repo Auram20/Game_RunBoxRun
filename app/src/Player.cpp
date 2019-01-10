@@ -55,6 +55,7 @@ void Player::initCollisionBehaviours() {
               std::cout << _touched << std::endl;        
               std::cout << "PLAYER'S HEALTH CHANGED" << _health << std::endl;
             }
+            _victory=0;
 
     });
 
@@ -78,7 +79,7 @@ Player* Player::getInstance()
 {
     if(_instance == nullptr)
     {
-         glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
+         glimac::Model modelPlayer(glimac::FilePath("../assets/obj/Player.obj"));
          Transform transformPlayer(glm::vec3(1, 0, -5),glm::vec3(1));
         _instance = new Player(0.1,glm::vec3(1, -0 , -5), glm::vec3(1),glm::vec3(100),3,0,0,modelPlayer,transformPlayer);
         

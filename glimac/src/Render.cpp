@@ -33,7 +33,7 @@ void Render::initRender()
    	_ProjMatrix = glm::perspective(glm::radians(70.f),
                                   (float)800/600,
                                    0.1f,
-                                   100.f);
+                                   150.f);
 
     _MVMatrix = glm::translate(glm::mat4(1.f),glm::vec3(0.f, 0.f, -5.f));
     //_MVMatrix = glm::rotate(_MVMatrix, -45.f, glm::vec3(0.f, 1.f, 0.f));

@@ -41,6 +41,12 @@ namespace RUNBOXRUN
 
 		    Player* p = Player::getInstance();
 		    PlayerHealth* ph = PlayerHealth::getInstance();
+
+			//Box bo(1,1,1);
+			Model skybox(FilePath("../assets/obj/Skybox.obj"));
+			GameObject *sk= new GameObject(skybox, Transform(glm::vec3(0,0,0),glm::vec3(150)));
+			scene.push(sk,"Skybox");
+			
 			Map map("../assets/map/test3.txt");
 		    map.load();
     		SceneFactory sceneMap;
@@ -81,18 +87,33 @@ namespace RUNBOXRUN
   			{
 	    		dynamic_cast<Player*>(it->second)->updatePlayer(e);
 			}
+	
 			it = scene._GameObjects.find("PH");
   			if (it != scene._GameObjects.end())
   			{
 	    		dynamic_cast<PlayerHealth*>(it->second)->run();
 			}
 
+			// it = scene._GameObjects.find("Skybox");
+  	// 		if (it != scene._GameObjects.end())
+  	// 		{	
+  	// 			glm::vec3 runvec(0.f);
+   //   			runvec=it->second->_transform._translate;
+   //   			runvec[0]-= 0.00000000000000001;
+			// 	(it->second)->setTrans(runvec);
+			// 	it->second->_transform._translate = runvec;
+   //   			std::cout << "RUNVEC" << it->second->_transform._translate[0] << "RUNVEC"<< it->second->_transform._translate[1] << "RUNVEC" <<it->second->_transform._translate[2] << std::endl;
+			
+			// }
+
+
+
 			Player *player = Player::getInstance();
-			if(player->_health == 0) {
+			if(player->_health == 0 && player->_victory==0) {
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(2);
 				}
-			if(player->_victory == 1) {
+			if(player->_victory == 1 && player->_health >0) {
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(3);
 				}

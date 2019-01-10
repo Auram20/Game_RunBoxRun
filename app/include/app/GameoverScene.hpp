@@ -30,7 +30,7 @@ namespace RUNBOXRUN
 		void initScene(Scene &scene) override 
 		{
 				glDisable(GL_DEPTH_TEST);
-				glimac::Model monBG2(glimac::FilePath("../assets/obj/GameOver.obj"));
+				glimac::Model monBG2(glimac::FilePath("../assets/obj/GameOver2.obj"));
 				glimac::Box Rectangle1(1,1,0);
 
 				GameObject *bg = new GameObject(monBG2,Transform(glm::vec3(-0.5, -0.8, -5),glm::vec3(0.125)));

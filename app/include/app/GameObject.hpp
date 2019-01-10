@@ -106,7 +106,6 @@ namespace RUNBOXRUN
         }
 
 
-        
         Transform _transform;
 		protected:
             std::shared_ptr<glimac::Model> _model;
