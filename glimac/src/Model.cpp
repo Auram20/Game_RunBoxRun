@@ -60,7 +60,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
     std::vector<Texture> textures;
-    int materialID = -1;
+    uint materialID = 0;
 
     for(unsigned int i = 0;i < mesh->mNumVertices;i++)
     {

@@ -32,7 +32,10 @@ namespace glimac {
             // FONCTIONS
             bool load() override;
             inline const GLuint id() const {
-                return *_id;
+                if(_id.get() != nullptr)
+                    return *_id;
+                else
+                    return 0;
             }
 
             Texture& operator =(const std::string &path) {
@@ -56,8 +59,8 @@ namespace glimac {
             std::shared_ptr<GLuint> _id; /*!< idTexture */
             void TextureFromFile(const std::string &path);
             static void deleteTexID(GLuint *id) {
-                std::cout << "delete !" << std::endl;
                 if(id != nullptr) {
+                    std::cout << "delete !" << std::endl;
                     if(*id != 0)
                         glDeleteTextures(1, id);
                     delete id;

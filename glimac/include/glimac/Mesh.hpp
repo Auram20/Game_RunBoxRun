@@ -25,7 +25,7 @@ public:
   
     // CONSTRUCTORS & DESTRUCTOR
     Mesh();
-    Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const int &mat); /*!< object's constructor with arguments*/
+    Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const uint &mat); /*!< object's constructor with arguments*/
     Mesh(const Mesh &mesh);
     ~Mesh() = default;
         
@@ -41,7 +41,7 @@ public:
         return _VertexList.size();
     } /*!< Returns Vertex numbers */
 
-    inline const int materialID() const {
+    inline const uint materialID() const {
         return _materialID;
     }
   

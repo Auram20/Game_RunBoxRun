@@ -15,7 +15,7 @@ using namespace glimac;
 Mesh::Mesh()
 : _VertexList(),
 _index(),
-_materialID(),
+_materialID(0),
 _vao(nullptr, Mesh::deleteVertexArrays),
 _vbo(nullptr, Mesh::deleteBuffers),
 _ebo(nullptr, Mesh::deleteBuffers)
@@ -23,7 +23,7 @@ _ebo(nullptr, Mesh::deleteBuffers)
 
 }
 
-Mesh::Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const int &mat)
+Mesh::Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const uint &mat)
 : _VertexList(vert),
 	_index(ind),
 	_materialID(mat),
