@@ -54,6 +54,7 @@ namespace RUNBOXRUN
 		};
 
 		void closeScene(Scene &scene) override {
+			std::cout << "closeScene" << std::endl;
 			_etat=0;
 		};
 

@@ -169,6 +169,12 @@ namespace RUNBOXRUN
 			return *this;
 		}
 
+		inline void addLight(const glimac::LightType &type, const glimac::Light &light) {
+			auto it = _lights.find(type);
+			if(it == _lights.end()) _lights.emplace(type, std::vector<glimac::Light>({light}));
+			(it->second).push_back(light);
+		}
+
 		inline void clearScene() {
 			close();
 			resetMap<GameObject>(_GameObjects);
@@ -195,7 +201,7 @@ namespace RUNBOXRUN
 		}
 
 		
-			std::shared_ptr<GameManager> _gameManager;
+			std::shared_ptr<GameManager> _gameManager; //private
             std::map<std::string, GameObject *> _GameObjects;
             int _etat;
 		protected:

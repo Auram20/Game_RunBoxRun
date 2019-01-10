@@ -24,30 +24,48 @@ namespace glimac {
 
         public:
             // CONSTRUCTORS & DESTRUCTOR
-            Texture() = default;
-            Texture(const std::string &path, const aiTextureType &type); /*!< Texture's constructor with parameters*/
-            Texture(Texture &&tex) noexcept;
-            Texture(const Texture &tex);
-            ~Texture(); /*!< Texture's destructor */
+            Texture();
+            Texture(const Texture&);
+            Texture(const std::string &path); /*!< Texture's constructor with parameters*/
+            ~Texture() = default; /*!< Texture's destructor */
             
             // FONCTIONS
-            const std::string getTypeName() const;
             bool load() override;
             inline const GLuint id() const {
-                return _id;
+                if(_id.get() != nullptr)
+                    return *_id;
+                else
+                    return 0;
             }
 
-            Texture& operator =(Texture&& rvalue) {
-                _id = rvalue._id;
-                rvalue._id = 0;
+            Texture& operator =(const std::string &path) {
+                if(path != "") {
+                    _path = path;
+                    load();
+                }
                 return *this;
             }
 
+            Texture& operator =(const FilePath &path) {
+                if(path != "") {
+                    _path = path;
+                    load();
+                }
+                return *this;
+            }
+
+
         private:
-            GLuint _id; /*!< idTexture */
-            aiTextureType _type; /*!< texture type */
+            std::shared_ptr<GLuint> _id; /*!< idTexture */
             void TextureFromFile(const std::string &path);
-	        Texture& operator =(const Texture&);
+            static void deleteTexID(GLuint *id) {
+                if(id != nullptr) {
+                    std::cout << "delete !" << std::endl;
+                    if(*id != 0)
+                        glDeleteTextures(1, id);
+                    delete id;
+                }
+            }
     };
     
 }

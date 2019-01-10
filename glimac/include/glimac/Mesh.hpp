@@ -25,21 +25,25 @@ public:
   
     // CONSTRUCTORS & DESTRUCTOR
     Mesh();
-    Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const std::vector<Texture> &tex); /*!< object's constructor with arguments*/
+    Mesh(const std::vector<Vertex> &vert, const std::vector<uint32_t> &ind, const uint &mat); /*!< object's constructor with arguments*/
     Mesh(const Mesh &mesh);
     ~Mesh() = default;
         
     // GETTERS
     
-    const Vertex* getDataPointer() const 
+    inline const Vertex* getDataPointer() const 
     {
         return _VertexList.data();
     } /*!< Returns pointor on datas */
     
-    GLsizei getVertexCount() const 
+    inline GLsizei getVertexCount() const 
     {
         return _VertexList.size();
     } /*!< Returns Vertex numbers */
+
+    inline const uint materialID() const {
+        return _materialID;
+    }
   
     virtual void displayInfos() const;/*!< displays info of a mesh - used for testing */
   
@@ -61,7 +65,7 @@ protected:
   
     std::vector<Vertex> _VertexList;
     std::vector<uint32_t> _index;
-    std::vector<Texture> _textures;
+    int _materialID;
     
     std::shared_ptr<GLuint> _vao;
     std::shared_ptr<GLuint> _vbo;

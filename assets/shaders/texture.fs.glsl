@@ -18,7 +18,7 @@ uniform sampler2D uTexture[10];
 void main() {
   //fFragColor = vec3(1, 1, 1);
   //for(int i = 0; i < uTexture.length(); ++i) {
-    fFragColor = texture2D(uTexture[0], vTexCoords).xyz;
+    fFragColor = texture2D(uTexture[1], vTexCoords).xyz;
   //}
 
 //uniform sampler2D uTexture[MAX_TEXTURE];

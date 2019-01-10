@@ -45,14 +45,12 @@ void Render::clear()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 }
 
-void Render::sendDatasTex(const std::vector<Texture> &tex) const {
-  GLuint textures[MAX_TEXTURE];
-    for(int i = 0; i < tex.size(); ++i) {
-        textures[i] = tex[i].id();
+void Render::sendDatasTex(const std::map<aiTextureType, Texture>::const_iterator &begin, const std::map<aiTextureType, Texture>::const_iterator &end) const {
+    GLuint textures[MAX_TEXTURE];
+    for(auto i = begin; i != end; ++i) {
+        textures[i->first] = (i->second).id();
     }
-    unsigned int size = (tex.size() > MAX_TEXTURE) ? MAX_TEXTURE : tex.size();
     glUniform1uiv(uTexture, MAX_TEXTURE, textures);
-    glUniform1ui(uTextureSize, size);
 }
 
 void Render::sendDatasLight(const std::vector<Light> &lights) const {

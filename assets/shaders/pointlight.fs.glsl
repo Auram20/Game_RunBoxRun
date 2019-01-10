@@ -21,6 +21,7 @@ float dotN(vec3 v1, vec3 v2) {
 }
 
 vec3 blinnPhong() {
+    //vec3 color = mix(uKd, texture2D(uTexture, gl_Position));
     vec3 diffuse = uKd * dotN(normalize(uLightPos_vs - vPosition_vs), normalize(vNormal_vs));
     vec3 glossy = uKs * pow(dotN(((normalize(uLightPos_vs) + normalize(-vPosition_vs)) / 2.f), normalize(vNormal_vs)), uShininess);
     float d = distance(uLightPos_vs, vPosition_vs);
