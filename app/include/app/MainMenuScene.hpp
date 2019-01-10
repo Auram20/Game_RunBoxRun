@@ -54,7 +54,7 @@ namespace RUNBOXRUN
 		};
 
 		void closeScene(Scene &scene) override {
-			std::cout << "closeScene" << std::endl;
+			InputManager::clearInstance();
 			_etat=0;
 		};
 

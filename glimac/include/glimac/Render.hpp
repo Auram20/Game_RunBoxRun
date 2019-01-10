@@ -19,6 +19,7 @@
 #include <glimac/Light.hpp>
 #include <memory>
 #define MAX_TEXTURE aiTextureType::aiTextureType_UNKNOWN
+#define MAX_LIGHT 10
 
 namespace glimac
 {
@@ -113,9 +114,8 @@ namespace glimac
 		GLint uMVMatrix;
 		GLint uNormalMatrix;
 		GLint uTexture;
-		GLint uTextureSize;
-		GLint uKdColor;
-		GLint uKsColor;
+		GLint uLightSize;
+		GLint uColors;
 		GLint uShininess;
 		GLint uLightPos;
 		GLint uLightIntensity;

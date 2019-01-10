@@ -17,9 +17,8 @@ void Render::program(const unsigned int &id){
 	uMVMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uMVMatrix");
 	uNormalMatrix = glGetUniformLocation(_sPrograms[id].getGLId(), "uNormalMatrix");
 	uTexture = glGetUniformLocation(_sPrograms[id].getGLId(), "uTexture");
-    uTextureSize = glGetUniformLocation(_sPrograms[id].getGLId(), "uTextureSize");
-    uKdColor = glGetUniformLocation(_sPrograms[id].getGLId(), "uKd");
-    uKsColor = glGetUniformLocation(_sPrograms[id].getGLId(), "uKs");
+    uLightSize = glGetUniformLocation(_sPrograms[id].getGLId(), "uLightSize");
+    uColors = glGetUniformLocation(_sPrograms[id].getGLId(), "uK");
     uShininess = glGetUniformLocation(_sPrograms[id].getGLId(), "uShininess");
     uLightPos = glGetUniformLocation(_sPrograms[id].getGLId(), "uLightPos_vs");
     uLightIntensity = glGetUniformLocation(_sPrograms[id].getGLId(), "uLightIntensity");

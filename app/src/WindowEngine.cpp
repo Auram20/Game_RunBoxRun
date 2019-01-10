@@ -82,13 +82,6 @@ int WindowEngine::initWindow(FilePath app)
 
     sm->setIndex(0);
 
-// ATTACH CAMERAS TO SCENE
-     // man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
-     //     myIGScene.changeCurrentCamera();
-     // });
-     // man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
-     //     Camera::lock();
-     // });
 
 // -----------------------------------------------------------------------------------------
 //                                      BOUCLE DE RENDU 

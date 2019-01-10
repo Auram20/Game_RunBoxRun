@@ -19,24 +19,28 @@ namespace utils {
 	class Observable {
 		public:
             Observable()
-            : _observers(), _observerID(0), _ptr(new Observable*(this))
+            : _observers(), _observerID(0), _ptr(nullptr, Observable<U>::clearPtr)
             {
+                _ptr = std::make_shared<Observable*>(this);
                 _observers.reserve(10);
             }
 
-            ~Observable() {
-                if(_ptr != nullptr) {
-                    *_ptr = nullptr;
+            Observable(const Observable &obs)
+            : _observers(obs._observers), _observerID(obs._observerID), _ptr(obs._ptr)
+            {
+                if(_ptr.get() != nullptr) {
+                    *_ptr = this;
                 }
+            }
 
-                for(auto jt = _observers.begin(); jt != _observers.end(); ++jt) {
-                    delete *jt;
-                }
+            ~Observable() {
+
+                clearObservers();
 
             }
 
             inline const unsigned int attach(const std::function<void(U&)> &action) {
-                _observers.emplace(new Observer<U>(action, _observerID));
+                _observers.emplace(std::shared_ptr<Observer<U>>(new Observer<U>(action, _observerID)));
                 return _observerID++;
             }
 
@@ -59,15 +63,16 @@ namespace utils {
             inline void notify(const std::set<unsigned int> &id, U &target) {
                 unsigned int found = 0;
                 for(auto jt = _observers.begin(); jt != _observers.end() && found < _observers.size(); ++jt) {
-                    if(*jt != nullptr && id.find((*jt)->id()) != id.end()) {
+                    if(jt->get() != nullptr && id.find((*jt)->id()) != id.end()) {
                         (*jt)->update(target);
                         ++found;
                     }
                 }
+                std::cout << found << std::endl;
             }
 
             inline Observable ** ptr() const {
-                return _ptr;
+                return _ptr.get();
             }
 
             inline void clearObservers() {
@@ -75,11 +80,17 @@ namespace utils {
                 _observerID = 0;
             }
 
+            static inline void clearPtr(Observable **ptr) {
+                if(ptr != nullptr) {
+                    *ptr = nullptr;
+                }
+            }
+
         private:
-            std::unordered_set<Observer<U>*> _observers;
+            std::unordered_set<std::shared_ptr<Observer<U>>> _observers;
             unsigned int _observerID;
-            Observable ** _ptr;
-            inline const typename std::unordered_set<Observer<U>*>::iterator findObserver(const unsigned int &id) {
+            std::shared_ptr<Observable *> _ptr;
+            inline const typename std::unordered_set<std::shared_ptr<Observer<U>>>::iterator findObserver(const unsigned int &id) {
                 for(auto jt = _observers.begin(); jt != _observers.end(); ++jt) {
                     if((*jt)->id() == id)
                         return jt;
@@ -88,7 +99,7 @@ namespace utils {
 
 	};
 
-    template<>
+    /*template<>
 	class Observable<void> {
 		public:
             Observable()
@@ -102,10 +113,7 @@ namespace utils {
                     *_ptr = nullptr;
                 }
 
-                for(auto jt = _observers.begin(); jt != _observers.end(); ++jt) {
-                    delete *jt;
-                }
-
+                clearObservers();
             }
 
             inline const unsigned int attach(const std::function<void(void)> &action) {
@@ -144,6 +152,9 @@ namespace utils {
             }
 
             inline void clearObservers() {
+                for(auto jt = _observers.begin(); jt != _observers.end(); jt++) {
+                    delete *jt;
+                }
                 _observers.clear();
                 _observerID = 0;
             }
@@ -159,6 +170,6 @@ namespace utils {
                 }
             }
 
-	};
+	};*/
     
 }

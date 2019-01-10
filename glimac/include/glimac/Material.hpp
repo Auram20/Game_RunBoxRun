@@ -150,6 +150,10 @@ namespace glimac
             return typeName;
         }
 
+        inline void setColor(const aiTextureType &type, const aiColor3D &color) {
+            _colors.emplace(type, glm::vec3(color.r, color.g, color.b));
+        }
+
 
         private:
         std::map<aiTextureType, Texture> _textures;

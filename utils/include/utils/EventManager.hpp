@@ -59,13 +59,17 @@ namespace utils
 			}
 		}
 
+		virtual inline void clearAll() {
+			_observables.clear();
+		}
+
 		private:
 			std::set<Observable<U>**> _observables;
 	};
 
 	/// \class EventManager
 	/// \brief class defining the event manager.
-    template<>
+    /*template<>
 	class EventManager<void>
 	{
 			
@@ -105,9 +109,13 @@ namespace utils
 			}
 		}
 
+		virtual inline void clearAll() {
+			_observables.clear();
+		}
+
 		private:
 			std::set<Observable<void>**> _observables;
-	};
+	};*/
 }
 
 #endif

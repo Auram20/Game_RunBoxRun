@@ -179,6 +179,18 @@ namespace RUNBOXRUN
 			utils::EventManager<InputManager>::updateAll(*this);
 		}
 
+		inline void clearAll() override {
+			_inputs.clear();
+			_observablesMouse.clear();
+			EventManager::clearAll();
+		}
+
+		inline static void clearInstance() {
+			if(_instance != nullptr) {
+				_instance->clearAll();
+			}
+		}
+
 		private:
 			static InputManager *_instance;
 			InputManager(); /*!< default constructor */

@@ -201,13 +201,12 @@ namespace RUNBOXRUN
 		}
 
 		
-			std::shared_ptr<GameManager> _gameManager; //private
+			//std::shared_ptr<GameManager> _gameManager; //private
             std::map<std::string, GameObject *> _GameObjects;
-            int _etat;
 		protected:
 			std::map<std::string, glimac::Camera*> _Cameras;
 			std::map<std::string, glimac::Camera*>::iterator _currentCam;
-			//std::shared_ptr<GameManager> _gameManager;
+			std::shared_ptr<GameManager> _gameManager;
 			std::map<glimac::LightType, std::vector<glimac::Light>> _lights;
 			glm::vec3 _color;
             
