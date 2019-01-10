@@ -17,7 +17,7 @@
 #include <SDL/SDL.h>
 #include <sstream>  
 #include <string>  
-#include <utils/FilePath.hpp>
+#include <utils/FilePath.hpp> 	
 
 
 
@@ -34,6 +34,7 @@ namespace RUNBOXRUN
 	public: 
 		IGScene() : GameManager() {}; 
 		~IGScene() = default ;
+
 
 		void initScene(Scene &scene) override
 		{
@@ -69,6 +70,7 @@ namespace RUNBOXRUN
 
 		void runScene(Scene &scene, SDL_Event &e) override
 		{
+			
 			scene.drawScene(); 
 			scene.runCameras();
 			std::map<std::string,GameObject *>::iterator it;
@@ -93,6 +95,7 @@ namespace RUNBOXRUN
 		};
 
 		void closeScene(Scene &scene) override{};		
+
 
 
 

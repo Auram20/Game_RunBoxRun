@@ -39,7 +39,7 @@ PlayerHealth* PlayerHealth::getInstance()
 {
     if(_instance == nullptr)
     {
-         glimac::Model modelPlayer(glimac::FilePath("../assets/obj/HEARTOBJ.obj"));
+         glimac::Model modelPlayer(glimac::FilePath("../assets/obj/boule.obj"));
          Transform transformPlayer(glm::vec3(0 , -3, -4.9),glm::vec3(1));
         _instance = new PlayerHealth(0.1,glm::vec3(0, -3 , -4.9), glm::vec3(1),0,modelPlayer,transformPlayer);
         
