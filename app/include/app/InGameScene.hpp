@@ -90,6 +90,10 @@ namespace RUNBOXRUN
 				SceneManager *sm = SceneManager::getInstance();
 				sm->setIndex(2);
 				}
+			if(player->_victory == 1) {
+				SceneManager *sm = SceneManager::getInstance();
+				sm->setIndex(3);
+				}
 
 
 		};

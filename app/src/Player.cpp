@@ -10,20 +10,19 @@
 #include "SDL/SDL.h" 
  #include <string> 
  #include <sstream>
-
 using namespace RUNBOXRUN;
 
 
 // --------------- CONSTRUCTORS && DESTRUCTORS --------------
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const  int &jumpState)
-: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0)
+: GameObject(), _speed(speed),  _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0), _victory(0)
 {
     initCollisionBehaviours();
 }
 
 Player::Player(const double &speed, const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &color, const unsigned int &health, const unsigned int &score, const  int &jumpState, const glimac::Model &model, const Transform &transform)
-: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState), _touched(false), _vulnerabilityTime(0), _score(health)
+: GameObject(glimac::Model(model),Transform(transform)), _speed(speed), _health(health), _jumpState(jumpState), _victory(0), _touched(false), _vulnerabilityTime(0), _score(health)
 {
     initCollisionBehaviours();
 }
@@ -64,6 +63,14 @@ void Player::initCollisionBehaviours() {
               std::cout << "COIN TOUCHED" << _score <<std::endl;
               _score++;
             
+    });
+
+    addCollisionBehaviour([&](){
+         
+              std::cout << "END OF GAME" << _score <<std::endl;
+              _score++;
+              _victory=1;
+                
     });
 }
 

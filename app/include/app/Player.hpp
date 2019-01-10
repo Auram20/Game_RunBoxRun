@@ -37,7 +37,7 @@ namespace RUNBOXRUN
 			double _speed;
 			unsigned int _health; /*!< health points of the player */
 			unsigned int _score; /*! Game scored by player */
-
+			bool _victory;
 
 			~Player();/*!< default destructor*/
 
