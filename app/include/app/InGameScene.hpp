@@ -26,25 +26,17 @@ namespace RUNBOXRUN
 	private:
 
 	public: 
-		IGScene() : GameManager() {}; 
+		IGScene() : GameManager(), Observable() {}; 
 		~IGScene() = default ;
 
 		void initScene(Scene &scene) override
 		{
-			/*InputManager *man= InputManager::getInstance();
-			man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
-        		 scene.changeCurrentCamera();
-     		});
-		     man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
-		         Camera::lock();
-		     });*/
-
 
 			Map map("../assets/map/test3.txt");
 		    map.load();
     		SceneFactory sceneMap;
     		sceneMap.initSPrograms();
-    		Scene Masc(sceneMap.constructSceneFromMap(map)); // Car const 
+    		Scene Masc(sceneMap.constructSceneFromMap(map)); // Car const ?
     		scene=scene+Masc;
 
 			std::cout << "non" << std::endl;
@@ -56,6 +48,16 @@ namespace RUNBOXRUN
 		    scene.addCamera("TrackBall", new glimac::TrackballCamera());
 		    scene.addCamera("Freefly", new glimac::FreeflyCamera());
 		    scene.setCurrentCamera("Freefly");
+
+			// ATTACH CAMERAS TO INPUT MANAGER
+
+			InputManager *man = InputManager::getInstance();
+			man->attachKey(*this, SDLK_c, [&](RUNBOXRUN::InputManager &im) {
+        		scene.changeCurrentCamera();
+     		});
+		    man->attachKey(*this, SDLK_l, [&](RUNBOXRUN::InputManager &im) {
+		        Camera::lock();
+		    });
 		};
 
 
@@ -81,7 +83,10 @@ namespace RUNBOXRUN
 
 		};
 
-		void closeScene(Scene &scene) override{};		
+		void closeScene(Scene &scene) override{
+			InputManager::clearInstance();
+			clearObservers();
+		};		
 	};
 }
 

@@ -98,6 +98,13 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
         mat->GetTexture(aiTextureType_SPECULAR, 0, &str);
         newMaterial.addTexture(aiTextureType_SPECULAR, _path.dirPath() + str.C_Str());
 
+        aiColor3D color;
+        mat->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+        newMaterial.setColor(aiTextureType_DIFFUSE, color);
+
+        mat->Get(AI_MATKEY_COLOR_SPECULAR, color);
+        newMaterial.setColor(aiTextureType_SPECULAR, color);
+
         _materials.push_back(newMaterial);
 
     }
