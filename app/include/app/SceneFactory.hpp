@@ -27,6 +27,7 @@ namespace RUNBOXRUN
 {
 	/// \class SceneFactory
 	/// \brief class defining a new Scene from a Map.
+	/*!< Cette classe définit une nouvelle scene depuis une map donnée en paramètres.*/
 	class SceneFactory
 	{
 		
@@ -38,7 +39,7 @@ namespace RUNBOXRUN
 		SceneFactory(); /*!< default constructor */
 		~SceneFactory() = default; /*!< default destructor*/
         Scene constructSceneFromMap(const Map &map);
-		void initSPrograms();
+		void initSPrograms(); /*!< initialise programme */
 	};
 }
 

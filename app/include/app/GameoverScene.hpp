@@ -16,6 +16,7 @@ namespace RUNBOXRUN
 {
 	/// \class MainMenuScene
 	/// \brief class defining a new GameManager MainMenuScene.
+	/*!< GameOverScene permet de créer une nouvelle scène de fin de jeu, elle est intialisée, affichée et supprimée */
 	class GOScene : public GameManager
 	{
 		
@@ -26,7 +27,7 @@ namespace RUNBOXRUN
 		GOScene() : GameManager(){}; /*!< default constructor */
 		~GOScene() = default; /*!< default destructor*/
         
-
+		/*!<create new scene*/
 		void initScene(Scene &scene) override 
 		{
 				glDisable(GL_DEPTH_TEST);
@@ -41,8 +42,7 @@ namespace RUNBOXRUN
 
 		};
 
-
-
+		/*!< render of the new scene*/
 		void runScene(Scene &scene, SDL_Event &e) override 
 		{
 
@@ -62,7 +62,8 @@ namespace RUNBOXRUN
 					}
  				};
  		}
-
+		
+		/*!< end of the scene */
 		void closeScene(Scene &scene) override {
 					
 		

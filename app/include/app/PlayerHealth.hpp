@@ -19,6 +19,10 @@
 namespace RUNBOXRUN
 {
 	/// \class PlayerHealth
+	/// \brief class defining a new PlayerHealth.
+	/*!< Classe PlayerHealth qui gère la ligne de vie du joueur : sa position, sa vitesse, son affichage (modele obg, matrice de transformation) */
+
+	/// \class PlayerHealth
 	class PlayerHealth : public GameObject, public utils::Observable<InputManager>
 	{
 			
@@ -34,7 +38,7 @@ namespace RUNBOXRUN
 			~PlayerHealth();/*!< default destructor*/
 
 			// SETTERS
-			static PlayerHealth* getInstance();  /* Static access method. */
+			static PlayerHealth* getInstance(); /* Static access method. for just one instance cf.Singleton */
 			void run();
 	};
 }
