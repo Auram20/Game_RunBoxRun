@@ -12,8 +12,9 @@
 
 namespace glimac
 {
-	/// \class MainScene
-	/// \brief class defining a new GameManager MainScene.
+    /// \class MainScene
+    /// \brief class defining a new GameManager MainScene.
+    /*!< Classe qui gère les lumières */
 	class Light
 	{
 		
@@ -24,7 +25,8 @@ namespace glimac
             const glm::vec3 &intensity = glm::vec3(1, 1, 1)
         )
         : _position(position), _intensity(intensity)
-        {};/*!< default constructor */
+        {};/*!< constructor with parameters */
+        
 		virtual ~Light() = default; /*!< default destructor*/
         
         inline const glm::vec3 position() const {

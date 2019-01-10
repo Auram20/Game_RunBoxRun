@@ -18,6 +18,8 @@
 #include <glimac/Material.hpp>
 #include <glimac/Light.hpp>
 #include <memory>
+
+//define 
 #define MAX_TEXTURE aiTextureType::aiTextureType_UNKNOWN
 #define MAX_LIGHT 10
 
@@ -37,6 +39,8 @@ namespace glimac
 
 	/// \class Render
 	/// \brief class for the rendering.
+	/*! class de rendering qui se charge d'envoyer toutes les informations nécessaire aux shaders afind e permettre un rendu du jeu.
+		Qu'une seule instance est en jeu à chaque fois */
 	class Render
 	{
 			
@@ -50,18 +54,20 @@ namespace glimac
 		void program(const unsigned int &id);
 		void initRender(); 
 		void clear(); 
-		void sendDatas() const;
-		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const;
-		void sendDatas(const glm::mat4 &MVMatrix) const;
-		void sendDatasTex(const std::map<aiTextureType, Texture>::const_iterator &begin, const std::map<aiTextureType, Texture>::const_iterator &end) const;
-		void sendDatasLight(const std::map<LightType, std::vector<Light>> &lights) const;
-		void sendDatasMat(const Material &mat) const;
+		void sendDatas() const; /*!< send Datas to shader */
+		void sendDatas(const glm::mat4 &MVPMatrix, const glm::mat4 &MVMatrix, const glm::mat4 &NormalMatrix) const; /*!<send datas to shader */
+		void sendDatas(const glm::mat4 &MVMatrix) const; /*!< send datas to shader */
+		void sendDatasTex(const std::map<aiTextureType, Texture>::const_iterator &begin, const std::map<aiTextureType, Texture>::const_iterator &end) const; /*!< send datas texture to shader*/
+		void sendDatasLight(const std::map<LightType, std::vector<Light>> &lights) const; /*!< send datas of light to shader */
+		void sendDatasMat(const Material &mat) const; /*!<send datas of material to shader */
 
+		/*!< delete the only instance of rendering */
 		static inline void destroy() {
 			if(_instance != nullptr)
 				delete _instance;
 		}
 
+		/*!< Pour avoir un comportement Singleton : avoir qu'une seule instance à chaque fois*/
 		static inline Render *getInstance() {
 			if(_instance == nullptr) {
 				_instance = new Render();
@@ -70,6 +76,7 @@ namespace glimac
 			return _instance;
 		}
 	
+		/*!< Affiche les informations relative aux variables uniformes et aux matrices pour debug */
 		void displayInfos() const {
 			std::cout << _ProjMatrix << std::endl;
 			std::cout << _MVMatrix << std::endl;
@@ -80,15 +87,18 @@ namespace glimac
 			std::cout << uTexture << std::endl;
 		}
 
+		/*!< call shaders in Program */
 		inline void use(const unsigned int &id) const {
 			if(getProgramSize() <= id) return;
 			_sPrograms[id].use();
 		}
 
+		 /* GETTER*/
 		static inline const unsigned int getProgramSize() {
 			return _sPrograms.size();
 		}
 
+		/*!< insert a new program with new shaders */
 		static inline const unsigned int pushNewProgram(Shader& vsShader, Shader& fsShader) {
 			unsigned int id = getProgramSize();
 			_sPrograms.push_back(buildProgramFromShaders(vsShader, fsShader));
@@ -102,16 +112,17 @@ namespace glimac
 			return id;
 		} 
 
+		/* insert new prgram */
 		static inline const unsigned int pushNewProgram() {
 			_sPrograms.push_back(Program());
 			return getProgramSize() - 1;
 		} 
 
 		private:
-		glm::mat4 _ProjMatrix;
-		glm::mat4 _MVMatrix;
-		glm::mat4 _NormalMatrix;
-		GLint uMVPMatrix;
+		glm::mat4 _ProjMatrix; // Matrice de projection 
+		glm::mat4 _MVMatrix; // View Matrice
+		glm::mat4 _NormalMatrix; 
+		GLint uMVPMatrix; 
 		GLint uMVMatrix;
 		GLint uNormalMatrix;
 		GLint uTexture;
@@ -123,7 +134,7 @@ namespace glimac
 		GLint uLightIntensity;
 		Render() = default ; /*!< constructor with parameters */
 		static std::vector<Program> _sPrograms;
-		static Render* _instance;
+		static Render* _instance; 
 
 	};
 }

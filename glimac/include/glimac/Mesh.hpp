@@ -17,6 +17,8 @@ namespace glimac {
 
     /// \class Mesh
     /// \brief class defining a new Mesh.
+    /*! class of Mesh */
+
 class Mesh 
 {
 
@@ -55,8 +57,6 @@ public:
 
     virtual void draw() const; /*!< Render a mesh */
 
-    //Opérateur =
-
     static const GLuint VERTEX_ATTR_POSITION = 0;
     static const GLuint VERTEX_ATTR_NORMAL = 1;
     static const GLuint VERTEX_ATTR_TEXCOORDS = 2;
@@ -72,15 +72,16 @@ protected:
     std::shared_ptr<GLuint> _ebo;
     void setupMesh();
     void initPtr();
+
     static void deleteBuffers(GLuint* i) {
         if(i == nullptr) return;
         glDeleteBuffers(1, i);
-		delete i;
+        delete i;
     }
     static void deleteVertexArrays(GLuint* i) {
         if(i == nullptr) return;
         glDeleteVertexArrays(1, i);
-		delete i;
+        delete i;
     }
 
 };

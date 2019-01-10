@@ -17,6 +17,7 @@ namespace glimac {
 
     /// \class Image
     /// \brief virtual class for Image.
+    /*!< class virtuelle "Image" */ 
 class Image {
 private:
     unsigned int m_nWidth = 0u;
@@ -25,6 +26,7 @@ private:
 public:
 
         // CONSTRUCTORS & DESTRUCTOR
+        /*!< init constructor*/
     Image(unsigned int width, unsigned int height):
         m_nWidth(width), m_nHeight(height), m_Pixels(new glm::vec4[width * height]) {
     }/*!< init constructor*/
@@ -48,6 +50,9 @@ public:
 
 std::unique_ptr<Image> loadImage(const FilePath& filepath);
 
+/// \class ImageManager
+/// \brief virtual class for ImageManager
+/*!< class virtuelle "ImageManager" */ 
 class ImageManager {
 private:
     static std::unordered_map<FilePath, std::unique_ptr<Image>> m_ImageMap;

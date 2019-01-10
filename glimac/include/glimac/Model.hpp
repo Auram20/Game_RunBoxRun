@@ -23,6 +23,9 @@
 
 namespace glimac {
 
+
+    /*!< classe "Model",elle concerne les modèle obj présents dans le jeu*/
+
     class Model : public Asset {
         private:
             std::vector<Mesh> _meshes;
@@ -31,9 +34,13 @@ namespace glimac {
             void processNode(aiNode *node, const aiScene *scene);
             Mesh processMesh(aiMesh *mesh, const aiScene *scene);
             std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
+            
         public:
 
+            /*!< activate, bind texture and send data to the render */
             void draw() const;
+
+            /*!< display info of all meshes */
             inline void displayInfos() const {
                 std::cout << "meshes : " << _meshes.size() << std::endl;
                 for(int i = 0; i < _meshes.size(); ++i) {
@@ -41,32 +48,36 @@ namespace glimac {
                 }
             }
 
+            /*!< load with assimp */
             bool load() override;
 
+            /*!< default constructor */
             Model()
             : Asset(), _meshes(), _materials({Material()})
-            {
-                
-            }
+            {} 
 
+            /*!< constructor width string */
             Model(std::string path)
             : Asset(path, AssetType::MODEL), _meshes(), _materials({Material()})
             {
                 load();
             }
 
+            /*!< constructor from a filePath*/
             Model(const glimac::FilePath &path)
             : Asset(path, AssetType::MODEL), _meshes(), _materials({Material()})
             {
                 load();
             }
 
+            /*!< constructor with mesh in argument */
             Model(Mesh mesh)
             : Asset(), _meshes(), _materials({Material()})
             {
                 _meshes.push_back(mesh);
             }
 
+            /*!< constructor with vector of meshes */
             Model(std::vector<Mesh> meshes)
             : Asset(), _meshes(meshes), _materials({Material()})
             {
