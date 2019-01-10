@@ -32,12 +32,12 @@ namespace RUNBOXRUN
 			static Player* _instance; /*! < here will be the instance stored */
 			bool _touched;  /*! Player Touched or not */
 			Uint32  _vulnerabilityTime;  /*! Vulnerability Time*/
-		
 		public:
+			glm::vec3 _position;
 			double _speed;
 			unsigned int _health; /*!< health points of the player */
 			unsigned int _score; /*! Game scored by player */
-
+			bool _victory;
 
 			~Player();/*!< default destructor*/
 

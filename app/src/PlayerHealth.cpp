@@ -63,7 +63,4 @@ PlayerHealth* PlayerHealth::getInstance()
      _transform._scale[1]=(float)((float)(p->_health)/4);
      _transform._scale[2]=(float)((float)(p->_health)/4);
      
-
-
-     std::cout << "PHEAAAAALTh" << _transform._scale[0] << std::endl;
 }

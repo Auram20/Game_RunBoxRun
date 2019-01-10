@@ -96,7 +96,7 @@ namespace RUNBOXRUN
 				_Cameras.end(),
 				[&](const std::pair<std::string, glimac:: Camera*> &pair)
 					{
-						pair.second->translateZ(0.1);
+						pair.second->translateZ(-0.1);
 					}
 				);
 		}
